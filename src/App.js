@@ -47,6 +47,11 @@ class App extends Component {
               name="Page 500"
               render={(props) => <Page500 {...props} />}
             />
+            <Route
+              path="/"
+              name="Home"
+              render={(props) => <TheLayout {...props} />}
+            />
           </Switch>
         </React.Suspense>
       </HashRouter>
@@ -55,5 +60,3 @@ class App extends Component {
 }
 
 export default App;
-
-//<Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
