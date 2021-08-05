@@ -1,1 +1,9 @@
 // Here you can add other styles
+@font-face {
+    font-family: Vazir;
+    src: url('../assets/fonts/Vazir.ttf');
+}
+
+*{
+    font-family: Vazir , sans-serif;
+}
