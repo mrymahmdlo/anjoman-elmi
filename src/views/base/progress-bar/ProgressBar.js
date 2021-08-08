@@ -18,7 +18,6 @@ const ProgressBar = () => {
         </CCardHeader>
         <CCardBody>
           <CProgress className="mb-3" />
-          <CProgress value={25} className="mb-3" />
           <CProgress value={50} className="mb-3" />
           <CProgress value={75} className="mb-3" />
           <CProgress value={100} className="mb-3" />

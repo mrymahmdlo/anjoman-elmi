@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MinuteCalls = React.lazy(() => import('./pages/Consultation/MinuteCalls'));
+const MinuteCalls = React.lazy(() => import('./Consultation/MinuteCalls/MinuteCalls'));
 
 
 const Toaster = React.lazy(() => import('./views/notifications/toaster/Toaster'));

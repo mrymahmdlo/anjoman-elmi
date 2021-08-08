@@ -34,6 +34,7 @@
     "classnames": "^2.2.6",
     "core-js": "^3.9.1",
     "enzyme": "^3.11.0",
+    "jalali-date": "^1.1.4",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-app-polyfill": "^2.0.0",
