@@ -1,139 +1,133 @@
 import React, { useEffect, useState } from "react";
 import {
-  CButton,
   CCard,
   CCardBody,
   CCardHeader,
   CDataTable,
-  CProgress,
+  CForm,
+  CFormGroup,
+  CInput,
+  CLabel,
+  CPagination,
 } from "@coreui/react";
-import { EditForm } from "./ModalContent/EditForm";
-import { Activity } from "./ModalContent/Activity";
 import { ModalContainer } from "./ModalContent/MocalContainer";
 import { PostData } from "src/service/APIConfig";
 import { ChangeValues } from "./Utility/ChangeValues";
+import { ScopedSlots } from "./Utility/ScopedSlots";
 
 const Tables = () => {
   const [tableData, setTableData] = useState([]);
   const [tableFields, setTableFields] = useState([]);
+  const [pageNum, setPageNum] = useState(1);
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
-
-  const fields = [
-    {
-      key: "orderEdit",
-      label: "",
-      _style: { width: "1%" },
-      sorter: false,
-      filter: false,
-    },
-    {
-      key: "orderDetail",
-      label: "",
-      _style: { width: "1%" },
-      sorter: false,
-      filter: false,
-    },
-  ];
+  const [currentPage, setActivePage] = useState(1);
+  const [startDate, setStartDate] = useState("1390/06/10");
+  const [endDate, setEndDate] = useState("1500/07/10");
+  const [filterData, setFilterData] = useState({
+    asc: false,
+    column: "ReserveDateTime",
+  });
+  const capitalizeFirstLetter = (string) => {
+    return string?.charAt(0).toUpperCase() + string?.slice(1);
+  };
   useEffect(() => {
     PostData("MinuteConsultation/Order", {
       filterModel: {
-        fromDateTime: "1390/06/10",
-        toDateTime: "1500/07/10",
+        fromDateTime: startDate,
+        toDateTime: endDate,
       },
       dataTableModel: {
-        orderCol: "ContactDuration",
+        orderCol: capitalizeFirstLetter(filterData.column),
         searchTerm: "",
-        orderAscending: true,
-        page: 2,
-        length: 10,
+        orderAscending: filterData.asc,
+        page: currentPage,
+        length: 15,
       },
     }).then((res) => {
-      setTableFields([...res.data.headers, ...fields]);
-      setTableData(res.data.rows);
+      setTableFields([
+        ...res.data.headers,
+        ...[
+          {
+            key: "orderEdit",
+            label: "",
+            _style: { width: "1%" },
+            sorter: false,
+            filter: false,
+          },
+          {
+            key: "orderDetail",
+            label: "",
+            _style: { width: "1%" },
+            sorter: false,
+            filter: false,
+          },
+        ],
+      ]);
+      let data = res.data.rows;
+      ChangeValues(data);
+      setTableData(data);
+      setPageNum(Math.ceil(res.data.totalCount / 15));
     });
-  }, []);
-  ChangeValues(tableData, tableFields);
-  const toggle = () => {
-    setModal(!modal);
-  };
+  }, [currentPage, filterData, startDate, endDate]);
+
   return (
     <>
       <CCard>
         <CCardHeader>مشاوره های دقیقه ای پشتیبان ها</CCardHeader>
         <CCardBody>
+          <CForm inline>
+            <CFormGroup className=" pl-1">
+              <CLabel htmlFor="exampleInputName2" className="pr-1">
+                از تاریخ
+              </CLabel>
+              <CInput
+                className="mr-2"
+                onChange={(e) => setStartDate(e.target.value)}
+                placeholder={startDate}
+              />
+            </CFormGroup>
+            <CFormGroup className="pr-2 pl-1">
+              <CLabel htmlFor="exampleInputEmail2" className="pr-1">
+                تا تاریخ
+              </CLabel>
+              <CInput
+                className="mr-2"
+                onChange={(e) => setEndDate(e.target.value)}
+                placeholder={endDate}
+              />
+            </CFormGroup>
+          </CForm>
+        </CCardBody>
+        <CCardBody>
           <CDataTable
             items={tableData}
-            fields={tableFields}
+            fields={tableFields.filter(
+              (field) =>
+                field.key !== "providerPhoneNumber" &&
+                field.key !== "customerPhoneNumber"
+            )}
             striped
             size="sm"
             sorter={{ external: true, resetable: false }}
-            onSorterValueChange={console.log}
+            onSorterValueChange={setFilterData}
             itemsPerPage={20}
             pagination
-            scopedSlots={{
-              progressPercent: (item) => {
-                return (
-                  <td className="py-2 pl-2">
-                    <CProgress
-                      showPercentage
-                      value={item.progressPercent}
-                      className="bg-dark mt-2"
-                      color={
-                        item.progressPercent < 40
-                          ? "danger"
-                          : item.progressPercent < 70
-                          ? "warning"
-                          : "success"
-                      }
-                      animated
-                    />
-                  </td>
-                );
-              },
-              orderDetail: (item, index) => {
-                return (
-                  <>
-                    <td className="py-2 pl-2">
-                      <CButton
-                        onClick={() => {
-                          setModal(!modal);
-                          setModalContent(Activity(item));
-                        }}
-                        className="mr-1"
-                        color="danger"
-                      >
-                        پیگیری
-                      </CButton>
-                    </td>
-                  </>
-                );
-              },
-              orderEdit: (item, index) => {
-                return (
-                  <>
-                    <td className="py-2 pl-2">
-                      <CButton
-                        onClick={() => {
-                          setModal(!modal);
-                          setModalContent(<EditForm />);
-                        }}
-                        className="mr-1"
-                        color="primary"
-                      >
-                        ویرایش
-                      </CButton>
-                    </td>
-                  </>
-                );
-              },
-            }}
+            scopedSlots={ScopedSlots(setModal, modal, setModalContent)}
           />
         </CCardBody>
+        <CPagination
+          className="pr-3 d-flex"
+          activePage={currentPage}
+          pages={pageNum}
+          onActivePageChange={(i) => setActivePage(i)}
+        ></CPagination>
       </CCard>
       <ModalContainer
         modal={modal}
-        toggle={toggle}
+        toggle={() => {
+          setModal(!modal);
+        }}
         modalContent={modalContent}
       />
     </>

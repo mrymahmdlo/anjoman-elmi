@@ -1,6 +1,6 @@
 import JDate from "jalali-date";
 
-export const ChangeValues = (arr,tableFields) => {
+export const ChangeValues = (arr) => {
   arr.forEach((obj) =>
     Object.keys(obj).forEach(function (key) {
       if (key === "reserveDateTime" && obj[key] === null) {
@@ -8,14 +8,15 @@ export const ChangeValues = (arr,tableFields) => {
       }
       if (
         (key === "reserveDateTime" || key === "createDateTime") &&
-        obj[key] !== null  &&  obj[key] !== "تماس آنلاین"
+        obj[key] !== null &&
+        obj[key] !== "تماس آنلاین"
       ) {
         let date = new Date(obj[key]);
         let jdate = new JDate(date);
         let string =
           ("0" + date.getHours()).substr(-2) +
           ":" +
-          ("0" + date.getMinutes()).substr(-2)+
+          ("0" + date.getMinutes()).substr(-2) +
           "  " +
           jdate.getFullYear() +
           "/" +
@@ -29,4 +30,5 @@ export const ChangeValues = (arr,tableFields) => {
       }
     })
   );
+  return arr;
 };
