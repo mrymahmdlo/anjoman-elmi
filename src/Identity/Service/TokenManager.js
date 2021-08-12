@@ -7,12 +7,14 @@ export const TokenManager = () => {
     sessionStorage.setItem(userNameCookieName, fullName);
   const ResetToken = () => sessionStorage.removeItem(tokenCookieName);
   const GetToken = () => sessionStorage.getItem(tokenCookieName);
+  const GetName = () => sessionStorage.getItem(userNameCookieName);
   const TokenExists = () => sessionStorage.getItem(tokenCookieName) !== null;
   return {
     SetToken,
     SetFullName,
     ResetToken,
     GetToken,
-    TokenExists
+    TokenExists,
+    GetName,
   };
 };

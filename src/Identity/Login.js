@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CButton,
   CCard,
@@ -26,45 +26,35 @@ const Login = () => {
   const [UserName, setUserName] = useState("");
   const [Password, setPassword] = useState("");
   const { SetFullName, SetToken } = TokenManager();
+  const [showError, setShowError] = useState(false);
+  const [errorContent, setErrorContent] = useState("");
   const history = useHistory();
 
   const SubmitLogin = () => {
+    setShowError(false);
     PostData("Identity/LogIn", {
       UserName,
       Password,
       RememberMe: false,
-    }).then((res) => {
-      SetToken(res.token);
-      SetFullName(res.user.fullName);
-    });
-  };
-
-  const [position, setPosition] = useState("top-right");
-  const [autohide, setAutohide] = useState(true);
-  const [autohideValue, setAutohideValue] = useState(5000);
-  const [closeButton, setCloseButton] = useState(true);
-  const [fade, setFade] = useState(true);
-
-  const [toasts, setToasts] = useState([
-    { position: "static" },
-    { position: "static" },
-    { position: "top-right", autohide: 3000 },
-  ]);
-
-  const addToast = () => {
-    setToasts([
-      ...toasts,
-      { position, autohide: autohide && autohideValue, closeButton, fade },
-    ]);
+    })
+      .then((res) => {
+        SetToken(res.token);
+        SetFullName(res.user.fullName);
+        history.push("/");
+      })
+      .catch((err) => {
+        setShowError(true);
+        setErrorContent(err.errors[0]);
+      });
   };
 
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
         <CToaster position={"top-right"} key={"toaster"}>
-          <CToast key={"toast"} show={true} autohide={3000} fade={true}>
-            <CToastHeader closeButton={true}>Toast title</CToastHeader>
-            <CToastBody>{`This is a toast in positioned toaster .`}</CToastBody>
+          <CToast key={"toast"} show={showError} autohide={3000} fade={true}>
+            <CToastHeader closeButton={true}>خطا در ورود</CToastHeader>
+            <CToastBody>{errorContent}</CToastBody>
           </CToast>
         </CToaster>
         <form method="post">
