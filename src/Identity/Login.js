@@ -12,15 +12,22 @@ import {
   CInputGroupPrepend,
   CInputGroupText,
   CRow,
+  CToast,
+  CToastBody,
+  CToaster,
+  CToastHeader,
 } from "@coreui/react";
 import { TokenManager } from "./Service/TokenManager";
 import CIcon from "@coreui/icons-react";
 import { PostData } from "src/Service/APIConfig";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [UserName, setUserName] = useState("");
   const [Password, setPassword] = useState("");
   const { SetFullName, SetToken } = TokenManager();
+  const history = useHistory();
+
   const SubmitLogin = () => {
     PostData("Identity/LogIn", {
       UserName,
@@ -32,9 +39,34 @@ const Login = () => {
     });
   };
 
+  const [position, setPosition] = useState("top-right");
+  const [autohide, setAutohide] = useState(true);
+  const [autohideValue, setAutohideValue] = useState(5000);
+  const [closeButton, setCloseButton] = useState(true);
+  const [fade, setFade] = useState(true);
+
+  const [toasts, setToasts] = useState([
+    { position: "static" },
+    { position: "static" },
+    { position: "top-right", autohide: 3000 },
+  ]);
+
+  const addToast = () => {
+    setToasts([
+      ...toasts,
+      { position, autohide: autohide && autohideValue, closeButton, fade },
+    ]);
+  };
+
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
+        <CToaster position={"top-right"} key={"toaster"}>
+          <CToast key={"toast"} show={true} autohide={3000} fade={true}>
+            <CToastHeader closeButton={true}>Toast title</CToastHeader>
+            <CToastBody>{`This is a toast in positioned toaster .`}</CToastBody>
+          </CToast>
+        </CToaster>
         <form method="post">
           <CRow className="justify-content-center">
             <CCol md="8">
