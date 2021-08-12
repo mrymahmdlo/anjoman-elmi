@@ -1,7 +1,7 @@
 import { TokenManager } from "src/Identity/Service/TokenManager";
 const { GetToken } = TokenManager();
 
-const BaseUrl = "http://dev.bamis.ir/api/v1/";
+const BaseUrl = process.env.REACT_APP_API_BASE;
 const GetData = (url) => {
   return fetch(BaseUrl + url, {
     method: "GET",

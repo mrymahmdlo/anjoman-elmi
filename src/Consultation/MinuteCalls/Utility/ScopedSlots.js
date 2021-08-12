@@ -48,7 +48,9 @@ export const ScopedSlots = (setModal, modal, setModalContent) => {
             <CButton
               onClick={() => {
                 setModal(!modal);
-                setModalContent(<EditForm />);
+                setModalContent(
+                  <EditForm orderDetailId={item.orderDetailId} />
+                );
               }}
               className="mr-1"
               color="primary"
