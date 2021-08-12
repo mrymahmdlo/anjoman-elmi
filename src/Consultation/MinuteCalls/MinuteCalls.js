@@ -11,7 +11,7 @@ import {
   CPagination,
 } from "@coreui/react";
 import { ModalContainer } from "./ModalContent/MocalContainer";
-import { PostData } from "src/service/APIConfig";
+import { PostData } from "src/Service/APIConfig";
 import { ChangeValues } from "./Utility/ChangeValues";
 import { ScopedSlots } from "./Utility/ScopedSlots";
 

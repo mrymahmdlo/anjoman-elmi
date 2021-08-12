@@ -13,7 +13,7 @@ import {
   CInput,
   CLabel,
 } from "@coreui/react";
-import { PostData } from "src/service/APIConfig";
+import { PostData } from "src/Service/APIConfig";
 import { FilterSection } from "../Utility/FilterSection";
 
 export const EditForm = () => {
