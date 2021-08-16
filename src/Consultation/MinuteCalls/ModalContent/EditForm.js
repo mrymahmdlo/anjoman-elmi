@@ -10,6 +10,7 @@ import {
 } from "@coreui/react";
 import { GetData, PostData } from "src/Service/APIConfig";
 import { FilterSection } from "../Utility/FilterSection";
+import { DatePicker } from "jalali-react-datepicker";
 
 const subcategories = [
   { name: "MinuteConsultation", label: "آنلاین" },
@@ -132,12 +133,7 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
         </CSelect>
       </CFormGroup>
       <CFormGroup>
-        <DatePicker
-          timePickerComponent={MyTimePicker}
-          inputFormat="jYYYY/jM/jD HH:mm"
-          value={form.reserveDate}
-          onChange={(value) => setForm({ ...form, reserveDate: value })}
-        />
+        <DatePicker timePicker/>
       </CFormGroup>
       <CFormGroup>
         <CInput
