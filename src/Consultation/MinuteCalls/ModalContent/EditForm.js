@@ -6,17 +6,24 @@ import {
   CFormGroup,
   CFormText,
   CInput,
+  CSelect,
 } from "@coreui/react";
 import { GetData, PostData } from "../../../service/APIConfig";
 import { FilterSection } from "../Utility/FilterSection";
 
-export const EditForm = ({ orderDetailId }) => {
+const subcategories = [
+  { name: "MinuteConsultation", label: "آنلاین" },
+  { name: "OfflineMinuteConsultation", label: "آفلاین" },
+];
+
+export const EditForm = ({ orderDetailId, onSubmit }) => {
   const [collapse, setCollapse] = useState(false);
   const [providers, setProviders] = useState([]);
   const [groupId, setGroupId] = useState(null);
   const [status, setStatus] = useState(null);
   const [rank, setRank] = useState(null);
   const [form, setForm] = useState({});
+  const [subcategory, setSubcategory] = useState("");
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -24,17 +31,7 @@ export const EditForm = ({ orderDetailId }) => {
       setProviders(res.data);
     });
     GetData("Order/Detail/" + orderDetailId)
-      .then((d) =>
-        setForm({
-          orderDetailId: d.orderDetailId,
-          productProvider: {
-            productId: d.productId,
-            providerId: d.providerId,
-          },
-          description: "",
-          reserveDate: d.startDateTime,
-        })
-      )
+      .then((d) => setForm(d.data))
       .catch();
   }, []);
 
@@ -49,11 +46,25 @@ export const EditForm = ({ orderDetailId }) => {
   }, [groupId, status, rank]);
 
   useEffect(() => {
-    debugger;
-    GetData(`Service/MinuteConsultation/${form.productProvider?.providerId}`)
-      .then((d) => setProducts(d?.data?.items ?? []))
-      .catch();
-  }, [form.productProvider?.providerId]);
+    if (form.providerId)
+      GetData(`Service/${subcategory}/${form.providerId}`)
+        .then((d) => setProducts(d?.data?.items ?? []))
+        .catch();
+  }, [form.providerId, subcategory]);
+
+  const handleSumbit = () => {
+    PostData("Order/Change", {
+      orderDetailId: form.orderDetailId,
+      productProvider: {
+        providerId: form.providerId,
+        productId: form.productId,
+      },
+      description: form.description,
+      reserveDate: form.reserveDate,
+    });
+
+    onSubmit();
+  };
 
   return (
     <CForm action="" method="post">
@@ -64,39 +75,49 @@ export const EditForm = ({ orderDetailId }) => {
           setStatus={setStatus}
         />
       </CCollapse>
+      <CButton
+        color="primary"
+        onClick={(e) => {
+          setCollapse(!collapse);
+          e.preventDefault();
+        }}
+        className={"mb-1"}
+      >
+        فیلتر کردن پشتیبان
+      </CButton>
       <CFormGroup>
         <label>ارایه دهنده</label>
-        <select
-          class="form-select"
-          value={form.productProvider?.providerId}
+        <CSelect
+          value={form.providerId}
           onChange={(e) => setForm({ ...form, providerId: +e.target.value })}
         >
           {providers.length > 0 ? (
             providers.map((item) => (
               <option value={item.providerId}>
-                {item.name + " " + item.lastName}
+                {item.name + " " + item.lastName}{" "}
+                {item.isOnline ? "online" : "offline"}
               </option>
             ))
           ) : (
             <option>پشتیبانی وجود ندارد</option>
           )}
-        </select>
-        <CButton
-          color="primary"
-          onClick={(e) => {
-            setCollapse(!collapse);
-            e.preventDefault();
-          }}
-          className={"mb-1"}
+        </CSelect>
+      </CFormGroup>
+      <CFormGroup>
+        <label>دسته بندی</label>
+        <CSelect
+          value={subcategory}
+          onChange={(e) => setSubcategory(e.target.value)}
         >
-          فیلتر کردن پشتیبان
-        </CButton>
+          {subcategories.map((item) => (
+            <option value={item.name}>{item.label}</option>
+          ))}
+        </CSelect>
       </CFormGroup>
       <CFormGroup>
         <label>محصول</label>
-        <select
-          class="form-select"
-          value={form.productProvider?.productId}
+        <CSelect
+          value={form.productId}
           onChange={(e) => setForm({ ...form, productId: +e.target.value })}
         >
           {products.length > 0 ? (
@@ -108,11 +129,31 @@ export const EditForm = ({ orderDetailId }) => {
           ) : (
             <option>محصولی وجود ندارد</option>
           )}
-        </select>
+        </CSelect>
       </CFormGroup>
       <CFormGroup>
-        <CInput id="nf-description" placeholder="توضیحات" />
-        <CFormText className="help-block">توضیحات افزوده شود</CFormText>
+        <DatePicker
+          timePickerComponent={MyTimePicker}
+          inputFormat="jYYYY/jM/jD HH:mm"
+          value={form.reserveDate}
+          onChange={(value) => setForm({ ...form, reserveDate: value })}
+        />
+      </CFormGroup>
+      <CFormGroup>
+        <CInput
+          id="nf-description"
+          placeholder="توضیحات"
+          value={form.description}
+        />
+        <CFormText
+          className="help-block"
+          onChange={(e) => setForm({ ...form, description: e.target.value })}
+        >
+          توضیحات افزوده شود
+        </CFormText>
+      </CFormGroup>
+      <CFormGroup>
+        <CButton onClick={handleSumbit}>قبت</CButton>
       </CFormGroup>
     </CForm>
   );
