@@ -8,7 +8,7 @@ import {
   CInput,
   CSelect,
 } from "@coreui/react";
-import { GetData, PostData } from "src/Service/APIConfig";
+import { GetData, PostData } from "../../../service/APIConfig";
 import { FilterSection } from "../Utility/FilterSection";
 import { DatePicker } from "jalali-react-datepicker";
 
@@ -149,7 +149,9 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
         </CFormText>
       </CFormGroup>
       <CFormGroup>
-        <CButton onClick={handleSumbit}>قبت</CButton>
+        <CButton color="primary" onClick={handleSumbit}>
+          ثبت
+        </CButton>
       </CFormGroup>
     </CForm>
   );
