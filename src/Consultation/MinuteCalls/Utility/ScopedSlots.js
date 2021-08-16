@@ -49,7 +49,10 @@ export const ScopedSlots = (setModal, modal, setModalContent) => {
               onClick={() => {
                 setModal(!modal);
                 setModalContent(
-                  <EditForm orderDetailId={item.orderDetailId} />
+                  <EditForm
+                    orderDetailId={item.orderDetailId}
+                    onSubmit={() => setModal(false)}
+                  />
                 );
               }}
               className="mr-1"

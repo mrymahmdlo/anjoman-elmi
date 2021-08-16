@@ -12,7 +12,6 @@ export const ModalContainer = ({ modal, toggle, modalContent }) => {
       <CModalHeader closeButton>تماس تلفنی</CModalHeader>
       <CModalBody>{modalContent}</CModalBody>
       <CModalFooter>
-        <CButton color="primary">ثبت</CButton>{" "}
         <CButton color="secondary" onClick={toggle}>
           لفو
         </CButton>
