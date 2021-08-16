@@ -145,7 +145,9 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
         </CFormText>
       </CFormGroup>
       <CFormGroup>
-        <CButton onClick={handleSumbit}>قبت</CButton>
+        <CButton color="primary" onClick={handleSumbit}>
+          ثبت
+        </CButton>
       </CFormGroup>
     </CForm>
   );

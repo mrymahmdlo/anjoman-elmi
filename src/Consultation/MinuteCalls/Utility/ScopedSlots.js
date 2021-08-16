@@ -30,7 +30,7 @@ export const ScopedSlots = (setModal, modal, setModalContent) => {
             <CButton
               onClick={() => {
                 setModal(!modal);
-                setModalContent(Activity(item));
+                setModalContent(<Activity item={item} />);
               }}
               className="mr-1"
               color="danger"

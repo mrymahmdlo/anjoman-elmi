@@ -1,4 +1,5 @@
 import JDate from "jalali-date";
+import { DateFormatter } from "./DateFormatter";
 
 export const ChangeValues = (arr) => {
   arr.forEach((obj) =>
@@ -13,17 +14,7 @@ export const ChangeValues = (arr) => {
       ) {
         let date = new Date(obj[key]);
         let jdate = new JDate(date);
-        let string =
-          ("0" + date.getHours()).substr(-2) +
-          ":" +
-          ("0" + date.getMinutes()).substr(-2) +
-          "  " +
-          jdate.getFullYear() +
-          "/" +
-          jdate.getMonth() +
-          "/" +
-          jdate.getDate();
-        obj[key] = string;
+        obj[key] = DateFormatter(jdate, date);
       }
       if (obj[key] === null) {
         obj[key] = "ثبت نشده";
