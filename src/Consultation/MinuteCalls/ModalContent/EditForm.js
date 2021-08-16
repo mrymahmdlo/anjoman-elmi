@@ -132,14 +132,6 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
         </CSelect>
       </CFormGroup>
       <CFormGroup>
-        <DatePicker
-          timePickerComponent={MyTimePicker}
-          inputFormat="jYYYY/jM/jD HH:mm"
-          value={form.reserveDate}
-          onChange={(value) => setForm({ ...form, reserveDate: value })}
-        />
-      </CFormGroup>
-      <CFormGroup>
         <CInput
           id="nf-description"
           placeholder="توضیحات"
