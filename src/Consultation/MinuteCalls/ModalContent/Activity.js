@@ -16,6 +16,7 @@ export const Activity = ({ item }) => {
           if (report.startDateTime) {
             times.push(
               <TimelineEvent
+                style={{ textAlign: "right" }}
                 title={`فعال شدن تماس به مدت ${report.expectedDuration} برای ${report.executorName}`}
                 createdAt={report.startDateTime}
                 icon={<CIcon name="cil-bell" />}
@@ -25,6 +26,7 @@ export const Activity = ({ item }) => {
           if (report.doneDateTime) {
             times.push(
               <TimelineEvent
+                style={{ textAlign: "right" }}
                 title={`برقراری ${report.contactDuration} تماس توسط ${report.executorName}`}
                 createdAt={report.doneDateTime}
                 icon={<CIcon name="cil-bell" />}
@@ -40,12 +42,14 @@ export const Activity = ({ item }) => {
 
   return (
     <>
-      <p>شماره تماس مشتری : {item.customerPhoneNumber}</p>
-      <p>شماره تماس پشتیبان : {item.providerPhoneNumber}</p>
-      <p>فعالیت های سفارش:</p>
+      <p>
+        شماره تماس مشتری : {item.customerPhoneNumber} | شماره تماس پشتیبان :{" "}
+        {item.providerPhoneNumber}
+      </p>
 
       <Timeline>
         <TimelineEvent
+          style={{ textAlign: "right" }}
           title={` ثبت تماس ${
             item.expectedDuration.split(":")[1]
           } دقیقه ای پشتیبان ${item.providerName} برای مشتری ${
