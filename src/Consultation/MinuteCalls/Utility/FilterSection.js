@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetData } from "src/Service/APIConfig";
+import { GetData } from "../../../service/APIConfig";
 
 const { CFormText, CButton, CSpinner } = require("@coreui/react");
 

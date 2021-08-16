@@ -11,7 +11,7 @@ import {
   CPagination,
 } from "@coreui/react";
 import { ModalContainer } from "./ModalContent/MocalContainer";
-import { PostData } from "src/Service/APIConfig";
+import { GetData, PostData } from "../../service/APIConfig";
 import { ChangeValues } from "./Utility/ChangeValues";
 import { ScopedSlots } from "./Utility/ScopedSlots";
 
@@ -70,7 +70,7 @@ const Tables = () => {
       setPageNum(Math.ceil(res.data.totalCount / 15));
     });
   }, [currentPage, filterData, startDate, endDate]);
-
+  
   return (
     <>
       <CCard>

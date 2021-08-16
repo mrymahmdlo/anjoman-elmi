@@ -19,7 +19,7 @@ import {
 } from "@coreui/react";
 import { TokenManager } from "./Service/TokenManager";
 import CIcon from "@coreui/icons-react";
-import { PostData } from "src/Service/APIConfig";
+import { PostData } from "../service/APIConfig";
 import { useHistory } from "react-router-dom";
 
 const Login = () => {
