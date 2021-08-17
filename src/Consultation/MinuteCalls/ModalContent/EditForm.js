@@ -8,9 +8,13 @@ import {
   CInput,
   CSelect,
 } from "@coreui/react";
-import { GetData, PostData } from "../../../service/APIConfig";
+import { GetData, PostData } from "src/Service/APIConfig";
 import { FilterSection } from "../Utility/FilterSection";
-import { DatePicker } from "jalali-react-datepicker";
+import { DateTimePicker } from "src/reusable/DateTimePicekr";
+import {
+  DotNetGeorgianToHejri,
+  HejriToDotNetGeorgian,
+} from "src/Utility/DateTime";
 
 const subcategories = [
   { name: "MinuteConsultation", label: "آنلاین" },
@@ -32,9 +36,15 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
       setProviders(res.data);
     });
     GetData("Order/Detail/" + orderDetailId)
-      .then((d) => setForm(d.data))
+      .then((d) => {
+        setSubcategory(d.data.productSubCategoryId);
+        setForm({
+          ...d.data,
+          reserveDate: DotNetGeorgianToHejri(d.data.startDateTime),
+        });
+      })
       .catch();
-  }, []);
+  }, [orderDetailId]);
 
   useEffect(() => {
     PostData("Provider/Consultation", {
@@ -54,6 +64,8 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
   }, [form.providerId, subcategory]);
 
   const handleSumbit = () => {
+    console.log(HejriToDotNetGeorgian(form.reserveDate));
+    console.log(HejriToDotNetGeorgian("1379/8/25 18:32"));
     PostData("Order/Change", {
       orderDetailId: form.orderDetailId,
       productProvider: {
@@ -61,10 +73,10 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
         productId: form.productId,
       },
       description: form.description,
-      reserveDate: form.reserveDate,
-    });
-
-    onSubmit();
+      reserveDate: HejriToDotNetGeorgian(form.reserveDate),
+    })
+      .then(onSubmit)
+      .catch();
   };
 
   return (
@@ -132,9 +144,14 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
           )}
         </CSelect>
       </CFormGroup>
-      <CFormGroup>
-        <DatePicker timePicker/>
-      </CFormGroup>
+      {subcategory === subcategories[0].name ? null : (
+        <CFormGroup>
+          <DateTimePicker
+            value={form.reserveDate}
+            onChange={(date) => setForm({ ...form, reserveDate: date })}
+          />
+        </CFormGroup>
+      )}
       <CFormGroup>
         <CInput
           id="nf-description"

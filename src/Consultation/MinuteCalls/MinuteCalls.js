@@ -11,7 +11,7 @@ import {
   CPagination,
 } from "@coreui/react";
 import { ModalContainer } from "./ModalContent/MocalContainer";
-import { PostData } from "../../service/APIConfig";
+import { PostData } from "../../Service/APIConfig";
 import { ChangeValues } from "./Utility/ChangeValues";
 import { ScopedSlots } from "./Utility/ScopedSlots";
 
@@ -23,6 +23,7 @@ const Tables = () => {
   const [modalContent, setModalContent] = useState("");
   const [currentPage, setActivePage] = useState(1);
   const [startDate, setStartDate] = useState("1390/06/10");
+  const [search, setSearch] = useState("");
   const [endDate, setEndDate] = useState("1500/07/10");
   const [filterData, setFilterData] = useState({
     asc: false,
@@ -39,7 +40,7 @@ const Tables = () => {
       },
       dataTableModel: {
         orderCol: capitalizeFirstLetter(filterData.column),
-        searchTerm: "",
+        searchTerm: search,
         orderAscending: filterData.asc,
         page: currentPage,
         length: 15,
@@ -69,7 +70,7 @@ const Tables = () => {
       setTableData(data);
       setPageNum(Math.ceil(res.data.totalCount / 15));
     });
-  }, [currentPage, filterData, startDate, endDate]);
+  }, [currentPage, filterData, startDate, endDate, search]);
 
   return (
     <>
@@ -77,6 +78,14 @@ const Tables = () => {
         <CCardHeader>مشاوره های دقیقه ای پشتیبان ها</CCardHeader>
         <CCardBody>
           <CForm inline>
+            <CFormGroup className=" pl-1">
+              <CLabel className="pr-1">جستجو</CLabel>
+              <CInput
+                className="mr-2"
+                onChange={(e) => setSearch(e.target.value)}
+                value={search}
+              />
+            </CFormGroup>
             <CFormGroup className=" pl-1">
               <CLabel htmlFor="exampleInputName2" className="pr-1">
                 از تاریخ
