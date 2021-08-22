@@ -63,6 +63,13 @@ const Tables = () => {
             sorter: false,
             filter: false,
           },
+          {
+            key: "smsSender",
+            label: "",
+            _style: { width: "5%" },
+            sorter: false,
+            filter: false,
+          },
         ],
       ]);
       let data = res.data.rows;

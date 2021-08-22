@@ -1,8 +1,19 @@
-import { CButton, CProgress } from "@coreui/react";
+import {
+  CButton,
+  CProgress,
+  CToast,
+  CToastBody,
+  CToaster,
+  CToastHeader,
+} from "@coreui/react";
+import { useState } from "react";
+import { PostData } from "src/service/APIConfig";
 import { Activity } from "../ModalContent/Activity";
 import { EditForm } from "../ModalContent/EditForm";
 
 export const ScopedSlots = (setModal, modal, setModalContent) => {
+  const [showError, setShowError] = useState(false);
+  const [errorContent, setErrorContent] = useState("");
   return {
     progressPercent: (item) => {
       return (
@@ -26,7 +37,7 @@ export const ScopedSlots = (setModal, modal, setModalContent) => {
     orderDetail: (item, index) => {
       return (
         <>
-          <td className="py-2 pl-2">
+          <td className="py-2 pl-2" key={item.orderId}>
             <CButton
               onClick={() => {
                 setModal(!modal);
@@ -44,7 +55,7 @@ export const ScopedSlots = (setModal, modal, setModalContent) => {
     orderEdit: (item, index) => {
       return (
         <>
-          <td className="py-2 pl-2">
+          <td className="py-2 pl-2" key={item.orderId}>
             <CButton
               onClick={() => {
                 setModal(!modal);
@@ -60,6 +71,46 @@ export const ScopedSlots = (setModal, modal, setModalContent) => {
             >
               ویرایش
             </CButton>
+          </td>
+        </>
+      );
+    },
+    smsSender: (item, index) => {
+      return (
+        <>
+          <td className="py-2 pl-2" key={item.orderId}>
+            <CButton
+              onClick={() => {
+                setShowError(false);
+                PostData(
+                  "ConsultationActivity/Resend/" + item.orderDetailId,
+                  {}
+                )
+                  .then((res) => {
+                    setShowError(true);
+                    setErrorContent("ارسال یادآور با موفقیت انجام شد");
+                    return res;
+                  })
+                  .catch((err) => {
+                    setShowError(true);
+                    setErrorContent("ارسال یادآور با مشکل مواجه شد");
+                  });
+              }}
+              className="mr-1 btn btn-success"
+            >
+              یادآور
+            </CButton>
+            <CToaster position={"bottom-left"} key={"toaster"}>
+              <CToast
+                key={"toast"}
+                show={showError}
+                autohide={3000}
+                fade={true}
+              >
+                <CToastHeader closeButton={true}>خطا در ورود</CToastHeader>
+                <CToastBody>{errorContent}</CToastBody>
+              </CToast>
+            </CToaster>
           </td>
         </>
       );
