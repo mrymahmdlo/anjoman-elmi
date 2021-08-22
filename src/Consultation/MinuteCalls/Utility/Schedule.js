@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { GetData } from "src/service/APIConfig";
+import { GetData } from "src/Service/APIConfig";
 import { DotNetGeorgianToHejri } from "src/Utility/DateTime";
 
 const { CFormText, CButton, CSpinner } = require("@coreui/react");
 
-export const Schedule = ({ prociderId }) => {
+export const Schedule = ({ orderDetailId }) => {
   const [schedule, setSchedule] = useState([]);
   useEffect(() => {
-    if (prociderId)
-      GetData("Order/Schedule/" + prociderId).then((res) => {
+    if (orderDetailId)
+      GetData("Order/Schedule/" + orderDetailId).then((res) => {
         setSchedule(res.data);
       });
-  }, [prociderId]);
+  }, [orderDetailId]);
   return (
     <>
       {schedule ? (

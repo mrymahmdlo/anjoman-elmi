@@ -8,7 +8,7 @@ import {
   CInput,
   CSelect,
 } from "@coreui/react";
-import { GetData, PostData } from "src/service/APIConfig";
+import { GetData, PostData } from "src/Service/APIConfig";
 import { FilterSection } from "../Utility/FilterSection";
 import { DateTimePicker } from "src/reusable/DateTimePicekr";
 import {
@@ -32,17 +32,21 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
   const [form, setForm] = useState({});
   const [subcategory, setSubcategory] = useState("");
   const [products, setProducts] = useState([]);
+
   useEffect(() => {
     PostData("Provider/Consultation", {}).then((res) => {
       setProviders(res.data);
     });
+  }, []);
+
+  useEffect(() => {
     GetData("Order/Detail/" + orderDetailId)
       .then((d) => {
-        setSubcategory(d.data.productSubCategoryId);
         setForm({
           ...d.data,
           reserveDate: DotNetGeorgianToHejri(d.data.startDateTime),
         });
+        setSubcategory(d.data.productSubCategoryId);
       })
       .catch();
   }, [orderDetailId]);
@@ -60,7 +64,17 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
   useEffect(() => {
     if (form.providerId)
       GetData(`Service/${subcategory}/${form.providerId}`)
-        .then((d) => setProducts(d?.data?.items ?? []))
+        .then((d) => {
+          const data = d?.data?.items;
+          if (
+            data &&
+            data.length > 0 &&
+            !data.find((i) => i.productId == form.productId)
+          ) {
+            setForm({ ...form, productId: data[0].productId });
+          }
+          setProducts(data ?? []);
+        })
         .catch();
   }, [form.providerId, subcategory]);
 
@@ -70,9 +84,9 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
       productProvider: {
         providerId: form.providerId,
         productId: form.productId,
+        reserveDate: HejriToDotNetGeorgian(form.reserveDate),
       },
       description: form.description,
-      reserveDate: HejriToDotNetGeorgian(form.reserveDate),
     })
       .then(onSubmit)
       .catch();
@@ -128,24 +142,7 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
               </option>
             ))}
           </CSelect>
-          {subcategory === "OfflineMinuteConsultation" ? (
-            <>
-              <CButton
-                className="mr-1 btn btn-primary"
-                style={{ width: "30%" }}
-                onClick={(e) => {
-                  setCollapseS(!collapseS);
-                  e.preventDefault();
-                }}
-              >
-                دیدن برنامه مشاور
-              </CButton>
-            </>
-          ) : null}
         </div>
-        <CCollapse show={collapseS}>
-          <Schedule prociderId={form.providerId} />
-        </CCollapse>
       </CFormGroup>
       <CFormGroup>
         <label>محصول</label>
@@ -193,3 +190,22 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
     </CForm>
   );
 };
+
+/*
+{subcategory === "OfflineMinuteConsultation" ? (
+            <>
+              <CButton
+                className="mr-1 btn btn-primary"
+                style={{ width: "30%" }}
+                onClick={(e) => {
+                  setCollapseS(!collapseS);
+                  e.preventDefault();
+                }}
+              >
+                دیدن برنامه مشاور
+              </CButton>
+            </>
+          ) : null}
+          <CCollapse show={collapseS}>
+  <Schedule orderDetailId={form.orderDetailId} />
+</CCollapse>*/

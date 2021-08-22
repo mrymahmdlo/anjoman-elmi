@@ -7,7 +7,7 @@ import {
   CToastHeader,
 } from "@coreui/react";
 import { useState } from "react";
-import { PostData } from "src/service/APIConfig";
+import { PostData } from "src/Service/APIConfig";
 import { Activity } from "../ModalContent/Activity";
 import { EditForm } from "../ModalContent/EditForm";
 
