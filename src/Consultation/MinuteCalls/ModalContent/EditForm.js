@@ -15,6 +15,7 @@ import {
   DotNetGeorgianToHejri,
   HejriToDotNetGeorgian,
 } from "src/Utility/DateTime";
+import { Schedule } from "../Utility/Schedule";
 
 const subcategories = [
   { name: "MinuteConsultation", label: "آنلاین" },
@@ -23,6 +24,7 @@ const subcategories = [
 
 export const EditForm = ({ orderDetailId, onSubmit }) => {
   const [collapse, setCollapse] = useState(false);
+  const [collapseS, setCollapseS] = useState(false);
   const [providers, setProviders] = useState([]);
   const [groupId, setGroupId] = useState(null);
   const [status, setStatus] = useState(null);
@@ -30,7 +32,6 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
   const [form, setForm] = useState({});
   const [subcategory, setSubcategory] = useState("");
   const [products, setProducts] = useState([]);
-
   useEffect(() => {
     PostData("Provider/Consultation", {}).then((res) => {
       setProviders(res.data);
@@ -64,8 +65,6 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
   }, [form.providerId, subcategory]);
 
   const handleSumbit = () => {
-    console.log(HejriToDotNetGeorgian(form.reserveDate));
-    console.log(HejriToDotNetGeorgian("1379/8/25 18:32"));
     PostData("Order/Change", {
       orderDetailId: form.orderDetailId,
       productProvider: {
@@ -78,7 +77,6 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
       .then(onSubmit)
       .catch();
   };
-
   return (
     <CForm action="" method="post">
       <CCollapse show={collapse}>
@@ -106,7 +104,7 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
         >
           {providers.length > 0 ? (
             providers.map((item) => (
-              <option value={item.providerId}>
+              <option value={item.providerId} key={item.providerId}>
                 {item.name + " " + item.lastName}{" "}
                 {item.isOnline ? "online" : "offline"}
               </option>
@@ -118,14 +116,36 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
       </CFormGroup>
       <CFormGroup>
         <label>دسته بندی</label>
-        <CSelect
-          value={subcategory}
-          onChange={(e) => setSubcategory(e.target.value)}
-        >
-          {subcategories.map((item) => (
-            <option value={item.name}>{item.label}</option>
-          ))}
-        </CSelect>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <CSelect
+            value={subcategory}
+            style={{ width: "65%" }}
+            onChange={(e) => setSubcategory(e.target.value)}
+          >
+            {subcategories.map((item, index) => (
+              <option key={index} value={item.name}>
+                {item.label}
+              </option>
+            ))}
+          </CSelect>
+          {subcategory === "OfflineMinuteConsultation" ? (
+            <>
+              <CButton
+                className="mr-1 btn btn-primary"
+                style={{ width: "30%" }}
+                onClick={(e) => {
+                  setCollapseS(!collapseS);
+                  e.preventDefault();
+                }}
+              >
+                دیدن برنامه مشاور
+              </CButton>
+            </>
+          ) : null}
+        </div>
+        <CCollapse show={collapseS}>
+          <Schedule prociderId={form.providerId} />
+        </CCollapse>
       </CFormGroup>
       <CFormGroup>
         <label>محصول</label>
