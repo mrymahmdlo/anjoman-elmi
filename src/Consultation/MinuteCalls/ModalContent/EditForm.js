@@ -8,7 +8,7 @@ import {
   CInput,
   CSelect,
 } from "@coreui/react";
-import { GetData, PostData } from "src/Service/APIConfig";
+import { GetData, PostData } from "src/service/APIConfig";
 import { FilterSection } from "../Utility/FilterSection";
 import { DateTimePicker } from "src/reusable/DateTimePicekr";
 import {

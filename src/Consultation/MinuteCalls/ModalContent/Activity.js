@@ -1,7 +1,7 @@
 import CIcon from "@coreui/icons-react";
 import { useEffect, useState } from "react";
 import { Timeline, TimelineEvent } from "react-event-timeline";
-import { GetData } from "src/Service/APIConfig";
+import { GetData } from "src/service/APIConfig";
 import { ConvertDates } from "../Utility/ConvertDates";
 
 export const Activity = ({ item }) => {
@@ -16,8 +16,7 @@ export const Activity = ({ item }) => {
           if (report.startDateTime) {
             times.push(
               <TimelineEvent
-                style={{ direction: "ltr" }}
-                style={{ textAlign: "right" }}
+                style={{ direction: "ltr",textAlign: "right"  }}
                 title={`فعال شدن تماس به مدت ${report.expectedDuration} برای ${report.executorName}`}
                 createdAt={report.startDateTime}
                 icon={<CIcon name="cil-bell" />}
