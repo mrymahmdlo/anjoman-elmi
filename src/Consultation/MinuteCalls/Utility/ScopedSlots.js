@@ -1,17 +1,11 @@
-import {
-  CButton,
-  CProgress,
-  CToast,
-  CToastBody,
-  CToaster,
-  CToastHeader,
-} from "@coreui/react";
+import { CButton, CProgress } from "@coreui/react";
 import { useState } from "react";
 import { PostData } from "src/Service/APIConfig";
+import { Toast } from "src/Utility/Toast";
 import { Activity } from "../ModalContent/Activity";
 import { EditForm } from "../ModalContent/EditForm";
 
-export const ScopedSlots = (setModal, modal, setModalContent) => {
+export const ScopedSlots = (setModal, modal, setModalContent, updateData) => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   return {
@@ -62,7 +56,12 @@ export const ScopedSlots = (setModal, modal, setModalContent) => {
                 setModalContent(
                   <EditForm
                     orderDetailId={item.orderDetailId}
-                    onSubmit={() => setModal(false)}
+                    onSubmit={async() => {
+                      setModal(false);
+                      await updateData();
+                      setShowError(true);
+                      setErrorContent("جدول به روز رسانی شد");
+                    }}
                   />
                 );
               }}
@@ -88,29 +87,21 @@ export const ScopedSlots = (setModal, modal, setModalContent) => {
                 )
                   .then((res) => {
                     setShowError(true);
-                    setErrorContent("ارسال یادآور با موفقیت انجام شد");
+                    setErrorContent(res.data);
                     return res;
                   })
                   .catch((err) => {
                     setShowError(true);
-                    setErrorContent("ارسال یادآور با مشکل مواجه شد");
+                    setErrorContent(
+                      "بدون ایجاد ویرایش، امکان ارسال یادآور ممکن نیست"
+                    );
                   });
               }}
               className="mr-1 btn btn-success"
             >
               یادآور
             </CButton>
-            <CToaster position={"bottom-left"} key={"toaster"}>
-              <CToast
-                key={"toast"}
-                show={showError}
-                autohide={3000}
-                fade={true}
-              >
-                <CToastHeader closeButton={true}>خطا در ورود</CToastHeader>
-                <CToastBody>{errorContent}</CToastBody>
-              </CToast>
-            </CToaster>
+            <Toast showError={showError} errorContent={errorContent} />
           </td>
         </>
       );

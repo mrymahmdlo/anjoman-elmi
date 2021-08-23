@@ -7,6 +7,7 @@ import {
   CFormText,
   CInput,
   CSelect,
+  CSpinner,
 } from "@coreui/react";
 import { GetData, PostData } from "src/Service/APIConfig";
 import { FilterSection } from "../Utility/FilterSection";
@@ -32,6 +33,7 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
   const [form, setForm] = useState({});
   const [subcategory, setSubcategory] = useState("");
   const [products, setProducts] = useState([]);
+  const [btnActice, setBtnActive] = useState(false);
 
   useEffect(() => {
     PostData("Provider/Consultation", {}).then((res) => {
@@ -79,6 +81,7 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
   }, [form.providerId, subcategory]);
 
   const handleSumbit = () => {
+    setBtnActive(true);
     PostData("Order/Change", {
       orderDetailId: form.orderDetailId,
       productProvider: {
@@ -88,7 +91,10 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
       },
       description: form.description,
     })
-      .then(onSubmit)
+      .then(() => {
+        setBtnActive(false);
+        onSubmit();
+      })
       .catch();
   };
   return (
@@ -182,10 +188,25 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
           توضیحات افزوده شود
         </CFormText>
       </CFormGroup>
-      <CFormGroup>
-        <CButton color="primary" onClick={handleSumbit}>
-          ثبت
-        </CButton>
+      <CFormGroup
+        display="grid"
+        style={{ display: "grid", placeItems: "center", witdh: "100%" }}
+      >
+        {!btnActice ? (
+          <CButton
+            color={"primary"}
+            onClick={handleSumbit}
+            disabled={btnActice}
+          >
+            ثبت
+          </CButton>
+        ) : (
+          <CSpinner
+            style={{ width: "4rem", height: "4rem" }}
+            color="danger"
+            variant="grow"
+          />
+        )}
       </CFormGroup>
     </CForm>
   );

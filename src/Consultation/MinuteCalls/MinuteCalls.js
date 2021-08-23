@@ -10,7 +10,7 @@ import {
   CLabel,
   CPagination,
 } from "@coreui/react";
-import { ModalContainer } from "./ModalContent/MocalContainer";
+import { ModalContainer } from "./ModalContent/ModalContainer";
 import { PostData } from "src/Service/APIConfig";
 import { ChangeValues } from "./Utility/ChangeValues";
 import { ScopedSlots } from "./Utility/ScopedSlots";
@@ -33,6 +33,9 @@ const Tables = () => {
     return string?.charAt(0).toUpperCase() + string?.slice(1);
   };
   useEffect(() => {
+    updateData();
+  }, [currentPage, filterData, startDate, endDate, search]);
+  const updateData = async () => {
     PostData("MinuteConsultation/Order", {
       filterModel: {
         fromDateTime: startDate,
@@ -77,8 +80,7 @@ const Tables = () => {
       setTableData(data);
       setPageNum(Math.ceil(res.data.totalCount / 15));
     });
-  }, [currentPage, filterData, startDate, endDate, search]);
-
+  };
   return (
     <>
       <CCard>
@@ -129,7 +131,12 @@ const Tables = () => {
             onSorterValueChange={setFilterData}
             itemsPerPage={20}
             pagination
-            scopedSlots={ScopedSlots(setModal, modal, setModalContent)}
+            scopedSlots={ScopedSlots(
+              setModal,
+              modal,
+              setModalContent,
+              updateData
+            )}
           />
         </CCardBody>
         <CPagination

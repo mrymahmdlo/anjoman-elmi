@@ -12,15 +12,12 @@ import {
   CInputGroupPrepend,
   CInputGroupText,
   CRow,
-  CToast,
-  CToastBody,
-  CToaster,
-  CToastHeader,
 } from "@coreui/react";
 import { TokenManager } from "./Service/TokenManager";
 import CIcon from "@coreui/icons-react";
 import { PostData } from "src/Service/APIConfig";
 import { useHistory } from "react-router-dom";
+import { Toast } from "src/Utility/Toast";
 
 const Login = () => {
   const [UserName, setUserName] = useState("");
@@ -51,12 +48,7 @@ const Login = () => {
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
-        <CToaster position={"top-right"} key={"toaster"}>
-          <CToast key={"toast"} show={showError} autohide={3000} fade={true}>
-            <CToastHeader closeButton={true}>خطا در ورود</CToastHeader>
-            <CToastBody>{errorContent}</CToastBody>
-          </CToast>
-        </CToaster>
+        <Toast errorContent={errorContent} showError={showError} />
         <form method="post">
           <CRow className="justify-content-center">
             <CCol md="8">
