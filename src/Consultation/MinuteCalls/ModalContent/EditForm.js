@@ -34,6 +34,7 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
   const [subcategory, setSubcategory] = useState("");
   const [products, setProducts] = useState([]);
   const [btnActice, setBtnActive] = useState(false);
+  const [providerId, setProviderId] = useState();
 
   useEffect(() => {
     PostData("Provider/Consultation", {}).then((res) => {
@@ -44,6 +45,7 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
   useEffect(() => {
     GetData("Order/Detail/" + orderDetailId)
       .then((d) => {
+        setProviderId(d.data.providerId);
         setForm({
           ...d.data,
           reserveDate: DotNetGeorgianToHejri(d.data.startDateTime),
@@ -51,6 +53,8 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
         setSubcategory(d.data.productSubCategoryId);
       })
       .catch();
+    setCollapseS(false);
+    setCollapse(false);
   }, [orderDetailId]);
 
   useEffect(() => {
@@ -140,7 +144,10 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
           <CSelect
             value={subcategory}
             style={{ width: "65%" }}
-            onChange={(e) => setSubcategory(e.target.value)}
+            onChange={(e) => {
+              setSubcategory(e.target.value);
+              if (collapseS) setCollapseS(false);
+            }}
           >
             {subcategories.map((item, index) => (
               <option key={index} value={item.name}>
@@ -148,7 +155,24 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
               </option>
             ))}
           </CSelect>
+          {subcategory === "OfflineMinuteConsultation" ? (
+            <>
+              <CButton
+                className="mr-1 btn btn-primary"
+                style={{ width: "30%" }}
+                onClick={(e) => {
+                  setCollapseS(!collapseS);
+                  e.preventDefault();
+                }}
+              >
+                دیدن برنامه مشاور
+              </CButton>
+            </>
+          ) : null}
         </div>
+        <CCollapse show={collapseS}>
+          <Schedule providerId={providerId} setForm={setForm} form={form} />
+        </CCollapse>
       </CFormGroup>
       <CFormGroup>
         <label>محصول</label>
@@ -211,22 +235,3 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
     </CForm>
   );
 };
-
-/*
-{subcategory === "OfflineMinuteConsultation" ? (
-            <>
-              <CButton
-                className="mr-1 btn btn-primary"
-                style={{ width: "30%" }}
-                onClick={(e) => {
-                  setCollapseS(!collapseS);
-                  e.preventDefault();
-                }}
-              >
-                دیدن برنامه مشاور
-              </CButton>
-            </>
-          ) : null}
-          <CCollapse show={collapseS}>
-  <Schedule orderDetailId={form.orderDetailId} />
-</CCollapse>*/

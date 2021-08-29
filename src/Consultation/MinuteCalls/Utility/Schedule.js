@@ -4,21 +4,36 @@ import { DotNetGeorgianToHejri } from "src/Utility/DateTime";
 
 const { CFormText, CButton, CSpinner } = require("@coreui/react");
 
-export const Schedule = ({ orderDetailId }) => {
+export const Schedule = ({ providerId, setForm, form }) => {
   const [schedule, setSchedule] = useState([]);
+  console.log(providerId);
   useEffect(() => {
-    if (orderDetailId)
-      GetData("Order/Schedule/" + orderDetailId).then((res) => {
+    console.log(providerId);
+    if (providerId)
+      GetData("Provider/Schedule/Call?providerId=" + providerId).then((res) => {
         setSchedule(res.data);
       });
-  }, [orderDetailId]);
+  }, [providerId]);
   return (
     <>
       {schedule ? (
         <>
           <CFormText className="help-block">برنامه هفتگی مشاور</CFormText>
-          {schedule?.items?.map((item) => (
-            <CButton key={item.id} value={item.id}>
+          {schedule?.map((item) => (
+            <CButton
+              key={item.id}
+              onClick={() =>
+                setForm({
+                  ...form,
+                  reserveDate: DotNetGeorgianToHejri(item.startDateTime),
+                })
+              }
+              value={item.id}
+              style={{
+                border: "1px solid #ddd",
+                margin: "1px",
+              }}
+            >
               {item.name}{" "}
               {DotNetGeorgianToHejri(item.startDateTime).split(" ")[0]}
             </CButton>
