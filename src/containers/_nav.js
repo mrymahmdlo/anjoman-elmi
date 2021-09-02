@@ -42,11 +42,11 @@ const _nav = [
   //       name: "ایجاد محتوای جدید",
   //       to: "/Content/FreeContent/Create",
   //     },
-  //     {
-  //       _tag: "CSidebarNavItem",
-  //       name: "مدیریت محتوای عمومی",
-  //       to: "/Content/FreeContent/Create",
-  //     },
+  //     // {
+  //     //   _tag: "CSidebarNavItem",
+  //     //   name: "مدیریت محتوای عمومی",
+  //     //   to: "/Content/FreeContent/Create",
+  //     // },
   //   ],
   // },
   // {

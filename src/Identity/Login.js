@@ -22,7 +22,7 @@ import { Toast } from "src/Utility/Toast";
 const Login = () => {
   const [UserName, setUserName] = useState("");
   const [Password, setPassword] = useState("");
-  const { SetFullName, SetToken } = TokenManager();
+  const { SetFullName, SetToken, SetUserId } = TokenManager();
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const history = useHistory();
@@ -37,6 +37,7 @@ const Login = () => {
       .then((res) => {
         SetToken(res.token);
         SetFullName(res.user.fullName);
+        SetUserId(res.user.id);
         history.push("/");
       })
       .catch((err) => {
