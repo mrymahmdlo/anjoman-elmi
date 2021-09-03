@@ -22,6 +22,7 @@ import CIcon from "@coreui/icons-react";
 import { GetData, PostData } from "src/Service/APIConfig";
 import { TokenManager } from "src/Identity/Service/TokenManager";
 import { Toast } from "src/Utility/Toast";
+import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
 const CreateFreeContent = () => {
   const { GetUserId } = TokenManager();
 
@@ -35,7 +36,6 @@ const CreateFreeContent = () => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
-
   const writerProviderId = GetUserId();
   useEffect(() => {
     GetData("BasicInfo/Groups").then((res) => setGroupIds(res));
@@ -50,6 +50,8 @@ const CreateFreeContent = () => {
     }
   }, [groupId]);
   const submitContent = () => {
+    const now = new Date();
+    console.log(GetDotNetGeorgianFromDateJS(now));
     setShowError(false);
     setBtnActive(true);
     PostData("FreeContent/CreateFreeContent", {
@@ -59,6 +61,7 @@ const CreateFreeContent = () => {
       title,
       courseId,
       groupId,
+      createdDateTime: GetDotNetGeorgianFromDateJS(now),
     })
       .then((res) => {
         setErrorContent("داده با موفقیت ثبت شد ");

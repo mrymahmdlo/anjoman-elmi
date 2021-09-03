@@ -24,3 +24,6 @@ export const HejriToDotNetGeorgian = (date) => {
     return null;
   }
 };
+
+export const GetDotNetGeorgianFromDateJS = (date) =>
+  HejriToDotNetGeorgian(GeorgianToHejri(date));

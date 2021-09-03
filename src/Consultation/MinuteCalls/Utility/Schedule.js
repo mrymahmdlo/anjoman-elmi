@@ -6,9 +6,7 @@ const { CFormText, CButton, CSpinner } = require("@coreui/react");
 
 export const Schedule = ({ providerId, setForm, form }) => {
   const [schedule, setSchedule] = useState([]);
-  console.log(providerId);
   useEffect(() => {
-    console.log(providerId);
     if (providerId)
       GetData("Provider/Schedule/Call?providerId=" + providerId).then((res) => {
         setSchedule(res.data);
