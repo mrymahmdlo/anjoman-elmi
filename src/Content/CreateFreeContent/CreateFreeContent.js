@@ -167,7 +167,7 @@ const CreateFreeContent = () => {
                 </CCol>
               </CRow>
               <CFormGroup>
-                <CLabel htmlFor="nf-password">افزودن محتوای جدید</CLabel>
+                <CLabel htmlFor="nf-password"> متن محتوا</CLabel>
                 <CKEditor
                   editor={ClassicEditor}
                   config={{
