@@ -12,10 +12,11 @@ import {
   CInputGroupPrepend,
   CInputGroupText,
   CRow,
+  CSpinner,
 } from "@coreui/react";
 import { TokenManager } from "./Service/TokenManager";
 import CIcon from "@coreui/icons-react";
-import { PostData } from "src/Service/APIConfig";
+import { PostData } from "src/Service/APIEngine";
 import { useHistory } from "react-router-dom";
 import { Toast } from "src/Utility/Toast";
 
@@ -26,9 +27,11 @@ const Login = () => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const history = useHistory();
+  const [btnActice, setBtnActive] = useState(false);
 
   const SubmitLogin = () => {
     setShowError(false);
+    setBtnActive(true);
     PostData("Identity/LogIn", {
       UserName,
       Password,
@@ -39,10 +42,12 @@ const Login = () => {
         SetFullName(res.user.fullName);
         SetUserId(res.user.id);
         history.push("/");
+        setBtnActive(false);
       })
       .catch((err) => {
         setShowError(true);
         setErrorContent(err.errors[0]);
+        setBtnActive(false);
       });
   };
 
@@ -87,13 +92,21 @@ const Login = () => {
                       </CInputGroup>
                       <CRow>
                         <CCol xs="6">
-                          <CButton
-                            size="sm"
-                            onClick={SubmitLogin}
-                            className="btn-github btn-brand mr-1 mb-1"
-                          >
-                            ورود
-                          </CButton>
+                          {!btnActice ? (
+                            <CButton
+                              size="sm"
+                              onClick={SubmitLogin}
+                              className="btn-github btn-brand mr-1 mb-1"
+                            >
+                              ورود
+                            </CButton>
+                          ) : (
+                            <CSpinner
+                              style={{ width: "2rem", height: "2rem" }}
+                              color="primary"
+                              variant="grow"
+                            />
+                          )}
                         </CCol>
                       </CRow>
                     </CForm>
@@ -106,7 +119,7 @@ const Login = () => {
                   <CCardBody className="text-center">
                     <div>
                       <h2>ثبت نام</h2>
-                      <p>فعلا در دسترس نمیباشد </p>
+                      <p> در دسترس نمیباشد </p>
                     </div>
                   </CCardBody>
                 </CCard>

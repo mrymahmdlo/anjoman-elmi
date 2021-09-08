@@ -42,11 +42,6 @@ const _nav = [
   //       name: "ایجاد محتوای جدید",
   //       to: "/Content/FreeContent/Create",
   //     },
-  //     {
-  //       _tag: "CSidebarNavItem",
-  //       name: "مدیریت محتوای عمومی",
-  //       to: "/Content/FreeContent/Create",
-  //     },
   //   ],
   // },
   // {
@@ -54,16 +49,10 @@ const _nav = [
   //   _children: ["آزمون های آنلاین"],
   // },
   // {
-  //   _tag: "CSidebarNavDropdown",
-  //   name: "مدیریت آزمون",
-  //   icon: "cilPencil",
-  //   _children: [
-  //     {
-  //       _tag: "CSidebarNavItem",
-  //       name: "ایجاد آزمون جدید",
-  //       to: "/Exams/Exam/Create",
-  //     },
-  //   ],
+  //   _tag: "CSidebarNavItem",
+  //   name: "ایجاد آزمون جدید",
+  //   icon: "cil-pencil",
+  //   to: "/Exams/Exam/Create",
   // },
 ];
 

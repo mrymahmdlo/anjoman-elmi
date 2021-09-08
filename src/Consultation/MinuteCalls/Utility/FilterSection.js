@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetData } from "src/Service/APIConfig";
+import { GetData } from "src/Service/APIEngine";
 
 const { CFormText, CButton, CSpinner } = require("@coreui/react");
 
@@ -33,7 +33,7 @@ export const FilterSection = ({ setGroupId, setStatus, setRank }) => {
               alignItem: "center",
             }}
           >
-            <CFormText className="help-block m-2 p-2"> وضعیت </CFormText>
+            <CFormText className="help-block m-2 pl-2"> وضعیت </CFormText>
             {filters?.StatusIds?.options.map((item) => (
               <CButton
                 color="secondary"
@@ -47,7 +47,7 @@ export const FilterSection = ({ setGroupId, setStatus, setRank }) => {
               </CButton>
             ))}
 
-            <CFormText className="help-block m-2 p-2"> رتبه </CFormText>
+            <CFormText className="help-block m-2 pl-2"> رتبه </CFormText>
             {filters?.RankRangeIds?.options.map((item) => (
               <CButton
                 color="secondary"

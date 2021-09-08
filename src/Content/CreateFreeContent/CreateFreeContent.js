@@ -19,10 +19,12 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { GetData, PostData } from "src/Service/APIConfig";
+import { GetData, PostData } from "src/Service/APIEngine";
 import { TokenManager } from "src/Identity/Service/TokenManager";
 import { Toast } from "src/Utility/Toast";
 import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
+import { FormItems } from "./Components/FormItems";
+import { CKEditorFild, TextFild } from "src/Utility/InputGroup";
 const CreateFreeContent = () => {
   const { GetUserId } = TokenManager();
 
@@ -37,9 +39,11 @@ const CreateFreeContent = () => {
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
   const writerProviderId = GetUserId();
+
   useEffect(() => {
     GetData("BasicInfo/Groups").then((res) => setGroupIds(res));
   }, []);
+
   useEffect(() => {
     if (groupId && groupId !== "")
       GetData("BasicInfo/CoursesByGroupId?groupId=" + groupId).then((res) =>
@@ -49,6 +53,7 @@ const CreateFreeContent = () => {
       setCourseIds([]);
     }
   }, [groupId]);
+
   const submitContent = () => {
     const now = new Date();
     console.log(GetDotNetGeorgianFromDateJS(now));
@@ -74,6 +79,16 @@ const CreateFreeContent = () => {
         setBtnActive(false);
       });
   };
+
+  const items = FormItems(
+    setTitle,
+    setTimeToStudy,
+    setGroupId,
+    groupIds,
+    setCourseId,
+    courseIds
+  ).map((item) => TextFild(item));
+
   return (
     <div className="App">
       <CContainer fluid>
@@ -84,130 +99,13 @@ const CreateFreeContent = () => {
           </CCardHeader>
           <CCardBody>
             <CForm action="" method="post">
-              <CRow>
-                <CCol sm="6">
-                  <CFormGroup>
-                    <CLabel htmlFor="nf-title">عنوان محتوای عمومی</CLabel>
-                    <CInput
-                      type="text"
-                      name="title"
-                      placeholder="عنوان"
-                      onChange={(e) => setTitle(e.target.value)}
-                    />
-                    <CFormText className="help-block">
-                      عنوان محتوای خود را وارد کنید
-                    </CFormText>
-                  </CFormGroup>
-                </CCol>
-                <CCol sm="6">
-                  <CFormGroup>
-                    <CLabel htmlFor="nf-timeToStudy">
-                      زمان تقریبی مطالعه مقاله
-                    </CLabel>
-                    <CInput
-                      type="text"
-                      name="timeToStudy"
-                      placeholder="زمان مطالعه"
-                      onChange={(e) => setTimeToStudy(e.target.value)}
-                    />
-                    <CFormText className="help-block">
-                      زمان تقریبی به دقیقه برای خواندن این محتوا را تعیین کنید.
-                    </CFormText>
-                  </CFormGroup>
-                </CCol>
-              </CRow>
-              <CRow>
-                <CCol sm="6">
-                  <CFormGroup>
-                    <CLabel htmlFor="nf-title">مقطع تحصیلی</CLabel>
-                    <CFormGroup row>
-                      <CSelect
-                        custom
-                        name="groupId"
-                        style={{ width: "80%", marginRight: "15px" }}
-                        onChange={(e) => setGroupId(e.target.value)}
-                      >
-                        <option value={""}>همه</option>
-                        {groupIds.map((item, key) => (
-                          <option key={key} value={item.id}>
-                            {item.name}
-                          </option>
-                        ))}
-                      </CSelect>
-                    </CFormGroup>
-                    <CFormText className="help-block">
-                      مقطع تحصیلی مخاطب این محتوا را وارد کنید
-                    </CFormText>
-                  </CFormGroup>
-                </CCol>
-                <CCol sm="6">
-                  <CFormGroup>
-                    <CLabel htmlFor="nf-timeToStudy">درس</CLabel>
-                    <CFormGroup row>
-                      <CSelect
-                        custom
-                        name="courseId"
-                        style={{ width: "80%", marginRight: "15px" }}
-                        onChange={(e) => setCourseId(e.target.value)}
-                      >
-                        <option value={null}>همه</option>
-                        {courseIds.length > 0
-                          ? courseIds.map((item, key) => (
-                              <option key={key} value={item.id}>
-                                {item.name}
-                              </option>
-                            ))
-                          : null}
-                      </CSelect>
-                    </CFormGroup>
-                    <CFormText className="help-block">
-                      درس مربوطه به این محتوا را انتخاب کنید
-                    </CFormText>
-                  </CFormGroup>
-                </CCol>
-              </CRow>
-              <CFormGroup>
-                <CLabel htmlFor="nf-password"> متن محتوا</CLabel>
-                <CKEditor
-                  editor={ClassicEditor}
-                  config={{
-                    language: "fa",
-                    toolbar: [
-                      "heading",
-                      "|",
-                      "bold",
-                      "italic",
-                      "link",
-                      "|",
-                      "bulletedList",
-                      "numberedList",
-                      "|",
-                      "indent",
-                      "outdent",
-                      "alignment",
-                      "|",
-                      // "imageUpload",
-                      "blockQuote",
-                      "insertTable",
-                      // "mediaEmbed",
-                      "|",
-                      "undo",
-                      "redo",
-                    ],
-                  }}
-                  data=""
-                  onInit={(editor) => {
-                    console.log("Editor is ready to use!", editor);
-                  }}
-                  onChange={(event, editor) => {
-                    const data = editor.getData();
-                    setDescription(data);
-                  }}
-                />
-                <CFormText className="help-block">
-                  لطفا متن محتوای خود را وارد کنید
-                </CFormText>
-              </CFormGroup>
+              <CRow>{items.slice(0, 2)}</CRow>
+              <CRow>{items.slice(2, 4)}</CRow>
+              {CKEditorFild(
+                "متن محتوا",
+                "لطفا متن محتوای خود را وارد کنید",
+                setDescription
+              )}
             </CForm>
           </CCardBody>
           <CCardFooter>

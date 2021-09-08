@@ -1,7 +1,7 @@
 import CIcon from "@coreui/icons-react";
 import { useEffect, useState } from "react";
 import { Timeline, TimelineEvent } from "react-event-timeline";
-import { GetData } from "src/Service/APIConfig";
+import { GetData } from "src/Service/APIEngine";
 import { ConvertDates } from "../Utility/ConvertDates";
 
 export const Activity = ({ item }) => {

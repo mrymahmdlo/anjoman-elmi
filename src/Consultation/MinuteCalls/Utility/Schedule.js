@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetData } from "src/Service/APIConfig";
+import { GetData } from "src/Service/APIEngine";
 import { DotNetGeorgianToHejri } from "src/Utility/DateTime";
 
 const { CFormText, CButton, CSpinner } = require("@coreui/react");

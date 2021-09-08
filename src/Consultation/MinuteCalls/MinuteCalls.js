@@ -11,7 +11,7 @@ import {
   CPagination,
 } from "@coreui/react";
 import { ModalContainer } from "./ModalContent/ModalContainer";
-import { PostData } from "src/Service/APIConfig";
+import { PostData } from "src/Service/APIEngine";
 import { ChangeValues } from "./Utility/ChangeValues";
 import { ScopedSlots } from "./Utility/ScopedSlots";
 
@@ -29,12 +29,15 @@ const Tables = () => {
     asc: false,
     column: "ReserveDateTime",
   });
+  
   const capitalizeFirstLetter = (string) => {
     return string?.charAt(0).toUpperCase() + string?.slice(1);
   };
+
   useEffect(() => {
     updateData();
   }, [currentPage, filterData, startDate, endDate, search]);
+
   const updateData = async () => {
     PostData("MinuteConsultation/Order", {
       filterModel: {
