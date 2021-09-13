@@ -13,7 +13,7 @@ const {
   CFormText,
 } = require("@coreui/react");
 
-const InfoFormItems = (form, setForm) => {
+const QuizInfoFormItems = (form, setForm) => {
   return [
     {
       name: "نام آزمون",
@@ -188,4 +188,4 @@ const GroupIdSelect = (groupIds, form, setForm) => {
   );
 };
 
-export { GroupIdSelect, InfoFormItems };
+export { GroupIdSelect, QuizInfoFormItems };

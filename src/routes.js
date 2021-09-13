@@ -7,7 +7,7 @@ const MinuteCalls = React.lazy(() =>
 const CreateFreeContent = React.lazy(() =>
   import("./Content/CreateFreeContent/CreateFreeContent")
 );
-const CreateExam = React.lazy(() => import("./Exam/CreateExam/CreateExam"));
+const CreateExam = React.lazy(() => import("./Exam/CreateNewExam/CreateNewExam"));
 
 //examples
 const Toaster = React.lazy(() =>

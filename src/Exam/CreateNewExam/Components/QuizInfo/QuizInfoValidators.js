@@ -1,4 +1,17 @@
-export const validator = {
+const InitialForm = (userId) => ({
+  UserId: +userId,
+  IsLock: false,
+  IsValid: false,
+  GroupCodes: [],
+  StartDate: null,
+  ResultDate: null,
+  EndDate: null,
+  ShowResultImmediately: true,
+  QuestionFileReady: false,
+  AnswerFileReady: false,
+});
+
+const QuizInfoValidators = {
   QuizTitle: {
     mustFill: true,
     type: "String",
@@ -64,3 +77,5 @@ export const validator = {
     type: "Boolean",
   },
 };
+
+export { InitialForm, QuizInfoValidators };
