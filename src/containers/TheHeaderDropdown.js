@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  CBadge,
   CButton,
   CDropdown,
   CDropdownItem,

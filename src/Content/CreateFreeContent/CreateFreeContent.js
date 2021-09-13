@@ -1,21 +1,13 @@
-import React, { Component, useEffect, useState } from "react";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import React, { useEffect, useState } from "react";
 import {
   CButton,
   CCard,
   CCardBody,
   CCardFooter,
   CCardHeader,
-  CCol,
   CContainer,
   CForm,
-  CFormGroup,
-  CFormText,
-  CInput,
-  CLabel,
   CRow,
-  CSelect,
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
@@ -27,47 +19,36 @@ import { FormItems } from "./Components/FormItems";
 import { CKEditorFild, TextFild } from "src/Utility/InputGroup";
 const CreateFreeContent = () => {
   const { GetUserId } = TokenManager();
+  const now = new Date();
 
-  const [description, setDescription] = useState("");
-  const [title, setTitle] = useState("");
-  const [timeToStudy, setTimeToStudy] = useState("");
-  const [groupId, setGroupId] = useState(null);
+  const [form, setForm] = useState({
+    writerProviderId: GetUserId(),
+    createdDateTime: GetDotNetGeorgianFromDateJS(now),
+  });
   const [groupIds, setGroupIds] = useState([]);
-  const [courseId, setCourseId] = useState(null);
   const [courseIds, setCourseIds] = useState([]);
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
-  const writerProviderId = GetUserId();
 
   useEffect(() => {
     GetData("BasicInfo/Groups").then((res) => setGroupIds(res));
   }, []);
 
   useEffect(() => {
-    if (groupId && groupId !== "")
-      GetData("BasicInfo/CoursesByGroupId?groupId=" + groupId).then((res) =>
-        setCourseIds(res)
+    if (form.groupId && form.groupId !== "")
+      GetData("BasicInfo/CoursesByGroupId?groupId=" + form.groupId).then(
+        (res) => setCourseIds(res)
       );
     else {
       setCourseIds([]);
     }
-  }, [groupId]);
+  }, [form.groupId]);
 
   const submitContent = () => {
-    const now = new Date();
-    console.log(GetDotNetGeorgianFromDateJS(now));
     setShowError(false);
     setBtnActive(true);
-    PostData("FreeContent/CreateFreeContent", {
-      description,
-      writerProviderId,
-      timeToStudy,
-      title,
-      courseId,
-      groupId,
-      createdDateTime: GetDotNetGeorgianFromDateJS(now),
-    })
+    PostData("FreeContent/CreateFreeContent", form)
       .then((res) => {
         setErrorContent("داده با موفقیت ثبت شد ");
         setShowError(true);
@@ -80,14 +61,9 @@ const CreateFreeContent = () => {
       });
   };
 
-  const items = FormItems(
-    setTitle,
-    setTimeToStudy,
-    setGroupId,
-    groupIds,
-    setCourseId,
-    courseIds
-  ).map((item) => TextFild(item));
+  const items = FormItems(form, setForm, groupIds, courseIds).map((item) =>
+    TextFild(item)
+  );
 
   return (
     <div className="App">
@@ -104,7 +80,9 @@ const CreateFreeContent = () => {
               {CKEditorFild(
                 "متن محتوا",
                 "لطفا متن محتوای خود را وارد کنید",
-                setDescription
+                setForm,
+                form,
+                "description"
               )}
             </CForm>
           </CCardBody>

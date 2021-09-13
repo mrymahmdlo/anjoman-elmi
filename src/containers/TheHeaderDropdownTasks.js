@@ -5,7 +5,6 @@ import {
   CDropdownItem,
   CDropdownMenu,
   CDropdownToggle,
-  CProgress
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 

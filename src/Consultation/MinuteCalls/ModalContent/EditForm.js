@@ -11,7 +11,7 @@ import {
 } from "@coreui/react";
 import { GetData, PostData } from "src/Service/APIEngine";
 import { FilterSection } from "../Utility/FilterSection";
-import { DateTimePicker } from "src/reusable/DateTimePicekr";
+import { DateTimePicker } from "src/reusable/DateTimePicker";
 import {
   DotNetGeorgianToHejri,
   HejriToDotNetGeorgian,
@@ -182,7 +182,7 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
         >
           {products.length > 0 ? (
             products.map((item) => (
-              <option value={item.productId}>
+              <option value={item.productId} key={item.productId}>
                 {item.product.title} {item.product.price} ریال
               </option>
             ))

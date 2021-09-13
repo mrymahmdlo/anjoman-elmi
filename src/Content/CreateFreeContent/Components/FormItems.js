@@ -1,13 +1,6 @@
 const { CInput, CSelect } = require("@coreui/react");
 
-export const FormItems = (
-  setTitle,
-  setTimeToStudy,
-  setGroupId,
-  groupIds,
-  setCourseId,
-  courseIds
-) => {
+export const FormItems = (form, setForm, groupIds, courseIds) => {
   return [
     {
       name: "عنوان محتوای عمومی",
@@ -17,7 +10,7 @@ export const FormItems = (
           type="text"
           name="title"
           placeholder="عنوان"
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => setForm({ ...form, title: e.target.value })}
         />
       ),
       size: 6,
@@ -30,7 +23,7 @@ export const FormItems = (
           type="text"
           name="timeToStudy"
           placeholder="زمان مطالعه"
-          onChange={(e) => setTimeToStudy(e.target.value)}
+          onChange={(e) => setForm({ ...form, timeToStudy: e.target.value })}
         />
       ),
       size: 6,
@@ -43,7 +36,7 @@ export const FormItems = (
           custom
           name="groupId"
           style={{ width: "80%", marginRight: "15px" }}
-          onChange={(e) => setGroupId(e.target.value)}
+          onChange={(e) => setForm({ ...form, groupId: e.target.value })}
         >
           <option value={""}>همه</option>
           {groupIds.map((item, key) => (
@@ -63,7 +56,7 @@ export const FormItems = (
           custom
           name="courseId"
           style={{ width: "80%", marginRight: "15px" }}
-          onChange={(e) => setCourseId(e.target.value)}
+          onChange={(e) => setForm({ ...form, courseId: e.target.value })}
         >
           <option value={null}>همه</option>
           {courseIds.length > 0

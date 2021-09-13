@@ -24,7 +24,7 @@ const SwitchFild = (item) => (
   </CCol>
 );
 
-const CKEditorFild = (name, text, setForm, form) => (
+const CKEditorFild = (name, text, setForm, form, fieldName) => (
   <CFormGroup>
     <CLabel htmlFor="nf-password">{name}</CLabel>
     <CKEditor
@@ -55,12 +55,10 @@ const CKEditorFild = (name, text, setForm, form) => (
         ],
       }}
       data=""
-      onInit={(editor) => {
-        console.log("Editor is ready to use!", editor);
-      }}
       onChange={(event, editor) => {
         const data = editor.getData();
-        setForm({ ...form, QuizDescription: data });
+        form[fieldName] = data;
+        setForm(form);
       }}
     />
     <CFormText className="help-block">{text}</CFormText>
