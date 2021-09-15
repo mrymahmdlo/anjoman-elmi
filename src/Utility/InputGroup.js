@@ -2,7 +2,7 @@ import { CCol, CFormGroup, CFormText, CLabel } from "@coreui/react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-const TextFild = (item) => (
+const TextField = (item) => (
   <CCol sm={item.colSize}>
     <CFormGroup>
       <CLabel htmlFor="nf-title">{item.name}</CLabel>
@@ -12,7 +12,7 @@ const TextFild = (item) => (
   </CCol>
 );
 
-const SwitchFild = (item) => (
+const SwitchField = (item) => (
   <CCol sm={item.colSize}>
     <CFormGroup>
       <CCol sm="9">
@@ -24,7 +24,7 @@ const SwitchFild = (item) => (
   </CCol>
 );
 
-const CKEditorFild = (name, text, setForm, form, fieldName) => (
+const CKEditorField = (name, text, setForm, form, fieldName) => (
   <CFormGroup>
     <CLabel htmlFor="nf-password">{name}</CLabel>
     <CKEditor
@@ -65,4 +65,4 @@ const CKEditorFild = (name, text, setForm, form, fieldName) => (
   </CFormGroup>
 );
 
-export { TextFild, SwitchFild, CKEditorFild };
+export { TextField, SwitchField, CKEditorField };

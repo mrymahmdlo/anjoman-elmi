@@ -14,11 +14,7 @@ import {
   GroupIdSelect,
   QuizInfoFormItems,
 } from "../Components/QuizInfo/QuizInfoFormItems";
-import {
-  CKEditorFild as CKEditorField,
-  SwitchFild as SwitchField,
-  TextFild as TextField,
-} from "src/Utility/InputGroup";
+import { CKEditorField, SwitchField, TextField } from "src/Utility/InputGroup";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
 import {
   InitialForm,
@@ -26,12 +22,7 @@ import {
 } from "../Components/QuizInfo/QuizInfoValidators";
 import ExamService from "src/Exam/ExamService/ExamService";
 
-const QuizInfoForm = ({
-  setShowError,
-  setErrorContent,
-  userId,
-  setQuizId,
-}) => {
+const QuizInfoForm = ({ setShowError, setErrorContent, userId, setQuizId }) => {
   const [form, setForm] = useState(InitialForm(userId));
   const [btnActice, setBtnActive] = useState(false);
   const [groupIds, setGroupIds] = useState([]);
@@ -88,7 +79,7 @@ const QuizInfoForm = ({
           </CLabel>
           <CRow>{switches}</CRow>
           {CKEditorField(
-            "توضیحات آزمون",
+            "توضیحات آزمون(الزامی است)",
             "لطفا درمورد آزمون توضیحات لازم را بنویسید",
             setForm,
             form,

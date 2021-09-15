@@ -16,7 +16,7 @@ import { TokenManager } from "src/Identity/Service/TokenManager";
 import { Toast } from "src/Utility/Toast";
 import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
 import { FormItems } from "./Components/FormItems";
-import { CKEditorFild, TextFild } from "src/Utility/InputGroup";
+import { CKEditorField, TextField } from "src/Utility/InputGroup";
 const CreateFreeContent = () => {
   const { GetUserId } = TokenManager();
   const now = new Date();
@@ -62,7 +62,7 @@ const CreateFreeContent = () => {
   };
 
   const items = FormItems(form, setForm, groupIds, courseIds).map((item) =>
-    TextFild(item)
+    TextField(item)
   );
 
   return (
@@ -77,7 +77,7 @@ const CreateFreeContent = () => {
             <CForm action="" method="post">
               <CRow>{items.slice(0, 2)}</CRow>
               <CRow>{items.slice(2, 4)}</CRow>
-              {CKEditorFild(
+              {CKEditorField(
                 "متن محتوا",
                 "لطفا متن محتوای خود را وارد کنید",
                 setForm,

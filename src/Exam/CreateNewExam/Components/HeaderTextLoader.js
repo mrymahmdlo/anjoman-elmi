@@ -1,4 +1,4 @@
-const stageTexts = ["اطلاعات آزمون", "اضافه کردن زیردرس های آزمون"];
+const stageTexts = ["اطلاعات آزمون", "اضافه کردن فایل  ها و سوال های آزمون"];
 
 export const HeaderTextLoader = (stage, stages) => {
   switch (stage) {
