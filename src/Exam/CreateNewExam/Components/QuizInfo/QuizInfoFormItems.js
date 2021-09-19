@@ -11,6 +11,7 @@ const {
   CLabel,
   CInputCheckbox,
   CFormText,
+  CSelect,
 } = require("@coreui/react");
 
 const QuizInfoFormItems = (form, setForm) => {
@@ -146,6 +147,35 @@ const QuizInfoFormItems = (form, setForm) => {
   ];
 };
 
+const QuizModeSelect = ({ form, setForm }) => {
+  return (
+    <CCol sm="3">
+      <CFormGroup>
+        <CLabel htmlFor="nf-title">حالت برگزاری آزمون</CLabel>
+        <CSelect
+          value={form.QuizMode}
+          onChange={(e) => {
+            setForm({ ...form, QuizMode: e.target.value });
+          }}
+        >
+          {[
+            { id: "2", name: "هردو" },
+            { id: "0", name: "حالت pdf" },
+            { id: "1", name: "حالت سوال به سوال" },
+          ].map((item, index) => (
+            <option key={index} value={item.id}>
+              {item.name}
+            </option>
+          ))}
+        </CSelect>
+        <CFormText className="help-block">
+          درصورت تمایل،حالت آزمون را انتخاب کنید
+        </CFormText>
+      </CFormGroup>
+    </CCol>
+  );
+};
+
 const GroupIdSelect = (groupIds, form, setForm) => {
   return (
     <CCol sm="4">
@@ -188,4 +218,4 @@ const GroupIdSelect = (groupIds, form, setForm) => {
   );
 };
 
-export { GroupIdSelect, QuizInfoFormItems };
+export { GroupIdSelect, QuizInfoFormItems, QuizModeSelect };

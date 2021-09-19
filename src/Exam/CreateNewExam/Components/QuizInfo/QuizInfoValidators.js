@@ -9,6 +9,7 @@ const InitialForm = (userId) => ({
   ShowResultImmediately: true,
   QuestionFileReady: false,
   AnswerFileReady: false,
+  QuizMode: "2",
 });
 
 const QuizInfoValidators = {
@@ -17,7 +18,7 @@ const QuizInfoValidators = {
     type: "String",
   },
   QuizDescription: {
-    mustFill: true,
+    mustFill: false,
     type: "String",
   },
   UserId: {

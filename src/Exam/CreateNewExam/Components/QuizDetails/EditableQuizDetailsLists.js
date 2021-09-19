@@ -1,55 +1,108 @@
+import CIcon from "@coreui/icons-react";
 import { CButton, CListGroup, CListGroupItem } from "@coreui/react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import ExamService from "src/Exam/ExamService/ExamService";
+import { ExamContext } from "../../CreateNewExam";
+import { ExamModalContainer } from "../ExamModalContainer";
+import AddNewCourseForm from "./AddNewCourseForm";
 
 export const EditableQuizDetailsLists = () => {
-  const [newQ, setNewQ] = useState(0);
+  const [data, setData] = useState([]);
+  const [modal, setModal] = useState(false);
+  const [updated, setUpdated] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+  const exam = React.useContext(ExamContext);
+  useEffect(() => {
+    ExamService.GetQuizDetails(exam.quizId).then((res) => setData(res.data));
+    setModal(false);
+    if (updated === true) {
+      setUpdated(false);
+    }
+  }, [exam.quizId, updated]);
   return (
-    <CListGroup className="w-100">
-      <CListGroupItem active>
-        <div className="d-flex align-items-center" s>
-          <dt className="col-sm-9">زیرآزمون ها</dt>
-          <dd style={{ textOverflow: 'ellipsis "[..]"' }}>
-            <CButton
-              className="m-1"
-              color="info"
-              onClick={() => setNewQ(newQ + 1)}
-            >
-              افزودن زیرآزمون
-            </CButton>
-            <CButton className="m-1" color="light">
-              ویرایش
-            </CButton>
-            <CButton className="m-1" color="danger">
-              حذف
-            </CButton>
-          </dd>
-        </div>
-      </CListGroupItem>
-      {[...Array(newQ)].map((e, i) => (
-        <CListGroupItem key={i}>
-          <div className="d-flex align-items-center">
-            <dt className="col-sm-1">{i + 1 + " - "}</dt>
-            <dd
-              className="col-sm-9"
-              style={{ textOverflow: 'ellipsis "[..]"' }}
-            >
-              زیست شناسی دهم - فصل {i + 1}
-            </dd>
-            <dd
-              className="col-sm-1"
-              style={{ textOverflow: 'ellipsis "[..]"' }}
-            >
-              <CButton color="primary">ویرایش </CButton>
-            </dd>
-            <dd
-              className="col-sm-1"
-              style={{ textOverflow: 'ellipsis "[..]"' }}
-            >
-              <CButton color="danger">حذف</CButton>
+    <>
+      <CListGroup className="w-100">
+        <CListGroupItem active>
+          <div className="d-flex align-items-center" s>
+            <dt className="col-sm-10">زیرآزمون ها</dt>
+            <dd>
+              <CButton
+                className="m-1"
+                color="info"
+                onClick={() => {
+                  setModalContent(
+                    <AddNewCourseForm
+                      data={{ rowId: data.length + 1 }}
+                      setUpdated={setUpdated}
+                    />
+                  );
+                  setModal(!modal);
+                }}
+              >
+                افزودن زیرآزمون
+              </CButton>
             </dd>
           </div>
         </CListGroupItem>
-      ))}
-    </CListGroup>
+        {data.map((item) => (
+          <CListGroupItem key={item.rowId} style={{ padding: "0px" }}>
+            <div className="d-flex align-items-center">
+              <dt className="col-sm-1">{item.rowId + " - "}</dt>
+              <dd className="col-sm-5">{item.courseName}</dd>
+              <dd className="col-sm-2">
+                {item.totalMinutes + " "}
+                دقیقه
+              </dd>
+              <dd className="col-sm-2">
+                {item.questionCount + " "}
+                سوال
+              </dd>
+              <dd className="col-sm-3">
+                <CButton color="primary" className="m-1">
+                  <CIcon name="cil-pencil" />
+                </CButton>
+                <CButton
+                  color="danger"
+                  className="m-1"
+                  onClick={() => {
+                    setModalContent(
+                      <div>
+                        <p>
+                          آیا میخواهید زیر آزمون {item.courseName} را حذف کنید؟
+                        </p>
+                        <CButton
+                          color="danger"
+                          onClick={() => {
+                            ExamService.DeleteQuizInfoDetails(
+                              exam.quizId,
+                              item.rowId
+                            );
+                            setModal(false);
+                            setUpdated(true);
+                          }}
+                        >
+                          بله
+                        </CButton>
+                      </div>
+                    );
+                    setModal(!modal);
+                  }}
+                >
+                  <CIcon name="cil-trash" />
+                </CButton>
+              </dd>
+            </div>
+          </CListGroupItem>
+        ))}
+      </CListGroup>
+      <ExamModalContainer
+        name="زیر آزمون"
+        modal={modal}
+        toggle={() => {
+          setModal(!modal);
+        }}
+        modalContent={modalContent}
+      />
+    </>
   );
 };

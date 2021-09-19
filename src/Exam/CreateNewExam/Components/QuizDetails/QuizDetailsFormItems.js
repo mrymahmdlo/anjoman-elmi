@@ -1,80 +1,89 @@
+import { CSelect } from "@coreui/react";
+
 const { FormNumberInput, FormTextInput } = require("src/reusable/FormInput");
 
-const QuizDetailsFormItems = (form, setForm) => {
+const QuizDetailsFormItems = (form, setForm, data, courseIds) => {
   return [
     {
-      name: "شماره کوییز(حذف)",
-      text: "شماره این آزمون",
-      input: <input disabled class="form-control" placeholder={form.QuizId} />,
-      size: 3,
-    },
-    {
-      name: "آیدی سطر(فرانت)",
-      text: "توضیح؟",
+      name: "اولویت نمایش",
+      text: "ترتیبی زیرآزمون هایی است که دانش آموز در کارنامه مشاهده میکند",
       input: FormNumberInput(
         form,
         setForm,
-        "",
-        "عدد",
+        "RowId",
+        "شماره",
         0,
         null,
-        () => form > "0"
+        () => form.RowId > "0"
       ),
-      size: 3,
+      size: 6,
     },
     {
-      name: " اسم درس - اسم بخش یا زیردرس",
-      text: "توضیح؟",
-      input: FormTextInput(form, setForm, "", "رشته حرف"),
-      size: 3,
+      name: "نام زیرآزمون",
+      text: "نام زیرآزمون را وارد کنید",
+      input: FormTextInput(form, setForm, "CourseName", "نام"),
+      size: 6,
     },
     {
-      name: " آیدی درس -- درس ",
-      text: "توضیح؟",
-      input: FormTextInput(form, setForm, "", "دراپ دون"),
-      size: 3,
+      name: "درس مربوطه",
+      text: "درس مرتبط با این زیرآزمون را انتخاب کنید",
+      input: (
+        <CSelect
+          value={form.CourseId}
+          onChange={(e) => {
+            setForm({ ...form, CourseId: e.target.value });
+          }}
+        >
+          {courseIds.map((item, index) => (
+            <option key={index} value={item.id}>
+              {item.name}
+            </option>
+          ))}
+        </CSelect>
+      ),
+      size: 6,
     },
     {
-      name: "شماره سوال اول این درس",
-      text: "توضیح؟",
+      name: "زمان پاسخگویی",
+      text: "زمان پیشنهادی پاسخگویی به این زیرآزمون را مشخص کنید",
       input: FormNumberInput(
         form,
         setForm,
-        "",
-        "عدد",
+        "TotalMinutes",
+        "زمان به دقیقه",
         0,
         null,
-        () => form > "0"
+        () => form.TotalMinutes > "0"
       ),
-      size: 3,
+      size: 6,
     },
     {
-      name: "تعداد سوالات این درس",
-      text: "توضیح؟",
+      name: "شماره سوال اول",
+      text: "شماره اولین سوال این زیرآزمون را مشخص کنید",
       input: FormNumberInput(
         form,
         setForm,
-        "",
-        "عدد",
+        "StartPos",
+        "شماره سوال",
         0,
-        null,
-        () => form > "0"
+        null, //اضافه کردن ماکس
+        () => form.StartPos > "0"
       ),
-      size: 3,
+      size: 6,
     },
     {
-      name: "زمان پیشنهادی",
-      text: "توضیح؟",
+      name: "تعداد سوالات این زیرآزمون",
+      text: "تعداد سوالات این زیرآزمون را وارد کنید",
       input: FormNumberInput(
         form,
         setForm,
-        "",
-        "عدد",
+        "QuestionCount",
+        "تعداد سوال زیرآزمون",
         0,
-        null,
-        () => form > "0"
+        null, //اضافه شود
+        () => form.QuestionCount > "0"
       ),
-      size: 3,
+      size: 6,
     },
   ];
 };

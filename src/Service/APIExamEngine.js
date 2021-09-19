@@ -22,4 +22,24 @@ const sendRequest = async (url, body) => {
   throw json;
 };
 
-export { sendRequest };
+const sendFormData = async (url, body) => {
+  const init = {
+    headers: {
+      Authorization: "Bearer " + GetToken(),
+    },
+    mode: "no-cors",
+    method: "POST",
+    body,
+  };
+
+  const res = await fetch(BaseUrl + url, init);
+  try {
+    const json = await res.json();
+    if (res.status < 400) return json;
+    throw json;
+  } catch {
+    return null;
+  }
+};
+
+export { sendRequest, sendFormData };

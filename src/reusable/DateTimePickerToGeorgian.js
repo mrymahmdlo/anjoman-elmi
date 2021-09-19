@@ -4,11 +4,11 @@ import { DatePicker } from "jalali-react-datepicker";
 import { useRef, useState } from "react";
 import moment from "jalali-moment";
 
-export const DateTimePickerToGeorgian = ({ value="", onChange }) => {
+export const DateTimePickerToGeorgian = ({ value = "", onChange }) => {
   const [isValid, setValid] = useState(true);
 
   const handleChange = (e) => {
-    const valid = moment(e.target.value, "YYYY/MM/DD HH:mm a").isValid();
+    const valid = moment(e.target.value, "YYYY-MM-DDTHH:mm").isValid();
     onChange(e.target.value);
     setValid(valid);
   };
@@ -34,7 +34,7 @@ export const DateTimePickerToGeorgian = ({ value="", onChange }) => {
         timePicker
         className="d-none"
         onClickSubmitButton={(e) =>
-          onChange(e.value.locale("eg").format("YYYY/MM/DD HH:mm A"))
+          onChange(e.value.locale("eg").format("YYYY-MM-DDTHH:mm"))
         }
       />
     </CInputGroup>

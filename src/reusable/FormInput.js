@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const { CInput, CSwitch } = require("@coreui/react");
 
 const FormTextInput = (form, setForm, nameField, placeHolder) => {
-  const [isValid, setValid] = useState();
-
+  const [isValid, setValid] = useState(form[nameField]?.length > 0);
+  useEffect(() => {
+    const valid = form[nameField]?.length > 0;
+    setValid(valid);
+  }, [nameField, form]);
   const handleChange = (e) => {
     const valid = e.target.value?.length > 0;
     setValid(valid);
@@ -15,6 +18,7 @@ const FormTextInput = (form, setForm, nameField, placeHolder) => {
       valid={isValid}
       invalid={!isValid}
       name={nameField}
+      value={form[nameField] ? form[nameField] : ""}
       placeholder={placeHolder}
       onChange={(e) => {
         handleChange(e);
@@ -32,9 +36,14 @@ const FormNumberInput = (
   max,
   validation
 ) => {
-  const [isValid, setValid] = useState();
+  const [isValid, setValid] = useState(validation());
+  useEffect(() => {
+    const valid = validation ? validation() : form[nameField];
+    setValid(valid);
+  }, [nameField, form, validation]);
   const handleChange = (e) => {
     const valid = validation ? validation() : e.target.value;
+    console.log(valid, e.target.value);
     setValid(valid);
     setForm({ ...form, [nameField]: valid ? e.target.value : null });
   };
@@ -44,6 +53,7 @@ const FormNumberInput = (
       invalid={!isValid}
       type="number"
       name={nameField}
+      value={form[nameField] ? form[nameField] : ""}
       min={min}
       max={max}
       placeholder={placeHolder}

@@ -13,6 +13,7 @@ import { GetData } from "src/Service/APIEngine";
 import {
   GroupIdSelect,
   QuizInfoFormItems,
+  QuizModeSelect,
 } from "../Components/QuizInfo/QuizInfoFormItems";
 import { CKEditorField, SwitchField, TextField } from "src/Utility/InputGroup";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
@@ -21,11 +22,13 @@ import {
   QuizInfoValidators,
 } from "../Components/QuizInfo/QuizInfoValidators";
 import ExamService from "src/Exam/ExamService/ExamService";
+import { ExamContext } from "../CreateNewExam";
 
-const QuizInfoForm = ({ setShowError, setErrorContent, userId, setQuizId }) => {
+const QuizInfoForm = ({ userId, setQuizId }) => {
   const [form, setForm] = useState(InitialForm(userId));
   const [btnActice, setBtnActive] = useState(false);
   const [groupIds, setGroupIds] = useState([]);
+  const exam = React.useContext(ExamContext);
   useEffect(() => {
     GetData("BasicInfo/Groups").then((res) => setGroupIds(res));
   }, []);
@@ -35,31 +38,33 @@ const QuizInfoForm = ({ setShowError, setErrorContent, userId, setQuizId }) => {
     .slice(8, 14)
     .map((item) => SwitchField(item));
 
+  const afterCheck = (text) => {
+    exam.setErrorContent(text);
+    exam.setShowError(true);
+    setBtnActive(false);
+  };
+
   const handleSubmit = () => {
-    setShowError(false);
+    exam.setShowError(false);
     setBtnActive(true);
     if (!CheckValidationArry(form, QuizInfoValidators)) {
-      setErrorContent("لطفا فیلد های قرمز شده را پر یا اصلاح کنید");
-      setShowError(true);
-      setBtnActive(false);
-      return;
+      return afterCheck("لطفا فیلد های قرمز شده را پر یا اصلاح کنید");
     }
     if (!form.GroupCodes[0]) {
-      setErrorContent("گروه آزمایشی آزمون را انتخاب کنید");
-      setShowError(true);
-      setBtnActive(false);
-      return;
+      return afterCheck("گروه آزمایشی آزمون را انتخاب کنید");
     }
     ExamService.CreateQuizInfo(form)
       .then((res) => {
-        setErrorContent("داده با موفقیت ثبت شد ");
-        setQuizId(res.data);
+        if (res.success) {
+          exam.setErrorContent("داده با موفقیت ثبت شد ");
+          setQuizId(res.data);
+        } else exam.setErrorContent(res.message);
       })
-      .catch(() => {
-        setErrorContent("خطا در ثبت آزمون");
+      .catch((err) => {
+        exam.setErrorContent(err.message);
       })
       .finally(() => {
-        setShowError(true);
+        exam.setShowError(true);
         setBtnActive(false);
       });
   };
@@ -68,7 +73,9 @@ const QuizInfoForm = ({ setShowError, setErrorContent, userId, setQuizId }) => {
       {" "}
       <CCardBody>
         <CForm action="" method="post">
-          <CRow>{items.slice(0, 3)}</CRow>
+          <CRow>
+            {items.slice(0, 3)} <QuizModeSelect form={form} setForm={setForm} />
+          </CRow>
           <CRow>
             {GroupIdSelect(groupIds, form, setForm)}
             {items.slice(3, 5)}
@@ -79,7 +86,7 @@ const QuizInfoForm = ({ setShowError, setErrorContent, userId, setQuizId }) => {
           </CLabel>
           <CRow>{switches}</CRow>
           {CKEditorField(
-            "توضیحات آزمون(الزامی است)",
+            "توضیحات آزمون",
             "لطفا درمورد آزمون توضیحات لازم را بنویسید",
             setForm,
             form,
