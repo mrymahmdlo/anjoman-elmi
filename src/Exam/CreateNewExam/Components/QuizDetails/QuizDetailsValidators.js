@@ -1,31 +1,31 @@
 const InitialForm = (quizId, rowId) => ({
-  QuizId: quizId,
-  RowId: `${rowId}`,
-  CourseId: "1",
+  quizId: quizId,
+  rowId: `${rowId}`,
+  courseId: "1",
 });
 
 const QuizDetailsValidators = {
-  QuizId: {
+  quizId: {
     mustFill: true,
     type: "Number",
   },
-  RowId: {
-    mustFill: false,
+  rowId: {
+    mustFill: true,
     type: "Number",
   },
-  CourseName: {
+  courseName: {
     mustFill: true,
     type: "String",
   },
-  CourseId: {
+  courseId: {
     mustFill: true,
     type: "Array",
   },
-  StartPos: {
+  startPos: {
     mustFill: true,
     type: "Number",
   },
-  TotalMinutes: {
+  totalMinutes: {
     mustFill: true,
     type: "Number",
   },

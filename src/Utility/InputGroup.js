@@ -3,7 +3,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const TextField = (item) => (
-  <CCol sm={item.colSize}>
+  <CCol sm={item.colSize} key={item.name}>
     <CFormGroup>
       <CLabel htmlFor="nf-title">{item.name}</CLabel>
       {item.input}
@@ -13,7 +13,7 @@ const TextField = (item) => (
 );
 
 const SwitchField = (item) => (
-  <CCol sm={item.colSize}>
+  <CCol sm={item.colSize} key={item.name}>
     <CFormGroup>
       <CCol sm="9">
         <CLabel htmlFor="nf-title">{item.name}</CLabel>
@@ -54,7 +54,7 @@ const CKEditorField = (name, text, setForm, form, fieldName) => (
           "redo",
         ],
       }}
-      data=""
+      data={form[fieldName] ? form[fieldName] : ""}
       onChange={(event, editor) => {
         const data = editor.getData();
         form[fieldName] = data;

@@ -2,7 +2,7 @@ import { CSelect } from "@coreui/react";
 
 const { FormNumberInput, FormTextInput } = require("src/reusable/FormInput");
 
-const QuizDetailsFormItems = (form, setForm, data, courseIds) => {
+const QuizDetailsFormItems = (form, setForm, courseIds) => {
   return [
     {
       name: "اولویت نمایش",
@@ -10,18 +10,18 @@ const QuizDetailsFormItems = (form, setForm, data, courseIds) => {
       input: FormNumberInput(
         form,
         setForm,
-        "RowId",
+        "rowId",
         "شماره",
         0,
         null,
-        () => form.RowId > "0"
+        () => form.rowId > "0"
       ),
       size: 6,
     },
     {
       name: "نام زیرآزمون",
       text: "نام زیرآزمون را وارد کنید",
-      input: FormTextInput(form, setForm, "CourseName", "نام"),
+      input: FormTextInput(form, setForm, "courseName", "نام"),
       size: 6,
     },
     {
@@ -29,9 +29,9 @@ const QuizDetailsFormItems = (form, setForm, data, courseIds) => {
       text: "درس مرتبط با این زیرآزمون را انتخاب کنید",
       input: (
         <CSelect
-          value={form.CourseId}
+          value={form.courseId}
           onChange={(e) => {
-            setForm({ ...form, CourseId: e.target.value });
+            setForm({ ...form, courseId: e.target.value });
           }}
         >
           {courseIds.map((item, index) => (
@@ -49,11 +49,11 @@ const QuizDetailsFormItems = (form, setForm, data, courseIds) => {
       input: FormNumberInput(
         form,
         setForm,
-        "TotalMinutes",
+        "totalMinutes",
         "زمان به دقیقه",
         0,
         null,
-        () => form.TotalMinutes > "0"
+        () => form.totalMinutes > "0"
       ),
       size: 6,
     },
@@ -63,11 +63,11 @@ const QuizDetailsFormItems = (form, setForm, data, courseIds) => {
       input: FormNumberInput(
         form,
         setForm,
-        "StartPos",
+        "startPos",
         "شماره سوال",
         0,
-        null, //اضافه کردن ماکس
-        () => form.StartPos > "0"
+        null,
+        () => form.startPos > "0"
       ),
       size: 6,
     },
@@ -77,11 +77,11 @@ const QuizDetailsFormItems = (form, setForm, data, courseIds) => {
       input: FormNumberInput(
         form,
         setForm,
-        "QuestionCount",
+        "questionCount",
         "تعداد سوال زیرآزمون",
         0,
-        null, //اضافه شود
-        () => form.QuestionCount > "0"
+        null,
+        () => form.questionCount > "0"
       ),
       size: 6,
     },

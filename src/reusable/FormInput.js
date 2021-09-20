@@ -43,7 +43,6 @@ const FormNumberInput = (
   }, [nameField, form, validation]);
   const handleChange = (e) => {
     const valid = validation ? validation() : e.target.value;
-    console.log(valid, e.target.value);
     setValid(valid);
     setForm({ ...form, [nameField]: valid ? e.target.value : null });
   };
@@ -83,4 +82,27 @@ const FormSwitchInput = (form, setForm, name, Checked) => {
   );
 };
 
-export { FormTextInput, FormNumberInput, FormSwitchInput };
+const FormRadioInput = (form, setForm, nameField, group) => {
+  return (
+    <div
+      className="form-check"
+      onChange={(e) => {
+        setForm({ ...form, [nameField]: e.target.value });
+      }}
+    >
+      {group.map((item) => (
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="radio"
+            value={item.id}
+            checked={form[nameField] === item.id}
+          />
+          {item.name}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export { FormTextInput, FormNumberInput, FormSwitchInput, FormRadioInput };

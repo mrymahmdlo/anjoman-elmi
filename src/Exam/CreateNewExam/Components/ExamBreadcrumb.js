@@ -2,8 +2,8 @@ import { CBreadcrumb, CBreadcrumbItem } from "@coreui/react";
 
 const stageTexts = [
   "اطلاعات آزمون",
-  "اضافه کردن اطلاعات کارنامه و افزودن فایل های آزمون",
-  "اضافه کردن سوالات آزمون",
+  "اضافه کردن اطلاعات کارنامه و بارگزاری فایل های آزمون",
+  "اضافه کردن سوالات ",
 ];
 
 export const ExamBreadcrumb = (stage, stages) => {
@@ -20,7 +20,7 @@ export const ExamBreadcrumb = (stage, stages) => {
     }
   };
   return (
-    <CBreadcrumb>
+    <CBreadcrumb className="mb-0">
       <CBreadcrumbItem active>ساخت آزمون</CBreadcrumbItem>
       <CBreadcrumbItem active>{headers()} </CBreadcrumbItem>
     </CBreadcrumb>

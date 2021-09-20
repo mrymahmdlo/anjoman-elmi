@@ -8,11 +8,12 @@ import { CheckValidationArry } from "src/reusable/CheckValidationArry";
 import { QuizDetailsValidators } from "./QuizDetailsValidators";
 const { CCardBody, CRow, CButton, CSpinner } = require("@coreui/react");
 
-const AddNewCourseForm = ({ data, setUpdated }) => {
+const EditQuizDetailForm = ({ item, setUpdated }) => {
   const exam = React.useContext(ExamContext);
   const [courseIds, setCourceIds] = useState([]);
   const [btnActice, setBtnActive] = useState(false);
-  const [form, setForm] = useState(InitialForm(exam.quizId, data?.rowId));
+  const preRowId = item.rowId;
+  const [form, setForm] = useState(item);
   const items = QuizDetailsFormItems(form, setForm, courseIds).map((item) =>
     TextField(item)
   );
@@ -25,18 +26,19 @@ const AddNewCourseForm = ({ data, setUpdated }) => {
     ExamService.GetDropDowns().then((res) =>
       setCourceIds(res.data.course.options)
     );
-  }, []);
+    setForm(item);
+  }, [item]);
   const handleSubmit = () => {
     exam.setShowError(false);
     setBtnActive(true);
     if (!CheckValidationArry(form, QuizDetailsValidators)) {
       return afterCheck("لطفا فیلد های قرمز شده را پر یا اصلاح کنید");
     }
-    ExamService.CreateQuizDetails(form)
+    ExamService.UpdateQuizInfoDetail(preRowId, form)
       .then((res) => {
         if (res.success) {
-          exam.setErrorContent("داده با موفقیت ثبت شد ");
-          setForm(InitialForm(exam.quizId, data?.rowId + 1));
+          exam.setErrorContent("سوال با موفقیت اصلاح شد ");
+          setForm(InitialForm(exam.quizId, item.rowId + 1));
           setUpdated(true);
         } else exam.setErrorContent(res.message);
       })
@@ -56,7 +58,7 @@ const AddNewCourseForm = ({ data, setUpdated }) => {
       <CRow>{items.slice(4, 6)}</CRow>
       {!btnActice ? (
         <CButton type="submit" size="sm" color="primary" onClick={handleSubmit}>
-          ثبت زیرآزمون
+          ویرایش زیرآزمون
         </CButton>
       ) : (
         <CSpinner
@@ -69,4 +71,4 @@ const AddNewCourseForm = ({ data, setUpdated }) => {
   );
 };
 
-export default AddNewCourseForm;
+export default EditQuizDetailForm;

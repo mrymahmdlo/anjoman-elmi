@@ -5,6 +5,7 @@ import ExamService from "src/Exam/ExamService/ExamService";
 import { ExamContext } from "../../CreateNewExam";
 import { ExamModalContainer } from "../ExamModalContainer";
 import AddNewCourseForm from "./AddNewCourseForm";
+import EditQuizDetailForm from "./EditQuizDetailForm";
 
 export const EditableQuizDetailsLists = () => {
   const [data, setData] = useState([]);
@@ -58,7 +59,16 @@ export const EditableQuizDetailsLists = () => {
                 سوال
               </dd>
               <dd className="col-sm-3">
-                <CButton color="primary" className="m-1">
+                <CButton
+                  color="primary"
+                  className="m-1"
+                  onClick={() => {
+                    setModalContent(
+                      <EditQuizDetailForm item={item} setUpdated={setUpdated} />
+                    );
+                    setModal(!modal);
+                  }}
+                >
                   <CIcon name="cil-pencil" />
                 </CButton>
                 <CButton
@@ -79,6 +89,8 @@ export const EditableQuizDetailsLists = () => {
                             );
                             setModal(false);
                             setUpdated(true);
+                            exam.setErrorContent(item.courseName + "حذف شد");
+                            exam.setShowError(true);
                           }}
                         >
                           بله

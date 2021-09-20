@@ -1,9 +1,13 @@
 // Here you can add other styles
 @font-face {
-    font-family: Vazir;
-    src: url('../assets/fonts/Vazir.ttf');
+  font-family: Vazir;
+  src: url("../assets/fonts/Vazir.ttf");
 }
 
-*{
-    font-family: Vazir , sans-serif;
+* {
+  font-family: Vazir, sans-serif;
+}
+
+.modal-dialog {
+  max-width: 680px !important;
 }

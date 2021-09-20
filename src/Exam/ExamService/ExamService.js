@@ -8,6 +8,11 @@ const Routes = {
   GetDropDowns: "AdminPanel/GetDropDowns",
   CreateQuizDetails: "AdminPanel/CreateQuizDetails",
   DeleteQuizInfoDetails: "AdminPanel/DeleteQuizInfoDetail/",
+  UpdateQuizInfoDetail: "AdminPanel/UpdateQuizInfoDetail/",
+  CreateQuestions: "AdminPanel/CreateQuestions",
+  GetQuestions: "AdminPanel/GetQuestions/",
+  DeleteQuestion: "AdminPanel/DeleteQuestion/",
+  UpdateQuestion: "AdminPanel/UpdateQuestion/",
 };
 
 const ExamService = {
@@ -31,17 +36,51 @@ const ExamService = {
   CreateQuizDetails: (form) =>
     sendRequest(Routes.CreateQuizDetails, {
       ...form,
-      QuizId: +form.QuizId,
-      RowId: +form.RowId,
-      CourseId: +form.CourseId,
-      StartPos: +form.StartPos,
-      QuestionCount: +form.QuestionCount,
-      TotalMinutes: +form.TotalMinutes,
+      quizId: +form.quizId,
+      rowId: +form.rowId,
+      courseId: +form.courseId,
+      startPos: +form.startPos,
+      questionCount: +form.questionCount,
+      totalMinutes: +form.totalMinutes,
     }),
   DeleteQuizInfoDetails: async (quizId, rowId) =>
     await sendRequest(
-      Routes.DeleteQuizInfoDetails + quizId + "/" + rowId + "/0",{}
+      Routes.DeleteQuizInfoDetails + quizId + "/" + rowId + "/0",
+      {}
     ),
+  UpdateQuizInfoDetail: async (rowId, form) =>
+    await sendRequest(Routes.UpdateQuizInfoDetail + rowId, {
+      ...form,
+      quizId: +form.quizId,
+      rowId: +form.rowId,
+      courseId: +form.courseId,
+      startPos: +form.startPos,
+      questionCount: +form.questionCount,
+      totalMinutes: +form.totalMinutes,
+    }),
+  CreateQuestions: async (form) =>
+    await sendRequest(Routes.CreateQuestions, {
+      ...form,
+      quizId: +form.quizId,
+      questionNo: +form.questionNo,
+      correctAnswerNo: +form.correctAnswerNo,
+      correctAnswerString: form[`choice${+form.correctAnswerNo}`],
+      answerCount: +form.answerCount,
+      questionLevel: +form.questionLevel,
+    }),
+  GetQuestions: (quizId) => sendRequest(Routes.GetQuestions + quizId),
+  DeleteQuestion: async (quizId, numQ) =>
+    await sendRequest(Routes.DeleteQuestion + quizId + "/" + numQ, {}),
+  UpdateQuestion: async (numQ, form) =>
+    await sendRequest(Routes.UpdateQuestion + numQ, {
+      ...form,
+      quizId: +form.quizId,
+      questionNo: +form.questionNo,
+      correctAnswerNo: +form.correctAnswerNo,
+      correctAnswerString: form[`choice${+form.correctAnswerNo}`],
+      answerCount: +form.answerCount,
+      questionLevel: +form.questionLevel,
+    }),
 };
 
 export default ExamService;
