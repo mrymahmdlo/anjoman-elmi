@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  CButton,
-  CCardBody,
-  CForm,
-  CLabel,
-  CRow,
-  CSpinner,
-} from "@coreui/react";
+import { CButton, CCardBody, CForm, CRow, CSpinner } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { GetData } from "src/Service/APIEngine";
 import {
@@ -14,7 +7,7 @@ import {
   QuizInfoFormItems,
   QuizModeSelect,
 } from "../Components/QuizInfo/QuizInfoFormItems";
-import { CKEditorField, SwitchField, TextField } from "src/Utility/InputGroup";
+import { TextField } from "src/Utility/InputGroup";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
 import { QuizInfoValidators } from "../Components/QuizInfo/QuizInfoValidators";
 import ExamService from "src/Exam/ExamService/ExamService";
@@ -34,9 +27,6 @@ const EditQuizInfoForm = () => {
   }, [exam.quizId]);
   console.log(form);
   const items = QuizInfoFormItems(form, setForm).map((item) => TextField(item));
-  const switches = QuizInfoFormItems(form, setForm)
-    .slice(8, 14)
-    .map((item) => SwitchField(item));
 
   const afterCheck = (text) => {
     exam.setErrorContent(text);
@@ -53,23 +43,22 @@ const EditQuizInfoForm = () => {
     if (!form.groupCodes[0]) {
       return afterCheck("گروه آزمایشی آزمون را انتخاب کنید");
     }
-    // ExamService.CreateQuizInfo(form)
-    //   .then((res) => {
-    //     if (res.success) {
-    //       exam.setErrorContent("داده با موفقیت ثبت شد ");
-    //     } else exam.setErrorContent(res.message);
-    //   })
-    //   .catch((err) => {
-    //     exam.setErrorContent(err.message);
-    //   })
-    //   .finally(() => {
-    //     exam.setShowError(true);
-    //     setBtnActive(false);
-    //   });
+    ExamService.UpdateQuizInfo(exam.quizId, form)
+      .then((res) => {
+        if (res.success) {
+          exam.setErrorContent("آزمون با موفقیت به روز رسانی شد ");
+        } else exam.setErrorContent(res.message);
+      })
+      .catch((err) => {
+        exam.setErrorContent(err.message);
+      })
+      .finally(() => {
+        exam.setShowError(true);
+        setBtnActive(false);
+      });
   };
   return (
     <>
-      {" "}
       <CCardBody>
         <CForm action="" method="post">
           <CRow>
@@ -80,17 +69,6 @@ const EditQuizInfoForm = () => {
             {items.slice(3, 5)}
           </CRow>
           <CRow>{items.slice(5, 8)}</CRow>
-          <CLabel htmlFor="nf-title">
-            با فعال کردن کلید های زیر، با توضیحات گفته شده موافق هستید
-          </CLabel>
-          <CRow>{switches}</CRow>
-          {CKEditorField(
-            "توضیحات آزمون",
-            "لطفا درمورد آزمون توضیحات لازم را بنویسید",
-            setForm,
-            form,
-            "quizDescription"
-          )}
         </CForm>
         {!btnActice ? (
           <CButton

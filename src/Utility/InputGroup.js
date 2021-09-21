@@ -24,44 +24,46 @@ const SwitchField = (item) => (
   </CCol>
 );
 
-const CKEditorField = (name, text, setForm, form, fieldName) => (
-  <CFormGroup>
-    <CLabel htmlFor="nf-password">{name}</CLabel>
-    <CKEditor
-      editor={ClassicEditor}
-      config={{
-        language: "fa",
-        toolbar: [
-          "heading",
-          "|",
-          "bold",
-          "italic",
-          "link",
-          "|",
-          "bulletedList",
-          "numberedList",
-          "|",
-          "indent",
-          "outdent",
-          "alignment",
-          "|",
-          "imageUpload",
-          "blockQuote",
-          "insertTable",
-          "mediaEmbed",
-          "|",
-          "undo",
-          "redo",
-        ],
-      }}
-      data={form[fieldName] ? form[fieldName] : ""}
-      onChange={(event, editor) => {
-        const data = editor.getData();
-        setForm({ ...form, [fieldName]: data });
-      }}
-    />
-    <CFormText className="help-block">{text}</CFormText>
-  </CFormGroup>
-);
+const CKEditorField = (name, text, setForm, form, fieldName) => {
+  return (
+    <CFormGroup>
+      <CLabel htmlFor="nf-password">{name}</CLabel>
+      <CKEditor
+        editor={ClassicEditor}
+        config={{
+          language: "fa",
+          toolbar: [
+            "heading",
+            "|",
+            "bold",
+            "italic",
+            "link",
+            "|",
+            "bulletedList",
+            "numberedList",
+            "|",
+            "indent",
+            "outdent",
+            "alignment",
+            "|",
+            "imageUpload",
+            "blockQuote",
+            "insertTable",
+            "mediaEmbed",
+            "|",
+            "undo",
+            "redo",
+          ],
+        }}
+        data={form[fieldName] ? form[fieldName] : ""}
+        onChange={(event, editor) => {
+          const data = editor.getData();
+          setForm({ ...form, [fieldName]: data });
+        }}
+      />
+      <CFormText className="help-block">{text}</CFormText>
+    </CFormGroup>
+  );
+};
 
 export { TextField, SwitchField, CKEditorField };

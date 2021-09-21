@@ -56,28 +56,28 @@ const SwitchQuizDetails = ({ numCourses, setUpdated }) => {
       </CRow>
       <CRow>
         {TextField({
-          name: "سطر اول",
+          name: "زیرآزمون اول",
           colSize: 6,
           text: "شماره زیرآزمون اول را وارد کنید",
           input: FormNumberInput(
             form,
             setForm,
             "firstId",
-            "شماره سطر اول",
+            "شماره زیرآزمون ",
             0,
             numCourses,
             () => form.firstId > "0" && form.firstId <= `${numCourses}`
           ),
         })}
         {TextField({
-          name: "سطر دوم",
+          name: "زیرآزمون دوم",
           colSize: 6,
           text: "شماره زیرآزمون دوم را وارد کنید",
           input: FormNumberInput(
             form,
             setForm,
             "secondId",
-            "شماره سطر دوم",
+            "شماره زیرآزمون ",
             0,
             numCourses,
             () => form.secondId > "0" && form.firstId <= `${numCourses}`

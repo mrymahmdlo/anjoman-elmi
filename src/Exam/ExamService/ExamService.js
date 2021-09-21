@@ -17,18 +17,29 @@ const Routes = {
   GetQuizFilesNames: "AdminPanel/GetQuizFilesNames/",
   FinalCheck: "AdminPanel/FinalCheck/",
   GetQuizInfo: "AdminPanel/GetQuizInfo/",
+  UpdateQuizInfo: "AdminPanel/UpdateQuizInfo/",
 };
 
 const ExamService = {
   CreateQuizInfo: (form) =>
     sendRequest(Routes.CreateQuizInfo, {
       ...form,
-      userId: +form.UserId,
-      studentCount: +form.StudentCount,
-      questionCount: +form.QuestionCount,
-      price: +form.Price,
-      totalTimeMinutes: +form.TotalTimeMinutes,
-      quizMode: +form.QuizMode,
+      userId: +form.userId,
+      studentCount: +form.studentCount,
+      questionCount: +form.questionCount,
+      price: +form.price,
+      totalTimeMinutes: +form.totalTimeMinutes,
+      quizMode: +form.quizMode,
+    }),
+  UpdateQuizInfo: (quizId, form) =>
+    sendRequest(Routes.UpdateQuizInfo + quizId, {
+      ...form,
+      userId: +form.userId,
+      studentCount: +form.studentCount,
+      questionCount: +form.questionCount,
+      price: +form.price,
+      totalTimeMinutes: +form.totalTimeMinutes,
+      quizMode: +form.quizMode,
     }),
   UploadQuestionFile: async (quizId, data) =>
     await sendFormData(Routes.UploadQuestionFile + quizId, data),

@@ -66,4 +66,4 @@ const QuestionFormValidators = {
   },
 };
 
-export { InitialForm, QuestionFormValidators,levels };
+export { InitialForm, QuestionFormValidators, levels };

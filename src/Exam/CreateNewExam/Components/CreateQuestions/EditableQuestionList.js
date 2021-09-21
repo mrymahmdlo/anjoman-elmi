@@ -19,7 +19,7 @@ export const EditableQuestionList = () => {
     var question = window.open(
       "",
       "wildebeast",
-      "width=1000,height=800,scrollbars=1,resizable=1"
+      "width=1000,height=500,scrollbars=1,resizable=1"
     );
 
     var html = PreviewQuestion(item);
@@ -59,7 +59,12 @@ export const EditableQuestionList = () => {
               >
                 افزودن سوال
               </CButton>
-              <CButton className="m-1" color="light" onClick={() => {}}>
+              <CButton
+                className="m-1"
+                color="light"
+                onClick={() => {}}
+                disabled
+              >
                 نمایش آزمون
               </CButton>
             </dd>
@@ -81,7 +86,7 @@ export const EditableQuestionList = () => {
                 <dd
                   className="col-sm-9"
                   style={{
-                    maxHeight: "80px",
+                    maxHeight: "20px",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap",
@@ -118,24 +123,28 @@ export const EditableQuestionList = () => {
                     onClick={() => {
                       setModalContent(
                         <div>
-                          <p>یا میخواهید سوال {item.questionNo} را حذف کنید؟</p>
-                          <CButton
-                            color="danger"
-                            onClick={() => {
-                              ExamService.DeleteQuestion(
-                                exam.quizId,
-                                item.questionNo
-                              );
-                              setModal(false);
-                              setUpdated(true);
-                              exam.setErrorContent(
-                                "سوال" + item.questionNo + "حذف شد"
-                              );
-                              exam.setShowError(true);
-                            }}
-                          >
-                            بله
-                          </CButton>
+                          <p>
+                            یا میخواهید سوال {item.questionNo} را حذف کنید؟
+                            <CButton
+                              color="danger"
+                              size="sm"
+                              className="mr-3"
+                              onClick={() => {
+                                ExamService.DeleteQuestion(
+                                  exam.quizId,
+                                  item.questionNo
+                                );
+                                setModal(false);
+                                setUpdated(true);
+                                exam.setErrorContent(
+                                  "سوال" + item.questionNo + "حذف شد"
+                                );
+                                exam.setShowError(true);
+                              }}
+                            >
+                              بله
+                            </CButton>
+                          </p>
                         </div>
                       );
                       setModal(!modal);

@@ -80,7 +80,7 @@ const AddFilesButtons = () => {
     <CCard className="m-2 w-100">
       <CCardBody>
         <CRow>
-          <CCol sm={3}>
+          <CCol sm={4}>
             <CFormGroup>
               <CRow>
                 <CLabel htmlFor="nf-title">بارگزاری فایل سوالات آزمون</CLabel>

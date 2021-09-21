@@ -3,7 +3,6 @@ import { CSelect } from "@coreui/react";
 const { FormNumberInput, FormTextInput } = require("src/reusable/FormInput");
 
 const QuestionFormItems = (form, setForm, levels) => {
-  if (!form) return [];
   return [
     {
       name: "شماره سوال",
@@ -30,7 +29,6 @@ const QuestionFormItems = (form, setForm, levels) => {
       text: "شماره گزینه صحیح را مشخص کنید",
       input: (
         <CSelect
-          value={form.correctAnswerNo}
           onChange={(e) => {
             setForm({ ...form, correctAnswerNo: e.target.value });
           }}
@@ -41,7 +39,11 @@ const QuestionFormItems = (form, setForm, levels) => {
             { id: "3", name: "گزینه سه" },
             { id: "4", name: "گزینه چهار" },
           ].map((item, index) => (
-            <option key={index} value={item.id}>
+            <option
+              key={index}
+              value={item.id}
+              selected={`${form.correctAnswerNo}` === item.id}
+            >
               {item.name}
             </option>
           ))}
@@ -54,13 +56,16 @@ const QuestionFormItems = (form, setForm, levels) => {
       text: "درجه سختی سوال را مشخص کنید",
       input: (
         <CSelect
-          value={form.questionLevel}
           onChange={(e) => {
             setForm({ ...form, questionLevel: e.target.value });
           }}
         >
           {levels.map((item, index) => (
-            <option key={index} value={item.id}>
+            <option
+              key={index}
+              value={item.id}
+              selected={`${form.questionLevel}` === item.id}
+            >
               {item.name}
             </option>
           ))}

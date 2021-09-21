@@ -100,7 +100,7 @@ const QuizInfoFormItems = (form, setForm) => {
           name="endDate"
           value={form.endDate}
           onChange={(e) => {
-            setForm({ ...form, sndDate: e });
+            setForm({ ...form, endDate: e });
           }}
         />
       ),
@@ -134,7 +134,6 @@ const QuizInfoFormItems = (form, setForm) => {
       name: "انتشار آزمون",
       text: "سوالات آزمون ثبت شده و آماده شرکت کردن می باشد.",
       input: FormSwitchInput(form, setForm, "isValid", form.isValid),
-
       size: 3,
     },
     {
@@ -168,7 +167,6 @@ const QuizModeSelect = ({ form, setForm }) => {
       <CFormGroup>
         <CLabel htmlFor="nf-title">حالت برگزاری آزمون</CLabel>
         <CSelect
-          value={form.quizMode}
           onChange={(e) => {
             setForm({ ...form, quizMode: e.target.value });
           }}
@@ -178,7 +176,11 @@ const QuizModeSelect = ({ form, setForm }) => {
             { id: "0", name: "حالت pdf" },
             { id: "1", name: "حالت سوال به سوال" },
           ].map((item, index) => (
-            <option key={index} value={item.id}>
+            <option
+              key={index}
+              value={item.id}
+              selected={`${form.quizMode}` === item.id}
+            >
               {item.name}
             </option>
           ))}
@@ -203,6 +205,7 @@ const GroupIdSelect = (groupIds, form, setForm) => {
                 id={"checkbox-" + key}
                 name="checkbox1"
                 value={item.id}
+                checked={form?.groupCodes?.includes(+item.id)}
                 onChange={(e) => {
                   let arry = form.groupCodes;
                   e.target.checked

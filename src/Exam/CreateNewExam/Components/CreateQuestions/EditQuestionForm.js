@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CKEditorField, TextField } from "src/Utility/InputGroup";
 import { ExamContext } from "../../CreateNewExam";
 import { QuestionFormItems } from "./QuestionFormItems";
@@ -11,7 +11,13 @@ const EditQuestionForm = ({ item, setUpdated }) => {
   const exam = React.useContext(ExamContext);
   const [btnActice, setBtnActive] = useState(false);
   const [form, setForm] = useState(item);
-  const [preNumQ] = useState(item.questionNo);
+  const [preNumQ, setPreNumQ] = useState(item.questionNo);
+
+  useEffect(() => {
+    setForm(item);
+    setPreNumQ(item.questionNo);
+  }, [item]);
+
   const afterCheck = (text) => {
     exam.setErrorContent(text);
     exam.setShowError(true);

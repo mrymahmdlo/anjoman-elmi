@@ -44,16 +44,16 @@ const _nav = [
   //     },
   //   ],
   // },
-  // {
-  //   _tag: "CSidebarNavTitle",
-  //   _children: ["آزمون های آنلاین"],
-  // },
-  // {
-  //   _tag: "CSidebarNavItem",
-  //   name: "ایجاد آزمون جدید",
-  //   icon: "cil-pencil",
-  //   to: "/Exams/Exam/Create",
-  // },
+  {
+    _tag: "CSidebarNavTitle",
+    _children: ["آزمون های آنلاین - درحال تست میباشد"],
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "ایجاد آزمون جدید( استفاده نکنید)",
+    icon: "cil-pencil",
+    to: "/Exams/Exam/Create",
+  },
 ];
 
 export default _nav;
