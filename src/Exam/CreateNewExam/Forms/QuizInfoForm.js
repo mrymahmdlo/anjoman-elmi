@@ -49,7 +49,7 @@ const QuizInfoForm = ({ userId, setQuizId }) => {
     if (!CheckValidationArry(form, QuizInfoValidators)) {
       return afterCheck("لطفا فیلد های قرمز شده را پر یا اصلاح کنید");
     }
-    if (!form.GroupCodes[0]) {
+    if (!form.groupCodes[0]) {
       return afterCheck("گروه آزمایشی آزمون را انتخاب کنید");
     }
     ExamService.CreateQuizInfo(form)
