@@ -25,7 +25,7 @@ export const DateTimePickerToGeorgian = ({ value = "", onChange }) => {
       <CInput
         valid={isValid && value}
         invalid={!isValid || !value}
-        value={value ? value : ""}
+        value={value}
         dir="ltr"
         onChange={handleChange}
       />

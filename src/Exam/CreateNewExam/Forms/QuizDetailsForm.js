@@ -1,28 +1,10 @@
-import React, { useState } from "react";
-import {
-  CButton,
-  CCardBody,
-  CCardFooter,
-  CCol,
-  CLabel,
-  CRow,
-  CSpinner,
-} from "@coreui/react";
-import CIcon from "@coreui/icons-react";
+import React from "react";
+import { CCardBody, CCol, CLabel, CRow } from "@coreui/react";
 import { EditableQuizDetailsLists } from "../Components/QuizDetails/EditableQuizDetailsLists";
 import AddFilesButtons from "../Components/QuizDetails/AddFilesButtons";
-import { ExamContext } from "../CreateNewExam";
+import ExamCardFooter from "../Components/ExamCardFooter";
 
-const QuizDetailsForm = ({ quizId }) => {
-  const [btnActice, setBtnActive] = useState(false);
-  const exam = React.useContext(ExamContext);
-
-  const handleSubmit = () => {
-    exam.setShowError(false);
-    exam.setBtnActive(true);
-    setBtnActive(true);
-  };
-
+const QuizDetailsForm = () => {
   return (
     <>
       <CCardBody>
@@ -38,27 +20,10 @@ const QuizDetailsForm = ({ quizId }) => {
           <AddFilesButtons />
         </CRow>
         <CRow className="mt-2">
-          <EditableQuizDetailsLists quizId={quizId} />
+          <EditableQuizDetailsLists />
         </CRow>
       </CCardBody>
-      <CCardFooter>
-        {!btnActice ? (
-          <CButton
-            type="submit"
-            size="sm"
-            color="success"
-            onClick={handleSubmit}
-          >
-            <CIcon name="cil-x-circle" /> اتمام ایجاد آزمون
-          </CButton>
-        ) : (
-          <CSpinner
-            style={{ width: "2rem", height: "2rem" }}
-            color="primary"
-            variant="grow"
-          />
-        )}
-      </CCardFooter>
+      <ExamCardFooter />
     </>
   );
 };

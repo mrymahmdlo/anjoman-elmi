@@ -7,15 +7,7 @@ const QuizDetailsFormItems = (form, setForm, courseIds) => {
     {
       name: "اولویت نمایش",
       text: "ترتیبی زیرآزمون هایی است که دانش آموز در کارنامه مشاهده میکند",
-      input: FormNumberInput(
-        form,
-        setForm,
-        "rowId",
-        "شماره",
-        0,
-        null,
-        () => form.rowId > "0"
-      ),
+      input: <input className="form-control" value={form.rowId} disabled />,
       size: 6,
     },
     {

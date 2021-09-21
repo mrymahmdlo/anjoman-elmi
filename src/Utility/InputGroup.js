@@ -57,8 +57,7 @@ const CKEditorField = (name, text, setForm, form, fieldName) => (
       data={form[fieldName] ? form[fieldName] : ""}
       onChange={(event, editor) => {
         const data = editor.getData();
-        form[fieldName] = data;
-        setForm(form);
+        setForm({ ...form, [fieldName]: data });
       }}
     />
     <CFormText className="help-block">{text}</CFormText>

@@ -1,5 +1,6 @@
 import CIcon from "@coreui/icons-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import ExamService from "src/Exam/ExamService/ExamService";
 import {
   UploadQuestionFile,
   UploadAnswerFile,
@@ -29,6 +30,20 @@ const AddFilesButtons = () => {
   const exam = React.useContext(ExamContext);
   const [statusQuestionFile, setStatusQuestionFile] = useState(2);
   const [statusAnswerFile, setStatusAnswerFile] = useState(2);
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    ExamService.GetQuizFilesNames(exam.quizId).then((res) => {
+      setData(res.data);
+      setStatusQuestionFile(
+        res.data.questionFileName ? status.UPLOADED : status.EMPTY
+      );
+      setStatusAnswerFile(
+        res.data.answerFileName ? status.UPLOADED : status.EMPTY
+      );
+    });
+  }, [exam.quizId]);
+
   const switchMark = (fileStatus) => {
     switch (fileStatus) {
       case status.LOADING:
@@ -89,7 +104,9 @@ const AddFilesButtons = () => {
                 />
               </CRow>
               <CFormText className="help-block">
-                فایل تمام سوالات آزمون را یک جا به صورت pdf آپلود کنید
+                {data?.questionFileName
+                  ? data.questionFileName + "آپلود شده است"
+                  : " فایل تمام سوالات آزمون را یک جا به صورت pdf آپلود کنید"}
               </CFormText>
             </CFormGroup>
           </CCol>
@@ -119,7 +136,9 @@ const AddFilesButtons = () => {
                 />
               </CRow>
               <CFormText className="help-block">
-                فایل کامل پاسخ نامه این آزمون را اینجا آپلود کنید
+                {data?.answerFileName
+                  ? data.answerFileName + "آپلود شده است"
+                  : "   فایل کامل پاسخ نامه این آزمون را اینجا آپلود کنید"}
               </CFormText>
             </CFormGroup>
           </CCol>
@@ -137,7 +156,7 @@ const AddFilesButtons = () => {
                 disabled
               />
               <CFormText className="help-block">
-                در آینده اضافه خواهد شد
+                آپلود فایل های ویدیویی درحال تست میباشد
               </CFormText>
             </CFormGroup>
           </CCol>

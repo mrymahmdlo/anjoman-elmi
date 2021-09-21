@@ -4,6 +4,7 @@ const stageTexts = [
   "اطلاعات آزمون",
   "اضافه کردن اطلاعات کارنامه و بارگزاری فایل های آزمون",
   "اضافه کردن سوالات ",
+  "ویرایش اطلاعات آزمون",
 ];
 
 export const ExamBreadcrumb = (stage, stages) => {
@@ -15,6 +16,8 @@ export const ExamBreadcrumb = (stage, stages) => {
         return stageTexts[1];
       case stages.QUIZQUESTIONS:
         return stageTexts[2];
+      case stages.EDITQUIZINFO:
+        return stageTexts[3];
       default:
         return "";
     }

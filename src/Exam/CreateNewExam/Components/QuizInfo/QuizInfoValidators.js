@@ -1,79 +1,79 @@
 const InitialForm = (userId) => ({
-  UserId: +userId,
-  IsLock: false,
-  IsValid: false,
-  GroupCodes: [],
-  StartDate: null,
-  ResultDate: null,
-  EndDate: null,
-  ShowResultImmediately: true,
-  QuestionFileReady: false,
-  AnswerFileReady: false,
-  QuizMode: "2",
+  userId: +userId,
+  isLock: false,
+  isValid: false,
+  groupCodes: [],
+  startDate: null,
+  resultDate: null,
+  endDate: null,
+  showResultImmediately: true,
+  questionFileReady: false,
+  answerFileReady: false,
+  quizMode: "2",
 });
 
 const QuizInfoValidators = {
-  QuizTitle: {
+  quizTitle: {
     mustFill: true,
     type: "String",
   },
-  QuizDescription: {
+  quizDescription: {
     mustFill: false,
     type: "String",
   },
-  UserId: {
+  userId: {
     mustFill: true,
     type: "Number",
   },
-  GroupCodes: {
+  groupCodes: {
     mustFill: true,
     type: "Array",
   },
-  StudentCount: {
+  studentCount: {
     mustFill: true,
     type: "Number",
   },
-  QuestionCount: {
+  questionCount: {
     mustFill: true,
     type: "Number",
   },
-  Price: {
+  price: {
     mustFill: true,
     type: "Number",
   },
-  StartDate: {
+  startDate: {
     mustFill: true,
     type: "String",
   },
-  EndDate: {
+  endDate: {
     mustFill: true,
     type: "String",
   },
-  ResultDate: {
+  resultDate: {
     mustFill: true,
     type: "String",
   },
-  ShowResultImmediately: {
+  showResultImmediately: {
     mustFill: true,
     type: "Boolean",
   },
-  TotalTimeMinutes: {
+  totalTimeMinutes: {
     mustFill: true,
     type: "Number",
   },
-  IsValid: {
+  isValid: {
     mustFill: true,
     type: "Boolean",
   },
-  IsLock: {
+  isLock: {
     mustFill: true,
     type: "Boolean",
   },
-  QuestionFileReady: {
+  questionFileReady: {
     mustFill: true,
     type: "Boolean",
   },
-  AnswerFileReady: {
+  answerFileReady: {
     mustFill: true,
     type: "Boolean",
   },

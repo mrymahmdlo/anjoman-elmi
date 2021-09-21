@@ -1,5 +1,5 @@
 import CIcon from "@coreui/icons-react";
-import { CButton, CListGroup, CListGroupItem } from "@coreui/react";
+import { CButton, CListGroup, CListGroupItem, CSpinner } from "@coreui/react";
 import React, { useEffect, useState } from "react";
 import ExamService from "src/Exam/ExamService/ExamService";
 import { ExamContext } from "../../CreateNewExam";
@@ -65,79 +65,89 @@ export const EditableQuestionList = () => {
             </dd>
           </div>
         </CListGroupItem>
-        {data.map((item, i) => (
-          <CListGroupItem key={i} style={{ paddingTop: 0, paddingBottom: 0 }}>
-            <div className="d-flex align-items-center">
-              <dt className="col-sm-1">{item.questionNo + " - "}</dt>
-              <dd
-                className="col-sm-9"
-                style={{
-                  maxHeight: "80px",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                <p
-                  className="ck-content"
-                  dangerouslySetInnerHTML={{ __html: item.questionText }}
-                ></p>
-              </dd>
-              <dd className="col-sm-2">
-                <CButton
-                  color="primary"
-                  className="m-1"
-                  onClick={() => {
-                    setModalContent(
-                      <EditQuestionForm item={item} setUpdated={setUpdated} />
-                    );
-                    setModal(!modal);
-                  }}
-                >
-                  <CIcon name="cil-pencil" />
-                </CButton>
-                <CButton
-                  className="m-1"
-                  color="success"
-                  onClick={() => popUpPreview(item)}
-                >
-                  <CIcon name="cil-laptop" />
-                </CButton>
-                <CButton
-                  color="danger"
-                  className="m-1"
-                  onClick={() => {
-                    setModalContent(
-                      <div>
-                        <p>یا میخواهید سوال {item.questionNo} را حذف کنید؟</p>
-                        <CButton
-                          color="danger"
-                          onClick={() => {
-                            ExamService.DeleteQuestion(
-                              exam.quizId,
-                              item.questionNo
-                            );
-                            setModal(false);
-                            setUpdated(true);
-                            exam.setErrorContent(
-                              "سوال" + item.questionNo + "حذف شد"
-                            );
-                            exam.setShowError(true);
-                          }}
-                        >
-                          بله
-                        </CButton>
-                      </div>
-                    );
-                    setModal(!modal);
-                  }}
-                >
-                  <CIcon name="cil-trash" />
-                </CButton>
-              </dd>
-            </div>
+        {!data ? (
+          <CListGroupItem style={{ textAlign: "center" }}>
+            <CSpinner
+              style={{ width: "2rem", height: "2rem" }}
+              color="primary"
+              variant="grow"
+            />
           </CListGroupItem>
-        ))}
+        ) : (
+          data.map((item, i) => (
+            <CListGroupItem key={i} style={{ paddingTop: 0, paddingBottom: 0 }}>
+              <div className="d-flex align-items-center">
+                <dt className="col-sm-1">{item.questionNo + " - "}</dt>
+                <dd
+                  className="col-sm-9"
+                  style={{
+                    maxHeight: "80px",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  <p
+                    className="ck-content"
+                    dangerouslySetInnerHTML={{ __html: item.questionText }}
+                  ></p>
+                </dd>
+                <dd className="col-sm-2">
+                  <CButton
+                    color="primary"
+                    className="m-1"
+                    onClick={() => {
+                      setModalContent(
+                        <EditQuestionForm item={item} setUpdated={setUpdated} />
+                      );
+                      setModal(!modal);
+                    }}
+                  >
+                    <CIcon name="cil-pencil" />
+                  </CButton>
+                  <CButton
+                    className="m-1"
+                    color="success"
+                    onClick={() => popUpPreview(item)}
+                  >
+                    <CIcon name="cil-laptop" />
+                  </CButton>
+                  <CButton
+                    color="danger"
+                    className="m-1"
+                    onClick={() => {
+                      setModalContent(
+                        <div>
+                          <p>یا میخواهید سوال {item.questionNo} را حذف کنید؟</p>
+                          <CButton
+                            color="danger"
+                            onClick={() => {
+                              ExamService.DeleteQuestion(
+                                exam.quizId,
+                                item.questionNo
+                              );
+                              setModal(false);
+                              setUpdated(true);
+                              exam.setErrorContent(
+                                "سوال" + item.questionNo + "حذف شد"
+                              );
+                              exam.setShowError(true);
+                            }}
+                          >
+                            بله
+                          </CButton>
+                        </div>
+                      );
+                      setModal(!modal);
+                    }}
+                  >
+                    <CIcon name="cil-trash" />
+                  </CButton>
+                </dd>
+              </div>
+            </CListGroupItem>
+          ))
+        )}
       </CListGroup>
       <ExamModalContainer
         name="افزودن سوال"

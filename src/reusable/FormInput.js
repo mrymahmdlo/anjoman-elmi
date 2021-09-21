@@ -74,7 +74,7 @@ const FormSwitchInput = (form, setForm, name, Checked) => {
       onChange={(e) =>
         setForm({
           ...form,
-          ShowResultImmediately: e.target.value === "on" ? true : false,
+          [name]: e.target.value === "on" ? true : false,
         })
       }
       defaultChecked={Checked}

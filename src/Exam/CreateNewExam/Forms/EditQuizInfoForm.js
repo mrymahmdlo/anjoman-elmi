@@ -16,22 +16,23 @@ import {
 } from "../Components/QuizInfo/QuizInfoFormItems";
 import { CKEditorField, SwitchField, TextField } from "src/Utility/InputGroup";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
-import {
-  InitialForm,
-  QuizInfoValidators,
-} from "../Components/QuizInfo/QuizInfoValidators";
+import { QuizInfoValidators } from "../Components/QuizInfo/QuizInfoValidators";
 import ExamService from "src/Exam/ExamService/ExamService";
 import { ExamContext } from "../CreateNewExam";
+import ExamCardFooter from "../Components/ExamCardFooter";
 
-const QuizInfoForm = ({ userId, setQuizId }) => {
-  const [form, setForm] = useState(InitialForm(userId));
+const EditQuizInfoForm = () => {
+  const [form, setForm] = useState({});
   const [btnActice, setBtnActive] = useState(false);
   const [groupIds, setGroupIds] = useState([]);
   const exam = React.useContext(ExamContext);
   useEffect(() => {
     GetData("BasicInfo/Groups").then((res) => setGroupIds(res));
-  }, []);
-
+    ExamService.GetQuizInfo(exam.quizId).then((res) => {
+      setForm(res.data);
+    });
+  }, [exam.quizId]);
+  console.log(form);
   const items = QuizInfoFormItems(form, setForm).map((item) => TextField(item));
   const switches = QuizInfoFormItems(form, setForm)
     .slice(8, 14)
@@ -49,23 +50,22 @@ const QuizInfoForm = ({ userId, setQuizId }) => {
     if (!CheckValidationArry(form, QuizInfoValidators)) {
       return afterCheck("لطفا فیلد های قرمز شده را پر یا اصلاح کنید");
     }
-    if (!form.GroupCodes[0]) {
+    if (!form.groupCodes[0]) {
       return afterCheck("گروه آزمایشی آزمون را انتخاب کنید");
     }
-    ExamService.CreateQuizInfo(form)
-      .then((res) => {
-        if (res.success) {
-          exam.setErrorContent("داده با موفقیت ثبت شد ");
-          setQuizId(res.data);
-        } else exam.setErrorContent(res.message);
-      })
-      .catch((err) => {
-        exam.setErrorContent(err.message);
-      })
-      .finally(() => {
-        exam.setShowError(true);
-        setBtnActive(false);
-      });
+    // ExamService.CreateQuizInfo(form)
+    //   .then((res) => {
+    //     if (res.success) {
+    //       exam.setErrorContent("داده با موفقیت ثبت شد ");
+    //     } else exam.setErrorContent(res.message);
+    //   })
+    //   .catch((err) => {
+    //     exam.setErrorContent(err.message);
+    //   })
+    //   .finally(() => {
+    //     exam.setShowError(true);
+    //     setBtnActive(false);
+    //   });
   };
   return (
     <>
@@ -99,7 +99,7 @@ const QuizInfoForm = ({ userId, setQuizId }) => {
             color="primary"
             onClick={handleSubmit}
           >
-            <CIcon name="cil-scrubber" /> ثبت اطلاعات آزمون و مرحله بعد
+            <CIcon name="cil-scrubber" /> ثبت تغییرات
           </CButton>
         ) : (
           <CSpinner
@@ -109,8 +109,9 @@ const QuizInfoForm = ({ userId, setQuizId }) => {
           />
         )}
       </CCardBody>
+      <ExamCardFooter />
     </>
   );
 };
 
-export default QuizInfoForm;
+export default EditQuizInfoForm;

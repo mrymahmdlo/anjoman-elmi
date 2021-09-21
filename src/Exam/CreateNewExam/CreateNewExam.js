@@ -6,11 +6,13 @@ import QuizInfoForm from "./Forms/QuizInfoForm";
 import QuizDetailsForm from "./Forms/QuizDetailsForm";
 import { ExamBreadcrumb } from "./Components/ExamBreadcrumb";
 import CreateQuestionsForm from "./Forms/CreateQuestionsForm";
+import EditQuizInfoForm from "./Forms/EditQuizInfoForm";
 
 const stages = {
   QUIZINFO: 0,
   QUIZDETAILS: 1,
   QUIZQUESTIONS: 2,
+  EDITQUIZINFO: 3,
 };
 
 export const ExamContext = React.createContext();
@@ -21,10 +23,10 @@ const CreateExam = () => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [stage, setStage] = useState(stages.QUIZINFO);
-  const [quizId, setQuizId] = useState(91);
+  const [quizId, setQuizId] = useState(96);
   useEffect(() => {
     if (quizId) {
-      setStage(stages.QUIZQUESTIONS);
+      setStage(stages.EDITQUIZINFO);
     }
   }, [quizId]);
   useEffect(() => {
@@ -35,9 +37,11 @@ const CreateExam = () => {
       case stages.QUIZINFO:
         return <QuizInfoForm userId={userId} setQuizId={setQuizId} />;
       case stages.QUIZDETAILS:
-        return <QuizDetailsForm />;
+        return <QuizDetailsForm setStage={setStage} />;
       case stages.QUIZQUESTIONS:
-        return <CreateQuestionsForm />;
+        return <CreateQuestionsForm setStage={setStage} />;
+      case stages.EDITQUIZINFO:
+        return <EditQuizInfoForm />;
       default:
         return "";
     }
@@ -45,7 +49,16 @@ const CreateExam = () => {
   return (
     <div className="App">
       <CContainer fluid>
-        <ExamContext.Provider value={{ quizId, setShowError, setErrorContent }}>
+        <ExamContext.Provider
+          value={{
+            quizId,
+            setShowError,
+            setErrorContent,
+            stage,
+            setStage,
+            stages,
+          }}
+        >
           <CCard>
             {ExamBreadcrumb(stage, stages)}
             {StageSwitch()}

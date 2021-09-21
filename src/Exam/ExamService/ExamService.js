@@ -13,18 +13,22 @@ const Routes = {
   GetQuestions: "AdminPanel/GetQuestions/",
   DeleteQuestion: "AdminPanel/DeleteQuestion/",
   UpdateQuestion: "AdminPanel/UpdateQuestion/",
+  SwapQuizDetail: "AdminPanel/SwapQuizDetail",
+  GetQuizFilesNames: "AdminPanel/GetQuizFilesNames/",
+  FinalCheck: "AdminPanel/FinalCheck/",
+  GetQuizInfo: "AdminPanel/GetQuizInfo/",
 };
 
 const ExamService = {
   CreateQuizInfo: (form) =>
     sendRequest(Routes.CreateQuizInfo, {
       ...form,
-      UserId: +form.UserId,
-      StudentCount: +form.StudentCount,
-      QuestionCount: +form.QuestionCount,
-      Price: +form.Price,
-      TotalTimeMinutes: +form.TotalTimeMinutes,
-      QuizMode: +form.QuizMode,
+      userId: +form.UserId,
+      studentCount: +form.StudentCount,
+      questionCount: +form.QuestionCount,
+      price: +form.Price,
+      totalTimeMinutes: +form.TotalTimeMinutes,
+      quizMode: +form.QuizMode,
     }),
   UploadQuestionFile: async (quizId, data) =>
     await sendFormData(Routes.UploadQuestionFile + quizId, data),
@@ -81,6 +85,16 @@ const ExamService = {
       answerCount: +form.answerCount,
       questionLevel: +form.questionLevel,
     }),
+  SwapQuizDetail: async (form) =>
+    await sendRequest(Routes.SwapQuizDetail, {
+      quizId: +form.quizId,
+      firstId: +form.firstId,
+      secondId: +form.secondId,
+    }),
+  GetQuizFilesNames: async (quizId) =>
+    await sendRequest(Routes.GetQuizFilesNames + quizId),
+  GetQuizInfo: async (quizId) => await sendRequest(Routes.GetQuizInfo + quizId),
+  FinalCheck: async (quizId) => await sendRequest(Routes.FinalCheck + quizId),
 };
 
 export default ExamService;

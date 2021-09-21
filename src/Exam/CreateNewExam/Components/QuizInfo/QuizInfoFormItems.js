@@ -19,7 +19,7 @@ const QuizInfoFormItems = (form, setForm) => {
     {
       name: "نام آزمون",
       text: "نام آزمون را وارد کنید",
-      input: FormTextInput(form, setForm, "QuizTitle", "عنوان"),
+      input: FormTextInput(form, setForm, "quizTitle", "عنوان"),
       size: 4,
     },
     {
@@ -28,11 +28,11 @@ const QuizInfoFormItems = (form, setForm) => {
       input: FormNumberInput(
         form,
         setForm,
-        "QuestionCount",
+        "questionCount",
         "تعداد",
         0,
         null,
-        () => form.QuestionCount > "0"
+        () => form.questionCount > "0"
       ),
       size: 4,
     },
@@ -42,11 +42,11 @@ const QuizInfoFormItems = (form, setForm) => {
       input: FormNumberInput(
         form,
         setForm,
-        "TotalTimeMinutes",
+        "totalTimeMinutes",
         "زمان به دقیقه",
         0,
         null,
-        () => form.TotalTimeMinutes > "0"
+        () => form.totalTimeMinutes > "0"
       ),
       size: 4,
     },
@@ -56,11 +56,11 @@ const QuizInfoFormItems = (form, setForm) => {
       input: FormNumberInput(
         form,
         setForm,
-        "StudentCount",
+        "studentCount",
         "تعداد",
         0,
         null,
-        () => form.StudentCount >= "0"
+        () => form.studentCount >= "0"
       ),
       size: 4,
     },
@@ -70,11 +70,11 @@ const QuizInfoFormItems = (form, setForm) => {
       input: FormNumberInput(
         form,
         setForm,
-        "Price",
+        "price",
         "قیمت به ریال",
         0,
         null,
-        () => form.Price >= "0"
+        () => form.price >= "0"
       ),
       size: 4,
     },
@@ -84,9 +84,9 @@ const QuizInfoFormItems = (form, setForm) => {
       input: (
         <DateTimePickerToGeorgian
           className="form-control"
-          name="StartDate"
-          value={form.StartDate}
-          onChange={(e) => setForm({ ...form, StartDate: e })}
+          name="startDate"
+          value={form.startDate}
+          onChange={(e) => setForm({ ...form, startDate: e })}
         />
       ),
       size: 4,
@@ -97,10 +97,10 @@ const QuizInfoFormItems = (form, setForm) => {
       input: (
         <DateTimePickerToGeorgian
           className="form-control"
-          name="EndDate"
-          value={form.EndDate}
+          name="endDate"
+          value={form.endDate}
           onChange={(e) => {
-            setForm({ ...form, EndDate: e });
+            setForm({ ...form, sndDate: e });
           }}
         />
       ),
@@ -112,9 +112,9 @@ const QuizInfoFormItems = (form, setForm) => {
       input: (
         <DateTimePickerToGeorgian
           className="form-control"
-          name="ResultDate"
-          value={form.ResultDate}
-          onChange={(e) => setForm({ ...form, ResultDate: e })}
+          name="resultDate"
+          value={form.resultDate}
+          onChange={(e) => setForm({ ...form, resultDate: e })}
         />
       ),
       size: 4,
@@ -122,26 +122,41 @@ const QuizInfoFormItems = (form, setForm) => {
     {
       name: "نمایش کارنامه بعد آزمون",
       text: "به محض اتمام آزمون، کارنامه به دانش آموز نمایش داده شود.",
-      input: FormSwitchInput(form, setForm, "ShowResultImmediately", false),
+      input: FormSwitchInput(
+        form,
+        setForm,
+        "showResultImmediately",
+        form.showResultImmediately
+      ),
       size: 3,
     },
     {
       name: "انتشار آزمون",
       text: "سوالات آزمون ثبت شده و آماده شرکت کردن می باشد.",
-      input: FormSwitchInput(form, setForm, "IsValid", false),
+      input: FormSwitchInput(form, setForm, "isValid", form.isValid),
 
       size: 3,
     },
     {
       name: "آزمون به صورت pdf",
       text: "آزمون طرح شده در حالت pdf نیز قابل شرکت است.",
-      input: FormSwitchInput(form, setForm, "QuestionFileReady", false),
+      input: FormSwitchInput(
+        form,
+        setForm,
+        "questionFileReady",
+        form.questionFileReady
+      ),
       size: 3,
     },
     {
       name: "فایل پاسخ نامه",
       text: " فایل pdf پاسخ نامه موجود است.",
-      input: FormSwitchInput(form, setForm, "AnswerFileReady", false),
+      input: FormSwitchInput(
+        form,
+        setForm,
+        "answerFileReady",
+        form.answerFileReady
+      ),
       size: 3,
     },
   ];
@@ -153,9 +168,9 @@ const QuizModeSelect = ({ form, setForm }) => {
       <CFormGroup>
         <CLabel htmlFor="nf-title">حالت برگزاری آزمون</CLabel>
         <CSelect
-          value={form.QuizMode}
+          value={form.quizMode}
           onChange={(e) => {
-            setForm({ ...form, QuizMode: e.target.value });
+            setForm({ ...form, quizMode: e.target.value });
           }}
         >
           {[
@@ -189,13 +204,13 @@ const GroupIdSelect = (groupIds, form, setForm) => {
                 name="checkbox1"
                 value={item.id}
                 onChange={(e) => {
-                  let arry = form.GroupCodes;
+                  let arry = form.groupCodes;
                   e.target.checked
                     ? arry.push(+e.target.value)
                     : (arry = arry.filter((x) => x !== +e.target.value));
                   setForm({
                     ...form,
-                    GroupCodes: arry,
+                    groupCodes: arry,
                   });
                 }}
               />

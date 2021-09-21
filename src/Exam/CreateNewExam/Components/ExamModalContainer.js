@@ -12,7 +12,7 @@ export const ExamModalContainer = ({ name, modal, toggle, modalContent }) => {
       <CModalHeader closeButton>{name}</CModalHeader>
       <CModalBody>{modalContent}</CModalBody>
       <CModalFooter>
-        <CButton color="secondary" onClick={toggle}>
+        <CButton color="secondary" onClick={toggle} size="sm">
           لفو
         </CButton>
       </CModalFooter>
