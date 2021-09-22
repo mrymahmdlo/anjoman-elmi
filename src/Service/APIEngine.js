@@ -27,4 +27,24 @@ const PostData = async (url, body) => {
   throw json;
 };
 
-export { PostData, GetData };
+const UploadFileRequest = async (body) => {
+  const init = {
+    headers: {
+      Authorization: "Bearer " + GetToken(),
+    },
+    mode: "no-cors",
+    method: "POST",
+    body,
+  };
+
+  const res = await fetch(BaseUrl + "File/Upload", init);
+  try {
+    const json = await res.json();
+    if (res.status < 400) return json;
+    throw json;
+  } catch {
+    return null;
+  }
+};
+
+export { PostData, GetData, UploadFileRequest };

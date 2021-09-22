@@ -14,7 +14,7 @@ import {
   QuizInfoFormItems,
   QuizModeSelect,
 } from "../Components/QuizInfo/QuizInfoFormItems";
-import { CKEditorField, SwitchField, TextField } from "src/Utility/InputGroup";
+import { SwitchField, TextField } from "src/Utility/InputGroup";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
 import {
   InitialForm,
@@ -22,6 +22,7 @@ import {
 } from "../Components/QuizInfo/QuizInfoValidators";
 import ExamService from "src/Exam/ExamService/ExamService";
 import { ExamContext } from "../CreateNewExam";
+import { CKEditorField } from "src/reusable/CKEditorInput";
 
 const QuizInfoForm = ({ userId, setQuizId }) => {
   const [form, setForm] = useState(InitialForm(userId));

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { CKEditorField, TextField } from "src/Utility/InputGroup";
+import { TextField } from "src/Utility/InputGroup";
 import { ExamContext } from "../../CreateNewExam";
 import { QuestionFormItems } from "./QuestionFormItems";
 import ExamService from "src/Exam/ExamService/ExamService";
 import { InitialForm, levels, QuestionFormValidators } from "./QuestionFormValidators";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
+import { CKEditorField } from "src/reusable/CKEditorInput";
 const { CCardBody, CRow, CButton, CSpinner } = require("@coreui/react");
 
 

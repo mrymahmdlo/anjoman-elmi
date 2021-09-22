@@ -16,7 +16,8 @@ import { TokenManager } from "src/Identity/Service/TokenManager";
 import { Toast } from "src/Utility/Toast";
 import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
 import { FormItems } from "./Components/FormItems";
-import { CKEditorField, TextField } from "src/Utility/InputGroup";
+import { TextField } from "src/Utility/InputGroup";
+import { CKEditorField } from "src/reusable/CKEditorInput";
 const CreateFreeContent = () => {
   const { GetUserId } = TokenManager();
   const now = new Date();
