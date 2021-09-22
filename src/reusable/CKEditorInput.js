@@ -2,20 +2,26 @@ import { CFormGroup, CFormText, CLabel } from "@coreui/react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import React from "react";
-import { UploadFileRequest } from "src/Service/APIEngine";
+import { GetFileDownloadLink, UploadFileRequest } from "src/Service/APIEngine";
 
 class MyUploadAdapter {
   constructor(loader) {
     this.loader = loader;
   }
+
   upload() {
-    return this.loader.file.then(
-      (file) =>
-        new Promise((resolve, reject) => {
-          UploadFileRequest(file).then((res) => resolve(res));
-        })
+    return this.loader.file.then((file) =>
+      UploadFileRequest(file)
+        .then((res) => ({ default: GetFileDownloadLink(res.data) }))
+        .catch()
     );
   }
+}
+
+function MyCustomUploadAdapterPlugin(editor) {
+  editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+    return new MyUploadAdapter(loader);
+  };
 }
 
 const CKEditorField = (name, text, setForm, form, fieldName) => {
@@ -25,6 +31,7 @@ const CKEditorField = (name, text, setForm, form, fieldName) => {
       <CKEditor
         editor={ClassicEditor}
         config={{
+          extraPlugins: [MyCustomUploadAdapterPlugin],
           language: "fa",
           toolbar: [
             "heading",
@@ -50,13 +57,6 @@ const CKEditorField = (name, text, setForm, form, fieldName) => {
           ],
         }}
         data={form[fieldName] ? form[fieldName] : ""}
-        onInit={(editor) => {
-          editor.plugins.get("FileRepository").createUploadAdapter = (
-            loader
-          ) => {
-            return new MyUploadAdapter(loader);
-          };
-        }}
         onChange={(event, editor) => {
           const data = editor.getData();
           setForm({ ...form, [fieldName]: data });

@@ -1,7 +1,8 @@
 import { TokenManager } from "src/Identity/Service/TokenManager";
 const { GetToken } = TokenManager();
+const secret = "AMP_!YUHDSJHYG@&12312!W@sAs";
 
-const BaseUrl = process.env.REACT_APP_API_BASE;
+export const BaseUrl = process.env.REACT_APP_API_BASE;
 const GetData = (url) => {
   return fetch(BaseUrl + url, {
     method: "GET",
@@ -27,14 +28,16 @@ const PostData = async (url, body) => {
   throw json;
 };
 
-const UploadFileRequest = async (body) => {
+const UploadFileRequest = async (file) => {
+  const form = new FormData();
+  form.append("file", file);
+  form.append("secret", secret);
   const init = {
     headers: {
       Authorization: "Bearer " + GetToken(),
     },
-    mode: "no-cors",
     method: "POST",
-    body,
+    body: form,
   };
 
   const res = await fetch(BaseUrl + "File/Upload", init);
@@ -47,4 +50,6 @@ const UploadFileRequest = async (body) => {
   }
 };
 
-export { PostData, GetData, UploadFileRequest };
+const GetFileDownloadLink = (hash) => BaseUrl + "File/Download/" + hash;
+
+export { PostData, GetData, UploadFileRequest, GetFileDownloadLink };
