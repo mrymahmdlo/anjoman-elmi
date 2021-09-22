@@ -1,6 +1,6 @@
 const InitialForm = (userId) => ({
   userId: +userId,
-  isLock: false,
+  isLock: true,
   isValid: false,
   groupCodes: [],
   startDate: null,

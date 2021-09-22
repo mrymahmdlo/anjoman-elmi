@@ -23,7 +23,7 @@ const CreateExam = () => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [stage, setStage] = useState(stages.QUIZINFO);
-  const [quizId, setQuizId] = useState();
+  const [quizId, setQuizId] = useState(100);
   useEffect(() => {
     if (quizId) {
       setStage(stages.EDITQUIZINFO);
