@@ -62,7 +62,7 @@ const QuizInfoValidators = {
     type: "Number",
   },
   isValid: {
-    mustFill: true,
+    mustFill: false,
     type: "Boolean",
   },
   isLock: {

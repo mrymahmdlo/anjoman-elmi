@@ -12,7 +12,7 @@ export const EditableQuestionList = () => {
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const [updated, setUpdated] = useState(false);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   const exam = React.useContext(ExamContext);
 
   const popUpPreview = (item) => {

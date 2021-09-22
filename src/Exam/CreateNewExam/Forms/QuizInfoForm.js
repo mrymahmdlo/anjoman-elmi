@@ -69,8 +69,11 @@ const QuizInfoForm = ({ userId, setQuizId }) => {
   };
   return (
     <>
-      {" "}
       <CCardBody>
+        <CLabel className="mb-4">
+          در این فرم اطلاعات آزمون را وارد کنید.لطفا پس از انتخاب تاریخ و ساعت،
+          از صحت اطلاعات وارد شده اطمینان پیدا کنید.
+        </CLabel>
         <CForm action="" method="post">
           <CRow>
             {items.slice(0, 3)} <QuizModeSelect form={form} setForm={setForm} />

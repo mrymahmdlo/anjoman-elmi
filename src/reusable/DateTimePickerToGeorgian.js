@@ -8,7 +8,7 @@ export const DateTimePickerToGeorgian = ({ value = "", onChange }) => {
   const [isValid, setValid] = useState(true);
 
   const handleChange = (e) => {
-    const valid = moment(e.target.value, "YYYY-MM-DDTHH:mm").isValid();
+    const valid = moment(e.target.value, "YYYY/MM/DD HH:mm").isValid();
     onChange(e.target.value);
     setValid(valid);
   };
@@ -28,13 +28,14 @@ export const DateTimePickerToGeorgian = ({ value = "", onChange }) => {
         value={value}
         dir="ltr"
         onChange={handleChange}
+        placeholder="YYYY/MM/DD HH:mm"
       />
       <DatePicker
         ref={picker}
         timePicker
         className="d-none"
         onClickSubmitButton={(e) =>
-          onChange(e.value.locale("eg").format("YYYY-MM-DDTHH:mm"))
+          onChange(e.value.locale("fa").format("YYYY/MM/DD HH:mm"))
         }
       />
     </CInputGroup>

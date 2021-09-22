@@ -128,35 +128,13 @@ const QuizInfoFormItems = (form, setForm) => {
         "showResultImmediately",
         form.showResultImmediately
       ),
-      size: 3,
+      size: 6,
     },
     {
       name: "انتشار آزمون",
       text: "سوالات آزمون ثبت شده و آماده شرکت کردن می باشد.",
-      input: FormSwitchInput(form, setForm, "isValid", form.isValid),
-      size: 3,
-    },
-    {
-      name: "آزمون به صورت pdf",
-      text: "آزمون طرح شده در حالت pdf نیز قابل شرکت است.",
-      input: FormSwitchInput(
-        form,
-        setForm,
-        "questionFileReady",
-        form.questionFileReady
-      ),
-      size: 3,
-    },
-    {
-      name: "فایل پاسخ نامه",
-      text: " فایل pdf پاسخ نامه موجود است.",
-      input: FormSwitchInput(
-        form,
-        setForm,
-        "answerFileReady",
-        form.answerFileReady
-      ),
-      size: 3,
+      input: FormSwitchInput(form, setForm, "isLock", form.isValid),
+      size: 6,
     },
   ];
 };

@@ -9,7 +9,7 @@ import EditQuizDetailForm from "./EditQuizDetailForm";
 import SwitchQuizDetails from "./SwitchQuizDetails";
 
 export const EditableQuizDetailsLists = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   const [modal, setModal] = useState(false);
   const [updated, setUpdated] = useState(false);
   const [modalContent, setModalContent] = useState("");

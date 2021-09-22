@@ -1,7 +1,6 @@
 import React from "react";
-import { CCardBody, CCol, CLabel, CRow } from "@coreui/react";
+import { CCardBody, CLabel, CRow } from "@coreui/react";
 import { EditableQuizDetailsLists } from "../Components/QuizDetails/EditableQuizDetailsLists";
-import AddFilesButtons from "../Components/QuizDetails/AddFilesButtons";
 import ExamCardFooter from "../Components/ExamCardFooter";
 
 const QuizDetailsForm = () => {
@@ -9,17 +8,10 @@ const QuizDetailsForm = () => {
     <>
       <CCardBody>
         <CRow>
-          <CCol className="col-sm-10">
-            <CLabel>
-              برای آپلود فایل سوالات، فایل پاسخ نامه و یا ویدیو مربوط به آزمون ،
-              فایل را در محل مناسب آپلود کنید.
-            </CLabel>
-          </CCol>
-        </CRow>
-        <CRow>
-          <AddFilesButtons />
-        </CRow>
-        <CRow className="mt-2">
+          <CLabel className="m-3">
+            زیرآزمون های این آزمون را با زدن بر روی دکمه "افزودن زیرآزمون" تعریف
+            کنید.
+          </CLabel>
           <EditableQuizDetailsLists />
         </CRow>
       </CCardBody>

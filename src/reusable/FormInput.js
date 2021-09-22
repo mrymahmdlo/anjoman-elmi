@@ -52,9 +52,7 @@ const FormNumberInput = (
       invalid={!isValid}
       type="number"
       name={nameField}
-      value={
-        form[nameField] ? form[nameField] : form[nameField] === 0 ? "0" : ""
-      }
+      value={form[nameField] ? `${form[nameField]}` : ""}
       min={min}
       max={max}
       placeholder={placeHolder}

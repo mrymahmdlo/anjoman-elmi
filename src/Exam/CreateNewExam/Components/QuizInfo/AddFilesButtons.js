@@ -8,7 +8,6 @@ import {
 import { ExamContext } from "../../CreateNewExam";
 
 const {
-  CCard,
   CCardBody,
   CRow,
   CCol,
@@ -77,8 +76,7 @@ const AddFilesButtons = () => {
     }
   };
   return (
-    <CCard className="m-2 w-100">
-      <CCardBody>
+      <CCardBody className="m-2 w-100">
         <CRow>
           <CCol sm={4}>
             <CFormGroup>
@@ -162,7 +160,7 @@ const AddFilesButtons = () => {
           </CCol>
         </CRow>
       </CCardBody>
-    </CCard>
+
   );
 };
 

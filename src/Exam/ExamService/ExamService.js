@@ -1,4 +1,5 @@
 import { sendFormData, sendRequest } from "src/Service/APIExamEngine";
+import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 
 const Routes = {
   CreateQuizInfo: "AdminPanel/CreateQuizInfo",
@@ -24,6 +25,9 @@ const ExamService = {
   CreateQuizInfo: (form) =>
     sendRequest(Routes.CreateQuizInfo, {
       ...form,
+      endDate: HejriToDotNetGeorgian(form.endDate),
+      resultDate: HejriToDotNetGeorgian(form.resultDate),
+      startDate: HejriToDotNetGeorgian(form.startDate),
       userId: +form.userId,
       studentCount: +form.studentCount,
       questionCount: +form.questionCount,
@@ -34,6 +38,9 @@ const ExamService = {
   UpdateQuizInfo: (quizId, form) =>
     sendRequest(Routes.UpdateQuizInfo + quizId, {
       ...form,
+      endDate: HejriToDotNetGeorgian(form.endDate),
+      resultDate: HejriToDotNetGeorgian(form.resultDate),
+      startDate: HejriToDotNetGeorgian(form.startDate),
       userId: +form.userId,
       studentCount: +form.studentCount,
       questionCount: +form.questionCount,

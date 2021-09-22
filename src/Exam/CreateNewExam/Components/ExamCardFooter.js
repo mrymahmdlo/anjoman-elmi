@@ -28,39 +28,45 @@ const ExamCardFooter = () => {
 
   return (
     <CCardFooter>
-      <CButton
-        className="m-2"
-        type="submit"
-        size="sm"
-        color="success"
-        onClick={() => {
-          exam.setStage(exam.stages.EDITQUIZINFO);
-        }}
-      >
-        <CIcon name="cil-italic" /> ویرایش اطلاعات آزمون
-      </CButton>
-      <CButton
-        className="m-2"
-        type="submit"
-        size="sm"
-        color="info"
-        onClick={() => {
-          exam.setStage(exam.stages.QUIZDETAILS);
-        }}
-      >
-        <CIcon name="cil-notes" /> ویرایش اطلاعات کارنامه
-      </CButton>
-      <CButton
-        className="m-2"
-        type="submit"
-        size="sm"
-        color="info"
-        onClick={() => {
-          exam.setStage(exam.stages.QUIZQUESTIONS);
-        }}
-      >
-        <CIcon name="cil-list-numbered" /> ویرایش سوالات آزمون
-      </CButton>
+      {exam.stage !== exam.stages.EDITQUIZINFO ? (
+        <CButton
+          className="m-2"
+          type="submit"
+          size="sm"
+          color="success"
+          onClick={() => {
+            exam.setStage(exam.stages.EDITQUIZINFO);
+          }}
+        >
+          <CIcon name="cil-italic" /> ویرایش اطلاعات آزمون
+        </CButton>
+      ) : null}
+      {exam.stage !== exam.stages.QUIZDETAILS ? (
+        <CButton
+          className="m-2"
+          type="submit"
+          size="sm"
+          color="dark"
+          onClick={() => {
+            exam.setStage(exam.stages.QUIZDETAILS);
+          }}
+        >
+          <CIcon name="cil-notes" /> ویرایش اطلاعات زیرآزمون
+        </CButton>
+      ) : null}
+      {exam.stage !== exam.stages.QUIZQUESTIONS ? (
+        <CButton
+          className="m-2"
+          type="submit"
+          size="sm"
+          color="info"
+          onClick={() => {
+            exam.setStage(exam.stages.QUIZQUESTIONS);
+          }}
+        >
+          <CIcon name="cil-list-numbered" /> ویرایش سوالات آزمون
+        </CButton>
+      ) : null}
       {!btnActice ? (
         <CButton
           type="submit"

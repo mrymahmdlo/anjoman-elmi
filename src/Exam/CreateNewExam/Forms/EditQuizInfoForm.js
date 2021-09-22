@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { CButton, CCardBody, CForm, CRow, CSpinner } from "@coreui/react";
+import {
+  CButton,
+  CCardBody,
+  CForm,
+  CLabel,
+  CRow,
+  CCard,
+  CSpinner,
+} from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { GetData } from "src/Service/APIEngine";
 import {
@@ -7,12 +15,14 @@ import {
   QuizInfoFormItems,
   QuizModeSelect,
 } from "../Components/QuizInfo/QuizInfoFormItems";
-import { TextField } from "src/Utility/InputGroup";
+import { SwitchField, TextField } from "src/Utility/InputGroup";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
 import { QuizInfoValidators } from "../Components/QuizInfo/QuizInfoValidators";
 import ExamService from "src/Exam/ExamService/ExamService";
 import { ExamContext } from "../CreateNewExam";
 import ExamCardFooter from "../Components/ExamCardFooter";
+import { GeorgianToHejri } from "src/Utility/DateTime";
+import AddFilesButtons from "../Components/QuizInfo/AddFilesButtons";
 
 const EditQuizInfoForm = () => {
   const [form, setForm] = useState({});
@@ -21,12 +31,22 @@ const EditQuizInfoForm = () => {
   const exam = React.useContext(ExamContext);
   useEffect(() => {
     GetData("BasicInfo/Groups").then((res) => setGroupIds(res));
+    setBtnActive(true);
     ExamService.GetQuizInfo(exam.quizId).then((res) => {
-      setForm(res.data);
+      let data = res.data;
+      setForm({
+        ...data,
+        startDate: GeorgianToHejri(data.startDate),
+        endDate: GeorgianToHejri(data.endDate),
+        resultDate: GeorgianToHejri(data.resultDate),
+      });
+      setBtnActive(false);
     });
-  }, [exam.quizId]);
-  console.log(form);
+  }, [exam.quizId, exam]);
   const items = QuizInfoFormItems(form, setForm).map((item) => TextField(item));
+  const switches = QuizInfoFormItems(form, setForm)
+    .slice(8, 14)
+    .map((item) => SwitchField(item));
 
   const afterCheck = (text) => {
     exam.setErrorContent(text);
@@ -59,34 +79,54 @@ const EditQuizInfoForm = () => {
   };
   return (
     <>
-      <CCardBody>
-        <CForm action="" method="post">
+      <CLabel className="m-3">
+        برای آپلود فایل سوالات، فایل پاسخ نامه و یا ویدیو مربوط به آزمون ، فایل
+        را در محل مناسب آپلود کنید.
+      </CLabel>
+      <CCard className="m-2">
+        <CCardBody>
           <CRow>
-            {items.slice(0, 3)} <QuizModeSelect form={form} setForm={setForm} />
+            <AddFilesButtons />
           </CRow>
-          <CRow>
-            {GroupIdSelect(groupIds, form, setForm)}
-            {items.slice(3, 5)}
-          </CRow>
-          <CRow>{items.slice(5, 8)}</CRow>
-        </CForm>
-        {!btnActice ? (
-          <CButton
-            type="submit"
-            size="sm"
-            color="primary"
-            onClick={handleSubmit}
-          >
-            <CIcon name="cil-scrubber" /> ثبت تغییرات
-          </CButton>
-        ) : (
-          <CSpinner
-            style={{ width: "2rem", height: "2rem" }}
-            color="primary"
-            variant="grow"
-          />
-        )}
-      </CCardBody>
+        </CCardBody>
+      </CCard>
+      <CLabel className="m-3">
+        اطلاعات قابل تغییر آزمون را در این مرحله به روز رسانی کنید.
+      </CLabel>
+      <CCard className="m-2">
+        <CCardBody>
+          <CForm action="" method="post">
+            <CRow>
+              {items.slice(0, 3)}
+              <QuizModeSelect form={form} setForm={setForm} />
+            </CRow>
+            <CRow>
+              {GroupIdSelect(groupIds, form, setForm)}
+              {items.slice(3, 5)}
+            </CRow>
+            <CRow>
+              {items.slice(5, 8)}
+              {switches[1]}
+            </CRow>
+          </CForm>
+          {!btnActice ? (
+            <CButton
+              type="submit"
+              size="sm"
+              color="primary"
+              onClick={handleSubmit}
+            >
+              <CIcon name="cil-scrubber" /> ثبت تغییرات
+            </CButton>
+          ) : (
+            <CSpinner
+              style={{ width: "2rem", height: "2rem" }}
+              color="primary"
+              variant="grow"
+            />
+          )}
+        </CCardBody>
+      </CCard>
       <ExamCardFooter />
     </>
   );
