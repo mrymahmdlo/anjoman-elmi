@@ -78,13 +78,13 @@ const CreateFreeContent = () => {
             <CForm action="" method="post">
               <CRow>{items.slice(0, 2)}</CRow>
               <CRow>{items.slice(2, 4)}</CRow>
-              {CKEditorField(
-                "متن محتوا",
-                "لطفا متن محتوای خود را وارد کنید",
-                setForm,
-                form,
-                "description"
-              )}
+              <CKEditorField
+                name="متن محتوا"
+                text="لطفا متن محتوای خود را وارد کنید"
+                fieldName="description"
+                form={form}
+                setForm={setForm}
+              />
             </CForm>
           </CCardBody>
           <CCardFooter>

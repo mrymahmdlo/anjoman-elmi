@@ -24,10 +24,15 @@ function MyCustomUploadAdapterPlugin(editor) {
   };
 }
 
-const CKEditorField = (name, text, setForm, form, fieldName) => {
+const CKEditorField = ({ name, text, setForm, form, fieldName }) => {
   return (
-    <CFormGroup>
-      <CLabel htmlFor="nf-password">{name}</CLabel>
+    <CFormGroup key={fieldName}>
+      <CLabel
+        style={{ color: !form[fieldName] && "red" }}
+        htmlFor="nf-password"
+      >
+        {name}
+      </CLabel>
       <CKEditor
         editor={ClassicEditor}
         config={{

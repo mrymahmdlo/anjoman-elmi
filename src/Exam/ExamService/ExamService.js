@@ -35,8 +35,9 @@ const ExamService = {
       totalTimeMinutes: +form.totalTimeMinutes,
       quizMode: +form.quizMode,
     }),
-  UpdateQuizInfo: (quizId, form) =>
-    sendRequest(Routes.UpdateQuizInfo + quizId, {
+  UpdateQuizInfo: (quizId, form) => {
+    console.log(form);
+    return sendRequest(Routes.UpdateQuizInfo + quizId, {
       ...form,
       endDate: HejriToDotNetGeorgian(form.endDate),
       resultDate: HejriToDotNetGeorgian(form.resultDate),
@@ -47,7 +48,8 @@ const ExamService = {
       price: +form.price,
       totalTimeMinutes: +form.totalTimeMinutes,
       quizMode: +form.quizMode,
-    }),
+    });
+  },
   UploadQuestionFile: async (quizId, data) =>
     await sendFormData(Routes.UploadQuestionFile + quizId, data),
   UploadAnswerFile: async (quizId, data) =>

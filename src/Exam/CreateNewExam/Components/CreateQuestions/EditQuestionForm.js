@@ -57,12 +57,50 @@ const EditQuestionForm = ({ item, setUpdated }) => {
       <CRow>{items.slice(0, 2)}</CRow>
       <CRow>{items.slice(2, 4)}</CRow>
       <CRow>
-        {CKEditorField("متن سوال", "", setForm, form, "questionText")}
+        <CKEditorField
+          name="متن سوال"
+          text=""
+          fieldName="questionText"
+          form={form}
+          setForm={setForm}
+        />
       </CRow>
-      <CRow>{CKEditorField("*گزینه اول", "", setForm, form, "choice1")}</CRow>
-      <CRow>{CKEditorField("*گزینه دوم", "", setForm, form, "choice2")}</CRow>
-      <CRow>{CKEditorField("*گزینه سوم", "", setForm, form, "choice3")}</CRow>
-      <CRow>{CKEditorField("*گزینه چهارم", "", setForm, form, "choice4")}</CRow>
+      <CRow>
+        <CKEditorField
+          name="*گزینه 1"
+          text=""
+          fieldName="choice1"
+          form={form}
+          setForm={setForm}
+        />
+      </CRow>
+      <CRow>
+        <CKEditorField
+          name="*گزینه 2"
+          text=""
+          fieldName="choice2"
+          form={form}
+          setForm={setForm}
+        />
+      </CRow>
+      <CRow>
+        <CKEditorField
+          name="*گزینه 3"
+          text=""
+          fieldName="choice3"
+          form={form}
+          setForm={setForm}
+        />
+      </CRow>
+      <CRow>
+        <CKEditorField
+          name="*گزینه 4"
+          text=""
+          fieldName="choice4"
+          form={form}
+          setForm={setForm}
+        />
+      </CRow>
       {!btnActice ? (
         <CButton type="submit" size="sm" color="primary" onClick={handleSubmit}>
           ثبت سوال

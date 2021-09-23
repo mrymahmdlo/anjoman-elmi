@@ -3,11 +3,14 @@ import { TextField } from "src/Utility/InputGroup";
 import { ExamContext } from "../../CreateNewExam";
 import { QuestionFormItems } from "./QuestionFormItems";
 import ExamService from "src/Exam/ExamService/ExamService";
-import { InitialForm, levels, QuestionFormValidators } from "./QuestionFormValidators";
+import {
+  InitialForm,
+  levels,
+  QuestionFormValidators,
+} from "./QuestionFormValidators";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
 import { CKEditorField } from "src/reusable/CKEditorInput";
 const { CCardBody, CRow, CButton, CSpinner } = require("@coreui/react");
-
 
 const AddQuestionForm = ({ numQ, setUpdated }) => {
   const exam = React.useContext(ExamContext);
@@ -55,12 +58,50 @@ const AddQuestionForm = ({ numQ, setUpdated }) => {
       <CRow>{items.slice(0, 2)}</CRow>
       <CRow>{items.slice(2, 4)}</CRow>
       <CRow>
-        {CKEditorField("متن سوال", "", setForm, form, "questionText")}
+        <CKEditorField
+          name="متن سوال"
+          text=""
+          fieldName="questionText"
+          form={form}
+          setForm={setForm}
+        />
       </CRow>
-      <CRow>{CKEditorField("*گزینه اول", "", setForm, form, "choice1")}</CRow>
-      <CRow>{CKEditorField("*گزینه دوم", "", setForm, form, "choice2")}</CRow>
-      <CRow>{CKEditorField("*گزینه سوم", "", setForm, form, "choice3")}</CRow>
-      <CRow>{CKEditorField("*گزینه چهارم", "", setForm, form, "choice4")}</CRow>
+      <CRow>
+        <CKEditorField
+          name="*گزینه 1"
+          text=""
+          fieldName="choice1"
+          form={form}
+          setForm={setForm}
+        />
+      </CRow>
+      <CRow>
+        <CKEditorField
+          name="*گزینه 2"
+          text=""
+          fieldName="choice2"
+          form={form}
+          setForm={setForm}
+        />
+      </CRow>
+      <CRow>
+        <CKEditorField
+          name="*گزینه 3"
+          text=""
+          fieldName="choice3"
+          form={form}
+          setForm={setForm}
+        />
+      </CRow>
+      <CRow>
+        <CKEditorField
+          name="*گزینه 4"
+          text=""
+          fieldName="choice4"
+          form={form}
+          setForm={setForm}
+        />
+      </CRow>
       {!btnActice ? (
         <CButton type="submit" size="sm" color="primary" onClick={handleSubmit}>
           ثبت سوال

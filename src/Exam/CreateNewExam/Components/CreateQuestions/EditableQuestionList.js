@@ -31,11 +31,14 @@ export const EditableQuestionList = () => {
 
   useEffect(() => {
     ExamService.GetQuestions(exam.quizId).then((res) => setData(res.data));
+    if (modal === false) {
+      setModalContent(null);
+    }
     if (updated === true) {
       setUpdated(false);
       setModal(false);
     }
-  }, [updated, exam.quizId]);
+  }, [updated, exam.quizId, modal]);
   return (
     <>
       <CListGroup className="w-100">
@@ -86,7 +89,7 @@ export const EditableQuestionList = () => {
                 <dd
                   className="col-sm-9"
                   style={{
-                    maxHeight: "20px",
+                    maxHeight: "40px",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap",
