@@ -81,7 +81,7 @@ const Tables = () => {
       let data = res.data.rows;
       ChangeValues(data);
       setTableData(data);
-      setPageNum(Math.ceil(res.data.totalCount / 15));
+      setPageNum(Math.ceil(res.data.totalCount / 20));
     });
   };
   return (

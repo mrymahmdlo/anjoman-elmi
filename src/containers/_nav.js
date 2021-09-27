@@ -50,7 +50,13 @@ const _nav = [
   },
   {
     _tag: "CSidebarNavItem",
-    name: "ایجاد آزمون جدید( استفاده نکنید)",
+    name: "مدیریت آزمون ها(استفاده نکنید)",
+    icon: "cil-layers",
+    to: "/Exams/ManageExams",
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "ایجاد آزمون جدید(استفاده نکنید)",
     icon: "cil-pencil",
     to: "/Exams/CreateExam/QuizInfo",
   },

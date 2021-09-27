@@ -2,12 +2,15 @@ import { ExamContext } from "../CreateNewExam";
 import React, { useState } from "react";
 import ExamService from "src/Exam/ExamService/ExamService";
 import { useHistory } from "react-router";
+import { ExamModalContainer } from "./ExamModalContainer";
 const { default: CIcon } = require("@coreui/icons-react");
 const { CCardFooter, CButton, CSpinner } = require("@coreui/react");
 
 const ExamCardFooter = () => {
   const [btnActice, setBtnActive] = useState(false);
   const [btnDelete, setBtnDelete] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [modalContent, setModalContent] = useState("");
   const exam = React.useContext(ExamContext);
   const history = useHistory();
   const handleSubmit = () => {
@@ -33,8 +36,7 @@ const ExamCardFooter = () => {
     ExamService.DeleteQuiz(exam.quizId)
       .then((res) => {
         if (res.success) {
-          exam.setErrorContent(res.message);
-          //redirecting to table of exams
+          history.push("/Exams/ManageExams");
         } else exam.setErrorContent(res.message);
       })
       .catch((err) => {
@@ -113,7 +115,24 @@ const ExamCardFooter = () => {
           size="sm"
           className="m-2"
           color="danger"
-          onClick={""}
+          onClick={() => {
+            setModalContent(
+              <div>
+                <p>
+                  آیا میخواهید آزمون را حذف کنید؟
+                  <CButton
+                    color="danger"
+                    size="sm"
+                    className="mr-2"
+                    onClick={handleDelete}
+                  >
+                    بله
+                  </CButton>
+                </p>
+              </div>
+            );
+            setModal(!modal);
+          }}
         >
           <CIcon name="cil-x-circle" /> حذف آزمون
         </CButton>
@@ -124,6 +143,14 @@ const ExamCardFooter = () => {
           variant="grow"
         />
       )}
+      <ExamModalContainer
+        name="حذف آزمون"
+        modal={modal}
+        toggle={() => {
+          setModal(!modal);
+        }}
+        modalContent={modalContent}
+      />
     </CCardFooter>
   );
 };

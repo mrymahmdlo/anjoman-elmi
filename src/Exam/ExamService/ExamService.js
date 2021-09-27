@@ -24,7 +24,12 @@ const Routes = {
   UploadExcel: "api/Excel/ReadFile/",
 };
 
+const TableRoutes = {
+  GetAllQuiz: "AdminPanel/GetAllQuiz",
+};
+
 const ExamService = {
+  GetAllQuiz: async () => await sendRequest(TableRoutes.GetAllQuiz),
   DeleteQuiz: (quizId) => sendRequest(Routes.DeleteQuiz + quizId, {}),
   CreateQuizInfo: (form) =>
     sendRequest(Routes.CreateQuizInfo, {

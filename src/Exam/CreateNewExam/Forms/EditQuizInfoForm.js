@@ -109,10 +109,8 @@ const EditQuizInfoForm = () => {
               {GroupIdSelect(groupIds, form, setForm)}
               {items.slice(3, 5)}
             </CRow>
-            <CRow>
-              {items.slice(5, 8)}
-              {switches[1]}
-            </CRow>
+            <CRow>{items.slice(5, 8)}</CRow>
+            <CRow>{switches}</CRow>
           </CForm>
           {!btnActice ? (
             <CButton

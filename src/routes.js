@@ -11,6 +11,8 @@ const CreateExam = React.lazy(() =>
   import("./Exam/CreateNewExam/CreateNewExam")
 );
 
+const ManageExams = React.lazy(() => import("./Exam/ManageExams/ManageExams"));
+
 //examples
 const Toaster = React.lazy(() =>
   import("./views/notifications/toaster/Toaster")
@@ -93,6 +95,11 @@ const routes = [
     ],
     name: "CreateExam",
     component: CreateExam,
+  },
+  {
+    path: "/Exams/ManageExams",
+    name: "ManageExams",
+    component: ManageExams,
   },
   { path: "/theme", name: "Theme", component: Colors, exact: true },
   { path: "/theme/colors", name: "Colors", component: Colors },

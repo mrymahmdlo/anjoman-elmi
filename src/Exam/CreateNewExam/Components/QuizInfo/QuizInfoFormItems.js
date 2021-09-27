@@ -134,30 +134,30 @@ const QuizInfoFormItems = (form, setForm) => {
       name: "حالت تست",
       text: "آزمون در حال ویرایش و تست میباشد و نباید منتشر شود.",
       input: FormSwitchInput(form, setForm, "isLock", form.isLock),
-      size: 6,
+      size: 3,
     },
-    // {
-    //   name: "آزمون به صورت pdf",
-    //   text: "آزمون طرح شده در حالت pdf نیز قابل شرکت است.",
-    //   input: FormSwitchInput(
-    //     form,
-    //     setForm,
-    //     "questionFileReady",
-    //     form.questionFileReady
-    //   ),
-    //   size: 3,
-    // },
-    // {
-    //   name: "فایل پاسخ نامه",
-    //   text: " فایل pdf پاسخ نامه موجود است.",
-    //   input: FormSwitchInput(
-    //     form,
-    //     setForm,
-    //     "answerFileReady",
-    //     form.answerFileReady
-    //   ),
-    //   size: 3,
-    // },
+    {
+      name: "آزمون به صورت pdf",
+      text: "آزمون طرح شده در حالت pdf نیز قابل شرکت است.",
+      input: FormSwitchInput(
+        form,
+        setForm,
+        "questionFileReady",
+        form.questionFileReady
+      ),
+      size: 3,
+    },
+    {
+      name: "فایل پاسخ نامه",
+      text: " فایل pdf پاسخ نامه موجود است.",
+      input: FormSwitchInput(
+        form,
+        setForm,
+        "answerFileReady",
+        form.answerFileReady
+      ),
+      size: 3,
+    },
   ];
 };
 

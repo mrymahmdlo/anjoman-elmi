@@ -1,7 +1,7 @@
 import { TokenManager } from "src/Identity/Service/TokenManager";
 const { GetToken } = TokenManager();
 
-const BaseUrl = "http://myexam.bamis.ir/";
+export const BaseUrl = process.env.REACT_APP_EXAM_BASE;
 
 const sendRequest = async (url, body) => {
   const init = {

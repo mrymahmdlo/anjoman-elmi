@@ -24,7 +24,7 @@ const CreateExam = () => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [stage, setStage] = useState(stages.QUIZINFO);
-  const [quizId, setQuizId] = useState(109);
+  const [quizId, setQuizId] = useState(105);
   const [quizMode, setQuizMode] = useState();
 
   const history = useHistory();
@@ -51,7 +51,7 @@ const CreateExam = () => {
             setStage,
             stages,
             quizMode,
-            setQuizMode
+            setQuizMode,
           }}
         >
           <CCard>
