@@ -19,9 +19,13 @@ const Routes = {
   FinalCheck: "AdminPanel/FinalCheck/",
   GetQuizInfo: "AdminPanel/GetQuizInfo/",
   UpdateQuizInfo: "AdminPanel/UpdateQuizInfo/",
+  SwapQuestions: "AdminPanel/SwapQuestions",
+  DeleteQuiz: "AdminPanel/DeleteQuizInfo/",
+  UploadExcel: "api/Excel/ReadFile/",
 };
 
 const ExamService = {
+  DeleteQuiz: (quizId) => sendRequest(Routes.DeleteQuiz + quizId, {}),
   CreateQuizInfo: (form) =>
     sendRequest(Routes.CreateQuizInfo, {
       ...form,
@@ -36,7 +40,6 @@ const ExamService = {
       quizMode: +form.quizMode,
     }),
   UpdateQuizInfo: (quizId, form) => {
-    console.log(form);
     return sendRequest(Routes.UpdateQuizInfo + quizId, {
       ...form,
       endDate: HejriToDotNetGeorgian(form.endDate),
@@ -67,6 +70,8 @@ const ExamService = {
       questionCount: +form.questionCount,
       totalMinutes: +form.totalMinutes,
     }),
+  UploadExcel: async (quizId, file) =>
+    await sendFormData(Routes.UploadExcel + quizId, file),
   DeleteQuizInfoDetails: async (quizId, rowId) =>
     await sendRequest(
       Routes.DeleteQuizInfoDetails + quizId + "/" + rowId + "/0",
@@ -115,6 +120,12 @@ const ExamService = {
     await sendRequest(Routes.GetQuizFilesNames + quizId),
   GetQuizInfo: async (quizId) => await sendRequest(Routes.GetQuizInfo + quizId),
   FinalCheck: async (quizId) => await sendRequest(Routes.FinalCheck + quizId),
+  SwapQuestions: async (form) =>
+    await sendRequest(Routes.SwapQuestions, {
+      quizId: +form.quizId,
+      firstId: +form.firstId,
+      secondId: +form.secondId,
+    }),
 };
 
 export default ExamService;

@@ -7,6 +7,7 @@ import { ExamModalContainer } from "../ExamModalContainer";
 import AddQuestionForm from "./AddQuestionForm";
 import EditQuestionForm from "./EditQuestionForm";
 import PreviewQuestion from "./PreviewQuestion";
+import SwitchQuestions from "./SwitchQuestions";
 
 export const EditableQuestionList = () => {
   const [modal, setModal] = useState(false);
@@ -87,7 +88,7 @@ export const EditableQuestionList = () => {
               <div className="d-flex align-items-center">
                 <dt className="col-sm-1">{item.questionNo + " - "}</dt>
                 <dd
-                  className="col-sm-9"
+                  className="col-sm-8"
                   style={{
                     maxHeight: "40px",
                     overflow: "hidden",
@@ -100,7 +101,7 @@ export const EditableQuestionList = () => {
                     dangerouslySetInnerHTML={{ __html: item.questionText }}
                   ></p>
                 </dd>
-                <dd className="col-sm-2">
+                <dd className="col-sm-3 mr-5">
                   <CButton
                     color="primary"
                     className="m-1"
@@ -114,8 +115,23 @@ export const EditableQuestionList = () => {
                     <CIcon name="cil-pencil" />
                   </CButton>
                   <CButton
-                    className="m-1"
                     color="success"
+                    className="m-1"
+                    onClick={() => {
+                      setModalContent(
+                        <SwitchQuestions
+                          numCourses={data.length}
+                          setUpdated={setUpdated}
+                        />
+                      );
+                      setModal(!modal);
+                    }}
+                  >
+                    <CIcon name="cil-cursor-move" />
+                  </CButton>
+                  <CButton
+                    className="m-1"
+                    color="dark"
                     onClick={() => popUpPreview(item)}
                   >
                     <CIcon name="cil-laptop" />

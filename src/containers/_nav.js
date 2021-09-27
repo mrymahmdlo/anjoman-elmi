@@ -52,7 +52,7 @@ const _nav = [
     _tag: "CSidebarNavItem",
     name: "ایجاد آزمون جدید( استفاده نکنید)",
     icon: "cil-pencil",
-    to: "/Exams/Exam/Create",
+    to: "/Exams/CreateExam/QuizInfo",
   },
 ];
 

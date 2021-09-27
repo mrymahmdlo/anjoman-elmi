@@ -7,6 +7,7 @@ import QuizDetailsForm from "./Forms/QuizDetailsForm";
 import { ExamBreadcrumb } from "./Components/ExamBreadcrumb";
 import CreateQuestionsForm from "./Forms/CreateQuestionsForm";
 import EditQuizInfoForm from "./Forms/EditQuizInfoForm";
+import { Route, Router, useHistory } from "react-router";
 
 const stages = {
   QUIZINFO: 0,
@@ -23,29 +24,21 @@ const CreateExam = () => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [stage, setStage] = useState(stages.QUIZINFO);
-  const [quizId, setQuizId] = useState(105);
+  const [quizId, setQuizId] = useState(109);
+  const [quizMode, setQuizMode] = useState();
+
+  const history = useHistory();
   useEffect(() => {
     if (quizId) {
       setStage(stages.EDITQUIZINFO);
+      history.push("/Exams/CreateExam/EditQuizInfo");
+    } else {
+      history.push("/Exams/CreateExam/QuizInfo");
     }
-  }, [quizId]);
+  }, [quizId, history]);
   useEffect(() => {
     if (showError) setTimeout(() => setShowError(false), 3200);
   }, [showError]);
-  const StageSwitch = () => {
-    switch (stage) {
-      case stages.QUIZINFO:
-        return <QuizInfoForm userId={userId} setQuizId={setQuizId} />;
-      case stages.QUIZDETAILS:
-        return <QuizDetailsForm />;
-      case stages.QUIZQUESTIONS:
-        return <CreateQuestionsForm />;
-      case stages.EDITQUIZINFO:
-        return <EditQuizInfoForm />;
-      default:
-        return "";
-    }
-  };
   return (
     <div className="App">
       <CContainer fluid>
@@ -57,11 +50,32 @@ const CreateExam = () => {
             stage,
             setStage,
             stages,
+            quizMode,
+            setQuizMode
           }}
         >
           <CCard>
             {ExamBreadcrumb(stage, stages)}
-            {StageSwitch()}
+            <Router history={history}>
+              <Route path="/Exams/CreateExam/QuizInfo" exact>
+                <QuizInfoForm userId={userId} setQuizId={setQuizId} />
+              </Route>
+              <Route
+                path="/Exams/CreateExam/QuizDetails"
+                exact
+                component={QuizDetailsForm}
+              />
+              <Route
+                path="/Exams/CreateExam/Questions"
+                exact
+                component={CreateQuestionsForm}
+              />
+              <Route
+                path="/Exams/CreateExam/EditQuizInfo"
+                exact
+                component={EditQuizInfoForm}
+              />
+            </Router>
           </CCard>
         </ExamContext.Provider>
       </CContainer>

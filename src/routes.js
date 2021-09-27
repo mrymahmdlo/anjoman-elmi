@@ -7,7 +7,9 @@ const MinuteCalls = React.lazy(() =>
 const CreateFreeContent = React.lazy(() =>
   import("./Content/CreateFreeContent/CreateFreeContent")
 );
-const CreateExam = React.lazy(() => import("./Exam/CreateNewExam/CreateNewExam"));
+const CreateExam = React.lazy(() =>
+  import("./Exam/CreateNewExam/CreateNewExam")
+);
 
 //examples
 const Toaster = React.lazy(() =>
@@ -83,7 +85,12 @@ const routes = [
     component: CreateFreeContent,
   },
   {
-    path: "/Exams/Exam/Create",
+    path: [
+      "/Exams/CreateExam/QuizInfo",
+      "/Exams/CreateExam/EditQuizInfo",
+      "/Exams/CreateExam/Questions",
+      "/Exams/CreateExam/QuizDetails",
+    ],
     name: "CreateExam",
     component: CreateExam,
   },

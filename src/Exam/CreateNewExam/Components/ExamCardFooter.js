@@ -1,13 +1,15 @@
 import { ExamContext } from "../CreateNewExam";
 import React, { useState } from "react";
 import ExamService from "src/Exam/ExamService/ExamService";
+import { useHistory } from "react-router";
 const { default: CIcon } = require("@coreui/icons-react");
 const { CCardFooter, CButton, CSpinner } = require("@coreui/react");
 
 const ExamCardFooter = () => {
   const [btnActice, setBtnActive] = useState(false);
+  const [btnDelete, setBtnDelete] = useState(false);
   const exam = React.useContext(ExamContext);
-
+  const history = useHistory();
   const handleSubmit = () => {
     setBtnActive(true);
     ExamService.FinalCheck(exam.quizId)
@@ -26,6 +28,24 @@ const ExamCardFooter = () => {
       });
   };
 
+  const handleDelete = () => {
+    setBtnDelete(true);
+    ExamService.DeleteQuiz(exam.quizId)
+      .then((res) => {
+        if (res.success) {
+          exam.setErrorContent(res.message);
+          //redirecting to table of exams
+        } else exam.setErrorContent(res.message);
+      })
+      .catch((err) => {
+        exam.setErrorContent(err.message);
+      })
+      .finally(() => {
+        exam.setShowError(true);
+        setBtnDelete(false);
+      });
+  };
+
   return (
     <CCardFooter>
       {exam.stage !== exam.stages.EDITQUIZINFO ? (
@@ -33,9 +53,10 @@ const ExamCardFooter = () => {
           className="m-2"
           type="submit"
           size="sm"
-          color="success"
+          color="dark"
           onClick={() => {
             exam.setStage(exam.stages.EDITQUIZINFO);
+            history.push("/Exams/CreateExam/EditQuizInfo");
           }}
         >
           <CIcon name="cil-italic" /> ویرایش اطلاعات آزمون
@@ -49,6 +70,7 @@ const ExamCardFooter = () => {
           color="dark"
           onClick={() => {
             exam.setStage(exam.stages.QUIZDETAILS);
+            history.push("/Exams/CreateExam/QuizDetails");
           }}
         >
           <CIcon name="cil-notes" /> ویرایش اطلاعات زیرآزمون
@@ -59,9 +81,10 @@ const ExamCardFooter = () => {
           className="m-2"
           type="submit"
           size="sm"
-          color="info"
+          color="dark"
           onClick={() => {
             exam.setStage(exam.stages.QUIZQUESTIONS);
+            history.push("/Exams/CreateExam/Questions");
           }}
         >
           <CIcon name="cil-list-numbered" /> ویرایش سوالات آزمون
@@ -72,15 +95,32 @@ const ExamCardFooter = () => {
           type="submit"
           size="sm"
           className="m-2"
-          color="danger"
+          color="success"
           onClick={handleSubmit}
         >
-          <CIcon name="cil-x-circle" /> اتمام ایجاد آزمون
+          <CIcon name="cil-check" /> اتمام ایجاد آزمون
         </CButton>
       ) : (
         <CSpinner
           style={{ width: "1.5rem", height: "1.5rem" }}
-          color="primary"
+          color="success"
+          variant="grow"
+        />
+      )}
+      {!btnDelete ? (
+        <CButton
+          type="submit"
+          size="sm"
+          className="m-2"
+          color="danger"
+          onClick={""}
+        >
+          <CIcon name="cil-x-circle" /> حذف آزمون
+        </CButton>
+      ) : (
+        <CSpinner
+          style={{ width: "1.5rem", height: "1.5rem" }}
+          color="danger"
           variant="grow"
         />
       )}

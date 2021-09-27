@@ -14,6 +14,19 @@ const UploadAnswerFile = async (file, type, quizId, setStatusAnswerFile) => {
     .catch(() => setStatusAnswerFile(status.FAILED));
 };
 
+const UploadExcel = async (file, type, quizId, setStatusAnswerFile) => {
+  setStatusAnswerFile(status.LOADING);
+  let form = UploadFile(file, type, "file");
+  if (form === "failed") return setStatusAnswerFile(status.FAILED);
+  await ExamService.UploadExcel(quizId, form)
+    .then(() => {
+      setStatusAnswerFile(status.UPLOADED);
+    })
+    .catch(() => {
+      setStatusAnswerFile(status.FAILED);
+    });
+};
+
 const UploadQuestionFile = async (
   file,
   type,
@@ -41,4 +54,4 @@ const getExtension = (filename, type) => {
   return parts[1] !== type;
 };
 
-export { UploadQuestionFile, UploadAnswerFile };
+export { UploadQuestionFile, UploadAnswerFile, UploadExcel };

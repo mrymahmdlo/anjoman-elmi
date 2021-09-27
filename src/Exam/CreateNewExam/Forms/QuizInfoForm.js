@@ -23,12 +23,14 @@ import {
 import ExamService from "src/Exam/ExamService/ExamService";
 import { ExamContext } from "../CreateNewExam";
 import { CKEditorField } from "src/reusable/CKEditorInput";
+import { useHistory } from "react-router";
 
 const QuizInfoForm = ({ userId, setQuizId }) => {
   const [form, setForm] = useState(InitialForm(userId));
   const [btnActice, setBtnActive] = useState(false);
   const [groupIds, setGroupIds] = useState([]);
   const exam = React.useContext(ExamContext);
+  const history = useHistory();
   useEffect(() => {
     GetData("BasicInfo/Groups").then((res) => setGroupIds(res));
   }, []);
@@ -57,6 +59,7 @@ const QuizInfoForm = ({ userId, setQuizId }) => {
       .then((res) => {
         if (res.success) {
           exam.setErrorContent("داده با موفقیت ثبت شد ");
+          history.push("/Exams/CreateExam/EditQuizInfo");
           setQuizId(res.data);
         } else exam.setErrorContent(res.message);
       })
