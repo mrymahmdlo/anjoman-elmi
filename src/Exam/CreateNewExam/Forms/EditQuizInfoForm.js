@@ -20,7 +20,6 @@ import { CheckValidationArry } from "src/reusable/CheckValidationArry";
 import { QuizInfoValidators } from "../Components/QuizInfo/QuizInfoValidators";
 import ExamService from "src/Exam/ExamService/ExamService";
 import { ExamContext } from "../CreateNewExam";
-import ExamCardFooter from "../Components/ExamCardFooter";
 import { GeorgianToHejri } from "src/Utility/DateTime";
 import AddFilesButtons from "../Components/QuizInfo/AddFilesButtons";
 
@@ -130,7 +129,6 @@ const EditQuizInfoForm = () => {
           )}
         </CCardBody>
       </CCard>
-      <ExamCardFooter />
     </>
   );
 };

@@ -1,14 +1,17 @@
+import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import ExamService from "src/Exam/ExamService/ExamService";
 import { Toast } from "src/Utility/Toast";
+import ExamDetails from "./ExamDetails";
 
 export const ExamScopedSlots = (
   updateData,
   setModal,
   modal,
-  setModalContent
+  setModalContent,
+  tableFields
 ) => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
@@ -31,8 +34,15 @@ export const ExamScopedSlots = (
     examDetail: (item, index) => (
       <>
         <td className="py-2 pl-2" key={item.orderId}>
-          <CButton className="mr-1" color="info">
-            جزئیات
+          <CButton
+            className="mr-1"
+            color="dark"
+            onClick={() => {
+              setModalContent(<ExamDetails item={item} tableFields={tableFields} />);
+              setModal(!modal);
+            }}
+          >
+            <CIcon name="cil-laptop" />
           </CButton>
         </td>
       </>
@@ -42,10 +52,12 @@ export const ExamScopedSlots = (
         <td className="py-2 pl-2" key={item.quizId}>
           <CButton
             className="mr-1"
-            color="success"
-            onClick={() => history.push("/")}
+            color="primary"
+            onClick={() =>
+              history.push("/Exams/EditExam/EditQuizInfo/" + item.quizId)
+            }
           >
-            ویرایش
+            <CIcon name="cil-pencil" />
           </CButton>
         </td>
       </>
@@ -74,7 +86,7 @@ export const ExamScopedSlots = (
               setModal(!modal);
             }}
           >
-            حذف
+            <CIcon name="cil-trash" />
           </CButton>
           <Toast showError={showError} errorContent={errorContent} />
         </td>

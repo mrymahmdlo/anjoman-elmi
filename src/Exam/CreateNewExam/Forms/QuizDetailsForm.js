@@ -1,7 +1,6 @@
 import React from "react";
 import { CCardBody, CLabel, CRow } from "@coreui/react";
 import { EditableQuizDetailsLists } from "../Components/QuizDetails/EditableQuizDetailsLists";
-import ExamCardFooter from "../Components/ExamCardFooter";
 
 const QuizDetailsForm = () => {
   return (
@@ -15,7 +14,6 @@ const QuizDetailsForm = () => {
           <EditableQuizDetailsLists />
         </CRow>
       </CCardBody>
-      <ExamCardFooter />
     </>
   );
 };

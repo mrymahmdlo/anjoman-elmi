@@ -1,8 +1,23 @@
 export const ExamTableHeaders = [
-  { key: "quizTitle", label: "نام آزمون", type: "Text" },
-  { key: "groupCodes", label: "گروه آزمایشی", type: "Array" },
-  { key: "questionCount", label: "تعداد سوالات", type: "Number" },
-  { key: "totalTimeMinutes", label: "زمان پاسخگویی", type: "Number" },
-  { key: "startDate", label: "تاریخ شروع", type: "DateTime" },
-  { key: "price", label: "قیمت", type: "Number" },
+  {
+    key: "examDetail",
+    label: "",
+    _style: { width: "2%" },
+    sorter: false,
+    filter: false,
+  },
+  {
+    key: "examEdit",
+    label: "",
+    _style: { width: "1%" },
+    sorter: false,
+    filter: false,
+  },
+  {
+    key: "examDelete",
+    label: "",
+    _style: { width: "1%" },
+    sorter: false,
+    filter: false,
+  },
 ];

@@ -8,6 +8,7 @@ import { ExamBreadcrumb } from "./Components/ExamBreadcrumb";
 import CreateQuestionsForm from "./Forms/CreateQuestionsForm";
 import EditQuizInfoForm from "./Forms/EditQuizInfoForm";
 import { Route, Router, useHistory } from "react-router";
+import ExamCardFooter from "./Components/ExamCardFooter";
 
 const stages = {
   QUIZINFO: 0,
@@ -24,7 +25,7 @@ const CreateExam = () => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [stage, setStage] = useState(stages.QUIZINFO);
-  const [quizId, setQuizId] = useState(105);
+  const [quizId, setQuizId] = useState();
   const [quizMode, setQuizMode] = useState();
 
   const history = useHistory();
@@ -64,17 +65,18 @@ const CreateExam = () => {
                 path="/Exams/CreateExam/QuizDetails"
                 exact
                 component={QuizDetailsForm}
-              />
-              <Route
-                path="/Exams/CreateExam/Questions"
-                exact
-                component={CreateQuestionsForm}
-              />
-              <Route
-                path="/Exams/CreateExam/EditQuizInfo"
-                exact
-                component={EditQuizInfoForm}
-              />
+              >
+                <QuizDetailsForm />
+                <ExamCardFooter />
+              </Route>
+              <Route path="/Exams/CreateExam/Questions" exact>
+                <CreateQuestionsForm />
+                <ExamCardFooter />
+              </Route>
+              <Route path="/Exams/CreateExam/EditQuizInfo" exact>
+                <EditQuizInfoForm />
+                <ExamCardFooter />
+              </Route>
             </Router>
           </CCard>
         </ExamContext.Provider>

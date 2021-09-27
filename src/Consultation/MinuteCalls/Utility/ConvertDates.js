@@ -1,5 +1,5 @@
 import JDate from "jalali-date";
-import { DateFormatter } from "./DateFormatter";
+import { DateFormatter } from "../../../Utility/DateFormatter";
 export const ConvertDates = (arr) => {
   arr.forEach((obj) =>
     Object.keys(obj).forEach(function (key) {

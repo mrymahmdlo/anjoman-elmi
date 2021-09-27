@@ -29,7 +29,7 @@ const TableRoutes = {
 };
 
 const ExamService = {
-  GetAllQuiz: async () => await sendRequest(TableRoutes.GetAllQuiz, {}),
+  GetAllQuiz: async (filters) => await sendRequest(TableRoutes.GetAllQuiz, filters),
   DeleteQuiz: (quizId) => sendRequest(Routes.DeleteQuiz + quizId, {}),
   CreateQuizInfo: (form) =>
     sendRequest(Routes.CreateQuizInfo, {

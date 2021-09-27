@@ -10,7 +10,7 @@ const CreateFreeContent = React.lazy(() =>
 const CreateExam = React.lazy(() =>
   import("./Exam/CreateNewExam/CreateNewExam")
 );
-
+const EditExam = React.lazy(() => import("./Exam/EditExam/EditExam"));
 const ManageExams = React.lazy(() => import("./Exam/ManageExams/ManageExams"));
 
 //examples
@@ -95,6 +95,15 @@ const routes = [
     ],
     name: "CreateExam",
     component: CreateExam,
+  },
+  {
+    path: [
+      "/Exams/EditExam/EditQuizInfo/:id",
+      "/Exams/EditExam/Questions/:id",
+      "/Exams/EditExam/QuizDetails/:id",
+    ],
+    name: "EditExam",
+    component: EditExam,
   },
   {
     path: "/Exams/ManageExams",

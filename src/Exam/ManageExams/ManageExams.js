@@ -11,7 +11,9 @@ import {
 import { useEffect, useState } from "react";
 import { ExamModalContainer } from "../CreateNewExam/Components/ExamModalContainer";
 import ExamService from "../ExamService/ExamService";
+import { ExamTableHeaders } from "./Components/ExamsTableHeaders";
 import { ExamScopedSlots } from "./Components/ScopedSlots";
+import { ChangeValues } from "./Utility/ChangeValues";
 
 const ManageExams = () => {
   const [tableData, setTableData] = useState([]);
@@ -19,40 +21,27 @@ const ManageExams = () => {
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
+  const [filterData, setFilterData] = useState({
+    asc: false,
+    column: "quizId",
+  });
 
   useEffect(() => {
     updateData();
-  }, []);
+  }, [search, filterData]);
 
   const updateData = () => {
-    ExamService.GetAllQuiz().then((res) => {
-      setTableFields([
-        ...res.data.headers,
-        ...[
-          {
-            key: "examDetail",
-            label: "",
-            _style: { width: "5%" },
-            sorter: false,
-            filter: false,
-          },
-          {
-            key: "examEdit",
-            label: "",
-            _style: { width: "1%" },
-            sorter: false,
-            filter: false,
-          },
-          {
-            key: "examDelete",
-            label: "",
-            _style: { width: "1%" },
-            sorter: false,
-            filter: false,
-          },
-        ],
-      ]);
-      setTableData(res.data.rows);
+    ExamService.GetAllQuiz({
+      orderCol: filterData.column,
+      searchTerm: search,
+      orderAscending: filterData.asc,
+      page: 1,
+      length: 100000,
+    }).then((res) => {
+      setTableFields([...res.data.headers, ...ExamTableHeaders]);
+      let data = res.data.rows;
+      ChangeValues(data);
+      setTableData(data);
     });
   };
 
@@ -75,17 +64,42 @@ const ManageExams = () => {
         <CCardBody>
           <CDataTable
             items={tableData}
-            fields={tableFields}
+            fields={tableFields.filter(
+              (field) =>
+                field.key !== "quizDescription" &&
+                field.key !== "questionCount" &&
+                field.key !== "resultDate" &&
+                field.key !== "totalTimeMinutes" &&
+                field.key !== "questionFileName" &&
+                field.key !== "answerVideoFileName" &&
+                field.key !== "questionFileReady" &&
+                field.key !== "answerFileReady" &&
+                field.key !== "answerFileName" &&
+                field.key !== "groupCodes"
+            )}
             striped
             size="sm"
-            sorter
-            itemsPerPage={20}
+            sorter={{ external: true, resetable: false }}
+            onSorterValueChange={setFilterData}
+            itemsPerPage={15}
             pagination
             scopedSlots={ExamScopedSlots(
               updateData,
               setModal,
               modal,
-              setModalContent
+              setModalContent,
+              tableFields.filter(
+                (field) =>
+                  field.key === "questionCount" ||
+                  field.key === "resultDate" ||
+                  field.key === "totalTimeMinutes" ||
+                  field.key === "questionFileName" ||
+                  field.key === "answerVideoFileName" ||
+                  field.key === "questionFileReady" ||
+                  field.key === "answerFileReady" ||
+                  field.key === "answerFileName" ||
+                  field.key === "groupCodes"
+              )
             )}
           />
         </CCardBody>

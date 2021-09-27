@@ -1,5 +1,5 @@
 import JDate from "jalali-date";
-import { DateFormatter } from "./DateFormatter";
+import { DateFormatter } from "src/Utility/DateFormatter";
 
 export const ChangeValues = (arr) => {
   arr.forEach((obj) =>
