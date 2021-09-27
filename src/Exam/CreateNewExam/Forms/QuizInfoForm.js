@@ -88,13 +88,13 @@ const QuizInfoForm = ({ userId, setQuizId }) => {
             با فعال کردن کلید های زیر، با توضیحات گفته شده موافق هستید
           </CLabel>
           <CRow>{switches}</CRow>
-          {CKEditorField(
-            "توضیحات آزمون",
-            "لطفا درمورد آزمون توضیحات لازم را بنویسید",
-            setForm,
-            form,
-            "quizDescription"
-          )}
+          <CKEditorField
+            name="توضیحات آزمون"
+            text="لطفا درمورد آزمون توضیحات لازم را بنویسید"
+            fieldName="quizDescription"
+            form={form}
+            setForm={setForm}
+          />
         </CForm>
         {!btnActice ? (
           <CButton

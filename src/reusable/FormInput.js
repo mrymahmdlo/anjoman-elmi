@@ -74,7 +74,7 @@ const FormSwitchInput = (form, setForm, name, Checked) => {
       onChange={(e) =>
         setForm({
           ...form,
-          [name]: e.target.value === "on" ? true : false,
+          [name]: e.target.checked,
         })
       }
       defaultChecked={Checked}
@@ -104,7 +104,5 @@ const FormRadioInput = (form, setForm, nameField, group) => {
     </div>
   );
 };
-
-
 
 export { FormTextInput, FormNumberInput, FormSwitchInput, FormRadioInput };

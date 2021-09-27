@@ -23,7 +23,7 @@ const CreateExam = () => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [stage, setStage] = useState(stages.QUIZINFO);
-  const [quizId, setQuizId] = useState();
+  const [quizId, setQuizId] = useState(105);
   useEffect(() => {
     if (quizId) {
       setStage(stages.EDITQUIZINFO);
@@ -37,9 +37,9 @@ const CreateExam = () => {
       case stages.QUIZINFO:
         return <QuizInfoForm userId={userId} setQuizId={setQuizId} />;
       case stages.QUIZDETAILS:
-        return <QuizDetailsForm setStage={setStage} />;
+        return <QuizDetailsForm />;
       case stages.QUIZQUESTIONS:
-        return <CreateQuestionsForm setStage={setStage} />;
+        return <CreateQuestionsForm />;
       case stages.EDITQUIZINFO:
         return <EditQuizInfoForm />;
       default:
