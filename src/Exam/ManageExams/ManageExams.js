@@ -9,14 +9,16 @@ import {
   CLabel,
 } from "@coreui/react";
 import { useEffect, useState } from "react";
+import { ExamModalContainer } from "../CreateNewExam/Components/ExamModalContainer";
 import ExamService from "../ExamService/ExamService";
-import { ExamTableHeaders } from "./Components/ExamsTableHeaders";
 import { ExamScopedSlots } from "./Components/ScopedSlots";
 
 const ManageExams = () => {
   const [tableData, setTableData] = useState([]);
   const [tableFields, setTableFields] = useState([]);
   const [search, setSearch] = useState("");
+  const [modal, setModal] = useState(false);
+  const [modalContent, setModalContent] = useState("");
 
   useEffect(() => {
     updateData();
@@ -25,7 +27,7 @@ const ManageExams = () => {
   const updateData = () => {
     ExamService.GetAllQuiz().then((res) => {
       setTableFields([
-        ...ExamTableHeaders,
+        ...res.data.headers,
         ...[
           {
             key: "examDetail",
@@ -41,7 +43,6 @@ const ManageExams = () => {
             sorter: false,
             filter: false,
           },
-
           {
             key: "examDelete",
             label: "",
@@ -51,7 +52,7 @@ const ManageExams = () => {
           },
         ],
       ]);
-      setTableData(res.data);
+      setTableData(res.data.rows);
     });
   };
 
@@ -80,10 +81,23 @@ const ManageExams = () => {
             sorter
             itemsPerPage={20}
             pagination
-            scopedSlots={ExamScopedSlots(updateData)}
+            scopedSlots={ExamScopedSlots(
+              updateData,
+              setModal,
+              modal,
+              setModalContent
+            )}
           />
         </CCardBody>
       </CCard>
+      <ExamModalContainer
+        name="مدیریت آزمون"
+        modal={modal}
+        toggle={() => {
+          setModal(!modal);
+        }}
+        modalContent={modalContent}
+      />
     </>
   );
 };

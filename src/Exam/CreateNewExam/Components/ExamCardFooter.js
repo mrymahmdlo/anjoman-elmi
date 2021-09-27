@@ -18,8 +18,7 @@ const ExamCardFooter = () => {
     ExamService.FinalCheck(exam.quizId)
       .then((res) => {
         if (res.success) {
-          exam.setErrorContent(res.message);
-          //redirecting to table of exams
+          history.push("/Exams/ManageExams");
         } else exam.setErrorContent(res.message);
       })
       .catch((err) => {
