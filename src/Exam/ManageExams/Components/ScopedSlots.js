@@ -1,5 +1,5 @@
 import CIcon from "@coreui/icons-react";
-import { CButton } from "@coreui/react";
+import { CBadge, CButton } from "@coreui/react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import ExamService from "src/Exam/ExamService/ExamService";
@@ -31,6 +31,38 @@ export const ExamScopedSlots = (
   };
 
   return {
+    quizCreationStatus: (item) => {
+      return (
+        <td className="py-2 pl-2">
+          <CBadge
+            style={{ direction: "ltr" }}
+            color={
+              item.quizCreationStatus === "آماده ی شرکت" ? "success" : "danger"
+            }
+          >
+            {item.quizCreationStatus}
+          </CBadge>
+        </td>
+      );
+    },
+    quizMode: (item) => {
+      return (
+        <td className="py-2 pl-2">
+          <CBadge
+            style={{ direction: "ltr" }}
+            color={
+              item.quizMode === "سوال به سوال"
+                ? "dark"
+                : item.quizMode === "pdf فایل"
+                ? "light"
+                : "primary"
+            }
+          >
+            {item.quizMode}
+          </CBadge>
+        </td>
+      );
+    },
     examDetail: (item, index) => (
       <>
         <td className="py-2 pl-2" key={item.orderId}>
@@ -38,7 +70,9 @@ export const ExamScopedSlots = (
             className="mr-1"
             color="dark"
             onClick={() => {
-              setModalContent(<ExamDetails item={item} tableFields={tableFields} />);
+              setModalContent(
+                <ExamDetails item={item} tableFields={tableFields} />
+              );
               setModal(!modal);
             }}
           >

@@ -18,6 +18,9 @@ export const ChangeValues = (arr) => {
       if (key === "totalTimeMinutes") {
         obj[key] += " دقیقه ";
       }
+      if (key === "studentCount") {
+        obj[key] = obj[key] === 0 ? "نامحدود" : obj[key];
+      }
       if (obj[key] === null || obj[key] === "") {
         obj[key] = "ثبت نشده!";
       }

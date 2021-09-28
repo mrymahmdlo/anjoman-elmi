@@ -32,7 +32,7 @@ const AddAnswerFile = () => {
     ExamService.GetQuizFilesNames(exam.quizId).then((res) => {
       setData(res.data);
       setStatusAnswerFile(
-        res.data.answerFileName ? status.UPLOADED : status.EMPTY
+        res.data.sampleExcel ? status.UPLOADED : status.EMPTY
       );
     });
   }, [exam.quizId]);
@@ -102,7 +102,6 @@ const AddAnswerFile = () => {
               <CInput
                 id="file-answers"
                 type="file"
-                disabled
                 className="p-1 mr-2 w-75 "
                 onChange={(e) => {
                   UploadExcel(
@@ -113,12 +112,12 @@ const AddAnswerFile = () => {
                   );
                 }}
                 accept=".xlsx"
-                //   disabled={statusAnswerFile === status.LOADING}
+                disabled={statusAnswerFile === status.LOADING}
               />
             </CRow>
             <CFormText className="help-block">
-              {data?.answerFileName
-                ? data.answerFileName + "آپلود شده است"
+              {data?.sampleExcel
+                ? data.sampleExcel + "آپلود شده است"
                 : "  فایل اکسل پر شده را در این قسمت بارگزاری کنید."}
             </CFormText>
           </CFormGroup>

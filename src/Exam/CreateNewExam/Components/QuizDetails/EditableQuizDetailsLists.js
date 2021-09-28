@@ -63,7 +63,7 @@ export const EditableQuizDetailsLists = () => {
             <CListGroupItem key={item.rowId} style={{ padding: "0px" }}>
               <div className="d-flex align-items-center">
                 <dt className="col-sm-1">{item.rowId + " - "}</dt>
-                <dd className="col-sm-5">{item.courseName}</dd>
+                <dd className="col-sm-4">{item.courseName}</dd>
                 <dd className="col-sm-2">
                   {item.totalMinutes + " "}
                   دقیقه
@@ -72,7 +72,7 @@ export const EditableQuizDetailsLists = () => {
                   {item.questionCount + " "}
                   سوال
                 </dd>
-                <dd className="col-sm-3">
+                <dd className="col-sm-4">
                   <CButton
                     color="primary"
                     className="m-1"
