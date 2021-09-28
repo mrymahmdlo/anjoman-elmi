@@ -46,9 +46,7 @@ export const EditableQuestionList = () => {
         <CListGroupItem active>
           <div className="d-flex align-items-center">
             <dt className="col-sm-9">سوالات آزمون</dt>
-            <dd
-              style={{ textOverflow: 'ellipsis "[..]"', marginRight: "55px" }}
-            >
+            <dd style={{ textOverflow: "ellipsis", marginRight: "55px" }}>
               <CButton
                 color="info"
                 onClick={() => {
@@ -62,14 +60,6 @@ export const EditableQuestionList = () => {
                 }}
               >
                 افزودن سوال
-              </CButton>
-              <CButton
-                className="m-1"
-                color="light"
-                onClick={() => {}}
-                disabled
-              >
-                نمایش آزمون
               </CButton>
             </dd>
           </div>
@@ -101,7 +91,7 @@ export const EditableQuestionList = () => {
                     dangerouslySetInnerHTML={{ __html: item.questionText }}
                   ></p>
                 </dd>
-                <dd className="col-sm-3 mr-5">
+                <dd className="col-sm-3 mr-3">
                   <CButton
                     color="primary"
                     className="m-1"

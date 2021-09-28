@@ -22,6 +22,7 @@ const Routes = {
   SwapQuestions: "AdminPanel/SwapQuestions",
   DeleteQuiz: "AdminPanel/DeleteQuizInfo/",
   UploadExcel: "api/Excel/ReadFile/",
+  UploadAnswerVideo: "AdminPanel/UploadAnswerVideoFile/",
 };
 
 const TableRoutes = {
@@ -29,8 +30,11 @@ const TableRoutes = {
 };
 
 const ExamService = {
-  GetAllQuiz: async (filters) => await sendRequest(TableRoutes.GetAllQuiz, filters),
+  GetAllQuiz: async (filters) =>
+    await sendRequest(TableRoutes.GetAllQuiz, filters),
   DeleteQuiz: (quizId) => sendRequest(Routes.DeleteQuiz + quizId, {}),
+  UploadAnswerVideo: async (quizId, form) =>
+    sendRequest(Routes.UploadAnswerVideo + quizId, form),
   CreateQuizInfo: (form) =>
     sendRequest(Routes.CreateQuizInfo, {
       ...form,

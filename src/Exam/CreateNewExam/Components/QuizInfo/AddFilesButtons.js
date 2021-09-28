@@ -4,6 +4,7 @@ import ExamService from "src/Exam/ExamService/ExamService";
 import {
   UploadQuestionFile,
   UploadAnswerFile,
+  UploadAnswerVideo,
 } from "src/Exam/ExamService/ExamUploadFile";
 import { ExamContext } from "../../CreateNewExam";
 
@@ -16,6 +17,7 @@ const {
   CFormText,
   CInput,
   CSpinner,
+  CButton,
 } = require("@coreui/react");
 
 const status = {
@@ -29,6 +31,8 @@ const AddFilesButtons = () => {
   const exam = React.useContext(ExamContext);
   const [statusQuestionFile, setStatusQuestionFile] = useState(2);
   const [statusAnswerFile, setStatusAnswerFile] = useState(2);
+  const [statusvideoFile, setStatusvideoFile] = useState(2);
+  const [videoAddress, setVideoAddress] = useState("");
   const [data, setData] = useState({});
 
   useEffect(() => {
@@ -39,6 +43,12 @@ const AddFilesButtons = () => {
       );
       setStatusAnswerFile(
         res.data.answerFileName ? status.UPLOADED : status.EMPTY
+      );
+      setStatusvideoFile(
+        res.data.answerVideoFileName ? status.UPLOADED : status.EMPTY
+      );
+      setVideoAddress(
+        res.data.answerVideoFileName ? res.data.answerVideoFileName : ""
       );
     });
   }, [exam.quizId]);
@@ -76,91 +86,110 @@ const AddFilesButtons = () => {
     }
   };
   return (
-      <CCardBody className="m-2 w-100">
-        <CRow>
-          <CCol sm={4}>
-            <CFormGroup>
-              <CRow>
-                <CLabel htmlFor="nf-title">بارگزاری فایل سوالات آزمون</CLabel>
-              </CRow>
-              <CRow>
-                {switchMark(statusQuestionFile)}
-                <CInput
-                  id="file-questions"
-                  type="file"
-                  className="p-1 mr-2 w-75"
-                  onChange={(e) => {
-                    UploadQuestionFile(
-                      e.target.files[0],
-                      "pdf",
-                      exam.quizId,
-                      setStatusQuestionFile
-                    );
-                  }}
-                  accept=".pdf"
-                  disabled={statusQuestionFile === status.LOADING}
-                />
-              </CRow>
-              <CFormText className="help-block">
-                {data?.questionFileName
-                  ? data.questionFileName + "آپلود شده است"
-                  : " فایل تمام سوالات آزمون را یک جا به صورت pdf آپلود کنید"}
-              </CFormText>
-            </CFormGroup>
-          </CCol>
-          <CCol sm={4}>
-            <CFormGroup>
-              <CRow>
-                <CLabel htmlFor="nf-title">
-                  بارگزاری فایل پاسخ نامه آزمون
-                </CLabel>
-              </CRow>
-              <CRow>
-                {switchMark(statusAnswerFile)}
-                <CInput
-                  id="file-answers"
-                  type="file"
-                  className="p-1 mr-2 w-75 "
-                  onChange={(e) => {
-                    UploadAnswerFile(
-                      e.target.files[0],
-                      "pdf",
-                      exam.quizId,
-                      setStatusAnswerFile
-                    );
-                  }}
-                  accept=".pdf"
-                  disabled={statusAnswerFile === status.LOADING}
-                />
-              </CRow>
-              <CFormText className="help-block">
-                {data?.answerFileName
-                  ? data.answerFileName + "آپلود شده است"
-                  : "   فایل کامل پاسخ نامه این آزمون را اینجا آپلود کنید"}
-              </CFormText>
-            </CFormGroup>
-          </CCol>
-          <CCol sm={4}>
-            <CFormGroup>
-              <CRow>
-                <CLabel htmlFor="nf-title">
-                  بارگزاری ویدیو حل سوالات آزمون
-                </CLabel>
-              </CRow>
+    <CCardBody className="m-2 w-100">
+      <CRow>
+        <CCol sm={4}>
+          <CFormGroup>
+            <CRow>
+              <CLabel htmlFor="nf-title">بارگزاری فایل سوالات آزمون</CLabel>
+            </CRow>
+            <CRow>
+              {switchMark(statusQuestionFile)}
               <CInput
-                id="file-answer-video"
+                id="file-questions"
                 type="file"
-                className="p-1"
-                disabled
+                className="p-1 mr-2 w-75"
+                onChange={(e) => {
+                  UploadQuestionFile(
+                    e.target.files[0],
+                    "pdf",
+                    exam.quizId,
+                    setStatusQuestionFile
+                  );
+                }}
+                accept=".pdf"
+                disabled={statusQuestionFile === status.LOADING}
               />
+            </CRow>
+            <CFormText className="help-block">
+              {data?.questionFileName
+                ? data.questionFileName + "آپلود شده است"
+                : " فایل تمام سوالات آزمون را یک جا به صورت pdf آپلود کنید"}
+            </CFormText>
+          </CFormGroup>
+        </CCol>
+        <CCol sm={4}>
+          <CFormGroup>
+            <CRow>
+              <CLabel htmlFor="nf-title">بارگزاری فایل پاسخ نامه آزمون</CLabel>
+            </CRow>
+            <CRow>
+              {switchMark(statusAnswerFile)}
+              <CInput
+                id="file-answers"
+                type="file"
+                className="p-1 mr-2 w-75 "
+                onChange={(e) => {
+                  UploadAnswerFile(
+                    e.target.files[0],
+                    "pdf",
+                    exam.quizId,
+                    setStatusAnswerFile
+                  );
+                }}
+                accept=".pdf"
+                disabled={statusAnswerFile === status.LOADING}
+              />
+            </CRow>
+            <CFormText className="help-block">
+              {data?.answerFileName
+                ? data.answerFileName + "آپلود شده است"
+                : "   فایل کامل پاسخ نامه این آزمون را اینجا آپلود کنید"}
+            </CFormText>
+          </CFormGroup>
+        </CCol>
+        <CCol sm={4}>
+          <CFormGroup>
+            <CRow>
+              <CLabel htmlFor="nf-title">بارگزاری ویدیو حل سوالات آزمون</CLabel>
+            </CRow>
+            <CRow>
+              <CCol sm={1}>{switchMark(statusvideoFile)}</CCol>
+              <CCol sm={8}>
+                <CInput
+                  id="file-answer-video"
+                  type="text"
+                  className="p-1 mr-1"
+                  value={videoAddress}
+                  onChange={(e) => setVideoAddress(e.target.value)}
+                  placeholder="آدرس دانلود ویدیو"
+                />
+              </CCol>
+              <CCol sm={2}>
+                <CButton
+                  color="primary"
+                  onClick={() =>
+                    UploadAnswerVideo(
+                      videoAddress,
+                      exam.quizId,
+                      setStatusvideoFile
+                    )
+                  }
+                >
+                  ثبت
+                </CButton>
+              </CCol>
+            </CRow>
+            <CRow>
               <CFormText className="help-block">
-                آپلود فایل های ویدیویی درحال تست میباشد
+                فایل ویدیویی حل سوال را در سایت های آنلاین آپلود کرده و لینک
+                دانلود آن را در باکس کپی کنید.
               </CFormText>
-            </CFormGroup>
-          </CCol>
-        </CRow>
-      </CCardBody>
-
+            </CRow>
+          </CFormGroup>
+        </CCol>
+      </CRow>
+    </CCardBody>
   );
 };
 
