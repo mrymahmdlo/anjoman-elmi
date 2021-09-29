@@ -46,17 +46,17 @@ const _nav = [
   // },
   {
     _tag: "CSidebarNavTitle",
-    _children: ["آزمون های آنلاین - درحال تست میباشد"],
+    _children: ["آزمون های آنلاین - درحال تست "],
   },
   {
     _tag: "CSidebarNavItem",
-    name: "مدیریت آزمون ها(استفاده نکنید)",
+    name: "مدیریت آزمون ها",
     icon: "cil-layers",
     to: "/Exams/ManageExams",
   },
   {
     _tag: "CSidebarNavItem",
-    name: "ایجاد آزمون جدید(استفاده نکنید)",
+    name: "ایجاد آزمون جدید",
     icon: "cil-pencil",
     to: "/Exams/CreateExam/QuizInfo",
   },

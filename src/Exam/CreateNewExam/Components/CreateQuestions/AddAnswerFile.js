@@ -94,7 +94,7 @@ const AddAnswerFile = () => {
           <CFormGroup>
             <CRow>
               <CLabel htmlFor="nf-title">
-                bug -بارگزاری فایل اکسل پاسخنامه آزمون
+                بارگزاری فایل اکسل پاسخنامه آزمون
               </CLabel>
             </CRow>
             <CRow>
@@ -112,7 +112,7 @@ const AddAnswerFile = () => {
                   );
                 }}
                 accept=".xlsx"
-                disabled={statusAnswerFile === status.LOADING}
+                disabled={statusAnswerFile !== status.LOADING}
               />
             </CRow>
             <CFormText className="help-block">
