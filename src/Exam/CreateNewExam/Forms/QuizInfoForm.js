@@ -8,7 +8,6 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { GetData } from "src/Service/APIEngine";
 import {
   GroupIdSelect,
   QuizInfoFormItems,
@@ -32,7 +31,7 @@ const QuizInfoForm = ({ userId, setQuizId }) => {
   const exam = React.useContext(ExamContext);
   const history = useHistory();
   useEffect(() => {
-    GetData("BasicInfo/Groups").then((res) => setGroupIds(res));
+    ExamService.GetDropDowns().then((res) => setGroupIds(res.data.groupCode.options));
   }, []);
 
   const items = QuizInfoFormItems(form, setForm).map((item) => TextField(item));
