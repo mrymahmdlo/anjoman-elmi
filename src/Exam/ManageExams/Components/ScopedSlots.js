@@ -20,6 +20,7 @@ export const ExamScopedSlots = (
     ExamService.DeleteQuiz(quizId)
       .then((res) => {
         setErrorContent(res.message);
+        setModal(false);
       })
       .catch((err) => {
         setErrorContent(err.message);
