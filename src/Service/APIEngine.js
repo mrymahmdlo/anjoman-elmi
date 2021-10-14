@@ -40,7 +40,7 @@ const UploadFileRequest = async (file) => {
     body: form,
   };
 
-  const res = await fetch(BaseUrl + "File/Upload", init);
+  const res = await fetch("http://dev.bamis.ir/api/v1/" + "File/Upload", init);
   try {
     const json = await res.json();
     if (res.status < 400) return json;
@@ -50,6 +50,6 @@ const UploadFileRequest = async (file) => {
   }
 };
 
-const GetFileDownloadLink = (hash) => BaseUrl + "File/Download/" + hash;
+const GetFileDownloadLink = (hash) => "http://dev.bamis.ir/api/v1/" + "File/Download/" + hash;
 
 export { PostData, GetData, UploadFileRequest, GetFileDownloadLink };
