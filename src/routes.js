@@ -5,7 +5,7 @@ const MinuteCalls = React.lazy(() =>
   import("./Consultation/MinuteCalls/MinuteCalls")
 );
 const CreateFreeContent = React.lazy(() =>
-  import("./Content/CreateFreeContent/CreateFreeContent")
+  import("./Content/CreateArticle/CreateFreeArticle")
 );
 const CreateExam = React.lazy(() =>
   import("./Exam/CreateNewExam/CreateNewExam")

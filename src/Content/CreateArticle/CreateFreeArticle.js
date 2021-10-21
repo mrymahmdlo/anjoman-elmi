@@ -16,12 +16,14 @@ import { TokenManager } from "src/Identity/Service/TokenManager";
 import { Toast } from "src/Utility/Toast";
 import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
 import { FormItems } from "./Components/FormItems";
-import { TextField } from "src/Utility/InputGroup";
+import { SwitchField, TextField } from "src/Utility/InputGroup";
 import { CKEditorField } from "src/reusable/CKEditorInput";
+import { CoreFileInput } from "src/Utility/CoreFileInput";
+
 const CreateFreeContent = () => {
   const { GetUserId } = TokenManager();
   const now = new Date();
-
+  const [imageHash, setImageHash] = useState("");
   const [form, setForm] = useState({
     writerProviderId: GetUserId(),
     createdDateTime: GetDotNetGeorgianFromDateJS(now),
@@ -50,12 +52,12 @@ const CreateFreeContent = () => {
     setShowError(false);
     setBtnActive(true);
     PostData("FreeContent/CreateFreeContent", form)
-      .then((res) => {
+      .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
         setShowError(true);
         setBtnActive(false);
       })
-      .catch((err) => {
+      .catch(() => {
         setErrorContent("لطفا فیلد های ضروری را پر کنید");
         setShowError(true);
         setBtnActive(false);
@@ -65,19 +67,29 @@ const CreateFreeContent = () => {
   const items = FormItems(form, setForm, groupIds, courseIds).map((item) =>
     TextField(item)
   );
-
+  useEffect(() => {
+    if(imageHash !== form.image) setForm({ ...form, image: imageHash });
+  }, [imageHash,form]);
   return (
     <div className="App">
       <CContainer fluid>
         <CCard>
           <CCardHeader>
             ساخت محتوای
-            <small> عمومی</small>
+            <small> متنی(مقاله)</small>
           </CCardHeader>
           <CCardBody>
             <CForm action="" method="post">
               <CRow>{items.slice(0, 2)}</CRow>
               <CRow>{items.slice(2, 4)}</CRow>
+              <CRow>
+                {SwitchField(FormItems(form, setForm, groupIds, courseIds)[4])}
+                <CoreFileInput
+                  title="آپلود عکس محتوا"
+                  setHashId={setImageHash}
+                  type="image/*"
+                />
+              </CRow>
               <CKEditorField
                 name="متن محتوا"
                 text="لطفا متن محتوای خود را وارد کنید"

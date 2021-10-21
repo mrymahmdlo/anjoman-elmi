@@ -1,3 +1,5 @@
+import { FormSwitchInput } from "src/reusable/FormInput";
+
 const { CInput, CSelect } = require("@coreui/react");
 
 export const FormItems = (form, setForm, groupIds, courseIds) => {
@@ -35,7 +37,7 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
         <CSelect
           custom
           name="groupId"
-          style={{ width: "80%", marginRight: "15px" }}
+          style={{ width: "100%"}}
           onChange={(e) => setForm({ ...form, groupId: e.target.value })}
         >
           <option value={""}>همه</option>
@@ -55,7 +57,7 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
         <CSelect
           custom
           name="courseId"
-          style={{ width: "80%", marginRight: "15px" }}
+          style={{ width: "100%"}}
           onChange={(e) => setForm({ ...form, courseId: e.target.value })}
         >
           <option value={null}>همه</option>
@@ -67,6 +69,17 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
               ))
             : null}
         </CSelect>
+      ),
+      size: 6,
+    },
+    {
+      name: "محتوای مهم",
+      text: "در صورت فعال شدن، در محتواهای اصلی سایت نمایش داده میشود",
+      input: FormSwitchInput(
+        form,
+        setForm,
+        "isImportant",
+        form.isImportant
       ),
       size: 6,
     },
