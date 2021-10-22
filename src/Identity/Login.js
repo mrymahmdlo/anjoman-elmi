@@ -42,12 +42,13 @@ const Login = () => {
         SetFullName(res.user.fullName);
         SetUserId(res.user.id);
         history.push("/");
-        setBtnActive(false);
       })
       .catch((err) => {
         setShowError(true);
-        setErrorContent(err.errors[0]);
+        setErrorContent("احراز هویت با مشکل رو به رو شد");
+      }).finally(()=>{
         setBtnActive(false);
+
       });
   };
 

@@ -71,12 +71,13 @@ const FormSwitchInput = (form, setForm, name, Checked) => {
       className="mr-1"
       name={name}
       color="primary"
-      onChange={(e) =>
+      onClick={(e) => {
+        console.log(e.target.checked);
         setForm({
           ...form,
           [name]: e.target.checked,
-        })
-      }
+        });
+      }}
       defaultChecked={Checked}
     />
   );

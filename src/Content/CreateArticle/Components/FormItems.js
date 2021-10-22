@@ -38,7 +38,7 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
           custom
           name="groupId"
           style={{ width: "100%"}}
-          onChange={(e) => setForm({ ...form, groupId: e.target.value })}
+          onChange={(e) => setForm({ ...form, groupId: +e.target.value })}
         >
           <option value={""}>همه</option>
           {groupIds.map((item, key) => (
@@ -58,7 +58,7 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
           custom
           name="courseId"
           style={{ width: "100%"}}
-          onChange={(e) => setForm({ ...form, courseId: e.target.value })}
+          onChange={(e) => setForm({ ...form, courseId: +e.target.value })}
         >
           <option value={null}>همه</option>
           {courseIds.length > 0

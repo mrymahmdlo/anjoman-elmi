@@ -27,7 +27,6 @@ const sendFormData = async (url, body) => {
     headers: {
       Authorization: "Bearer " + GetToken(),
     },
-    mode: "no-cors",
     method: "POST",
     body,
   };

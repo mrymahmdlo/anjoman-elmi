@@ -68,7 +68,7 @@ const CreateFreeContent = () => {
     TextField(item)
   );
   useEffect(() => {
-    if(imageHash !== form.image) setForm({ ...form, image: imageHash });
+    if(imageHash !== form.Image) setForm({ ...form, Image: imageHash });
   }, [imageHash,form]);
   return (
     <div className="App">
