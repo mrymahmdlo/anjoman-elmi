@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CButton,
   CCard,
@@ -8,34 +8,45 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { PostData } from "src/Service/APIEngine";
-import { TokenManager } from "src/Identity/Service/TokenManager";
+import { GetData, PostData } from "src/Service/APIEngine";
 import { Toast } from "src/Utility/Toast";
-import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
-import ArticleForm from "./Components/ArticleForm";
+import ArticleForm from "src/Content/CreateArticle/Components/ArticleForm";
+import { useParams } from "react-router";
+import { ChangeValues } from "./Components/ChangeValues";
 
-const CreateFreeContent = () => {
-  const { GetUserId } = TokenManager();
-  const now = new Date();
-  const [form, setForm] = useState({
-    writerProviderId: GetUserId(),
-    createdDateTime: GetDotNetGeorgianFromDateJS(now),
-  });
+const EditArticle = () => {
+  const { id } = useParams();
+  const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
 
+  useEffect(() => {
+    setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
+    setShowError(true);
+    GetData("FreeContent/GetFreeContent?contentId=" + id)
+      .then((res) => {
+        setForm(ChangeValues(res.data));
+      })
+      .finally(() => {
+        setShowError(false);
+      });
+  }, [id]);
+
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    PostData("FreeContent/CreateFreeContent", form)
+    let data = form;
+    if (form.Image !== "") data["image"] = form.Image;
+    delete data["Image"];
+    PostData("FreeContent/EditFreeContent", data)
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
         setShowError(true);
         setBtnActive(false);
       })
       .catch(() => {
-        setErrorContent("لطفا فیلد های ضروری را پر کنید");
+        setErrorContent("خطا در ثبت ویرایش");
         setShowError(true);
         setBtnActive(false);
       });
@@ -46,10 +57,10 @@ const CreateFreeContent = () => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>
-            ساخت محتوای
+            ویرایش محتوای
             <small> متنی(مقاله)</small>
           </CCardHeader>
-          <ArticleForm form={form} setForm={setForm} />
+          <ArticleForm form={form} setForm={setForm} preData={form.image} />
           <CCardFooter>
             {!btnActice ? (
               <CButton
@@ -63,7 +74,7 @@ const CreateFreeContent = () => {
             ) : (
               <CSpinner
                 style={{ width: "2rem", height: "2rem" }}
-                color="info"
+                color=""
                 variant="grow"
               />
             )}
@@ -75,4 +86,4 @@ const CreateFreeContent = () => {
   );
 };
 
-export default CreateFreeContent;
+export default EditArticle;

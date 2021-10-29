@@ -39,7 +39,6 @@ const SwitchQuestions = ({ numCourses, setUpdated }) => {
         setBtnActive(false);
       });
   };
-  console.log(numCourses);
   return (
     <CCardBody>
       <CRow>

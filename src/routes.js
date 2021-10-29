@@ -4,8 +4,14 @@ const Dashboard = React.lazy(() => import("./views/dashboard/Dashboard"));
 const MinuteCalls = React.lazy(() =>
   import("./Consultation/MinuteCalls/MinuteCalls")
 );
-const CreateFreeContent = React.lazy(() =>
+const CreateFreeArticle = React.lazy(() =>
   import("./Content/CreateArticle/CreateFreeArticle")
+);
+const EditArticle = React.lazy(() =>
+  import("./Content/EditArticle/EditArticle")
+);
+const ManageArticles = React.lazy(() =>
+  import("./Content/ManageArticles/ManageArticles")
 );
 const CreateExam = React.lazy(() =>
   import("./Exam/CreateNewExam/CreateNewExam")
@@ -82,9 +88,19 @@ const routes = [
     component: MinuteCalls,
   },
   {
-    path: "/Content/FreeContent/Create",
-    name: "CreateFreeContent",
-    component: CreateFreeContent,
+    path: "/Content/FreeContent/CreateArticle",
+    name: "CreateArticle",
+    component: CreateFreeArticle,
+  },
+  {
+    path: "/Content/FreeContent/EditArticle/:id",
+    name: "EditArticle",
+    component: EditArticle,
+  },
+  {
+    path: "/Content/FreeContent/ManageArticles",
+    name: "ManageArticles",
+    component: ManageArticles,
   },
   {
     path: [

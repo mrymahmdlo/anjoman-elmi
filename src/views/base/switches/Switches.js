@@ -19,7 +19,7 @@ const Switches = () => {
             <DocsLink name="CSwitch"/>
           </CCardHeader>
           <CCardBody>
-            <CSwitch className={'mx-1'} variant={'3d'} color={'primary'} defaultChecked onChange={(e)=>console.log(e.target.checked)}/>
+            <CSwitch className={'mx-1'} variant={'3d'} color={'primary'} defaultChecked />
             <CSwitch className={'mx-1'} variant={'3d'} color={'secondary'} defaultChecked />
             <CSwitch className={'mx-1'} variant={'3d'} color={'success'} defaultChecked />
             <CSwitch className={'mx-1'} variant={'3d'} color={'warning'} defaultChecked />

@@ -32,7 +32,6 @@ const UploadFileRequest = async (file) => {
   const form = new FormData();
   form.append("file", file);
   form.append("secret", secret);
-  console.log(GetToken());
   const init = {
     headers: {
       Authorization: "Bearer " + GetToken(),

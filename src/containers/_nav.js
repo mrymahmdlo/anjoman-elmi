@@ -28,22 +28,27 @@ const _nav = [
       },
     ],
   },
-  // {
-  //   _tag: "CSidebarNavTitle",
-  //   _children: ["محتواهای سایت", " - لطفا استفاده نکنید"],
-  // },
-  // {
-  //   _tag: "CSidebarNavDropdown",
-  //   name: "محتوای عمومی(درحال تست)",
-  //   icon: "cilFile",
-  //   _children: [
-  //     {
-  //       _tag: "CSidebarNavItem",
-  //       name: "ایجاد محتوای متنی جدید",
-  //       to: "/Content/FreeContent/Create",
-  //     },
-  //   ],
-  // },
+  {
+    _tag: "CSidebarNavTitle",
+    _children: ["محتواهای سایت"],
+  },
+  {
+    _tag: "CSidebarNavDropdown",
+    name: "محتواهای متنی",
+    icon: "cilFile",
+    _children: [
+      {
+        _tag: "CSidebarNavItem",
+        name: "مدیریت محتواهای متنی",
+        to: "/Content/FreeContent/ManageArticles",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "ایجاد محتوای متنی جدید",
+        to: "/Content/FreeContent/CreateArticle",
+      },
+    ],
+  },
   {
     _tag: "CSidebarNavTitle",
     _children: ["آزمون های آنلاین  "],

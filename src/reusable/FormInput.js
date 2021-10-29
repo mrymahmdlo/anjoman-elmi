@@ -72,7 +72,6 @@ const FormSwitchInput = (form, setForm, name, Checked) => {
       name={name}
       color="primary"
       onClick={(e) => {
-        console.log(e.target.checked);
         setForm({
           ...form,
           [name]: e.target.checked,

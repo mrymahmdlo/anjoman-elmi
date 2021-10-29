@@ -1,33 +1,19 @@
-import { FormSwitchInput } from "src/reusable/FormInput";
+import { FormSwitchInput, FormTextInput } from "src/reusable/FormInput";
 
-const { CInput, CSelect } = require("@coreui/react");
+const { CSelect } = require("@coreui/react");
 
 export const FormItems = (form, setForm, groupIds, courseIds) => {
   return [
     {
       name: "عنوان محتوای عمومی",
       text: "عنوان محتوای خود را وارد کنید",
-      input: (
-        <CInput
-          type="text"
-          name="title"
-          placeholder="عنوان"
-          onChange={(e) => setForm({ ...form, title: e.target.value })}
-        />
-      ),
+      input: FormTextInput(form, setForm, "title", "عنوان"),
       size: 6,
     },
     {
       name: "زمان تقریبی مطالعه مقاله",
       text: "زمان تقریبی به دقیقه برای خواندن این محتوا را تعیین کنید.",
-      input: (
-        <CInput
-          type="text"
-          name="timeToStudy"
-          placeholder="زمان مطالعه"
-          onChange={(e) => setForm({ ...form, timeToStudy: e.target.value })}
-        />
-      ),
+      input: FormTextInput(form, setForm, "timeToStudy", "زمان مطالعه"),
       size: 6,
     },
     {
@@ -37,12 +23,16 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
         <CSelect
           custom
           name="groupId"
-          style={{ width: "100%"}}
+          style={{ width: "100%" }}
           onChange={(e) => setForm({ ...form, groupId: +e.target.value })}
         >
-          <option value={""}>همه</option>
+          <option value={form.groupId}>همه</option>
           {groupIds.map((item, key) => (
-            <option key={key} value={item.id}>
+            <option
+              key={key}
+              value={item.id}
+              selected={form.groupId === item.id}
+            >
               {item.name}
             </option>
           ))}
@@ -57,13 +47,17 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
         <CSelect
           custom
           name="courseId"
-          style={{ width: "100%"}}
+          style={{ width: "100%" }}
           onChange={(e) => setForm({ ...form, courseId: +e.target.value })}
         >
-          <option value={null}>همه</option>
+          <option value={form.courseId}>همه</option>
           {courseIds.length > 0
             ? courseIds.map((item, key) => (
-                <option key={key} value={item.id}>
+                <option
+                  key={key}
+                  value={item.id}
+                  selected={form.courseId === item.id}
+                >
                   {item.name}
                 </option>
               ))
@@ -75,12 +69,7 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
     {
       name: "محتوای مهم",
       text: "در صورت فعال شدن، در محتواهای اصلی سایت نمایش داده میشود",
-      input: FormSwitchInput(
-        form,
-        setForm,
-        "isImportant",
-        form.isImportant
-      ),
+      input: FormSwitchInput(form, setForm, "isImportant", form.isImportant),
       size: 6,
     },
   ];
