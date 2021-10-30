@@ -13,6 +13,7 @@ import { TokenManager } from "src/Identity/Service/TokenManager";
 import { Toast } from "src/Utility/Toast";
 import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
 import ArticleForm from "./Components/ArticleForm";
+import { useHistory } from "react-router";
 
 const CreateFreeContent = () => {
   const { GetUserId } = TokenManager();
@@ -24,18 +25,19 @@ const CreateFreeContent = () => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
-
+  const history = useHistory();
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
     PostData("FreeContent/CreateFreeContent", form)
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
+        history.push("/Content/FreeContent/ManageArticles");
         setShowError(true);
         setBtnActive(false);
       })
       .catch(() => {
-        setErrorContent("لطفا فیلد های ضروری را پر کنید");
+        setErrorContent("خطا در ثبت محتوا");
         setShowError(true);
         setBtnActive(false);
       });

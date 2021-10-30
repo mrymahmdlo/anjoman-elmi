@@ -22,9 +22,16 @@ const PostData = async (url, body) => {
     body: JSON.stringify(body),
   });
 
+  if (data.status < 400) {
+    try {
+      const text = await data.text();
+      const json = JSON.parse(text);
+      return json;
+    } catch (err) {
+      return true;
+    }
+  }
   const json = await data.json();
-
-  if (data.status < 400) return json;
   throw json;
 };
 
