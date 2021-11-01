@@ -18,7 +18,9 @@ const CreateExam = React.lazy(() =>
 );
 const EditExam = React.lazy(() => import("./Exam/EditExam/EditExam"));
 const ManageExams = React.lazy(() => import("./Exam/ManageExams/ManageExams"));
-
+const ExamQuestionBank = React.lazy(() =>
+  import("./Exam/ExamQuestionBank/ExamQuestionBank")
+);
 //examples
 const Toaster = React.lazy(() =>
   import("./views/notifications/toaster/Toaster")
@@ -125,6 +127,11 @@ const routes = [
     path: "/Exams/ManageExams",
     name: "ManageExams",
     component: ManageExams,
+  },
+  {
+    path: "/Exams/QuestionBank/:id",
+    name: "QuestionBank",
+    component: ExamQuestionBank,
   },
   { path: "/theme", name: "Theme", component: Colors, exact: true },
   { path: "/theme/colors", name: "Colors", component: Colors },
