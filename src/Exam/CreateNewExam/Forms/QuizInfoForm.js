@@ -31,8 +31,12 @@ const QuizInfoForm = ({ userId, setQuizId }) => {
   const exam = React.useContext(ExamContext);
   const history = useHistory();
   useEffect(() => {
-    ExamService.GetDropDowns().then((res) => setGroupIds(res.data.groupCode.options));
-  }, []);
+    ExamService.GetDropDowns()
+      .then((res) => setGroupIds(res.data.groupCode.options))
+      .catch(() => {
+        history.push("/Exams/ManageExams");
+      });
+  }, [history]);
 
   const items = QuizInfoFormItems(form, setForm).map((item) => TextField(item));
   const switches = QuizInfoFormItems(form, setForm)

@@ -16,6 +16,10 @@ const sendRequest = async (url, body) => {
     init["body"] = JSON.stringify(body);
   }
   const res = await fetch(BaseUrl + url, init);
+  if (res.status === 403) {
+    const res = { error: "دسترسی شما به این بخش ممکن نیست" };
+    throw res;
+  }
   const json = await res.json();
 
   if (res.status < 400) return json;

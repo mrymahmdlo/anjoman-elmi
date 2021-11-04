@@ -31,6 +31,10 @@ const PostData = async (url, body) => {
       return true;
     }
   }
+  if (data.status === 403) {
+    const res = { error: "دسترسی شما به این بخش ممکن نیست" };
+    throw res;
+  }
   const json = await data.json();
   throw json;
 };
@@ -59,9 +63,9 @@ const UploadFileRequest = async (file) => {
 
 export const postFormData = async (url, form) => {
   const formData = new FormData();
-  for ( var key in form ) {
+  for (var key in form) {
     formData.append(key, form[key]);
-}
+  }
   const init = {
     headers: {
       Authorization: "Bearer " + GetToken(),

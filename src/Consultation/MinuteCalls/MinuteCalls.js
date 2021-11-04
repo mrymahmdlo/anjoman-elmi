@@ -29,13 +29,14 @@ const Tables = () => {
     asc: false,
     column: "ReserveDateTime",
   });
-  
+
   const capitalizeFirstLetter = (string) => {
     return string?.charAt(0).toUpperCase() + string?.slice(1);
   };
 
   useEffect(() => {
     updateData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, filterData, startDate, endDate, search]);
 
   const updateData = async () => {
@@ -51,38 +52,43 @@ const Tables = () => {
         page: currentPage,
         length: 15,
       },
-    }).then((res) => {
-      setTableFields([
-        ...res.data.headers,
-        ...[
-          {
-            key: "orderEdit",
-            label: "",
-            _style: { width: "1%" },
-            sorter: false,
-            filter: false,
-          },
-          {
-            key: "orderDetail",
-            label: "",
-            _style: { width: "1%" },
-            sorter: false,
-            filter: false,
-          },
-          {
-            key: "smsSender",
-            label: "",
-            _style: { width: "5%" },
-            sorter: false,
-            filter: false,
-          },
-        ],
-      ]);
-      let data = res.data.rows;
-      ChangeValues(data);
-      setTableData(data);
-      setPageNum(Math.ceil(res.data.totalCount / 20));
-    });
+    })
+      .then((res) => {
+        setTableFields([
+          ...res.data.headers,
+          ...[
+            {
+              key: "orderEdit",
+              label: "",
+              _style: { width: "1%" },
+              sorter: false,
+              filter: false,
+            },
+            {
+              key: "orderDetail",
+              label: "",
+              _style: { width: "1%" },
+              sorter: false,
+              filter: false,
+            },
+            {
+              key: "smsSender",
+              label: "",
+              _style: { width: "5%" },
+              sorter: false,
+              filter: false,
+            },
+          ],
+        ]);
+        let data = res.data.rows;
+        ChangeValues(data);
+        setTableData(data);
+        setPageNum(Math.ceil(res.data.totalCount / 20));
+      })
+      .catch((err) => {
+        setModalContent(err.error);
+        setModal(true);
+      });
   };
   return (
     <>
