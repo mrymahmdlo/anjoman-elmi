@@ -8,10 +8,10 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { GetData, PostData } from "src/Service/APIEngine";
+import { GetData, postFormData } from "src/Service/APIEngine";
 import { Toast } from "src/Utility/Toast";
 import ArticleForm from "src/Content/CreateArticle/Components/ArticleForm";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { ChangeValues } from "./Components/ChangeValues";
 
 const EditArticle = () => {
@@ -20,6 +20,7 @@ const EditArticle = () => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
@@ -39,10 +40,11 @@ const EditArticle = () => {
     let data = form;
     if (form.Image !== "") data["image"] = form.Image;
     delete data["Image"];
-    PostData("FreeContent/EditFreeContent", data)
+    postFormData("FreeContent/EditFreeContent", data)
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
         setShowError(true);
+        history.push("/Content/FreeContent/ManageArticles");
         setBtnActive(false);
       })
       .catch(() => {

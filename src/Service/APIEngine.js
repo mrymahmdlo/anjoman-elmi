@@ -57,6 +57,29 @@ const UploadFileRequest = async (file) => {
   }
 };
 
+export const postFormData = async (url, form) => {
+  const formData = new FormData();
+  for ( var key in form ) {
+    formData.append(key, form[key]);
+}
+  const init = {
+    headers: {
+      Authorization: "Bearer " + GetToken(),
+    },
+    method: "POST",
+    body: formData,
+  };
+  const res = await fetch(BaseUrl + url, init);
+
+  try {
+    const json = await res.json();
+    if (res.status < 400) return json;
+    throw json;
+  } catch {
+    return null;
+  }
+};
+
 const GetFileDownloadLink = (hash) => BaseUrl + "File/Download/" + hash;
 
 export { PostData, GetData, UploadFileRequest, GetFileDownloadLink };
