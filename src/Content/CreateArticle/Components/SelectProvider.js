@@ -1,11 +1,9 @@
 import { CFormGroup, CSelect } from "@coreui/react";
 import { useEffect, useState } from "react";
-import { TokenManager } from "src/Identity/Service/TokenManager";
 import { PostData } from "src/Service/APIEngine";
 
 export const SelectProvider = ({ providerId, setProviderId }) => {
   const [providers, setProviders] = useState([]);
-  const { GetUserId } = TokenManager();
 
   useEffect(() => {
     PostData("Provider/Consultation", {}).then((res) => {
@@ -19,7 +17,7 @@ export const SelectProvider = ({ providerId, setProviderId }) => {
         value={providerId}
         onChange={(e) => setProviderId(e.target.value)}
       >
-        <option value={GetUserId()}>مدیریت</option>
+        <option value={null}>مدیریت</option>
         {providers.length > 0 ? (
           providers.map((item) => (
             <option value={item.providerId} key={item.providerId}>
