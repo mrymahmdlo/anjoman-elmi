@@ -7,6 +7,7 @@ import {
   CSpinner,
 } from "@coreui/react";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import ExamService from "src/Exam/ExamService/ExamService";
 import { ExamContext } from "../../CreateNewExam";
 import { ExamModalContainer } from "../ExamModalContainer";
@@ -54,7 +55,7 @@ export const EditableQuestionList = () => {
       <CListGroup className="w-100">
         <CListGroupItem active>
           <div className="d-flex align-items-center">
-            <dt className="col-sm-10">سوالات آزمون ({data?.length})</dt>
+            <dt className="col-sm-8">سوالات آزمون ({data?.length})</dt>
             <dd style={{ textOverflow: "ellipsis", marginRight: "25px" }}>
               <CButton
                 color="info"
@@ -70,6 +71,12 @@ export const EditableQuestionList = () => {
               >
                 افزودن سوال
               </CButton>
+              <Link to={`/Exams/QuestionBank/${exam.quizId}`}>
+                {" "}
+                <CButton color="info" className="mr-3">
+                  انتخاب سوال از بانک سوالات
+                </CButton>
+              </Link>
             </dd>
           </div>
         </CListGroupItem>

@@ -9,33 +9,33 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { PostData } from "src/Service/APIEngine";
-import { TokenManager } from "src/Identity/Service/TokenManager";
 import { Toast } from "src/Utility/Toast";
 import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
 import ArticleForm from "./Components/ArticleForm";
+import { useHistory } from "react-router";
 
 const CreateFreeContent = () => {
-  const { GetUserId } = TokenManager();
   const now = new Date();
   const [form, setForm] = useState({
-    writerProviderId: GetUserId(),
+    writerProviderId: null,
     createdDateTime: GetDotNetGeorgianFromDateJS(now),
   });
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
-
+  const history = useHistory();
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
     PostData("FreeContent/CreateFreeContent", form)
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
+        history.push("/Content/FreeContent/ManageArticles");
         setShowError(true);
         setBtnActive(false);
       })
       .catch(() => {
-        setErrorContent("لطفا فیلد های ضروری را پر کنید");
+        setErrorContent("خطا در ثبت محتوا");
         setShowError(true);
         setBtnActive(false);
       });

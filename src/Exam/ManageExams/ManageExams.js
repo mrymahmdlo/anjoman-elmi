@@ -28,6 +28,7 @@ const ManageExams = () => {
 
   useEffect(() => {
     updateData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, filterData]);
 
   const updateData = () => {
@@ -42,6 +43,9 @@ const ManageExams = () => {
       let data = res.data.rows;
       ChangeValues(data);
       setTableData(data);
+    }).catch((err) => {
+      setModalContent(err.error);
+      setModal(true);
     });
   };
 

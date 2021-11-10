@@ -22,9 +22,20 @@ const PostData = async (url, body) => {
     body: JSON.stringify(body),
   });
 
+  if (data.status < 400) {
+    try {
+      const text = await data.text();
+      const json = JSON.parse(text);
+      return json;
+    } catch (err) {
+      return true;
+    }
+  }
+  if (data.status === 403) {
+    const res = { error: "دسترسی شما به این بخش ممکن نیست" };
+    throw res;
+  }
   const json = await data.json();
-
-  if (data.status < 400) return json;
   throw json;
 };
 
@@ -41,6 +52,29 @@ const UploadFileRequest = async (file) => {
   };
 
   const res = await fetch(BaseUrl + "File/Upload", init);
+  try {
+    const json = await res.json();
+    if (res.status < 400) return json;
+    throw json;
+  } catch {
+    return null;
+  }
+};
+
+export const postFormData = async (url, form) => {
+  const formData = new FormData();
+  for (var key in form) {
+    formData.append(key, form[key]);
+  }
+  const init = {
+    headers: {
+      Authorization: "Bearer " + GetToken(),
+    },
+    method: "POST",
+    body: formData,
+  };
+  const res = await fetch(BaseUrl + url, init);
+
   try {
     const json = await res.json();
     if (res.status < 400) return json;

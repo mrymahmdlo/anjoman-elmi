@@ -75,14 +75,14 @@ export const EditForm = ({ orderDetailId, onSubmit }) => {
           if (
             data &&
             data.length > 0 &&
-            !data.find((i) => i.productId == form.productId)
+            !data.find((i) => i.productId === form.productId)
           ) {
             setForm({ ...form, productId: data[0].productId });
           }
           setProducts(data ?? []);
         })
         .catch();
-  }, [form.providerId, subcategory]);
+  }, [form, subcategory]);
 
   const handleSumbit = () => {
     setBtnActive(true);

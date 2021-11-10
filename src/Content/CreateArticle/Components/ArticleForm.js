@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { CCardBody, CForm, CRow } from "@coreui/react";
+import { CCardBody, CCol, CForm, CRow } from "@coreui/react";
 import { GetData } from "src/Service/APIEngine";
 import { FormItems } from "./FormItems";
 import { SwitchField, TextField } from "src/Utility/InputGroup";
 import { CKEditorField } from "src/reusable/CKEditorInput";
 import { CoreFileInput } from "src/Utility/CoreFileInput";
+import { SelectProvider } from "./SelectProvider";
 
 const ArticleForm = ({ form, setForm, preData }) => {
   const [imageHash, setImageHash] = useState("");
   const [groupIds, setGroupIds] = useState([]);
   const [courseIds, setCourseIds] = useState([]);
+  const [providerId, setProviderId] = useState();
+
+  useEffect(() => {
+    if (form.writerProviderId) setProviderId(form.writerProviderId);
+  }, [form]);
+
+  useEffect(() => {
+    if (providerId) setForm({ ...form, writerProviderId: providerId });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [providerId]);
 
   useEffect(() => {
     GetData("BasicInfo/Groups").then((res) => setGroupIds(res));
@@ -30,12 +41,21 @@ const ArticleForm = ({ form, setForm, preData }) => {
   );
   useEffect(() => {
     if (imageHash !== form.Image) setForm({ ...form, Image: imageHash });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageHash, form]);
   return (
     <CCardBody>
       <CForm action="" method="post">
         <CRow>{items.slice(0, 2)}</CRow>
-        <CRow>{items.slice(2, 4)}</CRow>
+        <CRow>
+          {items.slice(2, 4)}{" "}
+          <CCol sm={4}>
+            <SelectProvider
+              providerId={providerId}
+              setProviderId={setProviderId}
+            />
+          </CCol>
+        </CRow>
         <CRow>
           {SwitchField(FormItems(form, setForm, groupIds, courseIds)[4])}
           <CoreFileInput
