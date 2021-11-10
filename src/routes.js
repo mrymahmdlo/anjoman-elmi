@@ -13,6 +13,16 @@ const EditArticle = React.lazy(() =>
 const ManageArticles = React.lazy(() =>
   import("./Content/ManageArticles/ManageArticles")
 );
+const ManageWebinar = React.lazy(() =>
+  import("./Webinar/ManageWebinar/ManageWebinars")
+);
+const CreateWebinar = React.lazy(() =>
+  import("./Webinar/CreateWebinar/CreateWebinar")
+);
+
+const EditWebinar = React.lazy(() =>
+  import("./Webinar/EditWebinar/EditWebinar")
+);
 const CreateExam = React.lazy(() =>
   import("./Exam/CreateNewExam/CreateNewExam")
 );
@@ -101,6 +111,21 @@ const routes = [
     path: "/Content/FreeContent/ManageArticles",
     name: "ManageArticles",
     component: ManageArticles,
+  },
+  {
+    path: "/Webinar/ManageWebinars",
+    name: "ManageWebinars",
+    component: ManageWebinar,
+  },
+  {
+    path: "/Webinar/CreateWebinar",
+    name: "CreateWebinar",
+    component: CreateWebinar,
+  },
+  {
+    path: "/Webinar/EditWebinar/:id",
+    name: "EditWebinar",
+    component: EditWebinar,
   },
   {
     path: [

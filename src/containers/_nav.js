@@ -50,6 +50,23 @@ const _nav = [
     ],
   },
   {
+    _tag: "CSidebarNavDropdown",
+    name: "همایش",
+    icon: "cil-tag",
+    _children: [
+      {
+        _tag: "CSidebarNavItem",
+        name: "مدیریت همایش",
+        to: "/Webinar/ManageWebinars",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "ایجاد همایش",
+        to: "/Webinar/CreateWebinar",
+      },
+    ],
+  },
+  {
     _tag: "CSidebarNavTitle",
     _children: ["آزمون های آنلاین  "],
   },
