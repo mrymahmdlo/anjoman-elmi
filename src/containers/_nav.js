@@ -13,6 +13,16 @@ const _nav = [
     },
   },
   {
+    _tag: "CSidebarNavItem",
+    name: "بارگزاری فایل",
+    to: "/upload",
+    icon: <CIcon name="cil-cursor" customClasses="c-sidebar-nav-icon" />,
+    badge: {
+      color: "info",
+      text: "",
+    },
+  },
+  {
     _tag: "CSidebarNavTitle",
     _children: ["مشاوره و برنامه ریزی"],
   },

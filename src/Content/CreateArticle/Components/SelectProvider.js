@@ -15,9 +15,13 @@ export const SelectProvider = ({ providerId, setProviderId }) => {
       <label>ارائه دهنده</label>
       <CSelect
         value={providerId}
-        onChange={(e) => setProviderId(e.target.value)}
+        onChange={(e) =>
+          e.target.value === "0"
+            ? setProviderId(null)
+            : setProviderId(e.target.value)
+        }
       >
-        <option value={null}>مدیریت</option>
+        <option value={0}>مدیریت</option>
         {providers.length > 0 ? (
           providers.map((item) => (
             <option value={item.providerId} key={item.providerId}>

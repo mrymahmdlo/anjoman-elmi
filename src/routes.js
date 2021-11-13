@@ -31,6 +31,8 @@ const ManageExams = React.lazy(() => import("./Exam/ManageExams/ManageExams"));
 const ExamQuestionBank = React.lazy(() =>
   import("./Exam/ExamQuestionBank/ExamQuestionBank")
 );
+
+const Upload = React.lazy(() => import("src/Upload/Upload"));
 //examples
 const Toaster = React.lazy(() =>
   import("./views/notifications/toaster/Toaster")
@@ -94,6 +96,7 @@ const User = React.lazy(() => import("./views/users/User"));
 const routes = [
   { path: "/", exact: true, name: "Home", component: Dashboard },
   { path: "/dashboard", name: "Dashboard", component: Dashboard },
+  { path: "/upload", name: "Upload", component: Upload },
   {
     path: "/Consultation/MinuteCalls",
     name: "MinuteCalls",
