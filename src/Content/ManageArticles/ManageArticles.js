@@ -1,6 +1,7 @@
 import { CCard, CCardBody, CCardHeader, CDataTable } from "@coreui/react";
 import { useEffect, useState } from "react";
 import { PostData } from "src/Service/APIEngine";
+import { ChangeValues } from "./Components/ChangeValue";
 import { ContentModal } from "./Components/ContentModal";
 import { ContentScopedSlots } from "./Components/ContentScopedSlots";
 import { TableHeaders } from "./Components/TableHeaders";
@@ -12,7 +13,8 @@ const ManaeArticles = () => {
   const [modalContent, setModalContent] = useState("");
   const updateData = () => {
     PostData("FreeContent/GetFreeContentByFilter", {}).then((res) => {
-      setTableData(res.data);
+      let data = ChangeValues(res.data);
+      setTableData(data);
     });
   };
 
