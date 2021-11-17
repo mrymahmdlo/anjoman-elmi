@@ -8,7 +8,7 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { GetData, PostData } from "src/Service/APIEngine";
+import { GetData, PostData } from "src/Service/APIWebinar";
 import { Toast } from "src/Utility/Toast";
 import WebinarForm from "src/Webinar/CreateWebinar/Components/WebinarForm";
 import { useParams } from "react-router";
@@ -16,7 +16,16 @@ import { ChangeValues } from "./Components/ChangeValues";
 
 const EditWebinar = () => {
   const { id } = useParams();
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({
+    priceAfterHolding: 0,
+    schedules: [
+      {
+        startDateTime: "2021-11-17T18:15:28.493Z",
+        endDateTime: "2021-11-17T18:15:28.493Z",
+        subject: "",
+      },
+    ],
+  });
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
@@ -24,10 +33,10 @@ const EditWebinar = () => {
   useEffect(() => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
-    GetData("FreeContent/GetFreeContent?contentId=" + id)
-      .then((res) => {
-     setForm(ChangeValues(res.data));
-      })
+    fetch(`http://dev.bamis.ir/api/v1/Product/Webinar/35`, {
+      method: "GET",
+    }) .then(response => response.json())
+        // .then(res => {console.log(res);setForm(ChangeValues(res.data))})
       .finally(() => {
         setShowError(false);
       });
@@ -37,14 +46,14 @@ const EditWebinar = () => {
     setShowError(false);
     setBtnActive(true);
     let data = form;
-    if (form.Image !== "") data["image"] = form.Image;
+    if (form.poster !== "") data["image"] = form.poster;
     delete data["Image"];
-    PostData("FreeContent/EditFreeContent", data)
+    PostData(`Webinar/Update?webinarId=${id}`, data)
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
         setShowError(true);
         setBtnActive(false);
-      })
+      }) 
       .catch(() => {
         setErrorContent("خطا در ثبت ویرایش");
         setShowError(true);
@@ -57,7 +66,7 @@ const EditWebinar = () => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>ویرایش همایش</CCardHeader>
-          <WebinarForm form={form} setForm={setForm} preData={form.image} />
+          <WebinarForm form={form} setForm={setForm} preData={form.poster} />
           <CCardFooter>
             {!btnActice ? (
               <CButton

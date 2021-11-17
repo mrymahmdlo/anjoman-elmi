@@ -8,7 +8,7 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { PostData } from "src/Service/APIEngine";
+import { PostData } from "src/Service/APIWebinar";
 import { TokenManager } from "src/Identity/Service/TokenManager";
 import { Toast } from "src/Utility/Toast";
 import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
@@ -18,27 +18,36 @@ const CreateWebinar = () => {
   const { GetUserId } = TokenManager();
   const now = new Date();
   const [form, setForm] = useState({
-    writerProviderId: GetUserId(),
-    createdDateTime: GetDotNetGeorgianFromDateJS(now),
+    // writerProviderId: GetUserId(),
+    // createdDateTime: GetDotNetGeorgianFromDateJS(now),
+    priceAfterHolding: 0,
+    capacity: 0,
+    schedules: [
+      {
+        startDateTime: "",
+        endDateTime: "",
+        subject: "",
+      },
+    ],
   });
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
 
   const submitContent = () => {
-    // setShowError(false);
-    // setBtnActive(true);
-    // PostData("FreeContent/CreateFreeContent", form)
-    //   .then(() => {
-    //     setErrorContent("داده با موفقیت ثبت شد ");
-    //     setShowError(true);
-    //     setBtnActive(false);
-    //   })
-    //   .catch(() => {
-    //     setErrorContent("لطفا فیلد های ضروری را پر کنید");
-    //     setShowError(true);
-    //     setBtnActive(false);
-    //   });
+    setShowError(false);
+    setBtnActive(true);
+    PostData("Webinar/Create",form )
+      .then(() => {
+        setErrorContent("داده با موفقیت ثبت شد ");
+        setShowError(true);
+        setBtnActive(false);
+      })
+      .catch(() => {
+        setErrorContent("لطفا فیلد های ضروری را پر کنید");
+        setShowError(true);
+        setBtnActive(false);
+      });
   };
 
   return (
@@ -46,8 +55,7 @@ const CreateWebinar = () => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>
-            ساخت محتوای
-            <small> متنی(مقاله)</small>
+            ساخت همایش
           </CCardHeader>
           <WebinarForm form={form} setForm={setForm} />
           <CCardFooter>
@@ -58,7 +66,7 @@ const CreateWebinar = () => {
                 color="primary"
                 onClick={submitContent}
               >
-                <CIcon name="cil-scrubber" /> ثبت محتوا
+                <CIcon name="cil-scrubber" /> ثبت همایش
               </CButton>
             ) : (
               <CSpinner

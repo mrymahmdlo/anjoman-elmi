@@ -1,24 +1,36 @@
 import { FormSwitchInput, FormTextInput } from "src/reusable/FormInput";
-
+import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian";
 const { CSelect } = require("@coreui/react");
 
 export const FormItems = (form, setForm, groupIds, courseIds) => {
   return [
+    // {
+    //   name: "عنوان  همایش",
+    //   text: "عنوان همایش خود را وارد کنید",
+    //   input: FormTextInput(form, setForm, "title", "عنوان"),
+    //   size: 6,
+    // },
     {
-      name: "عنوان محتوای عمومی",
-      text: "عنوان محتوای خود را وارد کنید",
-      input: FormTextInput(form, setForm, "title", "عنوان"),
+      name: "زمان  همایش",
+      text: "مدت زمان این همایش را تعیین کنید",
+      input: FormTextInput(form, setForm, "duration", "زمان همایش"),
       size: 6,
     },
     {
-      name: "زمان تقریبی مطالعه مقاله",
-      text: "زمان تقریبی به دقیقه برای خواندن این محتوا را تعیین کنید.",
-      input: FormTextInput(form, setForm, "timeToStudy", "زمان مطالعه"),
+      name: "تعداد جلسات",
+      text: "تعداد جلسات این همایش را  تعیین کنید",
+      input: FormTextInput(form, setForm, "countOfSession", "تعداد جلسات"),
+      size: 6,
+    },
+    {
+      name: "ظرفیت",
+      text: "تعداد ظرفیت این همایش را  تعیین کنید",
+      input: FormTextInput(form, setForm, "capacity", "تعداد ظرفیت"),
       size: 6,
     },
     {
       name: "مقطع تحصیلی",
-      text: "مقطع تحصیلی مخاطب این محتوا را وارد کنید",
+      text: "مقطع تحصیلی مخاطب این همایش را وارد کنید",
       input: (
         <CSelect
           custom
@@ -42,7 +54,7 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
     },
     {
       name: "درس",
-      text: "درس مربوطه به این محتوا را انتخاب کنید",
+      text: "درس مربوطه به این همایش را انتخاب کنید",
       input: (
         <CSelect
           custom
@@ -67,10 +79,36 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
       size: 6,
     },
     {
-      name: "محتوای مهم",
-      text: "در صورت فعال شدن، در محتواهای اصلی سایت نمایش داده میشود",
-      input: FormSwitchInput(form, setForm, "isImportant", form.isImportant),
-      size: 6,
+      name: "زمان شروع همایش",
+      text: "تاریخ و ساعت شروع همایش را وارد کنید",
+      input: (
+        <DateTimePickerToGeorgian
+          className="form-control"
+          name="startDateTime"
+          value={form.schedules[0].startDateTime}
+          onChange={(e) => {
+            form.schedules[0].startDateTime = e;
+            setForm(form);
+          }}
+        />
+      ),
+      size: 4,
+    },
+    {
+      name: "زمان اتمام همایش",
+      text: "تاریخ و ساعت تمام شدن همایش را وارد کنید",
+      input: (
+        <DateTimePickerToGeorgian
+          className="form-control"
+          name="endDateTime"
+          value={form.schedules[0].endDateTime}
+          onChange={(e) => {
+            form.schedules[0].endDateTime = e;
+            setForm(form);
+          }}
+        />
+      ),
+      size: 4,
     },
   ];
 };

@@ -7,12 +7,13 @@ import { ContentScopedSlots } from "./Components/ContentScopedSlots";
 import { TableHeaders } from "./Components/TableHeaders";
 
 const ManaeArticles = () => {
-  const [tableData, setTableData] = useState([]);
+  const [tableData, setTableData] = useState([]); 
   const tableFields = TableHeaders;
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const updateData = () => {
     PostData("FreeContent/GetFreeContentByFilter", {}).then((res) => {
+      console.log(res);
       let data = ChangeValues(res.data);
       setTableData(data);
     });

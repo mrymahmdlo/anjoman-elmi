@@ -11,10 +11,10 @@ import {
 import { useEffect, useState } from "react";
 import { WebinartModal } from "./Components/WebinartModal";
 import { WebinartScopedSlots } from "./Components/WebinartScopedSlots";
-import { ExamTableHeaders } from "./Components/TableHeader";
+import { TableHeader } from "./Components/TableHeader";
 import { ChangeValues } from "./Utility/ChangeValues";
 import ExamService from "../../Exam/ExamService/ExamService";
-
+import { GetData } from "src/Service/APIWebinar";
 const ManageWebinars = () => {
   const [tableData, setTableData] = useState([]);
   const [tableFields, setTableFields] = useState([]);
@@ -31,19 +31,20 @@ const ManageWebinars = () => {
   }, [search, filterData]);
 
   const updateData = () => {
-    ExamService.GetAllQuiz({
-      orderCol: filterData.column,
-      searchTerm: search,
-      orderAscending: filterData.asc,
-      page: 1,
-      length: 100000,
-    }).then((res) => {
-      setTableFields([...res.data.headers, ...ExamTableHeaders]);
-      let data = res.data.rows;
-      ChangeValues(data);
-      setTableData(data);
-    });
+      GetData("Webinar/GetAll").then((res) => {
+        console.log(res);
+        let data = ChangeValues(res.data);
+        setTableData(data);
+            // setTableFields([...res.data.headers, ...ExamTableHeaders]);
+            // let data = res.data.rows;
+            // ChangeValues(data);
+            // setTableData(data);
+      }); 
+
   };
+  //  useEffect(() => {
+  //    updateData();
+  //  }, []);
 
   return (
     <>
@@ -64,43 +65,14 @@ const ManageWebinars = () => {
         <CCardBody>
           <CDataTable
             items={tableData}
-            fields={tableFields.filter(
-              (field) =>
-                field.key !== "quizDescription" &&
-                field.key !== "questionCount" &&
-                field.key !== "resultDate" &&
-                field.key !== "totalTimeMinutes" &&
-                field.key !== "questionFileName" &&
-                field.key !== "answerVideoFileName" &&
-                field.key !== "questionFileReady" &&
-                field.key !== "answerFileReady" &&
-                field.key !== "answerFileName" &&
-                field.key !== "groupCodes"
-            )}
+            fields={TableHeader}
             striped
             size="sm"
             sorter={{ external: true, resetable: false }}
             onSorterValueChange={setFilterData}
             itemsPerPage={15}
             pagination
-            scopedSlots={WebinartScopedSlots(
-              updateData,
-              setModal,
-              modal,
-              setModalContent,
-              tableFields.filter(
-                (field) =>
-                  field.key === "questionCount" ||
-                  field.key === "resultDate" ||
-                  field.key === "totalTimeMinutes" ||
-                  field.key === "questionFileName" ||
-                  field.key === "answerVideoFileName" ||
-                  field.key === "questionFileReady" ||
-                  field.key === "answerFileReady" ||
-                  field.key === "answerFileName" ||
-                  field.key === "groupCodes"
-              )
-            )}
+            scopedSlots={WebinartScopedSlots()}
           />
         </CCardBody>
       </CCard>

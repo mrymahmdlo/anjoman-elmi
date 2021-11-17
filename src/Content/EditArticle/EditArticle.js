@@ -27,6 +27,7 @@ const EditArticle = () => {
     setShowError(true);
     GetData("FreeContent/GetFreeContent?contentId=" + id)
       .then((res) => {
+        console.log(res);
         setForm(ChangeValues(res.data));
       })
       .finally(() => {

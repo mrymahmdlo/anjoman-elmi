@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CCardBody, CForm, CRow } from "@coreui/react";
 import { GetData } from "src/Service/APIEngine";
 import { FormItems } from "./FormItems";
-import { SwitchField, TextField } from "src/Utility/InputGroup";
-import { CKEditorField } from "src/reusable/CKEditorInput";
+import {TextField } from "src/Utility/InputGroup";
 import { CoreFileInput } from "src/Utility/CoreFileInput";
 
 const WebinarForm = ({ form, setForm, preData }) => {
@@ -29,29 +28,22 @@ const WebinarForm = ({ form, setForm, preData }) => {
     TextField(item)
   );
   useEffect(() => {
-    if (imageHash !== form.Image) setForm({ ...form, Image: imageHash });
+    if (imageHash !== form.poster) setForm({ ...form, poster: imageHash });
   }, [imageHash, form]);
   return (
     <CCardBody>
       <CForm action="" method="post">
-        <CRow>{items.slice(0, 2)}</CRow>
-        <CRow>{items.slice(2, 4)}</CRow>
+        <CRow>{items.slice(0, 3)}</CRow>
+        <CRow>{items.slice(3, 5)}</CRow>
+        <CRow>{items.slice(5, 7)}</CRow>
         <CRow>
-          {SwitchField(FormItems(form, setForm, groupIds, courseIds)[4])}
           <CoreFileInput
             preData={preData}
-            title="آپلود عکس محتوا"
+            title="آپلود عکس همایش"
             setHashId={setImageHash}
             type="image/*"
           />
         </CRow>
-        <CKEditorField
-          name="متن محتوا"
-          text="لطفا متن محتوای خود را وارد کنید"
-          fieldName="description"
-          form={form}
-          setForm={setForm}
-        />
       </CForm>
     </CCardBody>
   );
