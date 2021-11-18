@@ -21,7 +21,6 @@ const CreateWebinar = () => {
     // writerProviderId: GetUserId(),
     // createdDateTime: GetDotNetGeorgianFromDateJS(now),
     priceAfterHolding: 0,
-    capacity: 0,
     schedules: [
       {
         startDateTime: "",
@@ -37,7 +36,15 @@ const CreateWebinar = () => {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    PostData("Webinar/Create",form )
+    PostData("Webinar/Create", {
+      ...form,
+      duration: +form.duration,
+      capacity: +form.capacity,
+      groupId: +form.groupId,
+      priceAfterHolding: +form.priceAfterHolding,
+      courseId: +form.courseId,
+      countOfSession: +form.countOfSession,
+    })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
         setShowError(true);
@@ -54,9 +61,7 @@ const CreateWebinar = () => {
     <div className="App">
       <CContainer fluid>
         <CCard>
-          <CCardHeader>
-            ساخت همایش
-          </CCardHeader>
+          <CCardHeader>ساخت همایش</CCardHeader>
           <WebinarForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActice ? (

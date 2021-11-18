@@ -6,12 +6,12 @@ import { GetData } from "src/Service/APIEngine";
 import { Toast } from "src/Utility/Toast";
 import JDate from "jalali-date";
 import { DateFormatter } from "../../../Utility/DateFormatter";
+import EditWebinar from "src/Webinar/EditWebinar/EditWebinar";
 import moment from "jalali-moment";
 const DateTimeFormat = "YYYY/MM/DD HH:mm";
 const DotNetDateTimeFormat = "YYYY-MM-DDTHH:mm";
-export const WebinartScopedSlots = () => {
+export const WebinartScopedSlots = (setModalContent, setModal, modal) => {
   const history = useHistory();
-
 
   return {
     startDateTime: (item, index) => (
@@ -38,15 +38,15 @@ export const WebinartScopedSlots = () => {
           <CButton
             className="mr-1"
             color="primary"
-            onClick={() =>
-              history.push("/Webinar/EditWebinar/" + item.webinarId)
-            }
+            onClick={() => {
+              setModalContent(<EditWebinar obj={item} />);
+              setModal(true);
+            }}
           >
             <CIcon name="cil-pencil" />
           </CButton>
         </td>
       </>
     ),
-
   };
 };

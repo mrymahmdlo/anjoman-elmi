@@ -4,7 +4,6 @@ const secret = "AMP_!YUHDSJHYG@&12312!W@sAs";
 
 export const BaseUrl = process.env.REACT_APP_Webinar_BASE;
 const GetData = (url) => {
- 
     return fetch(BaseUrl + url, {
       method: "GET",
     }).then((res) => res.json());
@@ -13,11 +12,9 @@ const GetData = (url) => {
 
 const PostData = async (url, body) => {
   const data = await fetch(BaseUrl + url, {
-    mode: "no-cors",
     method: "POST",
     headers: {
-      "content-type": "application/json",
-      Authorization: "Bearer " + GetToken(),
+      "content-type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(body),
   });

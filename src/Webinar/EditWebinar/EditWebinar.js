@@ -14,7 +14,7 @@ import WebinarForm from "src/Webinar/CreateWebinar/Components/WebinarForm";
 import { useParams } from "react-router";
 import { ChangeValues } from "./Components/ChangeValues";
 
-const EditWebinar = () => {
+const EditWebinar = ({obj}) => {
   const { id } = useParams();
   const [form, setForm] = useState({
     priceAfterHolding: 0,

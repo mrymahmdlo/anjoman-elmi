@@ -6,7 +6,7 @@ import moment from "jalali-moment";
 
 export const DateTimePickerToGeorgian = ({ value = "", onChange }) => {
   const [isValid, setValid] = useState(true);
-
+console.log(value);
   const handleChange = (e) => {
     const valid = moment(e.target.value, "YYYY/MM/DD HH:mm").isValid();
     onChange(e.target.value);

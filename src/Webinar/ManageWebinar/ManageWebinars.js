@@ -72,7 +72,7 @@ const ManageWebinars = () => {
             onSorterValueChange={setFilterData}
             itemsPerPage={15}
             pagination
-            scopedSlots={WebinartScopedSlots()}
+            scopedSlots={WebinartScopedSlots(setModalContent, setModal,modal)}
           />
         </CCardBody>
       </CCard>

@@ -1,5 +1,6 @@
 import { FormSwitchInput, FormTextInput } from "src/reusable/FormInput";
 import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian";
+import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 const { CSelect } = require("@coreui/react");
 
 export const FormItems = (form, setForm, groupIds, courseIds) => {
@@ -87,8 +88,9 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
           name="startDateTime"
           value={form.schedules[0].startDateTime}
           onChange={(e) => {
-            form.schedules[0].startDateTime = e;
-            setForm(form);
+            let sch = form.schedules;
+            sch[0].startDateTime = HejriToDotNetGeorgian(e);
+            setForm({ ...form, schedules: sch });
           }}
         />
       ),
@@ -103,8 +105,9 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
           name="endDateTime"
           value={form.schedules[0].endDateTime}
           onChange={(e) => {
-            form.schedules[0].endDateTime = e;
-            setForm(form);
+           let sch = form.schedules;
+           sch[0].endDateTime = HejriToDotNetGeorgian(e);
+           setForm({ ...form, schedules: sch });
           }}
         />
       ),
