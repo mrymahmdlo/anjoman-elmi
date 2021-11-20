@@ -11,16 +11,13 @@ import CIcon from "@coreui/icons-react";
 import { PostData } from "src/Service/APIWebinar";
 import { TokenManager } from "src/Identity/Service/TokenManager";
 import { Toast } from "src/Utility/Toast";
-import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
 import WebinarForm from "./Components/WebinarForm";
 
 const CreateWebinar = () => {
   const { GetUserId } = TokenManager();
   const now = new Date();
   const [form, setForm] = useState({
-    // writerProviderId: GetUserId(),
-    // createdDateTime: GetDotNetGeorgianFromDateJS(now),
-    priceAfterHolding: 0,
+    providerId: GetUserId(),
     schedules: [
       {
         startDateTime: "",
@@ -38,12 +35,13 @@ const CreateWebinar = () => {
     setBtnActive(true);
     PostData("Webinar/Create", {
       ...form,
+      title: form.title,
       duration: +form.duration,
       capacity: +form.capacity,
       groupId: +form.groupId,
-      priceAfterHolding: +form.priceAfterHolding,
       courseId: +form.courseId,
       countOfSession: +form.countOfSession,
+      priceAfterHolding: +form.priceAfterHolding,
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");

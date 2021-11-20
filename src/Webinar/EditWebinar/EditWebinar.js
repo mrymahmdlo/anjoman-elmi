@@ -11,17 +11,17 @@ import CIcon from "@coreui/icons-react";
 import { GetData, PostData } from "src/Service/APIWebinar";
 import { Toast } from "src/Utility/Toast";
 import WebinarForm from "src/Webinar/CreateWebinar/Components/WebinarForm";
-import { useParams } from "react-router";
 import { ChangeValues } from "./Components/ChangeValues";
+import { TokenManager } from "src/Identity/Service/TokenManager";
 
-const EditWebinar = ({obj}) => {
-  const { id } = useParams();
+const EditWebinar = ({ obj, setModal }) => {
+  const { GetUserId } = TokenManager();
   const [form, setForm] = useState({
-    priceAfterHolding: 0,
+    providerId: GetUserId(),
     schedules: [
       {
-        startDateTime: "2021-11-17T18:15:28.493Z",
-        endDateTime: "2021-11-17T18:15:28.493Z",
+        startDateTime: "",
+        endDateTime: "",
         subject: "",
       },
     ],
@@ -33,27 +33,31 @@ const EditWebinar = ({obj}) => {
   useEffect(() => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
-    fetch(`http://dev.bamis.ir/api/v1/Product/Webinar/35`, {
-      method: "GET",
-    }) .then(response => response.json())
-        // .then(res => {console.log(res);setForm(ChangeValues(res.data))})
-      .finally(() => {
-        setShowError(false);
-      });
-  }, [id]);
+    setForm(ChangeValues(obj));
+  }, [obj]);
 
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
     let data = form;
-    if (form.poster !== "") data["image"] = form.poster;
+    if (form.poster !== "") data["poster"] = form.poster;
     delete data["Image"];
-    PostData(`Webinar/Update?webinarId=${id}`, data)
+    PostData(`Webinar/Update?webinarId=${obj.webinarId}`, {
+      ...form,
+      title: form.title,
+      duration: +form.duration,
+      capacity: +form.capacity,
+      groupId: +form.groupId,
+      courseId: +form.courseId,
+      countOfSession: +form.countOfSession,
+      priceAfterHolding: +form.priceAfterHolding,
+    })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
         setShowError(true);
         setBtnActive(false);
-      }) 
+        setModal(false);
+      })
       .catch(() => {
         setErrorContent("خطا در ثبت ویرایش");
         setShowError(true);

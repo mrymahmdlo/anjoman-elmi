@@ -62,7 +62,7 @@ const _nav = [
   {
     _tag: "CSidebarNavDropdown",
     name: "همایش",
-    icon: "cil-tag",
+    icon: "cil-layers",
     _children: [
       {
         _tag: "CSidebarNavItem",
@@ -77,20 +77,21 @@ const _nav = [
     ],
   },
   {
-    _tag: "CSidebarNavTitle",
-    _children: ["آزمون های آنلاین  "],
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "مدیریت آزمون ها",
-    icon: "cil-layers",
-    to: "/Exams/ManageExams",
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "ایجاد آزمون جدید",
+    _tag: "CSidebarNavDropdown",
+    name: "آزمون های آنلاین  ",
     icon: "cil-pencil",
-    to: "/Exams/CreateExam/QuizInfo",
+    _children: [
+      {
+        _tag: "CSidebarNavItem",
+        name: "مدیریت آزمون ها",
+        to: "/Exams/ManageExams",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "ایجاد آزمون جدید",
+        to: "/Exams/CreateExam/QuizInfo",
+      },
+    ],
   },
 ];
 

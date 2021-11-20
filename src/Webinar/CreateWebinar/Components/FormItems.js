@@ -1,32 +1,75 @@
-import { FormSwitchInput, FormTextInput } from "src/reusable/FormInput";
+import {
+  FormSwitchInput,
+  FormTextInput,
+  FormNumberInput,
+} from "src/reusable/FormInput";
 import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 const { CSelect } = require("@coreui/react");
 
+
 export const FormItems = (form, setForm, groupIds, courseIds) => {
   return [
-    // {
-    //   name: "عنوان  همایش",
-    //   text: "عنوان همایش خود را وارد کنید",
-    //   input: FormTextInput(form, setForm, "title", "عنوان"),
-    //   size: 6,
-    // },
+    {
+      name: "عنوان  همایش",
+      text: "عنوان همایش خود را وارد کنید",
+      input: FormTextInput(form, setForm, "title", "عنوان"),
+      size: 6,
+    },
+    {
+      name: "قیمت همایش",
+      text: "قیمت این همایش کامل را به ریال وارد کنید، اگر 0 وارد شود رایگان محصوب  میشود",
+      input: FormNumberInput(
+        form,
+        setForm,
+        "priceAfterHolding",
+        "قیمت به ریال",
+        0,
+        null,
+        () => form.priceAfterHolding >= "0"
+      ),
+      size: 4,
+    },
     {
       name: "زمان  همایش",
       text: "مدت زمان این همایش را تعیین کنید",
-      input: FormTextInput(form, setForm, "duration", "زمان همایش"),
+      input: FormNumberInput(
+        form,
+        setForm,
+        "duration",
+        "زمان همایش",
+        0,
+        null,
+        () => form.duration >= "0"
+      ),
       size: 6,
     },
     {
       name: "تعداد جلسات",
       text: "تعداد جلسات این همایش را  تعیین کنید",
-      input: FormTextInput(form, setForm, "countOfSession", "تعداد جلسات"),
+      input: FormNumberInput(
+        form,
+        setForm,
+        "countOfSession",
+        "تعداد جلسات",
+        0,
+        null,
+        () => form.countOfSession >= "0"
+      ),
       size: 6,
     },
     {
       name: "ظرفیت",
       text: "تعداد ظرفیت این همایش را  تعیین کنید",
-      input: FormTextInput(form, setForm, "capacity", "تعداد ظرفیت"),
+      input: FormNumberInput(
+        form,
+        setForm,
+        "capacity",
+        "تعداد ظرفیت",
+        0,
+        null,
+        () => form.capacity >= "0"
+      ),
       size: 6,
     },
     {
@@ -86,7 +129,7 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
         <DateTimePickerToGeorgian
           className="form-control"
           name="startDateTime"
-          value={form.schedules[0].startDateTime}
+          value={form.schedules[0]?.startDateTime}
           onChange={(e) => {
             let sch = form.schedules;
             sch[0].startDateTime = HejriToDotNetGeorgian(e);
@@ -103,11 +146,11 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
         <DateTimePickerToGeorgian
           className="form-control"
           name="endDateTime"
-          value={form.schedules[0].endDateTime}
+          value={form.schedules[0]?.endDateTime}
           onChange={(e) => {
-           let sch = form.schedules;
-           sch[0].endDateTime = HejriToDotNetGeorgian(e);
-           setForm({ ...form, schedules: sch });
+            let sch = form.schedules;
+            sch[0].endDateTime = HejriToDotNetGeorgian(e);
+            setForm({ ...form, schedules: sch });
           }}
         />
       ),

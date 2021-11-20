@@ -27,7 +27,7 @@ const EditArticle = () => {
     setShowError(true);
     GetData("FreeContent/GetFreeContent?contentId=" + id)
       .then((res) => {
-        console.log(res);
+        console.log(res.data)
         setForm(ChangeValues(res.data));
       })
       .finally(() => {
@@ -41,7 +41,10 @@ const EditArticle = () => {
     let data = form;
     if (form.Image !== "") data["image"] = form.Image;
     delete data["Image"];
-    postFormData("FreeContent/EditFreeContent", data)
+    postFormData("FreeContent/EditFreeContent", {
+      ...data,
+      writerProviderId: data.writerProviderId ? data.writerProviderId : null,
+    })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
         setShowError(true);

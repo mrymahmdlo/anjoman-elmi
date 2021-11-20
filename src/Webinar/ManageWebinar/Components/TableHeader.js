@@ -1,23 +1,10 @@
 
   export const TableHeader = [
-    // {
-    //   key: "examDetail",
-    //   label: "",
-    //   _style: { width: "2%" },
-    //   sorter: false,
-    //   filter: false,
-    // },
-    //     capacity: 0
-    // countOfSession: 0
-    // courseId: 23
-    // courseName: "تاریخ - جغرافیا"
-    // duration: 0
-    // groupId: 3
-    // groupName: "تجربی نظام جدید"
-    // poster: "string"
-    // priceAfterHolding: 0
-    // schedules: [{…}]
-    // webinarId: 4
+   
+    {
+      key: "title",
+      label: "عنوان همایش",
+    },
     {
       key: "courseName",
       label: "درس",
@@ -53,5 +40,4 @@
       sorter: false,
       filter: false,
     },
-
   ];
