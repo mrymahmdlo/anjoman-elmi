@@ -9,15 +9,12 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { PostData } from "src/Service/APIWebinar";
-import { TokenManager } from "src/Identity/Service/TokenManager";
 import { Toast } from "src/Utility/Toast";
 import WebinarForm from "./Components/WebinarForm";
 
 const CreateWebinar = () => {
-  const { GetUserId } = TokenManager();
-  const now = new Date();
+
   const [form, setForm] = useState({
-    providerId: GetUserId(),
     schedules: [
       {
         startDateTime: "",

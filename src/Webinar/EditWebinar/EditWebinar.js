@@ -8,16 +8,14 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { GetData, PostData } from "src/Service/APIWebinar";
+import {  PostData } from "src/Service/APIWebinar";
 import { Toast } from "src/Utility/Toast";
 import WebinarForm from "src/Webinar/CreateWebinar/Components/WebinarForm";
 import { ChangeValues } from "./Components/ChangeValues";
-import { TokenManager } from "src/Identity/Service/TokenManager";
+
 
 const EditWebinar = ({ obj, setModal }) => {
-  const { GetUserId } = TokenManager();
   const [form, setForm] = useState({
-    providerId: GetUserId(),
     schedules: [
       {
         startDateTime: "",
