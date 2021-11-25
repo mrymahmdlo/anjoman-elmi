@@ -82,8 +82,10 @@ export const postFormData = async (url, form) => {
   } catch {
     return null;
   }
-};
+}
 
-const GetFileDownloadLink = (hash) => BaseUrl + "File/Download/" + hash;
+
+const GetFileDownloadLink = (hash) =>
+  BaseUrl + `file/Download?hashId=${hash}`;
 
 export { PostData, GetData, UploadFileRequest, GetFileDownloadLink };
