@@ -12,6 +12,7 @@ import {
   GroupIdSelect,
   QuizInfoFormItems,
   QuizModeSelect,
+  QuizTypeSelect,
 } from "../Components/QuizInfo/QuizInfoFormItems";
 import { SwitchField, TextField } from "src/Utility/InputGroup";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
@@ -83,7 +84,8 @@ const QuizInfoForm = ({ userId, setQuizId }) => {
         </CLabel>
         <CForm action="" method="post">
           <CRow>
-            {items.slice(0, 3)} <QuizModeSelect form={form} setForm={setForm} />
+            {items.slice(0, 3)} <QuizModeSelect form={form} setForm={setForm} />{" "}
+            <QuizTypeSelect form={form} setForm={setForm} />
           </CRow>
           <CRow>
             {GroupIdSelect(groupIds, form, setForm)}

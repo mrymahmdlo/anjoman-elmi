@@ -21,6 +21,7 @@ const EditExam = () => {
   const [stage, setStage] = useState(stages.EDITQUIZINFO);
   const [quizId, setQuizId] = useState();
   const [quizMode, setQuizMode] = useState();
+  const [quizType, setQuizType] = useState();
   const { id } = useParams();
   const history = useHistory();
   useEffect(() => {
@@ -52,6 +53,8 @@ const EditExam = () => {
             stages,
             quizMode,
             setQuizMode,
+            quizType,
+            setQuizType,
           }}
         >
           <CCard>

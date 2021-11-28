@@ -18,11 +18,17 @@ export const UploadFile = () => {
   const [link, setLink] = useState("");
   const [statusFile, setStatusFile] = useState(2);
   const [copyText, setCopyText] = useState("کپی");
-  const UploadFile = async (file) => {
+  const UploadFile = async (e) => {
     setStatusFile(status.LOADING);
-    UploadFileRequest(file)
+    UploadFileRequest(e.target.files[0])
       .then((res) => {
-        setLink(GetFileDownloadLink(res.data));
+GetFileDownloadLink(res.data).then((res) => console.log(res));
+        let linkSource = `data:${
+          e.target.files[0].name.split('.')[1]
+        };base64,${GetFileDownloadLink(res.data).then(
+          (res) => res.data.fileBytes
+        )}`;
+        setLink(linkSource);
         setStatusFile(status.UPLOADED);
       })
       .catch(() => setStatusFile(status.FAILED));
@@ -34,6 +40,7 @@ export const UploadFile = () => {
       setCopyText("کپی");
     }, 5000);
   };
+
   return (
     <CForm inline style={{ flexFlow: "row" }}>
       <CFormGroup className="w-25">
@@ -42,7 +49,7 @@ export const UploadFile = () => {
           type="file"
           className="p-1 mr-2 "
           onChange={(e) => {
-            UploadFile(e.target.files[0]);
+            UploadFile(e);
           }}
           disabled={statusFile === status.LOADING}
         />

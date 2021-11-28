@@ -27,6 +27,7 @@ const CreateExam = () => {
   const [stage, setStage] = useState(stages.QUIZINFO);
   const [quizId, setQuizId] = useState();
   const [quizMode, setQuizMode] = useState();
+   const [quizType, setQuizType] = useState();
 
   const history = useHistory();
   useEffect(() => {
@@ -53,6 +54,8 @@ const CreateExam = () => {
             stages,
             quizMode,
             setQuizMode,
+            quizType,
+            setQuizType,
           }}
         >
           <CCard>

@@ -13,6 +13,7 @@ import {
   GroupIdSelect,
   QuizInfoFormItems,
   QuizModeSelect,
+  QuizTypeSelect,
 } from "../Components/QuizInfo/QuizInfoFormItems";
 import { SwitchField, TextField } from "src/Utility/InputGroup";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
@@ -33,6 +34,7 @@ const EditQuizInfoForm = () => {
   useEffect(() => {
     setBtnActive(true);
     ExamService.GetQuizInfo(exam.quizId).then((res) => {
+      console.log('res',res)
       let data = res.data;
       setForm({
         ...data,
@@ -42,6 +44,7 @@ const EditQuizInfoForm = () => {
       });
       setBtnActive(false);
       exam.setQuizMode(+data.quizMode);
+      exam.setQuizType(+data.quizType);
     });
   }, [exam.quizId, exam]);
   const items = QuizInfoFormItems(form, setForm).map((item) => TextField(item));
@@ -68,6 +71,7 @@ const EditQuizInfoForm = () => {
       .then((res) => {
         if (res.success) {
           exam.setQuizMode(+form.quizMode);
+          exam.setQuizType(+form.quizType);
           exam.setErrorContent("آزمون با موفقیت به روز رسانی شد ");
         } else exam.setErrorContent(res.message);
       })
@@ -104,6 +108,7 @@ const EditQuizInfoForm = () => {
             <CRow>
               {items.slice(0, 3)}
               <QuizModeSelect form={form} setForm={setForm} />
+              <QuizTypeSelect form={form} setForm={setForm} />
             </CRow>
             <CRow>
               {GroupIdSelect(groupIds, form, setForm)}
@@ -131,8 +136,12 @@ const EditQuizInfoForm = () => {
         </CCardBody>
       </CCard>
       <CLabel className="m-3 text-danger">
-       پس از اتمام بررسی و ثبت موارد مورد نیاز آزمون، حتما روی اتمام ویرایش آزمون کلیک کنید تا آزمون آماده برگزاری شود.
-        <strong>دکمه ثبت تغییرات بالا بدون کلیک کردن روی اتمام ثبت آزمون، اصلاحات را روی آزمون اعمال نخواهد کرد!</strong>
+        پس از اتمام بررسی و ثبت موارد مورد نیاز آزمون، حتما روی اتمام ویرایش
+        آزمون کلیک کنید تا آزمون آماده برگزاری شود.
+        <strong>
+          دکمه ثبت تغییرات بالا بدون کلیک کردن روی اتمام ثبت آزمون، اصلاحات را
+          روی آزمون اعمال نخواهد کرد!
+        </strong>
       </CLabel>
     </>
   );

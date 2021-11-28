@@ -173,9 +173,9 @@ const QuizModeSelect = ({ form, setForm }) => {
           }}
         >
           {[
-            { id: "2", name: "هردو" },
-            { id: "0", name: "حالت pdf" },
-            { id: "1", name: "حالت سوال به سوال" },
+            { id: '2', name: "هردو" },
+            { id: '0', name: "حالت pdf" },
+            { id: '1', name: "حالت سوال به سوال" },
           ].map((item, index) => (
             <option
               key={index}
@@ -188,6 +188,37 @@ const QuizModeSelect = ({ form, setForm }) => {
         </CSelect>
         <CFormText className="help-block">
           درصورت تمایل،حالت آزمون را انتخاب کنید
+        </CFormText>
+      </CFormGroup>
+    </CCol>
+  );
+};
+const QuizTypeSelect = ({ form, setForm }) => {
+  return (
+    <CCol sm="3">
+      <CFormGroup>
+        <CLabel htmlFor="nf-title">نوع برگزاری آزمون</CLabel>
+        <CSelect
+          onChange={(e) => {
+            setForm({ ...form, quizType: e.target.value });
+          }}
+        >
+          {[
+            { id: 0, name: "درس محور" },
+            { id: 1, name: "چند درسی" },
+            { id: 2, name: "اعتبار سنجی" },
+          ].map((item, index) => (
+            <option
+              key={index}
+              value={item.id}
+              selected={`${form.quizType}` === item.id}
+            >
+              {item.name}
+            </option>
+          ))}
+        </CSelect>
+        <CFormText className="help-block">
+          درصورت تمایل،نوع آزمون را انتخاب کنید
         </CFormText>
       </CFormGroup>
     </CCol>
@@ -237,4 +268,4 @@ const GroupIdSelect = (groupIds, form, setForm) => {
   );
 };
 
-export { GroupIdSelect, QuizInfoFormItems, QuizModeSelect };
+export { GroupIdSelect, QuizInfoFormItems, QuizModeSelect, QuizTypeSelect };
