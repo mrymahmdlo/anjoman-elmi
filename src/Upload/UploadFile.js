@@ -22,13 +22,12 @@ export const UploadFile = () => {
     setStatusFile(status.LOADING);
     UploadFileRequest(e.target.files[0])
       .then((res) => {
-GetFileDownloadLink(res.data).then((res) => console.log(res));
-        let linkSource = `data:${
-          e.target.files[0].name.split('.')[1]
-        };base64,${GetFileDownloadLink(res.data).then(
-          (res) => res.data.fileBytes
-        )}`;
-        setLink(linkSource);
+        GetFileDownloadLink(res.data).then((data) => {
+          let linkSource = `data:application/${
+            e.target.files[0].name.split(".")[1]
+          };base64,${data.data.fileBytes}`;
+          setLink(linkSource);
+        });
         setStatusFile(status.UPLOADED);
       })
       .catch(() => setStatusFile(status.FAILED));
@@ -43,18 +42,18 @@ GetFileDownloadLink(res.data).then((res) => console.log(res));
 
   return (
     <CForm inline style={{ flexFlow: "row" }}>
-      <CFormGroup className="w-25">
+      <CFormGroup className="w-50">
         {UploadFileStatusMark(statusFile)}
         <CInput
           type="file"
-          className="p-1 mr-2 "
+          className="p-1 mr-1 w-75 "
           onChange={(e) => {
             UploadFile(e);
           }}
           disabled={statusFile === status.LOADING}
         />
       </CFormGroup>
-      <CFormGroup className="text-left mr-2 w-75">
+      <CFormGroup className="text-left w-50">
         <CInput className="w-75" type="text" value={link} disabled />
         <CButton onClick={copyInput}>
           <CTooltip content={copyText} placement="left">
