@@ -203,7 +203,7 @@ const QuizTypeSelect = ({ form, setForm }) => {
         <CSelect
           onChange={(e) => {
             console.log("1", e.target.value);
-            setForm({ ...form, quiztype: e.target.value });
+            setForm({ ...form, quizType: e.target.value });
           }}
         >
           {[
@@ -215,7 +215,7 @@ const QuizTypeSelect = ({ form, setForm }) => {
             <option
               key={index}
               value={item.id}
-              selected={`${form.quiztype}` === item.id}
+              selected={`${form.quizType}` === item.id}
             >
               {item.name}
             </option>

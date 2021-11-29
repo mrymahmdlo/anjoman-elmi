@@ -10,7 +10,7 @@ const InitialForm = (userId) => ({
   questionFileReady: false,
   answerFileReady: false,
   quizMode: "2",
-  quiztype:'1'
+  quizType:'1'
 });
 
 const QuizInfoValidators = {
