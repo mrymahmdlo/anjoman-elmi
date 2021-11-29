@@ -32,6 +32,7 @@ const EditQuizInfoForm = () => {
     ExamService.GetDropDowns().then((res) => setGroupIds(res.data.groupCode.options));
   }, []);
   useEffect(() => {
+
     setBtnActive(true);
     ExamService.GetQuizInfo(exam.quizId).then((res) => {
       console.log('res',res)
@@ -44,7 +45,7 @@ const EditQuizInfoForm = () => {
       });
       setBtnActive(false);
       exam.setQuizMode(+data.quizMode);
-      exam.setQuizType(+data.quizType);
+      exam.setQuizType(+data.quiztype);
     });
   }, [exam.quizId, exam]);
   const items = QuizInfoFormItems(form, setForm).map((item) => TextField(item));
@@ -71,7 +72,7 @@ const EditQuizInfoForm = () => {
       .then((res) => {
         if (res.success) {
           exam.setQuizMode(+form.quizMode);
-          exam.setQuizType(+form.quizType);
+          exam.setQuizType(+form.quiztype);
           exam.setErrorContent("آزمون با موفقیت به روز رسانی شد ");
         } else exam.setErrorContent(res.message);
       })

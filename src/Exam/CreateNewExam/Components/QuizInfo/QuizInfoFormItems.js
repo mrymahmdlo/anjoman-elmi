@@ -194,28 +194,32 @@ const QuizModeSelect = ({ form, setForm }) => {
   );
 };
 const QuizTypeSelect = ({ form, setForm }) => {
+
+  console.log(form);
   return (
     <CCol sm="3">
       <CFormGroup>
         <CLabel htmlFor="nf-title">نوع برگزاری آزمون</CLabel>
         <CSelect
           onChange={(e) => {
-            setForm({ ...form, quizType: e.target.value });
+            console.log("1", e.target.value);
+            setForm({ ...form, quiztype: e.target.value });
           }}
         >
           {[
-            { id: 0, name: "درس محور" },
-            { id: 1, name: "چند درسی" },
-            { id: 2, name: "اعتبار سنجی" },
-          ].map((item, index) => (
+            { id: "0", name: "درس محور" },
+            { id: "1", name: "چند درسی" },
+            { id: "2", name: "اعتبار سنجی" },
+          ].map((item, index) =>
+            
             <option
               key={index}
               value={item.id}
-              selected={`${form.quizType}` === item.id}
+              selected={`${form.quiztype}` === item.id}
             >
               {item.name}
             </option>
-          ))}
+          )}
         </CSelect>
         <CFormText className="help-block">
           درصورت تمایل،نوع آزمون را انتخاب کنید

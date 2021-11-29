@@ -47,7 +47,7 @@ const ExamService = {
       price: +form.price,
       totalTimeMinutes: +form.totalTimeMinutes,
       quizMode: +form.quizMode,
-      quizType: +form.quizType,
+      quiztype: +form.quiztype,
     }),
   UpdateQuizInfo: (quizId, form) => {
     return sendRequest(Routes.UpdateQuizInfo + quizId, {
@@ -61,7 +61,7 @@ const ExamService = {
       price: +form.price,
       totalTimeMinutes: +form.totalTimeMinutes,
       quizMode: +form.quizMode,
-      quizType: +form.quizType,
+      quiztype: +form.quiztype,
     });
   },
   UploadQuestionFile: async (quizId, data) =>
