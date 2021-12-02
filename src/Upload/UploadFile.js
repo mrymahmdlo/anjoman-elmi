@@ -16,18 +16,30 @@ const {
 
 export const UploadFile = () => {
   const [link, setLink] = useState("");
+  const [fileName, setFileName] = useState();
+   const [data, setData] = useState();
   const [statusFile, setStatusFile] = useState(2);
   const [copyText, setCopyText] = useState("کپی");
   const UploadFile = async (e) => {
     setStatusFile(status.LOADING);
+     setFileName(e.target.files[0]);
     UploadFileRequest(e.target.files[0])
-      .then((res) => {
+      .then((res) => { 
         GetFileDownloadLink(res.data).then((data) => {
-          let linkSource = `data:application/${
-            e.target.files[0].name.split(".")[1]
-          };base64,${data.data.fileBytes}`;
-          setLink(linkSource);
+           setData(data);
+              let linkSource = `data:${
+                e.target.files[0].name.split(".")[1]
+              };base64,${data?.data.fileBytes}`;
+              const downloadLink = document.createElement("a");
+              downloadLink.href = linkSource;
+              downloadLink.download = `${ e.target.files[0].name}`;
+              // downloadLink.click();
+          // let linkSource = `data:application/${
+          //   e.target.files[0].name.split(".")[1]
+          // };base64,${data.data.fileBytes}`;
+          setLink(downloadLink);
         });
+
         setStatusFile(status.UPLOADED);
       })
       .catch(() => setStatusFile(status.FAILED));
@@ -39,7 +51,15 @@ export const UploadFile = () => {
       setCopyText("کپی");
     }, 5000);
   };
-
+     const downloadBase64File=()=> {
+      let linkSource = `data:${fileName.name.split(".")[1]};base64,${
+        data?.data.fileBytes
+      }`;
+     const downloadLink = document.createElement("a");
+     downloadLink.href = linkSource;
+     downloadLink.download = `${fileName.name}`;
+     downloadLink.click();
+    }
   return (
     <CForm inline style={{ flexFlow: "row" }}>
       <CFormGroup className="w-50">
@@ -64,8 +84,8 @@ export const UploadFile = () => {
           </CTooltip>
         </CButton>
         {statusFile === status.UPLOADED ? (
-          <a href={link} target="_blank" rel="noreferrer">
-            <CButton>
+          // <a href={link} target="_blank" rel="noreferrer">
+            <CButton onClick={downloadBase64File}>
               <CTooltip content={"دانلود"} placement="left">
                 <CIcon
                   name="cil-laptop"
@@ -73,7 +93,7 @@ export const UploadFile = () => {
                 />
               </CTooltip>
             </CButton>
-          </a>
+          // </a>
         ) : null}
       </CFormGroup>
     </CForm>
