@@ -84,10 +84,18 @@ export const postFormData = async (url, form) => {
   }
 };
 
-const GetFileDownloadLink = (hash) => {
+const GetFileDownload = (hash) => {
   return fetch(BaseUrl + `file/Download?hashId=${hash}`, {
     method: "GET",
   }).then((res) => res.json());
 };
+const GetFileDownloadLink = (hash) => BaseUrl + "File/Download/" + hash;
 
-export { PostData, GetData, UploadFileRequest, GetFileDownloadLink };
+
+export {
+  PostData,
+  GetData,
+  UploadFileRequest,
+  GetFileDownloadLink,
+  GetFileDownload,
+};

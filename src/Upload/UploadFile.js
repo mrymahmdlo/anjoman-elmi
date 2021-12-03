@@ -4,7 +4,11 @@ import {
   UploadFileStatusMark,
   status,
 } from "src/reusable/UploadFileStatusMark";
-import { UploadFileRequest, GetFileDownloadLink } from "src/Service/APIEngine";
+import {
+  UploadFileRequest,
+  GetFileDownload,
+  GetFileDownloadLink,
+} from "src/Service/APIEngine";
 
 const {
   CForm,
@@ -25,19 +29,23 @@ export const UploadFile = () => {
      setFileName(e.target.files[0]);
     UploadFileRequest(e.target.files[0])
       .then((res) => { 
-        GetFileDownloadLink(res.data).then((data) => {
-           setData(data);
-              let linkSource = `data:${
-                e.target.files[0].name.split(".")[1]
-              };base64,${data?.data.fileBytes}`;
-              const downloadLink = document.createElement("a");
-              downloadLink.href = linkSource;
-              downloadLink.download = `${ e.target.files[0].name}`;
-              // downloadLink.click();
-          // let linkSource = `data:application/${
+        GetFileDownload(res.data).then((data) => {
+  
+          setData(data);
+          // debugger;
+          // let linkSource = `data:${
+          //   e.target.files[0].name.split(".")[1]
+          // };base64,${data?.data.fileBytes}`;
+          // const downloadLink = document.createElement("a");
+          // downloadLink.href = linkSource;
+          // downloadLink.download = `${e.target.files[0].name}`;
+
+          // downloadLink.click();
+          // let linkSource = `data:${
           //   e.target.files[0].name.split(".")[1]
           // };base64,${data.data.fileBytes}`;
-          setLink(downloadLink);
+          
+          setLink(GetFileDownloadLink(res.data));
         });
 
         setStatusFile(status.UPLOADED);
@@ -52,6 +60,7 @@ export const UploadFile = () => {
     }, 5000);
   };
      const downloadBase64File=()=> {
+         
       let linkSource = `data:${fileName.name.split(".")[1]};base64,${
         data?.data.fileBytes
       }`;
