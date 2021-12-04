@@ -29,24 +29,8 @@ export const UploadFile = () => {
      setFileName(e.target.files[0]);
     UploadFileRequest(e.target.files[0])
       .then((res) => { 
-        GetFileDownload(res.data).then((data) => {
+         setLink(GetFileDownloadLink(res.data));
   
-          setData(data);
-          // debugger;
-          // let linkSource = `data:${
-          //   e.target.files[0].name.split(".")[1]
-          // };base64,${data?.data.fileBytes}`;
-          // const downloadLink = document.createElement("a");
-          // downloadLink.href = linkSource;
-          // downloadLink.download = `${e.target.files[0].name}`;
-
-          // downloadLink.click();
-          // let linkSource = `data:${
-          //   e.target.files[0].name.split(".")[1]
-          // };base64,${data.data.fileBytes}`;
-          
-          setLink(GetFileDownloadLink(res.data));
-        });
 
         setStatusFile(status.UPLOADED);
       })
@@ -59,16 +43,7 @@ export const UploadFile = () => {
       setCopyText("کپی");
     }, 5000);
   };
-     const downloadBase64File=()=> {
-         
-      let linkSource = `data:${fileName.name.split(".")[1]};base64,${
-        data?.data.fileBytes
-      }`;
-     const downloadLink = document.createElement("a");
-     downloadLink.href = linkSource;
-     downloadLink.download = `${fileName.name}`;
-     downloadLink.click();
-    }
+
   return (
     <CForm inline style={{ flexFlow: "row" }}>
       <CFormGroup className="w-50">
@@ -93,8 +68,8 @@ export const UploadFile = () => {
           </CTooltip>
         </CButton>
         {statusFile === status.UPLOADED ? (
-          // <a href={link} target="_blank" rel="noreferrer">
-            <CButton onClick={downloadBase64File}>
+          <a href={link} target="_blank" rel="noreferrer">
+            <CButton >
               <CTooltip content={"دانلود"} placement="left">
                 <CIcon
                   name="cil-laptop"
@@ -102,7 +77,7 @@ export const UploadFile = () => {
                 />
               </CTooltip>
             </CButton>
-          // </a>
+           </a>
         ) : null}
       </CFormGroup>
     </CForm>
