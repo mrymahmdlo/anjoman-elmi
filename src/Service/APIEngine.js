@@ -40,9 +40,11 @@ const PostData = async (url, body) => {
 };
 
 const UploadFileRequest = async (file) => {
+
   const form = new FormData();
   form.append("file", file);
   form.append("secret", secret);
+  form.fileName("fileName", file.name);
   const init = {
     headers: {
       Authorization: "Bearer " + GetToken(),
@@ -89,7 +91,7 @@ const GetFileDownload = (hash) => {
     method: "GET",
   }).then((res) => res.json());
 };
-const GetFileDownloadLink = (hash) => BaseUrl + "File/Download/" + hash;
+const GetFileDownloadLink = (hash) =>BaseUrl + "File/Download/" + hash ;
 
 
 export {
