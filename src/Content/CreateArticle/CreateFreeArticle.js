@@ -8,6 +8,7 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
+import {CheckForm} from "./Components/CheckForm";
 import { PostData } from "src/Service/APIEngine";
 import { Toast } from "src/Utility/Toast";
 import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
@@ -19,6 +20,7 @@ const CreateFreeContent = () => {
   const [form, setForm] = useState({
     writerProviderId: null,
     createdDateTime: GetDotNetGeorgianFromDateJS(now),
+    timeToStudy:0,
   });
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
@@ -27,7 +29,8 @@ const CreateFreeContent = () => {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    PostData("FreeContent/CreateFreeContent", form)
+    if(CheckForm(form)){
+      PostData("FreeContent/CreateFreeContent", form)
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
         history.push("/Content/FreeContent/ManageArticles");
@@ -39,6 +42,12 @@ const CreateFreeContent = () => {
         setShowError(true);
         setBtnActive(false);
       });
+    }else{
+      setErrorContent("لطفا فیلد های ضروری را پر کنید");
+      setShowError(true);
+      setTimeout(function(){  setShowError(false);}, 1000);
+      setBtnActive(false);
+    }
   };
 
   return (

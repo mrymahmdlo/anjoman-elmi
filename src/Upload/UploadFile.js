@@ -21,7 +21,7 @@ const {
 export const UploadFile = () => {
   const [link, setLink] = useState("");
   const [fileName, setFileName] = useState();
-   const [data, setData] = useState();
+  const [data, setData] = useState();
   const [statusFile, setStatusFile] = useState(2);
   const [copyText, setCopyText] = useState("کپی");
   const UploadFile = async (e) => {
@@ -46,7 +46,7 @@ export const UploadFile = () => {
 
   return (
     <CForm inline style={{ flexFlow: "row" }}>
-      <CFormGroup className="w-50">
+      <CFormGroup className="w-50 m-2">
         {UploadFileStatusMark(statusFile)}
         <CInput
           type="file"
@@ -59,25 +59,10 @@ export const UploadFile = () => {
       </CFormGroup>
       <CFormGroup className="text-left w-50">
         <CInput className="w-75" type="text" value={link} disabled />
-        <CButton onClick={copyInput}>
-          <CTooltip content={copyText} placement="left">
-            <CIcon
-              name="cil-cloud-download"
-              style={{ width: "1.7rem", height: "2rem" }}
-            />
-          </CTooltip>
-        </CButton>
         {statusFile === status.UPLOADED ? (
-          <a href={link} target="_blank" rel="noreferrer">
-            <CButton >
-              <CTooltip content={"دانلود"} placement="left">
-                <CIcon
-                  name="cil-laptop"
-                  style={{ width: "1.7rem", height: "2rem" }}
-                />
-              </CTooltip>
-            </CButton>
-           </a>
+          <CButton className="m-1" onClick={copyInput} color="primary">
+            کپی کردن لینک
+        </CButton>
         ) : null}
       </CFormGroup>
     </CForm>

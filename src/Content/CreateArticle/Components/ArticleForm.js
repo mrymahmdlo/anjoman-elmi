@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CCardBody, CCol, CForm, CRow } from "@coreui/react";
+import { CCardBody, CCol, CForm, CRow ,CLabel} from "@coreui/react";
 import { GetData } from "src/Service/APIEngine";
 import { FormItems } from "./FormItems";
 import { SwitchField, TextField } from "src/Utility/InputGroup";
@@ -46,6 +46,12 @@ const ArticleForm = ({ form, setForm, preData }) => {
   return (
     <CCardBody>
       <CForm action="" method="post">
+          <CLabel className="m-2">
+            در این قسمت میتوانید محتوای متنی خود را آپلود کنید. ابتدا عنوان متن و دقیقه تخمینی مطالعه آن را وارد کنید.سپس اگر محتوا از
+            سمت مدیریت نوشته شده است، از قسمت ارائه دهنده "مدیریت" را انتخاب کنید در غیر این صورت نام پشتیبان های موجود در سایت در لیست داده شده است، اسم
+            پشتیبان مد نظر را پیدا و انتخاب کنید.  
+            اگر برای گروه آزمایشی و درس خاصی است، میتوانید از قسمت " مقطع تحصیلی " و "درس" فیلتر مد نظر خود را انتخاب کنید.
+          </CLabel>
         <CRow>{items.slice(0, 2)}</CRow>
         <CRow>
           {items.slice(2, 4)}{" "}
@@ -56,6 +62,9 @@ const ArticleForm = ({ form, setForm, preData }) => {
             />
           </CCol>
         </CRow>
+        <CLabel className="m-2">
+             سپس عکس محتوا را در قسمت " آپلود عکس محتوا" آپلود کنید .            درصورتی که محتوای ارائه شده ،محتوای اطلاع رسانی و مهمی میباشد. از کلید محتوای مهم، آن را فعال کنید(اگر دکمه آبی شد،فعال شده است)
+          </CLabel>
         <CRow>
           {SwitchField(FormItems(form, setForm, groupIds, courseIds)[4])}
           <CoreFileInput
@@ -65,6 +74,9 @@ const ArticleForm = ({ form, setForm, preData }) => {
             type="image/*"
           />
         </CRow>
+        <CLabel className="m-2">
+            در انتها متن محتوای خود را وارد کنید.
+          </CLabel>
         <CKEditorField
           name="متن محتوا"
           text="لطفا متن محتوای خود را وارد کنید"

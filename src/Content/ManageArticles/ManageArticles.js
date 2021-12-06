@@ -13,7 +13,6 @@ const ManaeArticles = () => {
   const [modalContent, setModalContent] = useState("");
   const updateData = () => {
     PostData("FreeContent/GetFreeContentByFilter", {}).then((res) => {
-      console.log(res);
       let data = ChangeValues(res.data);
       setTableData(data);
     });
