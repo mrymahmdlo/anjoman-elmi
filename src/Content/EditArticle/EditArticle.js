@@ -13,6 +13,7 @@ import { Toast } from "src/Utility/Toast";
 import ArticleForm from "src/Content/CreateArticle/Components/ArticleForm";
 import { useHistory, useParams } from "react-router";
 import { ChangeValues } from "./Components/ChangeValues";
+import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
 
 const EditArticle = () => {
   const { id } = useParams();
@@ -37,12 +38,22 @@ const EditArticle = () => {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    let data = form;
-    if (form.Image !== "") data["image"] = form.Image;
-    delete data["Image"];
+    const now = new Date();
+    if (!form.writerProviderId) delete form["writerProviderId"];
+    if (form.Image !== "") {
+      form["image"] = form["Image"];
+    }
+    if (!form.image) {
+      delete form["image"];
+    }
+    form["group"] = form["groupId"];
+    form["course"] = form["courseId"];
+    delete form["groupId"];
+    delete form["courseId"];
+    delete form["Image"];
     postFormData("FreeContent/EditFreeContent", {
-      ...data,
-      writerProviderId: data.writerProviderId ? data.writerProviderId : null,
+      ...form,
+      createdDateTime: GetDotNetGeorgianFromDateJS(now),
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
