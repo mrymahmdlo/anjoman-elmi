@@ -18,7 +18,7 @@ const ArticleForm = ({ form, setForm, preData }) => {
   }, [form]);
 
   useEffect(() => {
-    setForm({ ...form, writerProviderId: providerId });
+    if(providerId!==null)setForm({ ...form, writerProviderId: providerId });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [providerId]);
 

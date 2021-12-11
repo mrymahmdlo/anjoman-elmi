@@ -18,7 +18,7 @@ import { useHistory } from "react-router";
 const CreateFreeContent = () => {
   const now = new Date();
   const [form, setForm] = useState({
-    writerProviderId: null,
+    // writerProviderId: null,
     createdDateTime: GetDotNetGeorgianFromDateJS(now),
     timeToStudy:0,
   });
