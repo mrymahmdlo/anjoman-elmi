@@ -1,6 +1,5 @@
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
-import { useHistory } from "react-router-dom";
 import EditWebinar from "src/Webinar/EditWebinar/EditWebinar";
 import moment from "jalali-moment";
 const DateTimeFormat = "YYYY/MM/DD HH:mm";

@@ -33,6 +33,7 @@ const ExamQuestionBank = React.lazy(() =>
 );
 
 const Upload = React.lazy(() => import("src/Upload/Upload"));
+const UploadProvider = React.lazy(() => import("src/Upload/UploadProvider"));
 //examples
 const Toaster = React.lazy(() =>
   import("./views/notifications/toaster/Toaster")
@@ -97,6 +98,7 @@ const routes = [
   { path: "/", exact: true, name: "Home", component: Dashboard },
   { path: "/dashboard", name: "Dashboard", component: Dashboard },
   { path: "/upload", name: "Upload", component: Upload },
+  { path: "/Provider", name: "UploadProvider", component: UploadProvider },
   {
     path: "/Consultation/MinuteCalls",
     name: "MinuteCalls",
