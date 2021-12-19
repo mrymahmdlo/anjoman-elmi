@@ -39,18 +39,22 @@ const EditArticle = () => {
     setShowError(false);
     setBtnActive(true);
     const now = new Date();
+    
     if (!form.writerProviderId) delete form["writerProviderId"];
-    if (form.Image !== "") {
-      form["image"] = form["Image"];
-    }
     if (!form.image) {
       delete form["image"];
     }
+    if (form.Image !== "") {
+      form["image"] = form["Image"];
+    }
+
     form["group"] = form["groupId"];
     form["course"] = form["courseId"];
     delete form["groupId"];
     delete form["courseId"];
     delete form["Image"];
+    delete form["imageLink"];
+
     postFormData("FreeContent/EditFreeContent", {
       ...form,
       createdDateTime: GetDotNetGeorgianFromDateJS(now),
@@ -76,7 +80,7 @@ const EditArticle = () => {
             ویرایش محتوای
             <small> متنی(مقاله)</small>
           </CCardHeader>
-          <ArticleForm form={form} setForm={setForm} preData={form.image} />
+          <ArticleForm form={form} setForm={setForm} preData={form.imageLink} />
           <CCardFooter>
             {!btnActice ? (
               <CButton
