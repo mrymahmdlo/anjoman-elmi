@@ -10,20 +10,12 @@ import {
 import CIcon from "@coreui/icons-react";
 import {  PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
-import WebinarForm from "src/Webinar/CreateWebinar/Components/WebinarForm";
+import TuturingForm from "src/Tutoring/CreateTutoring/Components/TuturingForm";
 import { ChangeValues } from "./Components/ChangeValues";
 
 
-const EditWebinar = ({ obj, setModal }) => {
-  const [form, setForm] = useState({
-    schedules: [
-      {
-        startDateTime: "",
-        endDateTime: "",
-        subject: "",
-      },
-    ],
-  });
+const EditTutoring = ({ obj, setModal }) => {
+  const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
@@ -38,17 +30,12 @@ const EditWebinar = ({ obj, setModal }) => {
     setShowError(false);
     setBtnActive(true);
     let data = form;
-    if (form.poster !== "") data["poster"] = form.poster;
-    delete data["Image"];
-    PostDataBroad(`Webinar/Update?webinarId=${obj.webinarId}`, {
-      ...form,
-      title: form.title,
-      duration: +form.duration,
-      capacity: +form.capacity,
+    PostDataBroad(`Tutorial/Update?tutorialId=${obj.tutorialId}`, {
+      // ...form,
+      // title: form.title,
       groupId: +form.groupId,
       courseId: +form.courseId,
-      countOfSession: +form.countOfSession,
-      priceAfterHolding: +form.priceAfterHolding,
+      totalMinute: +form.totalMinute,
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
@@ -67,8 +54,8 @@ const EditWebinar = ({ obj, setModal }) => {
     <div className="App">
       <CContainer fluid>
         <CCard>
-          <CCardHeader>ویرایش همایش</CCardHeader>
-          <WebinarForm form={form} setForm={setForm} preData={form.poster} />
+          <CCardHeader>ویرایش تدریس خصوصی</CCardHeader>
+          <TuturingForm form={form} setForm={setForm} preData={form.poster} />
           <CCardFooter>
             {!btnActice ? (
               <CButton
@@ -77,7 +64,7 @@ const EditWebinar = ({ obj, setModal }) => {
                 color="primary"
                 onClick={submitContent}
               >
-                <CIcon name="cil-scrubber" /> ثبت همایش
+                <CIcon name="cil-scrubber" /> ثبت تدریس خصوصی
               </CButton>
             ) : (
               <CSpinner
@@ -94,4 +81,4 @@ const EditWebinar = ({ obj, setModal }) => {
   );
 };
 
-export default EditWebinar;
+export default EditTutoring;

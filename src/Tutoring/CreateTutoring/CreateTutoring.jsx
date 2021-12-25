@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   CButton,
   CCard,
@@ -8,56 +8,32 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import {  PostDataBroad } from "src/Service/APIBroadCast";
+import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
-import WebinarForm from "src/Webinar/CreateWebinar/Components/WebinarForm";
-import { ChangeValues } from "./Components/ChangeValues";
+import TuturingForm from "./Components/TuturingForm";
 
-
-const EditWebinar = ({ obj, setModal }) => {
-  const [form, setForm] = useState({
-    schedules: [
-      {
-        startDateTime: "",
-        endDateTime: "",
-        subject: "",
-      },
-    ],
-  });
+const CreateWebinar = () => {
+  const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
 
-  useEffect(() => {
-    setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
-    setShowError(true);
-    setForm(ChangeValues(obj));
-  }, [obj]);
-
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    let data = form;
-    if (form.poster !== "") data["poster"] = form.poster;
-    delete data["Image"];
-    PostDataBroad(`Webinar/Update?webinarId=${obj.webinarId}`, {
-      ...form,
-      title: form.title,
-      duration: +form.duration,
-      capacity: +form.capacity,
+    PostDataBroad("Tutorial/Create", {
+    //   ...form,
       groupId: +form.groupId,
       courseId: +form.courseId,
-      countOfSession: +form.countOfSession,
-      priceAfterHolding: +form.priceAfterHolding,
+      totalMinute: +form.totalMinute,
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
         setShowError(true);
         setBtnActive(false);
-        setModal(false);
       })
       .catch(() => {
-        setErrorContent("خطا در ثبت ویرایش");
+        setErrorContent("لطفا فیلد های ضروری را پر کنید");
         setShowError(true);
         setBtnActive(false);
       });
@@ -67,8 +43,8 @@ const EditWebinar = ({ obj, setModal }) => {
     <div className="App">
       <CContainer fluid>
         <CCard>
-          <CCardHeader>ویرایش همایش</CCardHeader>
-          <WebinarForm form={form} setForm={setForm} preData={form.poster} />
+          <CCardHeader>ساخت تدریس خصوصی</CCardHeader>
+          <TuturingForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActice ? (
               <CButton
@@ -77,12 +53,12 @@ const EditWebinar = ({ obj, setModal }) => {
                 color="primary"
                 onClick={submitContent}
               >
-                <CIcon name="cil-scrubber" /> ثبت همایش
+                <CIcon name="cil-scrubber" /> ثبت تدریس خصوصی
               </CButton>
             ) : (
               <CSpinner
                 style={{ width: "2rem", height: "2rem" }}
-                color=""
+                color="info"
                 variant="grow"
               />
             )}
@@ -94,4 +70,4 @@ const EditWebinar = ({ obj, setModal }) => {
   );
 };
 
-export default EditWebinar;
+export default CreateWebinar;

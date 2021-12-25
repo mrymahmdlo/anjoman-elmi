@@ -8,7 +8,7 @@ import { WebinartModal } from "./Components/WebinartModal";
 import { WebinartScopedSlots } from "./Components/WebinartScopedSlots";
 import { TableHeader } from "./Components/TableHeader";
 import { ChangeValues } from "./Utility/ChangeValues";
-import { GetData } from "src/Service/APIWebinar";
+import { GetData } from "src/Service/APIBroadCast";
 const ManageWebinars = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);

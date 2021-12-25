@@ -1,0 +1,125 @@
+import {
+  FormTextInput,
+  FormNumberInput,
+} from "src/reusable/FormInput";
+import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian";
+import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
+const { CSelect } = require("@coreui/react");
+
+
+export const FormItems = (form, setForm, groupIds, courseIds) => {
+  return [
+    {
+      name: "عنوان  ",
+      text: "عنوان   را وارد کنید",
+      input: FormTextInput(form, setForm, "title", "عنوان"),
+      size: 6,
+    },
+    // {
+    //   name: "قیمت همایش",
+    //   text: "قیمت این همایش کامل را به ریال وارد کنید، اگر 0 وارد شود رایگان محصوب  میشود",
+    //   input: FormNumberInput(
+    //     form,
+    //     setForm,
+    //     "priceAfterHolding",
+    //     "قیمت به ریال",
+    //     0,
+    //     null,
+    //     () => form.priceAfterHolding >= "0"
+    //   ),
+    //   size: 4,
+    // },
+    // {
+    //   name: "زمان  ",
+    //   text: "مدت زمان   را تعیین کنید",
+    //   input: FormSwitchInput(
+    //     form,
+    //     setForm,
+    //     "totalMinute",
+    //     "زمان ",
+    //     0,
+    //     null,
+    //     () => form.totalMinute >= "0"
+    //   ),
+    //   size: 6,
+    // },
+    // {
+    //   name: "تعداد جلسات",
+    //   text: "تعداد جلسات این همایش را  تعیین کنید",
+    //   input: FormNumberInput(
+    //     form,
+    //     setForm,
+    //     "countOfSession",
+    //     "تعداد جلسات",
+    //     0,
+    //     null,
+    //     () => form.countOfSession >= "0"
+    //   ),
+    //   size: 6,
+    // },
+    // {
+    //   name: "ظرفیت",
+    //   text: "تعداد ظرفیت این همایش را  تعیین کنید",
+    //   input: FormNumberInput(
+    //     form,
+    //     setForm,
+    //     "capacity",
+    //     "تعداد ظرفیت",
+    //     0,
+    //     null,
+    //     () => form.capacity >= "0"
+    //   ),
+    //   size: 6,
+    // },
+    {
+      name: "مقطع تحصیلی",
+      text: "مقطع تحصیلی مخاطب  را وارد کنید",
+      input: (
+        <CSelect
+          custom
+          name="groupId"
+          style={{ width: "100%" }}
+          onChange={(e) => setForm({ ...form, groupId: +e.target.value })}
+        >
+          <option value={form.groupId}>همه</option>
+          {groupIds.map((item, key) => (
+            <option
+              key={key}
+              value={item.id}
+              selected={form.groupId === item.id}
+            >
+              {item.name}
+            </option>
+          ))}
+        </CSelect>
+      ),
+      size: 6,
+    },
+    {
+      name: "درس",
+      text: "درس مربوطه  را انتخاب کنید",
+      input: (
+        <CSelect
+          custom
+          name="courseId"
+          style={{ width: "100%" }}
+          onChange={(e) => setForm({ ...form, courseId: +e.target.value })}
+        >
+          <option value={form.courseId}>همه</option>
+          {courseIds.length > 0
+            ? courseIds.map((item, key) => (
+                <option
+                  key={key}
+                  value={item.id}
+                  selected={form.courseId === item.id}
+                >
+                  {item.name}
+                </option>
+              ))
+            : null}
+        </CSelect>
+      ),
+      size: 6,
+    },
+  ];
+};

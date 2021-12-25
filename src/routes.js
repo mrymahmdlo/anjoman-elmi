@@ -31,7 +31,18 @@ const ManageExams = React.lazy(() => import("./Exam/ManageExams/ManageExams"));
 const ExamQuestionBank = React.lazy(() =>
   import("./Exam/ExamQuestionBank/ExamQuestionBank")
 );
-
+const ManageTutoring = React.lazy(() => import("./Tutoring/ManageTutoring/ManageTutoring"));
+const EditeTutoring = React.lazy(() =>
+  import("./Tutoring/EditTutoring/EditTutoring")
+);
+const CreateTutoring=React.lazy(() => import("./Tutoring/CreateTutoring/CreateTutoring"));
+const ProviderCourse = React.lazy(() =>
+  import("./Tutoring/ProviderCourse/ProviderCourse")
+);
+const CreateProviderCourse = React.lazy(() =>
+  import("./Tutoring/ProviderCourse/CreateProviderCourse/CreateProviderCourse")
+);
+ 
 const Upload = React.lazy(() => import("src/Upload/Upload"));
 const UploadProvider = React.lazy(() => import("src/Upload/UploadProvider"));
 //examples
@@ -98,7 +109,11 @@ const routes = [
   { path: "/", exact: true, name: "Home", component: Dashboard },
   { path: "/dashboard", name: "Dashboard", component: Dashboard },
   { path: "/upload", name: "Upload", component: Upload },
-  { path: "/Provider", name: "UploadProvider", component: UploadProvider },
+  {
+    path: "/uploadProvider",
+    name: "UploadProvider",
+    component: UploadProvider,
+  },
   {
     path: "/Consultation/MinuteCalls",
     name: "MinuteCalls",
@@ -133,6 +148,31 @@ const routes = [
     path: "/Webinar/EditWebinar/:id",
     name: "EditWebinar",
     component: EditWebinar,
+  },
+  {
+    path: "/Tutoring/ManageTutoring",
+    name: "ManageTutoring",
+    component: ManageTutoring,
+  },
+  {
+    path: "/Tutoring/EditeTutoring/:id",
+    name: "EditeTutoring",
+    component: EditeTutoring,
+  },
+  {
+    path: "/Tutoring/CreateTutoring",
+    name: "CreateTutoring",
+    component: CreateTutoring,
+  },
+  {
+    path: "/ProviderCourse/ProviderCourse",
+    name: "ProviderCourse",
+    component: ProviderCourse,
+  },
+  {
+    path: "/ProviderCourse/CreateProviderCourse",
+    name: "CreateProviderCourse",
+    component: CreateProviderCourse,
   },
   {
     path: [

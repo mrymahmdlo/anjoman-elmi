@@ -8,45 +8,32 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { PostDataBroad } from "src/Service/APIBroadCast";
+// import { CheckForm } from "./Components/CheckForm";
+import { PostData } from "src/Service/APIEngine";
 import { Toast } from "src/Utility/Toast";
-import WebinarForm from "./Components/WebinarForm";
+import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
+import ProviderCourseForm from "./ProviderCourseForm";
+import { useHistory } from "react-router";
 
-const CreateWebinar = () => {
-
-  const [form, setForm] = useState({
-    schedules: [
-      {
-        startDateTime: "",
-        endDateTime: "",
-        subject: "",
-      },
-    ],
-  });
+const CreateProviderCourse = () => {
+  const now = new Date();
+  const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
-
+  const history = useHistory();
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    PostDataBroad("Webinar/Create", {
-      ...form,
-      title: form.title,
-      duration: +form.duration,
-      capacity: +form.capacity,
-      groupId: +form.groupId,
-      courseId: +form.courseId,
-      countOfSession: +form.countOfSession,
-      priceAfterHolding: +form.priceAfterHolding,
-    })
+    PostData("ProviderCourse/CreateProviderCourse", form)
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
+        history.push("/ProviderCourse/ProviderCourse");
         setShowError(true);
         setBtnActive(false);
       })
       .catch(() => {
-        setErrorContent("لطفا فیلد های ضروری را پر کنید");
+        setErrorContent("خطا در ثبت محتوا");
         setShowError(true);
         setBtnActive(false);
       });
@@ -56,8 +43,8 @@ const CreateWebinar = () => {
     <div className="App">
       <CContainer fluid>
         <CCard>
-          <CCardHeader>ساخت همایش</CCardHeader>
-          <WebinarForm form={form} setForm={setForm} />
+          <CCardHeader>ساخت درس مشاور</CCardHeader>
+          <ProviderCourseForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActice ? (
               <CButton
@@ -66,7 +53,7 @@ const CreateWebinar = () => {
                 color="primary"
                 onClick={submitContent}
               >
-                <CIcon name="cil-scrubber" /> ثبت همایش
+                <CIcon name="cil-scrubber" /> ثبت
               </CButton>
             ) : (
               <CSpinner
@@ -83,4 +70,4 @@ const CreateWebinar = () => {
   );
 };
 
-export default CreateWebinar;
+export default CreateProviderCourse;

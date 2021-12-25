@@ -4,6 +4,25 @@ import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
 const Dashboard = () => {
   return (
     <>
+    <CCard>
+        <CCardBody>
+          <CRow>
+            <CCol >
+              <h4 id="traffic" className="card-title mb-0">
+                آپدیت
+              </h4>
+              <p className="small text-muted" >
+                پنل بارگزاری فایل مشاوره اضافه شد.
+              </p>
+              <div className="">
+               برای بارگزاری فایل مشاوره ابتدا از منوی سمت راست قسمت "بارگزاری فایل ها " را انتخاب کنید.در قسمت "بارگزاری فایل  مشاوره" میتوانید بارگزاری را انجام دهید . 
+  
+              </div>
+            </CCol>
+          </CRow>
+        </CCardBody>
+      </CCard>
+      <CCard></CCard>
      <CCard>
         <CCardBody>
           <CRow>

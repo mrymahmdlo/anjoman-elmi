@@ -2,15 +2,14 @@ import { TokenManager } from "src/Identity/Service/TokenManager";
 const { GetToken } = TokenManager();
 const secret = "AMP_!YUHDSJHYG@&12312!W@sAs";
 
-export const BaseUrl = process.env.REACT_APP_Webinar_BASE;
-const GetData = (url) => {
-    return fetch(BaseUrl + url, {
-      method: "GET",
-    }).then((res) => res.json());
-
+export const BaseUrl = process.env.REACT_APP_Provider_BASE;
+const GetDataProvider = (url) => {
+  return fetch(BaseUrl + url, {
+    method: "GET",
+  }).then((res) => res.json());
 };
 
-const PostData = async (url, body) => {
+const PostDataProvider = async (url, body) => {
   const data = await fetch(BaseUrl + url, {
     method: "POST",
     headers: {
@@ -83,4 +82,4 @@ export const postFormData = async (url, form) => {
 
 const GetFileDownloadLink = (hash) => BaseUrl + "File/Download/" + hash;
 
-export { PostData, GetData, UploadFileRequest, GetFileDownloadLink };
+export { PostDataProvider, GetDataProvider, UploadFileRequest, GetFileDownloadLink };
