@@ -38,10 +38,6 @@ export const UploadFile = () => {
   };
   const copyInput = () => {
     navigator.clipboard.writeText(link);
-    setCopyText("ذخیره شد!");
-    setTimeout(() => {
-      setCopyText("کپی");
-    }, 5000);
   };
 
   return (
@@ -58,9 +54,9 @@ export const UploadFile = () => {
         />
       </CFormGroup>
       <CFormGroup className="text-left w-50">
-        <CInput className="w-75" type="text" value={link} disabled />
+        <CInput className="w-75" type="text" id="textLinkDownload" value={link} disabled />
         {statusFile === status.UPLOADED ? (
-          <CButton className="m-1" onClick={copyInput} color="primary">
+          <CButton className="m-1" onClick={copyInput} color="primary" data-clipboard-target="#textLinkDownload">
             کپی کردن لینک
         </CButton>
         ) : null}
