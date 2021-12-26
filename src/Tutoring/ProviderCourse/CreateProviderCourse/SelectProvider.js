@@ -16,7 +16,7 @@ export const SelectProvider = ({ providerId, setProviderId }) => {
       <CSelect
         value={providerId}
         onChange={(e) =>
-         setProviderId(e.target.value)
+         setProviderId(Number(e.target.value))
         }
       >
 

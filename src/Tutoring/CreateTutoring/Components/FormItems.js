@@ -15,20 +15,21 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
       input: FormTextInput(form, setForm, "title", "عنوان"),
       size: 6,
     },
-    // {
-    //   name: "قیمت همایش",
-    //   text: "قیمت این همایش کامل را به ریال وارد کنید، اگر 0 وارد شود رایگان محصوب  میشود",
-    //   input: FormNumberInput(
-    //     form,
-    //     setForm,
-    //     "priceAfterHolding",
-    //     "قیمت به ریال",
-    //     0,
-    //     null,
-    //     () => form.priceAfterHolding >= "0"
-    //   ),
-    //   size: 4,
-    // },
+    {
+      name: "قیمت آزمون",
+      text: "قیمت  را به ریال وارد کنید، اگر 0 وارد شود رایگان حساب میشود",
+      input: FormNumberInput(
+        form,
+        setForm,
+        "price",
+        "قیمت به ریال",
+        0,
+        null,
+        () => form.price >= "0"
+      ),
+      size: 4,
+    },
+ 
     // {
     //   name: "زمان  ",
     //   text: "مدت زمان   را تعیین کنید",

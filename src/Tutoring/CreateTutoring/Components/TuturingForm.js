@@ -15,7 +15,7 @@ import {TextField } from "src/Utility/InputGroup";
 import { CoreFileInput } from "src/Utility/CoreFileInput";
 import { CKEditorField } from "src/reusable/CKEditorInput";
 import { SelectProvider } from "../../../Content/CreateArticle/Components/SelectProvider";
-const WebinarForm = ({ form, setForm, preData }) => {
+const TuturingForm = ({ form, setForm, preData }) => {
   const [imageHash, setImageHash] = useState("");
   const [groupIds, setGroupIds] = useState([]);
   const [courseIds, setCourseIds] = useState([]);
@@ -77,9 +77,59 @@ const WebinarForm = ({ form, setForm, preData }) => {
                 </option>
               ))}
             </CSelect>
-            <CFormText className="help-block">
-              زمان  را انتخاب کنید
-            </CFormText>
+            <CFormText className="help-block">زمان را انتخاب کنید</CFormText>
+          </CFormGroup>
+        </CCol>
+        <CCol sm="3">
+          <CFormGroup>
+            <CLabel htmlFor="nf-title">زمان جلسه</CLabel>
+            <CSelect
+              onChange={(e) => {
+                console.log("1", e.target.value);
+                setForm({ ...form, minProviderRank: e.target.value });
+              }}
+            >
+              {[
+                { id: "30" },
+                { id: "60" },
+                { id: "90" },
+              ].map((item, index) => (
+                <option
+                  key={index}
+                  value={item.id}
+                  selected={`${form.minProviderRank}` === item.id}
+                >
+                  {item.id}
+                </option>
+              ))}
+            </CSelect>
+            <CFormText className="help-block">زمان را انتخاب کنید</CFormText>
+          </CFormGroup>
+        </CCol>
+        <CCol sm="3">
+          <CFormGroup>
+            <CLabel htmlFor="nf-title">زمان جلسه</CLabel>
+            <CSelect
+              onChange={(e) => {
+                console.log("1", e.target.value);
+                setForm({ ...form, maxProviderRank: e.target.value });
+              }}
+            >
+              {[
+                { id: "30"},
+                { id: "60" },
+                { id: "90" },
+              ].map((item, index) => (
+                <option
+                  key={index}
+                  value={item.id}
+                  selected={`${form.maxProviderRank}` === item.id}
+                >
+                  {item.id}
+                </option>
+              ))}
+            </CSelect>
+            <CFormText className="help-block">زمان را انتخاب کنید</CFormText>
           </CFormGroup>
         </CCol>
         {/* <CRow>{items.slice(5, 7)}</CRow>
@@ -98,17 +148,17 @@ const WebinarForm = ({ form, setForm, preData }) => {
             setHashId={setImageHash}
             type="image/*"
           />
-        </CRow>
+        </CRow>*/}
         <CKEditorField
           name="متن محتوا"
           text="لطفا متن محتوای خود را وارد کنید"
           fieldName="description"
           form={form}
           setForm={setForm}
-        /> */}
+        />
       </CForm>
     </CCardBody>
   );
 };
 
-export default WebinarForm;
+export default TuturingForm;

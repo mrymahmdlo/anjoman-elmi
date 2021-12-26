@@ -22,10 +22,15 @@ const CreateWebinar = () => {
     setShowError(false);
     setBtnActive(true);
     PostDataBroad("Tutorial/Create", {
-    //   ...form,
+      //   ...form,
       groupId: +form.groupId,
       courseId: +form.courseId,
       totalMinute: +form.totalMinute,
+      title: +form.title,
+      description: +form.description,
+      minProviderRank: +form.minProviderRank,
+      maxProviderRank: +form.maxProviderRank,
+      price: +form.price,
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
