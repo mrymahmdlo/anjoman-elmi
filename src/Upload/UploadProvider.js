@@ -15,12 +15,11 @@ const UploadProvider = () => {
       <CCardBody>
         <CCardSubtitle className="p-3">
           برای بارگزاری فایل، ابتدا فایل مد نظر خود را در قسمت "Choose File"
-          انتخاب کنید ، سپس در قسمت ارائه دهنده مشاور و در قسمت نوع، نوع فایل را
-          انتخاب کرده و در انتها دکمه ثبت را بزنید.{" "}
+          انتخاب کنید ، سپس در قسمت نوع ،نوع فایل و در قسمت ارائه دهنده  ،پشتیبان
+           را انتخاب کرده و در انتها دکمه ثبت را بزنید.{" "}
         </CCardSubtitle>
-     
-          <UploadProviderFile />
-    
+
+        <UploadProviderFile />
       </CCardBody>
     </CCard>
   );

@@ -41,8 +41,21 @@ export const UploadProviderFile = () => {
     GetDataProvider("Content/ContentTypes").then((res) => {
       setContentType(res);
       setActiveContent(false);
+      if (type === "1") {
+        setActiveProvider(true);
+        PostData("Provider/Consultation", {}).then((res) => {
+          setProviders(res.data);
+          setActiveProvider(false);
+        });
+      } else if (type === "0") {
+        setActiveProvider(true);
+        PostData("Provider/Tutoring", {}).then((res) => {
+          setProviders(res.data);
+          setActiveProvider(false);
+        });
+      }
     });
-  }, []);
+  }, [type]);
 
   const UploadFile = async (e) => {
     setStatusFile(status.LOADING);
@@ -91,37 +104,6 @@ export const UploadProviderFile = () => {
             disabled={statusFile === status.LOADING}
           />
         </CFormGroup>
-        <CFormGroup className="text-left w-40 m-2">
-          <label className="p-1 mr-1  "> ارائه دهنده : </label>
-
-          {!activeProvider ? (
-            <CSelect
-              value={providerId}
-              defaultValue={providerId}
-              onChange={(e) => {
-                setProviderId(e.target.value);
-              }}
-            >
-              <option value={-1}>پشتیبان را انتخاب کنید</option>
-              {providers.length > 0 ? (
-                providers.map((item) => (
-                  <option value={item.providerId} key={item.providerId}>
-                    {item.name + " " + item.lastName}{" "}
-                  </option>
-                ))
-              ) : (
-                <option>پشتیبانی وجود ندارد</option>
-              )}
-            </CSelect>
-          ) : (
-            <CSpinner
-              style={{ width: "4rem", height: "4rem" }}
-              color="danger"
-              variant="grow"
-            />
-          )}
-        </CFormGroup>
-
         <CFormGroup className="text-left w-30 m-2">
           <label htmlFor="nf-title" style={{ padding: 5 }}>
             {" "}
@@ -130,8 +112,8 @@ export const UploadProviderFile = () => {
 
           {!activeContent ? (
             <CSelect
-            value={type}
-            defaultValue={type}
+              value={type}
+              defaultValue={type}
               onChange={(e) => {
                 setType(e.target.value);
               }}
@@ -155,6 +137,38 @@ export const UploadProviderFile = () => {
             />
           )}
         </CFormGroup>
+        {type !== "" ? (
+          <CFormGroup className="text-left w-40 m-2">
+            <label className="p-1 mr-1  "> ارائه دهنده : </label>
+
+            {!activeProvider ? (
+              <CSelect
+                value={providerId}
+                defaultValue={providerId}
+                onChange={(e) => {
+                  setProviderId(e.target.value);
+                }}
+              >
+                <option value={-1}>پشتیبان را انتخاب کنید</option>
+                {providers.length > 0 ? (
+                  providers.map((item) => (
+                    <option value={item.providerId} key={item.providerId}>
+                      {item.name + " " + item.lastName}{" "}
+                    </option>
+                  ))
+                ) : (
+                  <option>پشتیبانی وجود ندارد</option>
+                )}
+              </CSelect>
+            ) : (
+              <CSpinner
+                style={{ width: "4rem", height: "4rem" }}
+                color="danger"
+                variant="grow"
+              />
+            )}
+          </CFormGroup>
+        ) : null}
 
         <CFormGroup
           display="grid"
