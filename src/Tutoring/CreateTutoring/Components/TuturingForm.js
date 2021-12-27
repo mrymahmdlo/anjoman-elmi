@@ -11,19 +11,30 @@ import {
 } from "@coreui/react";
 import { GetData } from "src/Service/APIEngine";
 import { FormItems } from "./FormItems";
-import {TextField } from "src/Utility/InputGroup";
-import { CoreFileInput } from "src/Utility/CoreFileInput";
-import { CKEditorField } from "src/reusable/CKEditorInput";
-import { SelectProvider } from "../../../Content/CreateArticle/Components/SelectProvider";
+import { TextField } from "src/Utility/InputGroup";
+
 const TuturingForm = ({ form, setForm, preData }) => {
-  const [imageHash, setImageHash] = useState("");
   const [groupIds, setGroupIds] = useState([]);
   const [courseIds, setCourseIds] = useState([]);
   const [providerId, setProviderId] = useState();
+  const [providerRank, setProviderRank] = useState();
 
   useEffect(() => {
     if (form.providerId) setProviderId(form.providerId);
   }, [form]);
+  useEffect(() => {
+    if (providerRank) {
+      switch (providerRank) {
+        case "1 تا 50":
+          setForm({ ...form, minProviderRank: 0, maxProviderRank: 50 });
+
+        case "51 تا 500":
+          setForm({ ...form, minProviderRank: 50, maxProviderRank: 500 });
+        case "500 به بالا":
+          setForm({ ...form, minProviderRank: 500, maxProviderRank: 500000 });
+      }
+    }
+  }, [providerRank,form]);
 
   useEffect(() => {
     setForm({ ...form, providerId: providerId });
@@ -46,116 +57,65 @@ const TuturingForm = ({ form, setForm, preData }) => {
   const items = FormItems(form, setForm, groupIds, courseIds).map((item) =>
     TextField(item)
   );
-  // useEffect(() => {
-  //   if (imageHash !== form.poster) setForm({ ...form, poster: imageHash });
-  // }, [imageHash, form]);
+
   return (
     <CCardBody>
       <CForm action="" method="post">
         <CRow>{items.slice(0, 2)}</CRow>
         <CRow>{items.slice(2)}</CRow>
-        <CCol sm="3">
-          <CFormGroup>
-            <CLabel htmlFor="nf-title">زمان جلسه</CLabel>
-            <CSelect
-              onChange={(e) => {
-                console.log("1", e.target.value);
-                setForm({ ...form, quizType: e.target.value });
-              }}
-            >
-              {[
-                { id: "30", name: "30 دقیقه ای" },
-                { id: "60", name: "60 دقیقه ای" },
-                { id: "90", name: "90 دقیقه ای" },
-              ].map((item, index) => (
-                <option
-                  key={index}
-                  value={item.id}
-                  selected={`${form.quizType}` === item.id}
-                >
-                  {item.name}
-                </option>
-              ))}
-            </CSelect>
-            <CFormText className="help-block">زمان را انتخاب کنید</CFormText>
-          </CFormGroup>
-        </CCol>
-        <CCol sm="3">
-          <CFormGroup>
-            <CLabel htmlFor="nf-title">زمان جلسه</CLabel>
-            <CSelect
-              onChange={(e) => {
-                console.log("1", e.target.value);
-                setForm({ ...form, minProviderRank: e.target.value });
-              }}
-            >
-              {[
-                { id: "30" },
-                { id: "60" },
-                { id: "90" },
-              ].map((item, index) => (
-                <option
-                  key={index}
-                  value={item.id}
-                  selected={`${form.minProviderRank}` === item.id}
-                >
-                  {item.id}
-                </option>
-              ))}
-            </CSelect>
-            <CFormText className="help-block">زمان را انتخاب کنید</CFormText>
-          </CFormGroup>
-        </CCol>
-        <CCol sm="3">
-          <CFormGroup>
-            <CLabel htmlFor="nf-title">زمان جلسه</CLabel>
-            <CSelect
-              onChange={(e) => {
-                console.log("1", e.target.value);
-                setForm({ ...form, maxProviderRank: e.target.value });
-              }}
-            >
-              {[
-                { id: "30"},
-                { id: "60" },
-                { id: "90" },
-              ].map((item, index) => (
-                <option
-                  key={index}
-                  value={item.id}
-                  selected={`${form.maxProviderRank}` === item.id}
-                >
-                  {item.id}
-                </option>
-              ))}
-            </CSelect>
-            <CFormText className="help-block">زمان را انتخاب کنید</CFormText>
-          </CFormGroup>
-        </CCol>
-        {/* <CRow>{items.slice(5, 7)}</CRow>
-        <CRow>{items.slice(7, 9)}</CRow> */}
-        {/* <CRow>
-          {" "}
-          <SelectProvider
-            providerId={providerId}
-            setProviderId={setProviderId}
-          />
-        </CRow> */}
-        {/* <CRow>
-          <CoreFileInput
-            preData={preData}
-            title="آپلود عکس همایش"
-            setHashId={setImageHash}
-            type="image/*"
-          />
-        </CRow>*/}
-        <CKEditorField
+
+        <CFormGroup>
+          <CLabel htmlFor="nf-title">زمان جلسه</CLabel>
+          <CSelect
+            onChange={(e) => {
+              setForm({ ...form, totalMinute: e.target.value });
+            }}
+          >
+            {[{ id: "30" }, { id: "60" }, { id: "90" }].map((item, index) => (
+              <option
+                key={index}
+                value={item.id}
+                selected={`${form.totalMinute}` === item.id}
+              >
+                {item.id}دقیقه ای
+              </option>
+            ))}
+          </CSelect>
+          <CFormText className="help-block">زمان را انتخاب کنید</CFormText>
+        </CFormGroup>
+
+        <CFormGroup>
+          <CLabel htmlFor="nf-title">رتبه </CLabel>
+          <CSelect
+            onChange={(e) => {
+              console.log("1", e.target.value);
+              setProviderRank(e.target.value);
+            }}
+          >
+            {[
+              { id:"0",name: "1 تا 50" },
+              { id:'50',name: "51 تا 500" },
+              { id:'500',name: "500 به بالا" },
+            ].map((item, index) => (
+              <option
+                key={index}
+                value={item.name}
+                selected={`${form.minProviderRank}` == item.name}
+              >
+                {item.name}
+              </option>
+            ))}
+          </CSelect>
+          <CFormText className="help-block">رتبه را انتخاب کنید</CFormText>
+        </CFormGroup>
+
+        {/* <CKEditorField
           name="متن محتوا"
           text="لطفا متن محتوای خود را وارد کنید"
           fieldName="description"
           form={form}
           setForm={setForm}
-        />
+        /> */}
       </CForm>
     </CCardBody>
   );

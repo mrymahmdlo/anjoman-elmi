@@ -16,7 +16,7 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
       size: 6,
     },
     {
-      name: "قیمت آزمون",
+      name: "قیمت ",
       text: "قیمت  را به ریال وارد کنید، اگر 0 وارد شود رایگان حساب میشود",
       input: FormNumberInput(
         form,

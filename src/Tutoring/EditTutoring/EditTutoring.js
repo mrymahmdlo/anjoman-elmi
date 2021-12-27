@@ -21,6 +21,7 @@ const EditTutoring = ({ obj, setModal }) => {
   const [btnActice, setBtnActive] = useState(false);
 
   useEffect(() => {
+    console.log('obj',obj)
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
     setForm(ChangeValues(obj));
@@ -36,6 +37,11 @@ const EditTutoring = ({ obj, setModal }) => {
       groupId: +form.groupId,
       courseId: +form.courseId,
       totalMinute: +form.totalMinute,
+      title: form.title,
+      description: "",
+      minProviderRank: +form.minProviderRank,
+      maxProviderRank: +form.maxProviderRank,
+      price: 0,
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");

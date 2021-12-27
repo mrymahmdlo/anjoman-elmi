@@ -11,13 +11,13 @@ import CIcon from "@coreui/icons-react";
 import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import TuturingForm from "./Components/TuturingForm";
-
+import { useHistory } from "react-router";
 const CreateWebinar = () => {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
-
+  const history = useHistory();
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
@@ -26,14 +26,15 @@ const CreateWebinar = () => {
       groupId: +form.groupId,
       courseId: +form.courseId,
       totalMinute: +form.totalMinute,
-      title: +form.title,
-      description: +form.description,
+      title: form.title,
+      description: '',
       minProviderRank: +form.minProviderRank,
       maxProviderRank: +form.maxProviderRank,
       price: +form.price,
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
+                history.push("/Tutoring/ManageTutoring");
         setShowError(true);
         setBtnActive(false);
       })

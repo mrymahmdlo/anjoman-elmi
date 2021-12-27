@@ -92,37 +92,37 @@ const _nav = [
       },
     ],
   },
-  // {
-  //   _tag: "CSidebarNavTitle",
-  //   _children: ["تدریس خصوصی"],
-  // },
-  // {
-  //   _tag: "CSidebarNavDropdown",
-  //   name: "تدریس خصوصی",
-  //   icon: "cil-layers",
-  //   _children: [
-  //     {
-  //       _tag: "CSidebarNavItem",
-  //       name: "مدیریت تدریس خصوصی",
-  //       to: "/Tutoring/ManageTutoring",
-  //     },
-  //     {
-  //       _tag: "CSidebarNavItem",
-  //       name: "ایجاد تدریس خصوصی",
-  //       to: "/Tutoring/CreateTutoring",
-  //     },
-  //     {
-  //       _tag: "CSidebarNavItem",
-  //       name: "مدیریت درس مشاور",
-  //       to: "/ProviderCourse/ProviderCourse",
-  //     },
-  //     {
-  //       _tag: "CSidebarNavItem",
-  //       name: "ایجاد درس مشاور",
-  //       to: "/ProviderCourse/CreateProviderCourse",
-  //     },
-  //   ],
-  // },
+  {
+    _tag: "CSidebarNavTitle",
+    _children: ["تدریس خصوصی"],
+  },
+  {
+    _tag: "CSidebarNavDropdown",
+    name: "تدریس خصوصی",
+    icon: "cil-layers",
+    _children: [
+      {
+        _tag: "CSidebarNavItem",
+        name: "مدیریت تدریس خصوصی",
+        to: "/Tutoring/ManageTutoring",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "ایجاد تدریس خصوصی",
+        to: "/Tutoring/CreateTutoring",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "مدیریت درس مشاور",
+        to: "/ProviderCourse/ProviderCourse",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "ایجاد درس مشاور",
+        to: "/ProviderCourse/CreateProviderCourse",
+      },
+    ],
+  },
 
   {
     _tag: "CSidebarNavTitle",

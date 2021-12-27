@@ -10,6 +10,7 @@ import {
 import CIcon from "@coreui/icons-react";
 // import { CheckForm } from "./Components/CheckForm";
 import { PostData } from "src/Service/APIEngine";
+import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
 import ProviderCourseForm from "./ProviderCourseForm";
@@ -22,10 +23,13 @@ const CreateProviderCourse = () => {
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
   const history = useHistory();
+   
+   console.log(form)
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    PostData("ProviderCourse/CreateProviderCourse", form)
+   delete form["groupId"];
+    PostDataBroad("ProviderCourse/CreateProviderCourse", form)
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
         history.push("/ProviderCourse/ProviderCourse");

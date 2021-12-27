@@ -5,13 +5,13 @@ import { useHistory } from "react-router-dom";
 import { GetData } from "src/Service/APIEngine";
 import { Toast } from "src/Utility/Toast";
 import EditTutoring from "src/Tutoring/EditTutoring/EditTutoring";
-
+import { PostDataBroad } from "src/Service/APIBroadCast";
 export const ScopedSlots = (updateData, setModal, modal, setModalTutoring) => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const history = useHistory();
   const handleDelete = (Id) => {
-    GetData("ProviderCourse/Remove/" + Id)
+    PostDataBroad("ProviderCourse/Remove/" + Id)
       .then(() => {
         setErrorContent("داده با موفقیت حذف شد");
         setModal(false);
