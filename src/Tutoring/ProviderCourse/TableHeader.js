@@ -1,7 +1,7 @@
 
   export const TableHeader = [
     {
-      key: "title",
+      key: "providerName",
       label: "نام مشاور ",
     },
     {
@@ -12,7 +12,6 @@
       key: "groupName",
       label: "گروه",
     },
-
 
     {
       key: "delete",

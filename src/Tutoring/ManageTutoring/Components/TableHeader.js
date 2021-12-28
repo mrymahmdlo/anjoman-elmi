@@ -5,6 +5,15 @@
       label: "عنوان ",
     },
     {
+      key: "minProviderRank",
+      label: "پاین ترین رتبه",
+    },
+    {
+      key: "maxProviderRank",
+      label: "بالاترین رتبه",
+    },
+
+    {
       key: "courseName",
       label: "درس",
     },
