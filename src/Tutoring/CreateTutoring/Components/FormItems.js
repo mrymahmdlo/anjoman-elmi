@@ -30,48 +30,7 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
       size: 4,
     },
  
-    // {
-    //   name: "زمان  ",
-    //   text: "مدت زمان   را تعیین کنید",
-    //   input: FormSwitchInput(
-    //     form,
-    //     setForm,
-    //     "totalMinute",
-    //     "زمان ",
-    //     0,
-    //     null,
-    //     () => form.totalMinute >= "0"
-    //   ),
-    //   size: 6,
-    // },
-    // {
-    //   name: "تعداد جلسات",
-    //   text: "تعداد جلسات این همایش را  تعیین کنید",
-    //   input: FormNumberInput(
-    //     form,
-    //     setForm,
-    //     "countOfSession",
-    //     "تعداد جلسات",
-    //     0,
-    //     null,
-    //     () => form.countOfSession >= "0"
-    //   ),
-    //   size: 6,
-    // },
-    // {
-    //   name: "ظرفیت",
-    //   text: "تعداد ظرفیت این همایش را  تعیین کنید",
-    //   input: FormNumberInput(
-    //     form,
-    //     setForm,
-    //     "capacity",
-    //     "تعداد ظرفیت",
-    //     0,
-    //     null,
-    //     () => form.capacity >= "0"
-    //   ),
-    //   size: 6,
-    // },
+    
     {
       name: "مقطع تحصیلی",
       text: "مقطع تحصیلی مخاطب  را وارد کنید",

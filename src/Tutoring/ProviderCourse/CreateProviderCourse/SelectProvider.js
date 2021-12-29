@@ -6,7 +6,7 @@ export const SelectProvider = ({ providerId, setProviderId }) => {
   const [providers, setProviders] = useState([]);
 
   useEffect(() => {
-    PostData("Provider/Consultation", {}).then((res) => {
+    PostData("Provider/Tutoring", {}).then((res) => {
       setProviders(res.data);
     });
   }, []);

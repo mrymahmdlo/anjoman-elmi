@@ -3,8 +3,6 @@ import { CCardBody, CCol, CForm, CRow, CLabel } from "@coreui/react";
 import { GetData } from "src/Service/APIEngine";
 import { FormItems } from "./FormItems";
 import { SwitchField, TextField } from "src/Utility/InputGroup";
-import { CKEditorField } from "src/reusable/CKEditorInput";
-import { CoreFileInput } from "src/Utility/CoreFileInput";
 import { SelectProvider } from "./SelectProvider";
 
 const ArticleForm = ({ form, setForm, preData }) => {
