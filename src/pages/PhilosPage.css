@@ -1,0 +1,67 @@
+.philo-content{
+    padding: 0 2em 5em;
+}
+.Philo{
+    background-image: radial-gradient(ellipse farthest-corner at 0 140%, rgba(0,191,3, 0.05) 0%, rgba(0,191,3, 0.05) 70%, rgba(0,191,3, 0.15) 70%);
+    color: #000;
+    margin: 0.7em;
+    border-radius: 6px;
+    box-shadow: 3px 5px 14px -2px rgba(0,0,0,0.4);
+}
+.philo-pic{
+    background-color: #fff;
+    margin: 0.8em auto;
+    height: 175px;
+    max-height: 30%;
+    min-height: 30%;
+    max-width: 90%;
+    border-radius: 6px;
+}
+.name{
+    background-color: #fff;
+    color: #212121;
+    width: 90%;
+    margin: 0 auto 0.5em;
+    border-radius: 4px;
+    border: 1px solid #961f1f;
+}
+.philo-info{
+    color: #000;
+    margin: 0.8em auto;
+    text-align: center;
+}
+.philo-page-icon{
+    width: 20px;
+    margin-bottom: -5px;
+    margin-left: 2px;
+}
+.info-button{
+    background-color: #fff;
+    color: #000;
+    width: 100%;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 0 6px 6px;
+    padding: 1em 0;
+    border-top: 1px solid #961f1f;
+    transition: all 0.5s;
+}
+.button-title{
+    display: inline-block;
+    transition: all 0.5s;
+}
+.button-title:hover{
+    color: #961f1f;
+}
+.button-title:after{
+    display:block;
+    content: '';
+    border-bottom: solid 3px #961f1f;
+    transform: scaleX(0);
+    transition: transform 500ms ease-in-out;
+}
+.button-title:hover:after{
+    transform: scaleX(1);
+}

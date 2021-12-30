@@ -1,0 +1,35 @@
+.about{
+    margin: 3em auto 0;
+    padding-bottom: 3em;
+}
+.about-topic{
+    font-size: 46px;
+    color: #6b1111;
+    margin: 2em auto;
+}
+.about-content{
+    direction: rtl;
+    text-align: justify;
+    text-justify: inter-word;
+    padding: 1em;
+    text-indent: 1.5em;
+}
+.about-content hr{
+    width: 45%;
+    border-top: 2px solid #961f1f;
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+    margin: 0.5em 0;
+}
+.about-content ul{
+    list-style: none;
+}
+.about-content li::before{
+    content: '\2022';
+    color: #961f1f;
+    font-weight: bold;
+    display: inline-block;
+    width: 3em;
+    margin-right: -2em;
+}

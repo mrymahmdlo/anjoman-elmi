@@ -1,0 +1,41 @@
+.additional {
+    background-image: url("../../assets/images/section_bg02.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    margin-bottom: 20px !important;
+}
+.back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0.9em;
+    color: #fff;
+    font-size: 50px !important;
+    width: 100%;
+    border-radius: 5px;
+}
+.back > *:not(.additionl__number) {
+    color: #fff !important;
+    font-size: 1.3rem;
+}
+.add-title {
+    margin-top: 2.3em;
+    margin-bottom: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    text-align: right;
+    
+}
+.add-title > .title-text {
+    color: #4a4a4a;
+    font-weight: 700 !important;
+    font-size: 1.35rem;
+}
+.additionl__number{
+    font-size: 2rem !important;
+}

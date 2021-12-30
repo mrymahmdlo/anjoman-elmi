@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'iranSans';
+  src: url('./assets/fonts/IRANSansWeb\(FaNum\).woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+.App {
+  text-align: center;
+  background-color: #FcFcFc;
+  padding-top: 1.5em;
+  margin-top: 3em;
+}
+
+*, ::before, ::after{
+  font-family: iranSans, sans-serif !important;
+  word-spacing: -1.2px;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+.react-multiple-carousel__arrow::before {
+  font-family: revicons !important;
+}
+a {
+  text-decoration: none;
+}
+.greenTitle{
+    text-align: right;
+    color: #6e1010;
+    font-weight: bolder !important;
+}
+.blueText {
+      text-align: right !important;
+      margin-bottom: 50px !important;
+      font-weight: bolder !important;
+      word-spacing: -1.2px;
+      font-size: 2.3rem !important;
+      color: #072366 !important;
+}
+@media only screen and (max-width: 600px) {
+  .greenTitle{
+    font-size: 1rem !important;
+  }
+  .blueText {
+    font-size: 1.5rem !important;
+  }
+}
+.arrow {
+  background-color: #961f1f;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 30px;
+  cursor: pointer;
+  right: 50px ;
+  z-index: 100;
+  box-shadow: 0 0 10px 3px rgb(108 98 98 / 20%);
+}

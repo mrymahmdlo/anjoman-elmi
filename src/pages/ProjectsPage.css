@@ -1,0 +1,72 @@
+.projects-content{
+    margin-top: 1em;
+    padding: 0 40px;
+}
+.project-item{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    margin-bottom: 20px;
+    width: 100%;
+}
+.project-item .description{
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px 23px;
+    margin-bottom: 15px;
+    text-align: right;
+    box-shadow: 0 10px 20px 0 rgba(221,221,221,0.3);
+}
+.project-item .description .title{
+    font-size: 17px;
+    font-weight: 700;
+    margin: 10px 0;
+    cursor: pointer;
+}
+.project-item .description .title :hover{
+    color: #6e1010;
+}
+.project-item .description .text{
+    font-size: 14px;
+    color: #999;
+}
+.category{
+    padding: 30px 40px;
+    background-color: #f6f6f6;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-top: 15px;
+}
+.category .divider{
+    border-bottom: 1px solid #ece6e6;
+    width: 100%;
+    margin: 15px 0;
+}
+.category .title{
+    font-size: 20px;
+    font-weight: 500;
+    color: #2d2d2d;
+    text-align: right;
+    width: 100%;
+    letter-spacing: -1.2px;
+}
+.category .item{
+    font-size: 16px;
+    color: #10285d;
+    letter-spacing: -1.2px;
+    text-align: right;
+    width: 100%;
+    font-weight: 300;
+}
+.category .item:hover{
+    color: #6e1010;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px){
+    .projects-content{
+        padding: 2em 0 5em;
+    }
+}
