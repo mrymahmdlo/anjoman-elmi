@@ -27,27 +27,7 @@ export default function Attend() {
         <Grid className='philo-content' container>
             {data?.philanthropists.map((item)=>(
                 <Grid lg={4} sm={6} xs={12} item key={item.id}>
-                    {/* <div className='Philo'>
-                        <img src={`http://charity.mykanoon.ir/File/Get/${item.imageId}`} alt="philoPic" className='philo-pic'/>
-                        <h3 className='name'>{`${item.firstName} ${item.lastName ? item.lastName : ''}`}</h3>
-                        <div className='philo-info'>
-                            <div>
-                                <span>مبلغ اهدا شده : {ToFarsiNumber(NumberCreator(item.sparedFund))}<span> تومان</span></span>
-                                <img src={banknote} alt="sparedFund" className='philo-page-icon'/>
-                            </div>
-                            <div>
-                                <span>شهر : {item.cityName}</span>
-                                <img src={location} alt="cityName" className='philo-page-icon'/>
-                            </div>
-                        </div>
-                        <div>
-                            <Link to={`/Philanthropists/${item.id}`}>
-                                <div className='info-button'>
-                                    <div className='button-title'>اطلاعات بیشتر</div>
-                                </div>
-                            </Link>
-                        </div>
-                    </div> */}
+                    
                 </Grid>
             ))}
         </Grid>

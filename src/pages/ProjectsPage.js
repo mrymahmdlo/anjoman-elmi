@@ -169,15 +169,7 @@ export default function AllProjects() {
             <Grid item container xs={12} md={7}>
               {temp?.map((item) => (
                 <Grid key={item.id} xs={12} item>
-                  {/* <ProjectComponent
-                    imgSrc={`http://charity.mykanoon.ir/File/Get/${item.imageIds[0]}`}
-                    title={item.title}
-                    philanthropist={item.philanthropist}
-                    id={item.id}
-                    typeId={item.typeId}
-                    fund={item.fund}
-                    cityName={item.cityName}
-                  /> */}
+                
                 </Grid>
               ))}
             </Grid>
@@ -261,11 +253,7 @@ export default function AllProjects() {
                     </Typography>
                     <div className="divider"></div>
                   </Link>
-                  {/* <Link to="/Projects/under-construction" className="item">
-                    <Typography>
-                      پروژه های در حال انجام ({projectsCount[3]})
-                    </Typography>
-                  </Link> */}
+                 
                 </div>
                 <div style={{ marginBottom: "2em" }}></div>
               </Grid>

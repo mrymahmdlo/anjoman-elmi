@@ -37,13 +37,7 @@ export default function PhiloCard({ id, philoData }) {
   return (
     <div className='root'>
       <Paper className='card1' elevation={2}>
-        {/* <div className='large circle1'>
-          <img
-            alt={philoData.firstName}
-            src={`http://charity.mykanoon.ir/File/Get/${philoData.imageId}`}
-            className='image1'
-          />
-        </div> */}
+      
         <Typography style={{ fontSize: "1.1em" }} variant="body1" gutterBottom>
           {fullName}
         </Typography>

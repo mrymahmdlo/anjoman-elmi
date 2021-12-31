@@ -67,11 +67,7 @@ export default function PostCarousel({ newsData }) {
         >
           {newsData.slice(7, 10).map((item) => (
             <Link to={`/News/${item.id}`} className="link" key={item.id}>
-              {/* <img
-                src={"http://charity.mykanoon.ir/File/Get/" + item.imageIds[0]}
-                className={classes.imgCarousel}
-                alt="post images"
-              /> */}
+            
               <Typography className={classes.caption}>{item.title}</Typography>
             </Link>
           ))}

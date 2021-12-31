@@ -74,57 +74,7 @@ export default function NavBar() {
             </Button>
           </Link>
 
-          {/* <div className="link Button">
-            <Button
-              style={{ padding: "0 2vw" }}
-              className="button-on-hover"
-              aria-controls="customized-menu"
-              aria-haspopup="true"
-              onClick={handleClick}
-            >
-              <div className="button-overlay" />
-              عضویت
-            </Button>
-          </div>
-          <StyledMenu
-            id="customized-menu"
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <Link to="/Projects/half-built">
-              <StyledMenuItem>
-                <ListItemText
-                  primary="مقالات"
-                  style={{ textAlign: "right", color: "#fff" }}
-                />
-              </StyledMenuItem>
-            </Link>
-            <Link to="/Projects/overhauled">
-              <StyledMenuItem>
-                <ListItemText
-                  primary="اطلاعیه ها"
-                  style={{ textAlign: "right", color: "#fff" }}
-                />
-              </StyledMenuItem>
-            </Link>
-            <Link to="/Projects/completed">
-              <StyledMenuItem>
-                <ListItemText
-                  primary="بایگانی"
-                  style={{ textAlign: "right", color: "#fff" }}
-                />
-              </StyledMenuItem>
-            </Link>
-            <Link to="/Projects/under-construction">
-              <StyledMenuItem>
-                <ListItemText
-                  primary="پروژه های درحال انجام"
-                  style={{ textAlign: "right", color: "#fff" }}
-                />
-              </StyledMenuItem>
-            </Link>
-          </StyledMenu> */}
+         
 
           <Link to={`/Philanthropists`} className="link Button">
             <Button style={{ padding: "0 2vw" }} className="button-on-hover">
@@ -200,14 +150,7 @@ export default function NavBar() {
                 />
               </StyledMenuItem>
             </Link>
-            {/* <Link to="/Projects/under-construction">
-              <StyledMenuItem>
-                <ListItemText
-                  primary="پروژه های درحال انجام"
-                  style={{ textAlign: "right", color: "#fff" }}
-                />
-              </StyledMenuItem>
-            </Link> */}
+           
           </StyledMenu>
 
           <div className="link Button">
@@ -252,14 +195,7 @@ export default function NavBar() {
                 />
               </StyledMenuItem>
             </Link>
-            {/* <Link to="/Projects/under-construction">
-              <StyledMenuItem>
-                <ListItemText
-                  primary="پروژه های درحال انجام"
-                  style={{ textAlign: "right", color: "#fff" }}
-                />
-              </StyledMenuItem>
-            </Link> */}
+           
           </StyledMenu>
 
           <div className="link Button">

@@ -33,13 +33,7 @@ const EachNews = () => {
       <Grid xs={12} md={7} className='post-root'>
         <div style={{ backgroundColor: "#fff" }}>
           <Grid>
-            {/* <img
-              src={
-                "http://charity.mykanoon.ir/File/Get/" + data?.post?.imageIds
-              }
-              className='post-image'
-              alt='post-image'
-            /> */}
+      
           </Grid>
           <Grid>
             <div

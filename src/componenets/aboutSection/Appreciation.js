@@ -7,16 +7,7 @@ export default function ImagesObj() {
     return(
         <div className='appr'>
             <h1 className='appr-topic'>تقدیرنامه ها</h1>
-            {/* <Grid container>
-                {ImageObj.images.map(item=>(
-                    <Grid lg={4} sm={6} xs={12} key={item.id} item>
-                        <div className='appr-img'>
-                            <img src={item.src} alt={item.name}/>
-                        </div>
-                    </Grid>
-                ))
-                }
-            </Grid> */}
+        
         </div>
     )
 }

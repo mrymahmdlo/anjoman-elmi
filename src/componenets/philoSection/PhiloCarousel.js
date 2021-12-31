@@ -71,20 +71,9 @@ export default function PhiloCarousel(philoData) {
           >
             {philoData?.philoData?.data.map((item) => (
               <>
-                {/* <img
-                  key={item.id}
-                  className={classes.media}
-                  alt={item.firstName}
-                  src={"http://charity.mykanoon.ir/File/Get/" + item.imageId}
-                /> */}
+              
                 <Link to={`/Philanthropists/${item.id}`} style={{ width: "100%" }}>
-                  {/* <Typography
-                    component="h5"
-                    variant="h5"
-                    className={classes.caption}
-                  >
-                    {`${item?.firstName} ${item?.lastName ? item?.lastName : ''}`}
-                  </Typography> */}
+                 
                 </Link>
               </>
             ))}
