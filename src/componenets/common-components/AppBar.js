@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import "./Header.css";
-import Logo from "../../assets/images/khayerin-logo.png";
+// import Logo from "../../assets/images/khayerin-logo.png";
 import { Divider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
@@ -192,7 +192,8 @@ export default function AppBarMenu(){
             style={{ width: "100%" }}
           >
             <Link to={`/`} >
-              <img className="media" src={Logo} alt="anjoman logo" />
+              {/* <img className="media" src={Logo} alt="anjoman logo" /> */}
+              <h1>    LOGO    </h1>
             </Link>
             <IconButton
               onClick={toggleDrawer(true)}

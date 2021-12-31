@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import "./Header.css";
-import Logo from "../../assets/images/khayerin-logo.png";
+// import Logo from "../../assets/images/khayerin-logo.png";
 import Button from "@material-ui/core/Button";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Link } from "react-router-dom";
@@ -217,7 +217,8 @@ export default function NavBar() {
             </Button>
           </Link>
           <Link to={`/`}>
-            <img className="media" src={Logo} alt="anjoman logo" />
+            {/* <img className="media" src={Logo} alt="anjoman logo" /> */}
+            <h1>    LOGO    </h1>
           </Link>
         </div>
       </div>
