@@ -75,7 +75,7 @@ export const UploadProviderFile = () => {
     PostDataProvider("Content/Upload", {
       contentType: Number(type),
       providerId: providerId,
-      link: link,
+      link: link.toString(),
     })
       .then(() => {
         setBtnActive(false);
