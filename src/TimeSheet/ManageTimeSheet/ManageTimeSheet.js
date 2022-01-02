@@ -1,7 +1,7 @@
 import { CCard, CCardBody, CCardHeader, CDataTable } from "@coreui/react";
 import { useEffect, useState } from "react";
 import { PostDataProvider } from "src/Service/APIProvider";
-// import { ChangeValues } from "./Components/ChangeValue";
+import {ChangeValues} from "./Components/ChangeValue";
 // import { ContentModal } from "./Components/ContentModal";
 import { TimeSheetScopedSlots } from "./Components/TimeSheetScopedSlots";
 import { TableHeaders } from "./Components/TableHeaders";
@@ -13,7 +13,8 @@ const ManageTimeSheet = () => {
   const [modalContent, setModalContent] = useState("");
   const updateData = () => {
     PostDataProvider("TimeSheet/GetTimeSheets", {}).then((res) => {
-      setTableData(res.data);
+      let data=ChangeValues(res.data)
+      setTableData(data);
     });
   };
 
