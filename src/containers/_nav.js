@@ -143,8 +143,34 @@ const _nav = [
         name: "ایجاد آزمون جدید",
         to: "/Exams/CreateExam/QuizInfo",
       },
+
+      
+    ],
+  },
+  {
+    _tag: "CSidebarNavTitle",
+    _children: ["زمان بندی مشاور"],
+  },
+  {
+    _tag: "CSidebarNavDropdown",
+    name: "زمان بندی مشاور",
+    icon: "cil-pencil",
+    _children: [
+      {
+        _tag: "CSidebarNavItem",
+        name: "مدیریت زمان بندی",
+        to: "/TimeSheet/ManageTimeSheet",
+      },
+      // {
+      //   _tag: "CSidebarNavItem",
+      //   name: "ایجاد آزمون جدید",
+      //   to: "/Exams/CreateExam/QuizInfo",
+      // },
+
+      
     ],
   },
 ];
+  
 
 export default _nav;

@@ -42,6 +42,7 @@ const ProviderCourse = React.lazy(() =>
 const CreateProviderCourse = React.lazy(() =>
   import("./Tutoring/ProviderCourse/CreateProviderCourse/CreateProviderCourse")
 );
+const TimeSheet=React.lazy(()=>import("./TimeSheet/ManageTimeSheet/ManageTimeSheet.js"));
  
 const Upload = React.lazy(() => import("src/Upload/Upload"));
 const UploadProvider = React.lazy(() => import("src/Upload/UploadProvider"));
@@ -173,6 +174,11 @@ const routes = [
     path: "/ProviderCourse/CreateProviderCourse",
     name: "CreateProviderCourse",
     component: CreateProviderCourse,
+  },
+  {
+    path: "/TimeSheet/ManageTimeSheet",
+    name: "TimeSheet",
+    component: TimeSheet,
   },
   {
     path: [
