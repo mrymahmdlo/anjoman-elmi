@@ -42,6 +42,9 @@ const ProviderCourse = React.lazy(() =>
 const CreateProviderCourse = React.lazy(() =>
   import("./Tutoring/ProviderCourse/CreateProviderCourse/CreateProviderCourse")
 );
+const AllSms = React.lazy(() =>
+  import("./Tutoring/Sms/Sms")
+);
  
 const Upload = React.lazy(() => import("src/Upload/Upload"));
 const UploadProvider = React.lazy(() => import("src/Upload/UploadProvider"));
@@ -173,6 +176,11 @@ const routes = [
     path: "/ProviderCourse/CreateProviderCourse",
     name: "CreateProviderCourse",
     component: CreateProviderCourse,
+  },
+  {
+    path: "/AllSMS",
+    name: "AllSms",
+    component: AllSms,
   },
   {
     path: [

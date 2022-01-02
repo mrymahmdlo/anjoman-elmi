@@ -121,6 +121,11 @@ const _nav = [
         name: "ایجاد درس مشاور",
         to: "/ProviderCourse/CreateProviderCourse",
       },
+      {
+        _tag: "CSidebarNavItem",
+        name: "پیامک های ارسالی",
+        to: "/AllSMS",
+      },
     ],
   },
 
