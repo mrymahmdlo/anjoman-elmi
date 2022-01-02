@@ -28,6 +28,7 @@ export const UploadProviderFile = () => {
   const [providers, setProviders] = useState([]);
   const [providerId, setProviderId] = useState(-1);
   const [contentType, setContentType] = useState([]);
+  const [valueNumber,setValueNumber] = useState([]);
   const [type, setType] = useState(-1);
   useEffect(() => {
     setActiveProvider(true);
@@ -41,18 +42,19 @@ export const UploadProviderFile = () => {
     GetDataProvider("Content/ContentTypes").then((res) => {
       setContentType(res);
       setActiveContent(false);
-      if (type === "1") {
+      if (type === "0") {
         setActiveProvider(true);
-        PostData("Provider/Consultation", {}).then((res) => {
-          setProviders(res.data);
-          setActiveProvider(false);
-        });
-      } else if (type === "0") {
+           PostData("Provider/Tutoring", {}).then((res) => {
+             setProviders(res.data);
+             setActiveProvider(false);
+           });
+     
+      } else {
         setActiveProvider(true);
-        PostData("Provider/Tutoring", {}).then((res) => {
-          setProviders(res.data);
-          setActiveProvider(false);
-        });
+          PostData("Provider/Consultation", {}).then((res) => {
+            setProviders(res.data);
+            setActiveProvider(false);
+          });
       }
     });
   }, [type]);
@@ -93,17 +95,6 @@ export const UploadProviderFile = () => {
   return (
     <div>
       <CForm inline>
-        <CFormGroup className="w-30 m-2">
-          {UploadFileStatusMark(statusFile)}
-          <CInput
-            type="file"
-            className="p-1 mr-1 w-75 "
-            onChange={(e) => {
-              UploadFile(e);
-            }}
-            disabled={statusFile === status.LOADING}
-          />
-        </CFormGroup>
         <CFormGroup className="text-left w-30 m-2">
           <label htmlFor="nf-title" style={{ padding: 5 }}>
             {" "}
@@ -116,6 +107,7 @@ export const UploadProviderFile = () => {
               defaultValue={type}
               onChange={(e) => {
                 setType(e.target.value);
+                console.log(e.target.value);
               }}
             >
               <option value={-1}>نوع را انتخاب کنید</option>
@@ -169,6 +161,31 @@ export const UploadProviderFile = () => {
             )}
           </CFormGroup>
         ) : null}
+        {type == "2" ? (
+          <CFormGroup className="text-left w-40 m-2">
+            <CInput
+              className="w-75"
+              type="number"
+              value={valueNumber}
+              onChange={(e) => {
+                setValueNumber(e.target.value);
+                setLink(Number(e.target.value));
+              }}
+            />
+          </CFormGroup>
+        ) : (
+          <CFormGroup className="w-30 m-2">
+            {UploadFileStatusMark(statusFile)}
+            <CInput
+              type="file"
+              className="p-1 mr-1 w-75 "
+              onChange={(e) => {
+                UploadFile(e);
+              }}
+              disabled={statusFile === status.LOADING}
+            />
+          </CFormGroup>
+        )}
 
         <CFormGroup
           display="grid"
