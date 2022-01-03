@@ -42,8 +42,9 @@ const ProviderCourse = React.lazy(() =>
 const CreateProviderCourse = React.lazy(() =>
   import("./Tutoring/ProviderCourse/CreateProviderCourse/CreateProviderCourse")
 );
-const TimeSheet=React.lazy(()=>import("./TimeSheet/ManageTimeSheet/ManageTimeSheet.js"));
- 
+const ManageTimeSheet=React.lazy(()=>import("./TimeSheet/ManageTimeSheet/ManageTimeSheet.js"));
+const CreateTimeSheet=React.lazy(()=>import("./TimeSheet/CreateTimeSheet/CreateTimeSheet"));
+
 const Upload = React.lazy(() => import("src/Upload/Upload"));
 const UploadProvider = React.lazy(() => import("src/Upload/UploadProvider"));
 //examples
@@ -177,8 +178,13 @@ const routes = [
   },
   {
     path: "/TimeSheet/ManageTimeSheet",
-    name: "TimeSheet",
-    component: TimeSheet,
+    name: "ManageTimeSheet",
+    component: ManageTimeSheet,
+  },
+  {
+    path: "/TimeSheet/CreateTimeSheet",
+    name: "CreateTimeSheet",
+    component: CreateTimeSheet,
   },
   {
     path: [

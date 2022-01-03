@@ -144,9 +144,10 @@ const _nav = [
         to: "/Exams/CreateExam/QuizInfo",
       },
 
-      
+
     ],
   },
+
   {
     _tag: "CSidebarNavTitle",
     _children: ["زمان بندی مشاور"],
@@ -161,16 +162,15 @@ const _nav = [
         name: "مدیریت زمان بندی",
         to: "/TimeSheet/ManageTimeSheet",
       },
-      // {
-      //   _tag: "CSidebarNavItem",
-      //   name: "ایجاد آزمون جدید",
-      //   to: "/Exams/CreateExam/QuizInfo",
-      // },
-
-      
+      {
+        _tag: "CSidebarNavItem",
+        name: "ایجاد زمان بندی",
+        to: "/TimeSheet/CreateTimeSheet",
+      },
     ],
   },
+
 ];
-  
+
 
 export default _nav;
