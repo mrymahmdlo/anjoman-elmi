@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import {
   CCard,
@@ -18,19 +17,19 @@ const Sms = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
-   const [startDate, setStartDate] = useState("1390/06/10");
-    const [endDate, setEndDate] = useState("1500/07/10");
-       const [phoneNumber, setPhoneNumber] = useState();
+  const [startDate, setStartDate] = useState("1390/06/10");
+  const [endDate, setEndDate] = useState("1500/07/10");
+  const [phoneNumber, setPhoneNumber] = useState();
   const [filterData, setFilterData] = useState({
     asc: false,
     column: "quizId",
   });
 
   const updateData = () => {
-    PostDataBroad("Main/AllSms", {
-      // phoneNumber: phoneNumber?phoneNumber:'',
-      // fromTime: startDate?startDate:'',
-      // toTime: endDate?endDate:"",
+    PostDataBroad("Tutoring/GetAllTutoring", {
+      //   phoneNumber: phoneNumber,
+      //   fromTime: startDate,
+      //   toTime: endDate,
     }).then((res) => {
       let data = ChangeValue(res.data);
       setTableData(data);
@@ -39,11 +38,11 @@ const Sms = () => {
 
   useEffect(() => {
     updateData();
-  }, [modal,startDate, endDate,phoneNumber]);
+  }, [modal, startDate, endDate, phoneNumber]);
   return (
     <>
       <CCard>
-        <CCardHeader>مدیریت پیامک های ارسالی</CCardHeader>
+        <CCardHeader> مشاهده جسات برگزار شده  </CCardHeader>
         {/* <CCardBody>
           <CForm inline>
             <CFormGroup className=" pl-1">

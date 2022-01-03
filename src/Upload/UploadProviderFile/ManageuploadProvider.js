@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import {
   CCard,
@@ -13,24 +12,27 @@ import {
 } from "@coreui/react";
 import { TableHeaders } from "./TableHeaders";
 import { ChangeValue } from "./ChangeValue";
-import { PostDataBroad } from "src/Service/APIBroadCast";
-const Sms = () => {
+import { PostDataProvider } from "src/Service/APIProvider";
+import {ProviderScopedSlots} from "./ProviderScopedSlots";
+import {ProviderModal} from './ProviderModal';
+const ManageuploadProvider = () => {
   const [tableData, setTableData] = useState([]);
+  
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
-   const [startDate, setStartDate] = useState("1390/06/10");
-    const [endDate, setEndDate] = useState("1500/07/10");
-       const [phoneNumber, setPhoneNumber] = useState();
+  const [startDate, setStartDate] = useState("1390/06/10");
+  const [endDate, setEndDate] = useState("1500/07/10");
+  const [phoneNumber, setPhoneNumber] = useState();
   const [filterData, setFilterData] = useState({
     asc: false,
     column: "quizId",
   });
 
   const updateData = () => {
-    PostDataBroad("Main/AllSms", {
-      // phoneNumber: phoneNumber?phoneNumber:'',
-      // fromTime: startDate?startDate:'',
-      // toTime: endDate?endDate:"",
+    PostDataProvider("Content/GetAll", {
+      //   phoneNumber: phoneNumber,
+      //   fromTime: startDate,
+      //   toTime: endDate,
     }).then((res) => {
       let data = ChangeValue(res.data);
       setTableData(data);
@@ -39,11 +41,11 @@ const Sms = () => {
 
   useEffect(() => {
     updateData();
-  }, [modal,startDate, endDate,phoneNumber]);
+  }, [modal, startDate, endDate, phoneNumber]);
   return (
     <>
       <CCard>
-        <CCardHeader>مدیریت پیامک های ارسالی</CCardHeader>
+        <CCardHeader> مشاهده فایل های بارگزاری شده </CCardHeader>
         {/* <CCardBody>
           <CForm inline>
             <CFormGroup className=" pl-1">
@@ -85,11 +87,24 @@ const Sms = () => {
           onSorterValueChange={setFilterData}
           itemsPerPage={15}
           pagination
-          //   scopedSlots={WebinartScopedSlots(setModalContent, setModal, modal)}
+          scopedSlots={ProviderScopedSlots(
+            updateData,
+            setModal,
+            modal,
+            setModalContent
+          )}
         />
       </CCard>
+      <ProviderModal
+        name="مدیریت محتواهای عمومی"
+        modal={modal}
+        toggle={() => {
+          setModal(!modal);
+        }}
+        modalContent={modalContent}
+      />
     </>
   );
 };
 
-export default Sms;
+export default ManageuploadProvider;
