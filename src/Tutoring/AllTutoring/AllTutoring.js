@@ -42,8 +42,8 @@ const Sms = () => {
   return (
     <>
       <CCard>
-        <CCardHeader> مشاهده تدریس خصوصی  </CCardHeader>
-        <CCardBody>
+        <CCardHeader> مشاهده جسات برگزار شده  </CCardHeader>
+        {/* <CCardBody>
           <CForm inline>
             <CFormGroup className=" pl-1">
               <CLabel className="pr-1">جستجو شماره تماس</CLabel>
@@ -74,7 +74,7 @@ const Sms = () => {
               />
             </CFormGroup>
           </CForm>
-        </CCardBody>
+        </CCardBody> */}
         <CDataTable
           items={tableData}
           fields={TableHeaders}

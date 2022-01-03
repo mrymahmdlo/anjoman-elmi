@@ -45,10 +45,11 @@ const CreateProviderCourse = React.lazy(() =>
 const AllSms = React.lazy(() =>
   import("./Tutoring/Sms/Sms")
 );
+const ManageuploadProvider = React.lazy(() => import("./Upload/UploadProviderFile/ManageuploadProvider"));
 const AllTutoring = React.lazy(() => import("./Tutoring/AllTutoring/AllTutoring"));
  
 const Upload = React.lazy(() => import("src/Upload/Upload"));
-const UploadProvider = React.lazy(() => import("src/Upload/UploadProvider"));
+const UploadProvider = React.lazy(() => import("src/Upload/UploadProviderFile/UploadProvider"));
 //examples
 const Toaster = React.lazy(() =>
   import("./views/notifications/toaster/Toaster")
@@ -187,6 +188,11 @@ const routes = [
     path: "/AllTutoring",
     name: "AllTutoring",
     component: AllTutoring,
+  },
+  {
+    path: "/ManageuploadProvider",
+    name: "ManageuploadProvider",
+    component: ManageuploadProvider,
   },
   {
     path: [

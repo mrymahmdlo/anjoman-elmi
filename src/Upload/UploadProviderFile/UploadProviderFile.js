@@ -163,6 +163,7 @@ export const UploadProviderFile = () => {
         ) : null}
         {type == "2" ? (
           <CFormGroup className="text-left w-40 m-2">
+            <label className="p-1 mr-1  "> شمارنده : </label>
             <CInput
               className="w-75"
               type="number"
@@ -175,6 +176,7 @@ export const UploadProviderFile = () => {
           </CFormGroup>
         ) : (
           <CFormGroup className="w-30 m-2">
+        
             {UploadFileStatusMark(statusFile)}
             <CInput
               type="file"

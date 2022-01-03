@@ -31,6 +31,11 @@ const _nav = [
         name: "  بارگزاری فایل مشاوره",
         to: "/uploadProvider",
       },
+      {
+        _tag: "CSidebarNavItem",
+        name: "  مدیریت فایل  های مشاوره",
+        to: "/ManageuploadProvider",
+      },
     ],
   },
 
@@ -128,7 +133,7 @@ const _nav = [
       },
       {
         _tag: "CSidebarNavItem",
-        name: "مشاهده تدریس های خصوصی",
+        name: "جلسات برگزار شده",
         to: "/AllTutoring",
       },
     ],
