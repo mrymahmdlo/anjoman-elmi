@@ -126,6 +126,11 @@ const _nav = [
         name: "پیامک های ارسالی",
         to: "/AllSMS",
       },
+      {
+        _tag: "CSidebarNavItem",
+        name: "مشاهده تدریس های خصوصی",
+        to: "/AllTutoring",
+      },
     ],
   },
 
