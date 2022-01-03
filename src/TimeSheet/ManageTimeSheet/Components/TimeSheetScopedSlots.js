@@ -1,12 +1,12 @@
+import React, { useState } from "react";
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
-import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { GetData } from "src/Service/APIEngine";
 import { Toast } from "src/Utility/Toast";
-import EditTutoring from "src/Tutoring/EditTutoring/EditTutoring";
+import EditTimeSheet from "../../EditTimeSheet/EditTimeSheet";
 
-export const TimeSheetScopedSlots = (updateData, setModal, modal, setModalTutoring) => {
+export const TimeSheetScopedSlots = (updateData, setModal, modal, setModalTimeSheet) => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const history = useHistory();
@@ -26,15 +26,15 @@ export const TimeSheetScopedSlots = (updateData, setModal, modal, setModalTutori
   };
 
   return {
-    edit: (item, index) => (
+    edit: (item) => (
       <>
-        <td className="py-2 pl-2" key={item.productId}>
+        <td className="py-2 pl-2" key={item.timeSheetId}>
           <CButton
             className="mr-1"
             color="primary"
             onClick={() =>
-                  { setModalTutoring(
-                    <EditTutoring obj={item} setModal={setModal} />
+                  { setModalTimeSheet(
+                    <EditTimeSheet obj={item} setModal={setModal} />
                   );
               setModal(true);}
             }
@@ -44,21 +44,21 @@ export const TimeSheetScopedSlots = (updateData, setModal, modal, setModalTutori
         </td>
       </>
     ),
-    delete: (item, index) => (
+    delete: (item) => (
       <>
-        <td className="py-2 pl-2" key={item.productId}>
+        <td className="py-2 pl-2" key={item.timeSheetId}>
           <CButton
             className="mr-1 btn btn-danger"
             onClick={() => {
-              setModalTutoring(
+              setModalTimeSheet(
                 <div>
                   <p>
-                    آیا میخواهید {item.title} را حذف کنید؟
+                    آیا میخواهید این مورد را حذف کنید؟
                     <CButton
                       color="danger"
                       size="sm"
                       className="mr-2"
-                      onClick={() => handleDelete(item.productId)}
+                      onClick={() => handleDelete(item.timeSheetId)}
                     >
                       بله
                     </CButton>

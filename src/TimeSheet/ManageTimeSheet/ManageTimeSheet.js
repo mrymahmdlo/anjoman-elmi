@@ -1,8 +1,9 @@
+import React from "react";
 import { CCard, CCardBody, CCardHeader, CDataTable } from "@coreui/react";
 import { useEffect, useState } from "react";
 import { PostDataProvider } from "src/Service/APIProvider";
 import {ChangeValues} from "./Components/ChangeValue";
-// import { ContentModal } from "./Components/ContentModal";
+import { TimeSheetModal } from "./Components/TimeSheetModal";
 import { TimeSheetScopedSlots } from "./Components/TimeSheetScopedSlots";
 import { TableHeaders } from "./Components/TableHeaders";
 
@@ -10,7 +11,8 @@ const ManageTimeSheet = () => {
   const [tableData, setTableData] = useState([]);
   const tableFields = TableHeaders;
   const [modal, setModal] = useState(false);
-  const [modalContent, setModalContent] = useState("");
+  const [modalTimeSheet, setModalTimeSheet] = useState("");
+
   const updateData = () => {
     PostDataProvider("TimeSheet/GetTimeSheets", {}).then((res) => {
       let data=ChangeValues(res.data)
@@ -20,7 +22,7 @@ const ManageTimeSheet = () => {
 
   useEffect(() => {
     updateData();
-  }, []);
+  }, [modal]);
 
   return (
     <>
@@ -39,19 +41,19 @@ const ManageTimeSheet = () => {
               updateData,
               setModal,
               modal,
-              setModalContent
+              setModalTimeSheet,
             )}
           />
         </CCardBody>
       </CCard>
-      {/* <ContentModal
-        name="مدیریت محتواهای عمومی"
+      <TimeSheetModal
+        name="مدیریت زمان بندی"
         modal={modal}
         toggle={() => {
           setModal(!modal);
         }}
-        modalContent={modalContent}
-      /> */}
+        modalTimeSheet={modalTimeSheet}
+      />
     </>
   );
 };
