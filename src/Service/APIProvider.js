@@ -6,6 +6,9 @@ export const BaseUrl = process.env.REACT_APP_Provider_BASE;
 const GetDataProvider = (url) => {
   return fetch(BaseUrl + url, {
     method: "GET",
+    headers: {
+      Authorization: "Bearer " + GetToken(),
+    },
   }).then((res) => res.json());
 };
 
@@ -14,6 +17,7 @@ const PostDataProvider = async (url, body) => {
     method: "POST",
     headers: {
       "content-type": "application/json; charset=utf-8",
+      Authorization: "Bearer " + GetToken(),
     },
     body: JSON.stringify(body),
   });

@@ -6,6 +6,9 @@ export const BaseUrl = process.env.REACT_APP_Broad_BASE;
 const GetData = (url) => {
     return fetch(BaseUrl + url, {
       method: "GET",
+      headers: {
+        Authorization: "Bearer " + GetToken(),
+      },
     }).then((res) => res.json());
 
 };
@@ -15,6 +18,7 @@ const PostDataBroad = async (url, body) => {
     method: "POST",
     headers: {
       "content-type": "application/json; charset=utf-8",
+      Authorization: "Bearer " + GetToken(),
     },
     body: JSON.stringify(body),
   });
