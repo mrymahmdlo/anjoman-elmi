@@ -10,16 +10,17 @@ import {
 import CIcon from "@coreui/icons-react";
 import {  PostDataProvider } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
-import TimeSheetForm from '../CreateTimeSheet/Components/TimeSheetForm';
+import TimeSheetForm from './Components/TimeSheetForm';
+
 
 const EditTimeSheet = ({ obj, setModal }) => {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActive, setBtnActive] = useState(false);
+ 
 
   useEffect(() => {
-    console.log('obj',obj)
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
     setForm(obj);
@@ -29,9 +30,11 @@ const EditTimeSheet = ({ obj, setModal }) => {
     setShowError(false);
     setBtnActive(true);
     PostDataProvider(`TimeSheet/EditTimeSheet?timeSheetId=${obj.timeSheetId}`, {
+      providerId: obj.providerId,
+      productId: obj.productId,
       startPeriodHour: form.startPeriodHour,
       endPeriodHour: form.endPeriodHour,
-      weekDay: form.weekDay,
+      weekDay: Number(form.weekDay),
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");

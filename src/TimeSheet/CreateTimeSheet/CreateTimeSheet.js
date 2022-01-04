@@ -24,9 +24,11 @@ const CreateTimeSheet = () => {
     setShowError(false);
     setBtnActive(true);
     PostDataProvider("TimeSheet/AddTimeSheet", {
-      startPeriodHour: form.startPeriodHour,
-      endPeriodHour: form.endPeriodHour,
-      weekDay: form.weekDay,
+      providerId: Number(form.providerId),
+      productId: 0,
+      startPeriodHour:Number(form.startPeriodHour),
+      endPeriodHour: Number(form.endPeriodHour),
+      weekDay: Number(form.weekDay),
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");

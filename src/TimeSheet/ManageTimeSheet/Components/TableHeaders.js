@@ -1,5 +1,9 @@
 export const TableHeaders = [
   {
+    key: "providerName",
+    label:" نام مشاور",
+  },
+  {
     key: "startPeriodHour",
     label: "زمان شروع",
   },
