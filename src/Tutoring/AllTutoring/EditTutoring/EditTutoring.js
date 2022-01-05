@@ -8,11 +8,10 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import {  PostDataBroad } from "src/Service/APIBroadCast";
+import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import TuturingForm from "./Components/TutoringForm";
-import { ChangeValues } from "./Components/ChangeValues";
-import { GeorgianToHejri } from "src/Utility/DateTime";
+import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 
 const EditTutoring = ({ obj, setModal }) => {
   const [form, setForm] = useState({});
@@ -21,23 +20,19 @@ const EditTutoring = ({ obj, setModal }) => {
   const [btnActice, setBtnActive] = useState(false);
 
   useEffect(() => {
-    console.log('obj',obj)
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
     setForm(obj);
   }, [obj]);
-   console.log("11", form.startDateRange);
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    let data = form;
-    console.log('kk',form.startDateRange);
     PostDataBroad("Tutoring/BuyTutoring", {
       providerId: +form.providerId,
       studentId: +form.studentId,
       tutorialId: +form.tutorialId,
       isOnline: form.isOnline,
-      startDateRange: GeorgianToHejri(form.startDateRange),
+      startDateRange: HejriToDotNetGeorgian(form.startDateRange),
       durationMinutes: +form.durationMinutes,
     })
       .then(() => {
@@ -57,8 +52,8 @@ const EditTutoring = ({ obj, setModal }) => {
     <div className="App">
       <CContainer fluid>
         <CCard>
-          <CCardHeader>  تدریس خصوصی مجدد</CCardHeader>
-          <TuturingForm form={form} setForm={setForm}  />
+          <CCardHeader> تدریس خصوصی مجدد</CCardHeader>
+          <TuturingForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActice ? (
               <CButton

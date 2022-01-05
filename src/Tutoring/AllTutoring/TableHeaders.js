@@ -22,7 +22,7 @@ export const TableHeaders = [
   {
     key: "edit",
     label: "",
-    _style: { width: "1%" },
+    _style: { width: "15%" },
     sorter: false,
     filter: false,
   },

@@ -1,5 +1,4 @@
 export const ChangeValues = (obj) => {
-
   let newobj = {
     title: obj.title,
     maxProviderRank: obj.maxProviderRank,

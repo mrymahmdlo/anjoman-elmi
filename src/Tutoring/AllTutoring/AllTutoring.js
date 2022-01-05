@@ -1,14 +1,8 @@
 import { useEffect, useState } from "react";
 import {
   CCard,
-  CCardBody,
   CCardHeader,
   CDataTable,
-  CForm,
-  CFormGroup,
-  CInput,
-  CLabel,
-  CPagination,
 } from "@coreui/react";
 import { TableHeaders } from "./TableHeaders";
 import { ChangeValue } from "./ChangeValue";

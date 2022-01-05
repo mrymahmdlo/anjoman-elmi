@@ -1,15 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-  CCardBody,
-  CForm,
-  CRow,
-  CSelect,
-  CFormText,
-  CFormGroup,
-  CLabel,
-  CCol,
-} from "@coreui/react";
-import { GetData } from "src/Service/APIEngine";
+import React from "react";
+import { CCardBody, CForm, CRow } from "@coreui/react";
 import { FormItems } from "./FormItem";
 import { TextField } from "src/Utility/InputGroup";
 

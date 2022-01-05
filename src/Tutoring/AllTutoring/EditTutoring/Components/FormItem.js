@@ -1,10 +1,6 @@
 import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian";
 
-
-
-
 const FormItems = (form, setForm) => {
-
   return [
     {
       name: "زمان تدریس خصوصی",
@@ -14,7 +10,9 @@ const FormItems = (form, setForm) => {
           className="form-control"
           name="startDateRange"
           value={form.startDateRange}
-          onChange={(e) => setForm({ ...form, startDateRange: e })}
+          onChange={(e) => {
+            setForm({ ...form, startDateRange: e });
+          }}
         />
       ),
       size: 4,
@@ -22,7 +20,4 @@ const FormItems = (form, setForm) => {
   ];
 };
 
-
-
-
-export {FormItems};
+export { FormItems };

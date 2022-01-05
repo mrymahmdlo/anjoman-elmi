@@ -1,19 +1,9 @@
-import JDate from "jalali-date";
-import { DateFormatter } from "src/Utility/DateFormatter";
+import { DotNetGeorgianToHejri } from "src/Utility/DateTime";
 
 export const ChangeValue = (arr) => {
-  arr.forEach((obj) =>
-    Object.keys(obj).forEach(function (key) {
-      if (
-        key === "purchasedDate" ||
-        key === "startDateRange" 
-      ) {
-        let date = new Date(obj[key]);
-        let jdate = new JDate(date);
-        obj[key] = DateFormatter(jdate, date);
-      }
-     
-    })
-  );
+  arr.forEach((obj) => {
+    obj["purchasedDate"] = DotNetGeorgianToHejri(obj["purchasedDate"])
+    obj["startDateRange"] = DotNetGeorgianToHejri(obj["startDateRange"])
+  });
   return arr;
 };
