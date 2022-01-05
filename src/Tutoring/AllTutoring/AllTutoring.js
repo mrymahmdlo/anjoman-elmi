@@ -90,12 +90,12 @@ const Sms = () => {
           onSorterValueChange={setFilterData}
           itemsPerPage={15}
           pagination
-          // scopedSlots={TutoringScopedSlots(
-          //   data,
-          //   setModal,
-          //   modal,
-          //   setModalTutoring
-          // )}
+          scopedSlots={TutoringScopedSlots(
+            data,
+            setModal,
+            modal,
+            setModalTutoring
+          )}
         />
       </CCard>
       <TutoringModal
