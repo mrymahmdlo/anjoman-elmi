@@ -20,7 +20,7 @@ const CreateTimeSheet = () => {
   const [btnActive, setBtnActive] = useState(false);
   const history = useHistory();
 
-  const submitContent = () => {
+  const submitTimeSheet = () => {
     setShowError(false);
     setBtnActive(true);
     PostDataProvider("TimeSheet/AddTimeSheet", {
@@ -55,7 +55,7 @@ const CreateTimeSheet = () => {
                 type="submit"
                 size="sm"
                 color="primary"
-                onClick={submitContent}
+                onClick={submitTimeSheet}
               >
                 <CIcon name="cil-scrubber" /> ثبت زمان بندی
               </CButton>

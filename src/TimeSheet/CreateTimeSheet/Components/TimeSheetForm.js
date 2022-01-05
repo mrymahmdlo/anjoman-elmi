@@ -8,7 +8,6 @@ import {
   CFormGroup,
   CLabel,
   CCol,
-  CSpinner,
 } from "@coreui/react";
 import { GetDataProvider } from "src/Service/APIProvider";
 import { FormItems } from "./FormItems";
@@ -18,8 +17,8 @@ import { PostData } from "src/Service/APIEngine";
 const TimeSheetForm = ({ form, setForm }) => {
   const [timeSheetId, setTimeSheetId] = useState();
   const [weekDay, setWeekDay] = useState([]);
-   const [providers, setProviders] = useState([]);
-   const [providerId, setProviderId] = useState(-1);
+  const [providers, setProviders] = useState([]);
+  const [providerId, setProviderId] = useState(-1);
 
   useEffect(() => {
     if (form.timeSheetId) setTimeSheetId(form.timeSheetId);
@@ -47,16 +46,17 @@ const TimeSheetForm = ({ form, setForm }) => {
       <CForm action="" method="post">
         <CRow>{items.slice(0, 2)}</CRow>
         <CRow>{items.slice(2)}</CRow>
-        <CFormGroup className="text-left w-40 m-2">
+        <CFormGroup className="text-right w-40 m-2">
           <label className="p-1 mr-1  "> ارائه دهنده : </label>
 
-      
+
             <CSelect
-              value={providerId}
+              value={form.providerId}
               defaultValue={providerId}
               onChange={(e) => {
-               
+
                 setForm({ ...form, providerId: e.target.value });
+                console.log({ ...form, providerId})
               }}
             >
               <option value={-1}>پشتیبان را انتخاب کنید</option>
@@ -70,7 +70,7 @@ const TimeSheetForm = ({ form, setForm }) => {
                 <option>پشتیبانی وجود ندارد</option>
               )}
             </CSelect>
-       
+
         </CFormGroup>
         <CRow>
           <CCol sm={6}>

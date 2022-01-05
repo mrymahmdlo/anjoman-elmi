@@ -11,6 +11,7 @@ import CIcon from "@coreui/icons-react";
 import {  PostDataProvider } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
 import TimeSheetForm from './Components/TimeSheetForm';
+import { useHistory } from "react-router";
 
 
 const EditTimeSheet = ({ obj, setModal }) => {
@@ -18,7 +19,7 @@ const EditTimeSheet = ({ obj, setModal }) => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActive, setBtnActive] = useState(false);
- 
+  const history = useHistory();
 
   useEffect(() => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
@@ -26,19 +27,19 @@ const EditTimeSheet = ({ obj, setModal }) => {
     setForm(obj);
   }, [obj]);
 
-  const submitContent = () => {
+  const submitTimeSheet = () => {
     setShowError(false);
     setBtnActive(true);
     PostDataProvider(`TimeSheet/EditTimeSheet?timeSheetId=${obj.timeSheetId}`, {
       providerId: obj.providerId,
       productId: obj.productId,
-      startPeriodHour: form.startPeriodHour,
-      endPeriodHour: form.endPeriodHour,
+      startPeriodHour: Number(form.startPeriodHour),
+      endPeriodHour: Number(form.endPeriodHour),
       weekDay: Number(form.weekDay),
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
-        // history.push('/TimeSheet/ManageTimeSheet');
+        history.push('/TimeSheet/ManageTimeSheet');
         setShowError(true);
         setBtnActive(false);
         setModal(false);
@@ -62,7 +63,7 @@ const EditTimeSheet = ({ obj, setModal }) => {
                 type="submit"
                 size="sm"
                 color="primary"
-                onClick={submitContent}
+                onClick={submitTimeSheet}
               >
                 <CIcon name="cil-scrubber" /> ثبت زمان بندی
               </CButton>

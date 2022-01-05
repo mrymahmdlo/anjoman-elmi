@@ -12,7 +12,6 @@ import {
 import { GetDataProvider } from "src/Service/APIProvider";
 import { FormItems } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
-import { cilChevronDoubleLeft } from "@coreui/icons";
 
 const TimeSheetForm = ({ form, setForm }) => {
   const [timeSheetId, setTimeSheetId] = useState();
@@ -41,15 +40,14 @@ const TimeSheetForm = ({ form, setForm }) => {
         <CRow>{items.slice(2)}</CRow>
         <CRow>
           <CCol sm={6}>
-            <CFormGroup >
+            <CFormGroup>
               <CLabel htmlFor="nf-title">روز هفته</CLabel>
               <CSelect
                 onChange={(e) => {
                   setForm({ ...form, weekDay: e.target.value });
                 }}
               >
-                {weekDay.map(
-                  (item, index) => (
+                {weekDay.map((item, index) => (
                     <option
                       key={index}
                       value={item.id}
@@ -57,10 +55,11 @@ const TimeSheetForm = ({ form, setForm }) => {
                     >
                       {item.name}
                     </option>
-                  )
-                )}
+                  ))}
               </CSelect>
-              <CFormText className="help-block">روز هفته را انتخاب کنید</CFormText>
+              <CFormText className="help-block">
+                روز هفته را انتخاب کنید
+              </CFormText>
             </CFormGroup>
           </CCol>
         </CRow>
