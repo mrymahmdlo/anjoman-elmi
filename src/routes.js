@@ -48,6 +48,9 @@ const AllSms = React.lazy(() =>
 const ManageuploadProvider = React.lazy(() => import("./Upload/UploadProviderFile/ManageuploadProvider"));
 const AllTutoring = React.lazy(() => import("./Tutoring/AllTutoring/AllTutoring"));
  
+const ManageTimeSheet=React.lazy(()=>import("./TimeSheet/ManageTimeSheet/ManageTimeSheet.js"));
+const CreateTimeSheet=React.lazy(()=>import("./TimeSheet/CreateTimeSheet/CreateTimeSheet"));
+
 const Upload = React.lazy(() => import("src/Upload/Upload"));
 const UploadProvider = React.lazy(() => import("src/Upload/UploadProviderFile/UploadProvider"));
 //examples
@@ -183,6 +186,16 @@ const routes = [
     path: "/AllSMS",
     name: "AllSms",
     component: AllSms,
+  },
+  {
+    path: "/TimeSheet/ManageTimeSheet",
+    name: "ManageTimeSheet",
+    component: ManageTimeSheet,
+  },
+  {
+    path: "/TimeSheet/CreateTimeSheet",
+    name: "CreateTimeSheet",
+    component: CreateTimeSheet,
   },
   {
     path: "/AllTutoring",
