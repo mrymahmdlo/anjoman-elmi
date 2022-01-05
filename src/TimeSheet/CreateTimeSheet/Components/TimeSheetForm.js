@@ -46,33 +46,33 @@ const TimeSheetForm = ({ form, setForm }) => {
       <CForm action="" method="post">
         <CRow>{items.slice(0, 2)}</CRow>
         <CRow>{items.slice(2)}</CRow>
-        <CFormGroup className="text-right w-40 m-2">
-          <label className="p-1 mr-1  "> ارائه دهنده : </label>
-
-
-            <CSelect
-              value={form.providerId}
-              defaultValue={providerId}
-              onChange={(e) => {
-
-                setForm({ ...form, providerId: e.target.value });
-                console.log({ ...form, providerId})
-              }}
-            >
-              <option value={-1}>پشتیبان را انتخاب کنید</option>
-              {providers.length > 0 ? (
-                providers.map((item) => (
-                  <option value={item.providerId} key={item.providerId}>
-                    {item.name + " " + item.lastName}{" "}
-                  </option>
-                ))
-              ) : (
-                <option>پشتیبانی وجود ندارد</option>
-              )}
-            </CSelect>
-
-        </CFormGroup>
         <CRow>
+          <CCol sm={6}>
+            <CFormGroup>
+              <label htmlFor="nf-title"> ارائه دهنده : </label>
+
+              <CSelect
+                value={form.providerId}
+                defaultValue={providerId}
+                onChange={(e) => {
+                  setForm({ ...form, providerId: e.target.value });
+                  console.log({ ...form, providerId });
+                }}
+              >
+                <option value={-1}>پشتیبان را انتخاب کنید</option>
+                {providers.length > 0 ? (
+                  providers.map((item) => (
+                    <option value={item.providerId} key={item.providerId}>
+                      {item.name + " " + item.lastName}{" "}
+                    </option>
+                  ))
+                ) : (
+                  <option>پشتیبانی وجود ندارد</option>
+                )}
+              </CSelect>
+            </CFormGroup>
+          </CCol>
+
           <CCol sm={6}>
             <CFormGroup>
               <CLabel htmlFor="nf-title">روز هفته</CLabel>
@@ -85,7 +85,7 @@ const TimeSheetForm = ({ form, setForm }) => {
                   <option
                     key={index}
                     value={item.id}
-                    selected={`${form.weekDay}` === item.name}
+                    selected={`${form.weekDay}` === item.id}
                   >
                     {item.name}
                   </option>

@@ -8,67 +8,40 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import {  PostDataProvider } from "src/Service/APIProvider";
+import {  PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
-import TimeSheetForm from './Components/TimeSheetForm';
-import { useHistory } from "react-router";
+import TuturingForm from "./Components/TutoringForm";
+import { ChangeValues } from "./Components/ChangeValues";
+import { GeorgianToHejri } from "src/Utility/DateTime";
 
-
-const EditTimeSheet = ({ obj, setModal }) => {
+const EditTutoring = ({ obj, setModal }) => {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
-  const [btnActive, setBtnActive] = useState(false);
-  const history = useHistory();
+  const [btnActice, setBtnActive] = useState(false);
 
   useEffect(() => {
+    console.log('obj',obj)
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
     setForm(obj);
-    console.log(obj);
   }, [obj]);
-const ChangeValues = (day) => {
- 
-  switch (day) {
-    case "یکشنبه":
-      return 0;
-    case "دوشنبه":
-       return 1;
-    case "سه شنبه":
-       return 2;
-    case "چهارشنبه":
-      return 3;
-    case "پنج شنبه":
-       return 4;
-    case "جمعه":
-       return 5;
-    case "شنبه":
-      return 6;
-
-   
-  }
-};
-  const submitTimeSheet = () => {
+   console.log("11", form.startDateRange);
+  const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    console.log(ChangeValues(obj.weekDay));
- 
-
-    console.log(form.weekDay);
-    PostDataProvider("TimeSheet/EditTimeSheet", {
-      timeSheetId: obj.timeSheetId,
-      providerId: obj.providerId,
-      productId: obj.productId,
-      startPeriodHour: Number(form.startPeriodHour),
-      endPeriodHour: Number(form.endPeriodHour),
-      weekDay:
-        form.weekDay !== obj.weekDay
-          ? Number(form.weekDay)
-          : ChangeValues(obj.weekDay),
+    let data = form;
+    console.log('kk',form.startDateRange);
+    PostDataBroad("Tutoring/BuyTutoring", {
+      providerId: +form.providerId,
+      studentId: +form.studentId,
+      tutorialId: +form.tutorialId,
+      isOnline: form.isOnline,
+      startDateRange: GeorgianToHejri(form.startDateRange),
+      durationMinutes: +form.durationMinutes,
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
-        history.push("/TimeSheet/ManageTimeSheet");
         setShowError(true);
         setBtnActive(false);
         setModal(false);
@@ -84,17 +57,17 @@ const ChangeValues = (day) => {
     <div className="App">
       <CContainer fluid>
         <CCard>
-          <CCardHeader>ویرایش زمان بندی</CCardHeader>
-          <TimeSheetForm form={form} setForm={setForm} />
+          <CCardHeader>  تدریس خصوصی مجدد</CCardHeader>
+          <TuturingForm form={form} setForm={setForm}  />
           <CCardFooter>
-            {!btnActive ? (
+            {!btnActice ? (
               <CButton
                 type="submit"
                 size="sm"
                 color="primary"
-                onClick={submitTimeSheet}
+                onClick={submitContent}
               >
-                <CIcon name="cil-scrubber" /> ثبت زمان بندی
+                <CIcon name="cil-scrubber" /> ثبت تدریس خصوصی
               </CButton>
             ) : (
               <CSpinner
@@ -111,4 +84,4 @@ const ChangeValues = (day) => {
   );
 };
 
-export default EditTimeSheet;
+export default EditTutoring;

@@ -1,5 +1,13 @@
 import React, {useEffect, useState} from "react";
-import {CCard, CCardBody, CCardHeader, CDataTable, CFormGroup, CSelect} from "@coreui/react";
+import {
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CDataTable,
+  CFormGroup,
+  CSelect,
+  CCol,
+} from "@coreui/react";
 import {PostDataProvider} from "src/Service/APIProvider";
 import {ChangeValues} from "./Components/ChangeValue";
 import {TimeSheetModal} from "./Components/TimeSheetModal";
@@ -38,25 +46,30 @@ const ManageTimeSheet = () => {
       <CCard>
         <CCardHeader>مدیریت زمان بندی</CCardHeader>
         <CCardBody>
-          <CFormGroup className="text-right w-40 m-2">
-            <label className="p-1 mr-1"> ارائه دهنده : </label>
-            <CSelect
-              value={form.providerId}
-              onChange={(e) => setForm({...form, providerId: e.target.value})}
-            >
-              <option value={-1}>پشتیبان را انتخاب کنید</option>
-              {/*<option value={providers.length}>همه پشتیبان ها</option>*/}
-              {providers.length > 0 ? (
-                providers?.map((item) => (
-                  <option value={item.providerId} key={item.providerId}>
-                    {item.name + " " + item.lastName}{" "}
-                  </option>
-                ))
-              ) : (
-                <option>پشتیبانی وجود ندارد</option>
-              )}
-            </CSelect>
+          <CFormGroup>
+            <CCol sm={6}>
+         
+              <CSelect
+                value={form.providerId}
+                onChange={(e) =>
+                  setForm({ ...form, providerId: e.target.value })
+                }
+              >
+                <option value={-1}>پشتیبان را انتخاب کنید</option>
+                {/*<option value={providers.length}>همه پشتیبان ها</option>*/}
+                {providers.length > 0 ? (
+                  providers?.map((item) => (
+                    <option value={item.providerId} key={item.providerId}>
+                      {item.name + " " + item.lastName}{" "}
+                    </option>
+                  ))
+                ) : (
+                  <option>پشتیبانی وجود ندارد</option>
+                )}
+              </CSelect>
+            </CCol>
           </CFormGroup>
+
           <CDataTable
             items={tableData}
             fields={tableFields}
@@ -69,7 +82,7 @@ const ManageTimeSheet = () => {
               updateData,
               setModal,
               modal,
-              setModalTimeSheet,
+              setModalTimeSheet
             )}
           />
         </CCardBody>

@@ -19,4 +19,11 @@ export const TableHeaders = [
     key: "durationMinutes",
     label: " زمان تدریس",
   },
+  // {
+  //   key: "edit",
+  //   label: "",
+  //   _style: { width: "1%" },
+  //   sorter: false,
+  //   filter: false,
+  // },
 ];

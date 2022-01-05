@@ -13,10 +13,14 @@ import {
 import { TableHeaders } from "./TableHeaders";
 import { ChangeValue } from "./ChangeValue";
 import { PostDataBroad } from "src/Service/APIBroadCast";
+import {TutoringScopedSlots} from './TutoringScopedSlots';
+import { TutoringModal } from "./TutoringModal";
+
 const Sms = () => {
   const [tableData, setTableData] = useState([]);
+   const [data, setData] = useState([]);
   const [modal, setModal] = useState(false);
-  const [modalContent, setModalContent] = useState("");
+   const [modalTutoring, setModalTutoring] = useState("");
   const [startDate, setStartDate] = useState("1390/06/10");
   const [endDate, setEndDate] = useState("1500/07/10");
   const [phoneNumber, setPhoneNumber] = useState();
@@ -32,9 +36,11 @@ const Sms = () => {
       //   toTime: endDate,
     }).then((res) => {
       let data = ChangeValue(res.data);
+      setData(res.data);
       setTableData(data);
     });
   };
+
 
   useEffect(() => {
     updateData();
@@ -42,7 +48,7 @@ const Sms = () => {
   return (
     <>
       <CCard>
-        <CCardHeader> مشاهده جسات برگزار شده  </CCardHeader>
+        <CCardHeader> مشاهده جسات برگزار شده </CCardHeader>
         {/* <CCardBody>
           <CForm inline>
             <CFormGroup className=" pl-1">
@@ -84,9 +90,22 @@ const Sms = () => {
           onSorterValueChange={setFilterData}
           itemsPerPage={15}
           pagination
-          //   scopedSlots={WebinartScopedSlots(setModalContent, setModal, modal)}
+          // scopedSlots={TutoringScopedSlots(
+          //   data,
+          //   setModal,
+          //   modal,
+          //   setModalTutoring
+          // )}
         />
       </CCard>
+      <TutoringModal
+        name=" تدریس خصوصی"
+        modal={modal}
+        toggle={() => {
+          setModal(!modal);
+        }}
+        modalTutoring={modalTutoring}
+      />
     </>
   );
 };
