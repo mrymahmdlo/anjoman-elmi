@@ -1,0 +1,92 @@
+import React, { useEffect, useState } from "react";
+import {
+  CCardBody,
+  CForm,
+  CRow,
+  CSelect,
+  CFormGroup,
+  CCol,
+} from "@coreui/react";
+import {GetData, PostData} from "src/Service/APIEngine";
+import { FormItems } from "./FormItems";
+import { TextField } from "src/Utility/InputGroup";
+import {GetDataWebinar} from "../../../Service/APIWebinar";
+
+const TutoringForm = ({ form, setForm }) => {
+  const [tutorials, setTutorials]=useState([]);
+  const [tutorialsClass, setTutorialsClass]=useState('d-none');
+  const [groupIds, setGroupIds] = useState([]);
+  const [groupId, setGroupId] = useState(0);
+  const [providers, setProviders] = useState([]);
+  const [providerId, setProviderId] = useState();
+
+  useEffect(() => {
+    GetData("BasicInfo/Groups").then((res) => setGroupIds(res));
+  }, []);
+
+  const getTutorials=(groupId)=> {
+    GetDataWebinar(`Admin/GetAllTutorialForAdmin?groupId=${groupId}`)
+      .then(res=>setTutorials(res.data))
+  };
+
+  useEffect(() => {
+    PostData("Provider/Tutoring", {
+      'GroupIds':[groupId]
+    }).then((res) => {
+      setProviders(res.data);
+    });
+  }, [groupId]);
+
+  useEffect(() => {
+    if (form.providerId) setProviderId(form.providerId);
+  }, [form]);
+
+  useEffect(() => {
+    setForm({ ...form, providerId: providerId });
+  }, [providerId]);
+
+  const items = FormItems(form, setForm, tutorials, providers).map((item) =>
+    TextField(item)
+  );
+
+  return (
+    <CCardBody>
+      <CForm action="" method="post">
+        <CFormGroup className='m-3'>
+          <CRow>
+            <CCol sm={4}>
+              <CSelect
+                value={form.groupId}
+                defaultValue={groupId}
+                onChange={(e) => {
+                  getTutorials(e.target.value);
+                  setGroupId(e.target.value);
+                  setTutorialsClass('d-block');
+                }}
+              >
+                <option value={-1}>گروه آزمایشی را انتخاب کنید</option>
+                {groupIds.map((item, key) => (
+                  <option
+                    key={key.id}
+                    value={item.id}
+                  >
+                    {item.name}
+                  </option>
+                ))}
+              </CSelect>
+            </CCol>
+          </CRow>
+        </CFormGroup>
+        <CFormGroup className={tutorialsClass}>
+          <CRow>
+            <CCol>
+              <CRow>{items}</CRow>
+            </CCol>
+          </CRow>
+        </CFormGroup>
+      </CForm>
+    </CCardBody>
+  );
+};
+
+export default TutoringForm;

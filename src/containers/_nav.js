@@ -136,6 +136,11 @@ const _nav = [
         name: "جلسات برگزار شده",
         to: "/AllTutoring",
       },
+      {
+        _tag: "CSidebarNavItem",
+        name: 'برگزاری دستی جلسات',
+        to: '/Tutoring/ManuallyCreateTutoring',
+      },
     ],
   },
 
