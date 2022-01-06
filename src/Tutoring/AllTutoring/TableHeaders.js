@@ -20,6 +20,20 @@ export const TableHeaders = [
     label: " زمان تدریس",
   },
   {
+    key: "status",
+    label: "وضعیت شرکت در آزمون",
+    _style: { width: "15%" },
+    sorter: false,
+    filter: false,
+  },
+  // {
+  //   key: "isOnline",
+  //   label: "وضعیت مشاور",
+  //   _style: { width: "15%" },
+  //   sorter: false,
+  //   filter: false,
+  // },
+  {
     key: "edit",
     label: "",
     _style: { width: "15%" },

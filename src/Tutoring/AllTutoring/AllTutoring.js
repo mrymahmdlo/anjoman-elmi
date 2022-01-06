@@ -10,11 +10,11 @@ import { PostDataBroad } from "src/Service/APIBroadCast";
 import {TutoringScopedSlots} from './TutoringScopedSlots';
 import { TutoringModal } from "./TutoringModal";
 
-const Sms = () => {
+const AllTutoring = () => {
   const [tableData, setTableData] = useState([]);
-   const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
   const [modal, setModal] = useState(false);
-   const [modalTutoring, setModalTutoring] = useState("");
+  const [modalTutoring, setModalTutoring] = useState("");
   const [startDate, setStartDate] = useState("1390/06/10");
   const [endDate, setEndDate] = useState("1500/07/10");
   const [phoneNumber, setPhoneNumber] = useState();
@@ -35,14 +35,13 @@ const Sms = () => {
     });
   };
 
-
   useEffect(() => {
     updateData();
   }, [modal, startDate, endDate, phoneNumber]);
   return (
     <>
       <CCard>
-        <CCardHeader> مشاهده جسات برگزار شده </CCardHeader>
+        <CCardHeader> مشاهده جلسات برگزار شده </CCardHeader>
         {/* <CCardBody>
           <CForm inline>
             <CFormGroup className=" pl-1">
@@ -104,4 +103,4 @@ const Sms = () => {
   );
 };
 
-export default Sms;
+export default AllTutoring;

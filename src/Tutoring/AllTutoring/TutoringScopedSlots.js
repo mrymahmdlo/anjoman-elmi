@@ -1,4 +1,4 @@
-import { CButton } from "@coreui/react";
+import { CButton, CBadge } from "@coreui/react";
 import EditTutoring from "../AllTutoring/EditTutoring/EditTutoring";
 
 export const TutoringScopedSlots = (
@@ -26,5 +26,36 @@ export const TutoringScopedSlots = (
         </td>
       </>
     ),
-  };
+
+    status: (item) => {
+      return (
+        <td className="py-2 pl-2">
+          <CBadge
+            style={{ direction: "ltr" }}
+            // color={item.status === "آماده ی شرکت" ? "success" : "danger"}
+          >
+            {item.status}
+          </CBadge>
+        </td>
+      );
+    },
+    isOnline: (item) => {
+      return (
+        <td className="py-2 pl-2">
+          <CBadge
+            style={{ direction: "ltr" }}
+            color={
+              item.isOnline === false
+                ? "dark"
+                : item.isOnline === true
+                ? "light"
+                : "primary"
+            }
+          >
+            {item.isOnline}
+          </CBadge>
+        </td>
+      );
+    },
+  };   
 };

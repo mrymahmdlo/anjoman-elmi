@@ -28,9 +28,9 @@ const EditTutoring = ({ obj, setModal }) => {
     setShowError(false);
     setBtnActive(true);
     PostDataBroad("Tutoring/BuyTutoring", {
-      providerId: +form.providerId,
+      productId: +form.productId,
       studentId: +form.studentId,
-      tutorialId: +form.tutorialId,
+      providerId: +form.providerId,
       isOnline: form.isOnline,
       startDateRange: HejriToDotNetGeorgian(form.startDateRange),
       durationMinutes: +form.durationMinutes,
