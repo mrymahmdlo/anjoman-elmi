@@ -8,28 +8,33 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import {PostDataWebinar} from "../../Service/APIWebinar";
+import { PostDataBroad } from "../../Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import TutoringForm from "./Components/TutoringForm";
-
+ 
 export default function ManuallyCreateTutoring() {
   const [form, setForm] = useState({});
+  //  const [validation, setValidation] = useState(true);
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActive, setBtnActive] = useState(false);
 
   const submitContent = () => {
+      //  if (validation) {
+      //    return console.log("لطفا فیلد های قرمز شده را پر یا اصلاح کنید");
+      //  }
     setShowError(false);
     setBtnActive(true);
-    PostDataWebinar('Admin/RetakeTutoring', {
-      providerId: form.providerId,
+    PostDataBroad("Admin/RetakeTutoring", {
+      providerId: +form.providerId,
       userPhoneNumber: form.userPhoneNumber,
-      productId: form.productId,
+      productId: +form.productId,
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
         setShowError(true);
         setBtnActive(false);
+
       })
       .catch(() => {
         setErrorContent("ثبت داده ها با مشکل مواجه شد");
@@ -43,7 +48,7 @@ export default function ManuallyCreateTutoring() {
       <CContainer fluid>
         <CCard>
           <CCardHeader>برگزاری دستی جلسه</CCardHeader>
-          <TutoringForm form={form} setForm={setForm}/>
+          <TutoringForm form={form} setForm={setForm}  />
           <CCardFooter>
             {!btnActive ? (
               <CButton

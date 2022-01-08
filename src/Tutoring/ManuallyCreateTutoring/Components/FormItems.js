@@ -10,18 +10,18 @@ export const FormItems = (form, setForm, tutorials, providers) => {
       input: (
         <CSelect
           value={form.groupId}
-          onChange={(e)=>setForm({ ...form, productId: e.target.value })}
+          onChange={(e) => setForm({ ...form, productId: e.target.value })}
         >
           <option value={-1}>جلسه را انتخاب کنید</option>
-          {tutorials.length>0 ?
+          {tutorials.length > 0 ? (
             tutorials?.map((item) => (
               <option value={item.productId} key={item.productId}>
                 {item.title}
               </option>
             ))
-            :
+          ) : (
             <option>جلسه ای وجود ندارد</option>
-          }
+          )}
         </CSelect>
       ),
       size: 6,
@@ -58,8 +58,8 @@ export const FormItems = (form, setForm, tutorials, providers) => {
         "شماره ی دانش آموز",
         0,
         null,
-        () => form.userPhoneNumber >= "0"
-        // () => form.userPhoneNumber.length >= "11"
+        () => form.userPhoneNumber >= "0",
+        () => form.userPhoneNumber.length >= "11"
       ),
       size: 3,
     },

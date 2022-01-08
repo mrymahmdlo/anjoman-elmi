@@ -6,6 +6,7 @@ import {
   CSelect,
   CFormGroup,
   CCol,
+  CLabel,
 } from "@coreui/react";
 import {GetData, PostData} from "src/Service/APIEngine";
 import { FormItems } from "./FormItems";
@@ -13,8 +14,8 @@ import { TextField } from "src/Utility/InputGroup";
 import {GetDataWebinar} from "../../../Service/APIWebinar";
 
 const TutoringForm = ({ form, setForm }) => {
-  const [tutorials, setTutorials]=useState([]);
-  const [tutorialsClass, setTutorialsClass]=useState('d-none');
+  const [tutorials, setTutorials] = useState([]);
+  const [tutorialsClass, setTutorialsClass] = useState();
   const [groupIds, setGroupIds] = useState([]);
   const [groupId, setGroupId] = useState(0);
   const [providers, setProviders] = useState([]);
@@ -24,14 +25,15 @@ const TutoringForm = ({ form, setForm }) => {
     GetData("BasicInfo/Groups").then((res) => setGroupIds(res));
   }, []);
 
-  const getTutorials=(groupId)=> {
-    GetDataWebinar(`Admin/GetAllTutorialForAdmin?groupId=${groupId}`)
-      .then(res=>setTutorials(res.data))
+  const getTutorials = (groupId) => {
+    GetDataWebinar(`Admin/GetAllTutorialForAdmin?groupId=${groupId}`).then(
+      (res) => setTutorials(res.data)
+    );
   };
 
   useEffect(() => {
     PostData("Provider/Tutoring", {
-      'GroupIds':[groupId]
+      GroupIds: [groupId],
     }).then((res) => {
       setProviders(res.data);
     });
@@ -45,14 +47,17 @@ const TutoringForm = ({ form, setForm }) => {
     setForm({ ...form, providerId: providerId });
   }, [providerId]);
 
-  const items = FormItems(form, setForm, tutorials, providers).map((item) =>
-    TextField(item)
+  const items = FormItems(form, setForm, tutorials, providers).map(
+    (item) => TextField(item)
   );
 
   return (
     <CCardBody>
       <CForm action="" method="post">
-        <CFormGroup className='m-3'>
+        <CFormGroup className="m-3">
+          <CLabel className="pr-1" style={{ color: "red" }}>
+            ابتدا گروه آزمایشی خود را انتخاب کنید
+          </CLabel>
           <CRow>
             <CCol sm={4}>
               <CSelect
@@ -61,15 +66,12 @@ const TutoringForm = ({ form, setForm }) => {
                 onChange={(e) => {
                   getTutorials(e.target.value);
                   setGroupId(e.target.value);
-                  setTutorialsClass('d-block');
+                  setTutorialsClass("d-block");
                 }}
               >
                 <option value={-1}>گروه آزمایشی را انتخاب کنید</option>
                 {groupIds.map((item, key) => (
-                  <option
-                    key={key.id}
-                    value={item.id}
-                  >
+                  <option key={key.id} value={item.id}>
                     {item.name}
                   </option>
                 ))}
