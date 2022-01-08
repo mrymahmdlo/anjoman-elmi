@@ -80,6 +80,7 @@ const Sms = () => {
           items={tableData}
           fields={TableHeaders}
           striped
+          columnFilter
           size="sm"
           sorter={{ external: true, resetable: false }}
           onSorterValueChange={setFilterData}
