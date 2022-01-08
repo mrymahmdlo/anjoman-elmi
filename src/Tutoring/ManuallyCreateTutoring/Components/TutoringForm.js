@@ -10,7 +10,7 @@ import {
 } from "@coreui/react";
 import {GetData, PostData} from "src/Service/APIEngine";
 import { FormItems } from "./FormItems";
-import { TextField } from "src/Utility/InputGroup";
+import { TextField } from "src/Utilityz/InputGroup";
 import {GetDataWebinar} from "../../../Service/APIWebinar";
 
 const TutoringForm = ({ form, setForm }) => {

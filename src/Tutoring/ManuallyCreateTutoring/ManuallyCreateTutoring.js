@@ -11,18 +11,25 @@ import CIcon from "@coreui/icons-react";
 import { PostDataBroad } from "../../Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import TutoringForm from "./Components/TutoringForm";
- 
+
 export default function ManuallyCreateTutoring() {
   const [form, setForm] = useState({});
-  //  const [validation, setValidation] = useState(true);
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActive, setBtnActive] = useState(false);
 
-  const submitContent = () => {
-      //  if (validation) {
-      //    return console.log("لطفا فیلد های قرمز شده را پر یا اصلاح کنید");
-      //  }
+  const refreshPage=()=> {
+    setTimeout(()=>{
+      window.location.reload(false);
+    }, 2000);
+  }
+
+  const checkPhoneNumber=()=>
+    form.userPhoneNumber[0]==='0'
+    && form.userPhoneNumber[1]==='9'
+    && form.userPhoneNumber.length===11
+
+  const postData=()=> {
     setShowError(false);
     setBtnActive(true);
     PostDataBroad("Admin/RetakeTutoring", {
@@ -34,13 +41,22 @@ export default function ManuallyCreateTutoring() {
         setErrorContent("داده با موفقیت ثبت شد ");
         setShowError(true);
         setBtnActive(false);
-
+        refreshPage();
       })
       .catch(() => {
         setErrorContent("ثبت داده ها با مشکل مواجه شد");
         setShowError(true);
         setBtnActive(false);
-      });
+      })
+  }
+
+  const submitContent = () => {
+    checkPhoneNumber()
+    ? postData()
+    : setErrorContent("شماره موبایل وارد شده صحیح نمی باشد");
+    setShowError(true);
+    setBtnActive(false);
+    postData();
   };
 
   return (
