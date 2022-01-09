@@ -8,7 +8,7 @@ export const ChangeValue = (arr) => {
       if (key === "purchasedDate" || key === "startDateRange") {
         let date = new Date(obj[key]);
         let jdate = new JDate(date);
-        obj[key] = DateFormatter(jdate, date);
+        if (obj[key]!==null) {obj[key] = DateFormatter(jdate, date)}else{obj[key]='-';};
       }
   //     if (key === "isOnline") {
   //  obj[key] = obj[key] === true ? "آفلاین" : "آنلاین";
