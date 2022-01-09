@@ -56,7 +56,6 @@ const TimeSheetForm = ({ form, setForm }) => {
                 defaultValue={providerId}
                 onChange={(e) => {
                   setForm({ ...form, providerId: e.target.value });
-                  console.log({ ...form, providerId });
                 }}
               >
                 <option value={-1}>پشتیبان را انتخاب کنید</option>

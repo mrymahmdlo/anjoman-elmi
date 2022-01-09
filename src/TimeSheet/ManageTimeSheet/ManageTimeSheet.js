@@ -74,6 +74,7 @@ const ManageTimeSheet = () => {
             items={tableData}
             fields={tableFields}
             striped
+            columnFilter
             size="sm"
             sorter
             itemsPerPage={15}

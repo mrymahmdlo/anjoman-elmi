@@ -4,7 +4,7 @@ import { ModalProvider } from "./ModalProvider";
 import { ScopedSlots } from "./ScopedSlots";
 import { TableHeader } from "./TableHeader";
 // import { ChangeValues } from "./Utility/ChangeValues";
-import { GetData } from "src/Service/APIBroadCast";
+import { GetDataBroad } from "src/Service/APIBroadCast";
 const ManageTutoring = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);
@@ -15,7 +15,7 @@ const ManageTutoring = () => {
   });
 
   const updateData = () => {
-    GetData("ProviderCourse/GetAll").then((res) => {
+    GetDataBroad("ProviderCourse/GetAll").then((res) => {
       //   let data = ChangeValues(res.data);
       setTableData(res.data);
     });
