@@ -32,6 +32,7 @@ const ManageTutoring = () => {
           items={tableData}
           fields={TableHeader}
           striped
+          columnFilter
           size="sm"
           sorter={{ external: true, resetable: false }}
           onSorterValueChange={setFilterData}

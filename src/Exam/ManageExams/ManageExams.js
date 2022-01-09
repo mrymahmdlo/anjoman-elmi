@@ -82,6 +82,7 @@ const ManageExams = () => {
                 field.key !== "groupCodes"
             )}
             striped
+            columnFilter
             size="sm"
             sorter={{ external: true, resetable: false }}
             onSorterValueChange={setFilterData}
