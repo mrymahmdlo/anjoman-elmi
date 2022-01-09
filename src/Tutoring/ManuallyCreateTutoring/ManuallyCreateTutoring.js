@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
   CButton,
   CCard,
@@ -11,25 +11,28 @@ import CIcon from "@coreui/icons-react";
 import { PostDataBroad } from "../../Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import TutoringForm from "./Components/TutoringForm";
-
 export default function ManuallyCreateTutoring() {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActive, setBtnActive] = useState(false);
 
-  const refreshPage=()=> {
-    setTimeout(()=>{
+  const refreshPage = () => {
+    setTimeout(() => {
       window.location.reload(false);
     }, 2000);
-  }
+  };
 
-  const checkPhoneNumber=()=>
-    form.userPhoneNumber[0]==='0'
-    && form.userPhoneNumber[1]==='9'
-    && form.userPhoneNumber.length===11
+  const checkPhoneNumber = () => {
+    if (form.userPhoneNumbe)
+    return (
+      form.userPhoneNumber[0] === "0" &&
+      form.userPhoneNumber[1] === "9" &&
+      form.userPhoneNumber?.length === 11
+    );
+  };
 
-  const postData=()=> {
+  const postData = () => {
     setShowError(false);
     setBtnActive(true);
     PostDataBroad("Admin/RetakeTutoring", {
@@ -44,16 +47,16 @@ export default function ManuallyCreateTutoring() {
         refreshPage();
       })
       .catch(() => {
-        setErrorContent("ثبت داده ها با مشکل مواجه شد");
+        // setErrorContent("ثبت داده ها با مشکل مواجه شد");
         setShowError(true);
         setBtnActive(false);
-      })
-  }
+      });
+  };
 
   const submitContent = () => {
     checkPhoneNumber()
-    ? postData()
-    : setErrorContent("شماره موبایل وارد شده صحیح نمی باشد");
+      ? postData()
+      : setErrorContent("لطفا فیلد های  ضروری را پر یا اصلاح کنید");
     setShowError(true);
     setBtnActive(false);
     postData();
@@ -64,7 +67,7 @@ export default function ManuallyCreateTutoring() {
       <CContainer fluid>
         <CCard>
           <CCardHeader>برگزاری دستی جلسه</CCardHeader>
-          <TutoringForm form={form} setForm={setForm}  />
+          <TutoringForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActive ? (
               <CButton

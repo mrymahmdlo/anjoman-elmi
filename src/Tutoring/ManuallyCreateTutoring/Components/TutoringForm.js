@@ -10,12 +10,11 @@ import {
 } from "@coreui/react";
 import {GetData, PostData} from "src/Service/APIEngine";
 import { FormItems } from "./FormItems";
-import { TextField } from "src/Utilityz/InputGroup";
-import {GetDataWebinar} from "../../../Service/APIWebinar";
+import { TextField } from "../../../Utility/InputGroup";
+import { GetDataBroad } from "../../../Service/APIBroadCast";
 
 const TutoringForm = ({ form, setForm }) => {
   const [tutorials, setTutorials] = useState([]);
-  const [tutorialsClass, setTutorialsClass] = useState();
   const [groupIds, setGroupIds] = useState([]);
   const [groupId, setGroupId] = useState(0);
   const [providers, setProviders] = useState([]);
@@ -26,7 +25,7 @@ const TutoringForm = ({ form, setForm }) => {
   }, []);
 
   const getTutorials = (groupId) => {
-    GetDataWebinar(`Admin/GetAllTutorialForAdmin?groupId=${groupId}`).then(
+    GetDataBroad(`Admin/GetAllTutorialForAdmin?groupId=${groupId}`).then(
       (res) => setTutorials(res.data)
     );
   };
@@ -66,7 +65,7 @@ const TutoringForm = ({ form, setForm }) => {
                 onChange={(e) => {
                   getTutorials(e.target.value);
                   setGroupId(e.target.value);
-                  setTutorialsClass("d-block");
+               
                 }}
               >
                 <option value={-1}>گروه آزمایشی را انتخاب کنید</option>
@@ -79,7 +78,7 @@ const TutoringForm = ({ form, setForm }) => {
             </CCol>
           </CRow>
         </CFormGroup>
-        <CFormGroup className={tutorialsClass}>
+        <CFormGroup >
           <CRow>
             <CCol>
               <CRow>{items}</CRow>

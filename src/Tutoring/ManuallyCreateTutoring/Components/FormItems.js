@@ -59,7 +59,7 @@ export const FormItems = (form, setForm, tutorials, providers) => {
         0,
         null,
         () => form.userPhoneNumber >= "0",
-        () => form.userPhoneNumber.length >= "11"
+        () => form.userPhoneNumber?.length >= "11"
       ),
       size: 3,
     },

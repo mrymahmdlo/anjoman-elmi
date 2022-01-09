@@ -4,7 +4,7 @@ import { TutoringModal } from "./Components/TutoringModal";
 import { TutoringScopedSlots } from "./Components/TutoringScopedSlots";
 import { TableHeader } from "./Components/TableHeader";
 // import { ChangeValues } from "./Utility/ChangeValues";
-import { GetData } from "src/Service/APIBroadCast";
+import { GetDataBroad } from "src/Service/APIBroadCast";
 const ManageTutoring = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);
@@ -15,9 +15,9 @@ const ManageTutoring = () => {
   });
 
   const updateData = () => {
-    GetData("Tutorial/GetAll").then((res) => {
+    GetDataBroad("Tutorial/GetAll").then((res) => {
       //   let data = ChangeValues(res.data);
-        setTableData(res.data);
+      setTableData(res.data);
     });
   };
 
