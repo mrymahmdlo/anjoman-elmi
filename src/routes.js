@@ -47,7 +47,8 @@ const AllSms = React.lazy(() =>
 );
 const ManageuploadProvider = React.lazy(() => import("./Upload/UploadProviderFile/ManageuploadProvider"));
 const AllTutoring = React.lazy(() => import("./Tutoring/AllTutoring/AllTutoring"));
- 
+const ManuallyCreateTutoring=React.lazy(()=>import('./Tutoring/ManuallyCreateTutoring/ManuallyCreateTutoring'));
+
 const ManageTimeSheet=React.lazy(()=>import("./TimeSheet/ManageTimeSheet/ManageTimeSheet.js"));
 const CreateTimeSheet=React.lazy(()=>import("./TimeSheet/CreateTimeSheet/CreateTimeSheet"));
 
@@ -188,6 +189,11 @@ const routes = [
     component: AllSms,
   },
   {
+    path: '/Tutoring/ManuallyCreateTutoring',
+    name: 'ManuallyCreateTutoring',
+    component: ManuallyCreateTutoring,
+  },
+  {
     path: "/TimeSheet/ManageTimeSheet",
     name: "ManageTimeSheet",
     component: ManageTimeSheet,
@@ -279,15 +285,15 @@ const routes = [
   { path: "/icons/flags", name: "Flags", component: Flags },
   { path: "/icons/brands", name: "Brands", component: Brands },
   {
-    path: "/notifications",
+    path: "/Notifications",
     name: "Notifications",
     component: Alerts,
     exact: true,
   },
-  { path: "/notifications/alerts", name: "Alerts", component: Alerts },
-  { path: "/notifications/badges", name: "Badges", component: Badges },
-  { path: "/notifications/modals", name: "Modals", component: Modals },
-  { path: "/notifications/toaster", name: "Toaster", component: Toaster },
+  { path: "/Notifications/alerts", name: "Alerts", component: Alerts },
+  { path: "/Notifications/badges", name: "Badges", component: Badges },
+  { path: "/Notifications/modals", name: "Modals", component: Modals },
+  { path: "/Notifications/toaster", name: "Toaster", component: Toaster },
   { path: "/widgets", name: "Widgets", component: Widgets },
   { path: "/users", exact: true, name: "Users", component: Users },
   { path: "/users/:id", exact: true, name: "User Details", component: User },

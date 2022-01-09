@@ -3,14 +3,13 @@ const { GetToken } = TokenManager();
 const secret = "AMP_!YUHDSJHYG@&12312!W@sAs";
 
 export const BaseUrl = process.env.REACT_APP_Broad_BASE;
-const GetData = (url) => {
-    return fetch(BaseUrl + url, {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + GetToken(),
-      },
-    }).then((res) => res.json());
-
+const GetDataBroad = (url) => {
+  return fetch(BaseUrl + url, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + GetToken(),
+    },
+  }).then((res) => res.json());
 };
 
 const PostDataBroad = async (url, body) => {
@@ -87,4 +86,4 @@ export const postFormData = async (url, form) => {
 
 const GetFileDownloadLink = (hash) => BaseUrl + "File/Download/" + hash;
 
-export { PostDataBroad, GetData, UploadFileRequest, GetFileDownloadLink };
+export { PostDataBroad, GetDataBroad, UploadFileRequest, GetFileDownloadLink };
