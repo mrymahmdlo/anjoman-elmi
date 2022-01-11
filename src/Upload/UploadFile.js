@@ -50,6 +50,8 @@ export const UploadFile = () => {
     });
   };
 
+  console.log('pub1')
+
   const updateClipboard = (newClip) => {
     console.log('be')
     navigator.clipboard.writeText(newClip).then(() => {
