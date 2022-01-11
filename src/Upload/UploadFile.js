@@ -51,14 +51,16 @@ export const UploadFile = () => {
   };
 
   const updateClipboard = (newClip) => {
-
+    console.log('be')
     navigator.clipboard.writeText(newClip).then(() => {
       // clipboard successfully set
       console.log('success');
-    }, () => {
-      // clipboard write failed
-      console.log('Failed to copy');
-    });
+    })
+      .catch(() => {
+        // clipboard write failed
+        console.log('Failed to copy');
+      })
+    console.log('af')
   };
 
 
