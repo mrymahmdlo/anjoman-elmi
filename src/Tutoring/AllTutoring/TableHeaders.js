@@ -17,7 +17,7 @@ export const TableHeaders = [
   },
   {
     key: "startDateRange",
-    label: "زمان رزو",
+    label: "زمان رزرو",
   },
   {
     key: "durationMinutes",
