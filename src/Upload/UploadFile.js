@@ -47,6 +47,7 @@ export const UploadFile = () => {
         // write to the clipboard now
         updateClipboard(link);
       }
+      console.log('failed');
     });
   };
 
