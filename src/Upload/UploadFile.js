@@ -47,11 +47,11 @@ export const UploadFile = () => {
         // write to the clipboard now
         updateClipboard(link);
       }
-      console.log('failed');
+      else console.log('failed');
     });
   };
 
-  console.log('pub2')
+  console.log('pub3')
 
   const updateClipboard = (newClip) => {
     console.log('be')
