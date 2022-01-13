@@ -11,6 +11,8 @@ import CIcon from "@coreui/icons-react";
 import { PostDataBroad } from "../../Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import TutoringForm from "./Components/TutoringForm";
+import { GeorgianToHejri } from "src/Utility/DateTime";
+
 export default function ManuallyCreateTutoring() {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
@@ -39,6 +41,8 @@ export default function ManuallyCreateTutoring() {
       providerId: +form.providerId,
       userPhoneNumber: form.userPhoneNumber,
       productId: +form.productId,
+      isOffline: form.isOffline!==0,
+      startDate: GeorgianToHejri(form.startDate),
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");

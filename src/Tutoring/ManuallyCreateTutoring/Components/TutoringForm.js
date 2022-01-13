@@ -65,7 +65,7 @@ const TutoringForm = ({ form, setForm }) => {
                 onChange={(e) => {
                   getTutorials(e.target.value);
                   setGroupId(e.target.value);
-               
+
                 }}
               >
                 <option value={-1}>گروه آزمایشی را انتخاب کنید</option>
@@ -80,9 +80,10 @@ const TutoringForm = ({ form, setForm }) => {
         </CFormGroup>
         <CFormGroup >
           <CRow>
-            <CCol>
-              <CRow>{items}</CRow>
-            </CCol>
+            {items.slice(0,3)}
+          </CRow>
+          <CRow>
+            {items.slice(3,6)}
           </CRow>
         </CFormGroup>
       </CForm>

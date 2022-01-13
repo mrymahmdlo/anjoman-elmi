@@ -1,6 +1,7 @@
 import { FormNumberInput } from "src/reusable/FormInput";
 import {CSelect} from "@coreui/react";
 import React from "react";
+import {DateTimePickerToGeorgian} from "../../../reusable/DateTimePickerToGeorgian";
 
 export const FormItems = (form, setForm, tutorials, providers) => {
   return [
@@ -62,6 +63,36 @@ export const FormItems = (form, setForm, tutorials, providers) => {
         () => form.userPhoneNumber?.length >= "11"
       ),
       size: 3,
+    },
+    {
+      name: "وضعیت درس",
+      text: "وضعیت درس را انتخاب کنید",
+      input: (
+        <CSelect
+          custom
+          name="isOffline"
+          style={{ width: "100%" }}
+          onChange={(e) => setForm({ ...form, isOffline: +e.target.value })}
+        >
+          <option value={-1}>وضعیت درس</option>
+          <option value={0}>آنلاین</option>
+          <option value={1}>آفلاین</option>
+        </CSelect>
+      ),
+      size: 6,
+    },
+    {
+      name: "تاریخ و ساعت برگزاری",
+      text: "تاریخ و ساعت برگزاری آزمون را وارد کنید",
+      input: (
+        <DateTimePickerToGeorgian
+          className="form-control"
+          name="startDate"
+          value={form.startDate}
+          onChange={(e) => setForm({ ...form, startDate: e })}
+        />
+      ),
+      size: 6,
     },
   ];
 };
