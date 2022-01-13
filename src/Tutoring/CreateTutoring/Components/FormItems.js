@@ -29,8 +29,8 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
       ),
       size: 4,
     },
- 
-    
+
+
     {
       name: "مقطع تحصیلی",
       text: "مقطع تحصیلی مخاطب  را وارد کنید",
@@ -53,7 +53,7 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
           ))}
         </CSelect>
       ),
-      size: 6,
+      size: 4,
     },
     {
       name: "درس",
@@ -79,7 +79,24 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
             : null}
         </CSelect>
       ),
-      size: 6,
+      size: 4,
+    },
+    {
+      name: "وضعیت درس",
+      text: "وضعیت درس را انتخاب کنید",
+      input: (
+        <CSelect
+          custom
+          name="isOffline"
+          style={{ width: "100%" }}
+          onChange={(e) => setForm({ ...form, isOffline: +e.target.value })}
+        >
+          <option value={-1}>وضعیت درس</option>
+          <option value={0}>آنلاین</option>
+          <option value={1}>آفلاین</option>
+        </CSelect>
+      ),
+      size: 4,
     },
   ];
 };
