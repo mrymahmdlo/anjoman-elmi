@@ -22,6 +22,7 @@ const TheSidebar = () => {
     <CSidebar
       show={show}
       onShowChange={(val) => dispatch({type: 'set', sidebarShow: val })}
+      size='lg'
     >
       <CSidebarNav>
 
