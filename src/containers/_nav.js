@@ -108,7 +108,7 @@ const _nav = [
     _children: [
       {
         _tag: "CSidebarNavItem",
-        name: "مدیریت تدریس خصوصی",
+        name: "مدیریت محصولات تدریس خصوصی",
         to: "/Tutoring/ManageTutoring",
       },
       {
@@ -133,7 +133,7 @@ const _nav = [
       },
       {
         _tag: "CSidebarNavItem",
-        name: "جلسات برگزار شده",
+        name: "مدیریت جلسات",
         to: "/AllTutoring",
       },
       {
