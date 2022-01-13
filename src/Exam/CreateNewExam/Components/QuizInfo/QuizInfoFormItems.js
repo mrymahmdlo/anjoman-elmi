@@ -168,6 +168,7 @@ const QuizModeSelect = ({ form, setForm }) => {
       <CFormGroup>
         <CLabel htmlFor="nf-title">حالت برگزاری آزمون</CLabel>
         <CSelect
+          defaultValue={2}
           onChange={(e) => {
             setForm({ ...form, quizMode: e.target.value });
           }}
@@ -201,6 +202,7 @@ const QuizTypeSelect = ({ form, setForm }) => {
       <CFormGroup>
         <CLabel htmlFor="nf-title">نوع برگزاری آزمون</CLabel>
         <CSelect
+          defaultValue={1}
           onChange={(e) => {
             console.log("1", e.target.value);
             setForm({ ...form, quizType: e.target.value });
@@ -211,7 +213,7 @@ const QuizTypeSelect = ({ form, setForm }) => {
             { id: "1", name: "چند درسی" },
             { id: "2", name: "اعتبار سنجی" },
           ].map((item, index) =>
-            
+
             <option
               key={index}
               value={item.id}

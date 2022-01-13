@@ -23,7 +23,7 @@ const TuturingForm = ({ form, setForm, preData }) => {
     if (form.providerId) setProviderId(form.providerId);
   }, [form]);
   // useEffect(() => {
- 
+
   //     switch (providerRank) {
   //       case "1 تا 50":
   //         setForm({ ...form, minProviderRank: 0, maxProviderRank: 50 });
@@ -32,7 +32,7 @@ const TuturingForm = ({ form, setForm, preData }) => {
   //       case "500 به بالا":
   //         setForm({ ...form, minProviderRank: 500, maxProviderRank: 500000 });
   //     }
- 
+
   // }, [providerRank,form]);
 
   useEffect(() => {
@@ -71,6 +71,7 @@ const TuturingForm = ({ form, setForm, preData }) => {
                   setForm({ ...form, totalMinute: e.target.value });
                 }}
               >
+                <option value={-1}>زمان را انتخاب کنید</option>
                 {[{ id: "30" }, { id: "60" }, { id: "90" }].map(
                   (item, index) => (
                     <option
@@ -83,7 +84,6 @@ const TuturingForm = ({ form, setForm, preData }) => {
                   )
                 )}
               </CSelect>
-              <CFormText className="help-block">زمان را انتخاب کنید</CFormText>
             </CFormGroup>
           </CCol>
           <CCol sm={6}>
@@ -113,6 +113,7 @@ const TuturingForm = ({ form, setForm, preData }) => {
                   }
                 }}
               >
+                <option value={-1}>رتبه را انتخاب کنید</option>
                 {[
                   { id: 0, name: "1 تا 50" },
                   { id: 50, name: "51 تا 500" },
@@ -127,7 +128,6 @@ const TuturingForm = ({ form, setForm, preData }) => {
                   </option>
                 ))}
               </CSelect>
-              <CFormText className="help-block">رتبه را انتخاب کنید</CFormText>
             </CFormGroup>
           </CCol>
         </CRow>

@@ -91,9 +91,6 @@ const TimeSheetForm = ({ form, setForm }) => {
                   </option>
                 ))}
               </CSelect>
-              <CFormText className="help-block">
-                روز هفته را انتخاب کنید
-              </CFormText>
             </CFormGroup>
           </CCol>
         </CRow>
