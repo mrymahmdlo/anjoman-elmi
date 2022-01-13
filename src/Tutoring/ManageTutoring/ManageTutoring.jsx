@@ -5,6 +5,8 @@ import { TutoringScopedSlots } from "./Components/TutoringScopedSlots";
 import { TableHeader } from "./Components/TableHeader";
 // import { ChangeValues } from "./Utility/ChangeValues";
 import { GetDataBroad } from "src/Service/APIBroadCast";
+import {ChangeValues} from "./Components/ChangeValue";
+
 const ManageTutoring = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);
@@ -17,7 +19,7 @@ const ManageTutoring = () => {
   const updateData = () => {
     GetDataBroad("Tutorial/GetAll").then((res) => {
       //   let data = ChangeValues(res.data);
-      setTableData(res.data);
+      setTableData(ChangeValues(res.data));
     });
   };
 
@@ -35,7 +37,7 @@ const ManageTutoring = () => {
           hover
           columnFilter
           size="sm"
-          sorter={{ external: true, resetable: false }}
+          sorter
           onSorterValueChange={setFilterData}
           itemsPerPage={15}
           pagination
