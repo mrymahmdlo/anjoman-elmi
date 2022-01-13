@@ -45,11 +45,11 @@ export const TableHeaders = [
   //   sorter: false,
   //   filter: false,
   // },
-  {
-    key: "edit",
-    label: "",
-    _style: { width: "10%" },
-    sorter: false,
-    filter: false,
-  },
+  // {
+  //   key: "edit",
+  //   label: "",
+  //   _style: { width: "10%" },
+  //   sorter: false,
+  //   filter: false,
+  // },
 ];
