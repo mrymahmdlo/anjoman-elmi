@@ -80,6 +80,7 @@ const TimeSheetForm = ({ form, setForm }) => {
                   setForm({ ...form, weekDay: e.target.value });
                 }}
               >
+                <option value={-1}>روز هفته را انتخاب کنید</option>
                 {weekDay.map((item, index) => (
                   <option
                     key={index}
