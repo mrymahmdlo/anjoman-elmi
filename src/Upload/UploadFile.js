@@ -36,34 +36,24 @@ export const UploadFile = () => {
       })
       .catch(() => setStatusFile(status.FAILED));
   };
-  // const copyToClipboard = () => {
-  //   navigator.clipboard.writeText(link);
-  // };
 
   const copyToClipboard = () => {
 
     navigator.permissions.query({name: "clipboard-write"}).then(result => {
       if (result.state === "granted" || result.state === "prompt") {
-        // write to the clipboard now
         updateClipboard(link);
       }
       else console.log('failed');
     });
   };
 
-  console.log('pub3')
-
   const updateClipboard = (newClip) => {
-    console.log('be')
     navigator.clipboard.writeText(newClip).then(() => {
-      // clipboard successfully set
       console.log('success');
     })
       .catch(() => {
-        // clipboard write failed
         console.log('Failed to copy');
       })
-    console.log('af')
   };
 
 
