@@ -73,7 +73,7 @@ const Login = () => {
                           <input
                             type="text"
                             placeholder="نام کاربری"
-                            autoComplete="username"
+                            autoComplete
                             onChange={(e) => setUserName(e.target.value)}
                             autoFocus
                           />
@@ -87,7 +87,7 @@ const Login = () => {
                           <input
                             type="password"
                             placeholder="رمز عبور"
-                            autoComplete="current-password"
+                            autoComplete
                             onChange={(e) => setPassword(e.target.value)}
                           />
                         </CInputGroup>
