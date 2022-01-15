@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import React, { Component } from 'react';
-import AsyncSelect from 'react-select/async';
+import React, { Component } from "react";
+import Select from "react-select";
+import AsyncSelect from "react-select/async";
 import {
   UploadFileStatusMark,
   status,
@@ -9,6 +10,7 @@ import { UploadFileRequest, GetFileDownloadLink } from "src/Service/APIEngine";
 import { PostData } from "src/Service/APIEngine";
 import { GetDataProvider, PostDataProvider } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
+import { makeStyles } from '@material-ui/core/styles';
 
 const {
   CForm,
@@ -19,7 +21,18 @@ const {
   CSpinner,
 } = require("@coreui/react");
 
+
 export const UploadProviderFile = () => {
+  const useStyle= makeStyles(theme => ({
+    search:{
+  .const useStyles = makeStyles(theme => ({
+  search:{
+.trtytyt:
+  }
+}));
+    }
+  }));
+  const classes = useStyle();
   const [link, setLink] = useState("");
   const [btnActice, setBtnActive] = useState(false);
   const [activeProvider, setActiveProvider] = useState(false);
@@ -30,7 +43,7 @@ export const UploadProviderFile = () => {
   const [providers, setProviders] = useState([]);
   const [providerId, setProviderId] = useState(-1);
   const [contentType, setContentType] = useState([]);
-  const [valueNumber,setValueNumber] = useState([]);
+  const [valueNumber, setValueNumber] = useState([]);
   const [type, setType] = useState(-1);
   useEffect(() => {
     setActiveProvider(true);
@@ -46,17 +59,16 @@ export const UploadProviderFile = () => {
       setActiveContent(false);
       if (type === "0") {
         setActiveProvider(true);
-           PostData("Provider/Tutoring", {}).then((res) => {
-             setProviders(res.data);
-             setActiveProvider(false);
-           });
-     
+        PostData("Provider/Tutoring", {}).then((res) => {
+          setProviders(res.data);
+          setActiveProvider(false);
+        });
       } else {
         setActiveProvider(true);
-          PostData("Provider/Consultation", {}).then((res) => {
-            setProviders(res.data);
-            setActiveProvider(false);
-          });
+        PostData("Provider/Consultation", {}).then((res) => {
+          setProviders(res.data);
+          setActiveProvider(false);
+        });
       }
     });
   }, [type]);
@@ -93,6 +105,7 @@ export const UploadProviderFile = () => {
         setBtnActive(false);
       });
   };
+  console.log(providers);
 
   return (
     <div>
@@ -136,25 +149,36 @@ export const UploadProviderFile = () => {
             <label className="p-1 mr-1  "> ارائه دهنده : </label>
 
             {!activeProvider ? (
-              <CSelect
-                value={providerId}
-                defaultValue={providerId}
+              <Select
+                options={providers.map((opt) => ({
+                  label: opt.name,
+                  value: opt.lastName,
+                }))}
+                className={classes.search}
+
                 onChange={(e) => {
                   setProviderId(e.target.value);
                 }}
-              >
-                <option value={-1}>پشتیبان را انتخاب کنید</option>
-                {providers.length > 0 ? (
-                  providers.map((item) => (
-                    <option value={item.providerId} key={item.providerId}>
-                      {item.name + " " + item.lastName}{" "}
-                    </option>
-                  ))
-                ) : (
-                  <option>پشتیبانی وجود ندارد</option>
-                )}
-              </CSelect>
+              />
             ) : (
+              // <CSelect
+              //   value={providerId}
+              //   defaultValue={providerId}
+              //   onChange={(e) => {
+              //     setProviderId(e.target.value);
+              //   }}
+              // >
+              //   <option value={-1}>پشتیبان را انتخاب کنید</option>
+              // {providers.length > 0 ? (
+              //   providers.map((item) => (
+              //     <option value={item.providerId} key={item.providerId}>
+              //       {item.name + " " + item.lastName}{" "}
+              //     </option>
+              //   ))
+              // ) : (
+              //   <option>پشتیبانی وجود ندارد</option>
+              // )}
+              // </CSelect>
               <CSpinner
                 style={{ width: "4rem", height: "4rem" }}
                 color="danger"
@@ -178,7 +202,6 @@ export const UploadProviderFile = () => {
           </CFormGroup>
         ) : (
           <CFormGroup className="w-30 m-2">
-        
             {UploadFileStatusMark(statusFile)}
             <CInput
               type="file"
