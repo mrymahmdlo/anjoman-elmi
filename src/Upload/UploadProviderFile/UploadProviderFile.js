@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import React, { Component } from "react";
 import Select from "react-select";
-import AsyncSelect from "react-select/async";
 import {
   UploadFileStatusMark,
   status,
@@ -10,7 +9,6 @@ import { UploadFileRequest, GetFileDownloadLink } from "src/Service/APIEngine";
 import { PostData } from "src/Service/APIEngine";
 import { GetDataProvider, PostDataProvider } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
-import { makeStyles } from '@material-ui/core/styles';
 
 const {
   CForm,
@@ -21,18 +19,20 @@ const {
   CSpinner,
 } = require("@coreui/react");
 
-
 export const UploadProviderFile = () => {
-  const useStyle= makeStyles(theme => ({
-    search:{
-  .const useStyles = makeStyles(theme => ({
-  search:{
-.trtytyt:
-  }
-}));
-    }
-  }));
-  const classes = useStyle();
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      height: 35,
+      width: 200,
+      minHeight: 35,
+    }),
+    option: (provided) => ({
+      ...provided,
+      textAlign: "right",
+    }),
+  };
+
   const [link, setLink] = useState("");
   const [btnActice, setBtnActive] = useState(false);
   const [activeProvider, setActiveProvider] = useState(false);
@@ -151,39 +151,13 @@ export const UploadProviderFile = () => {
             {!activeProvider ? (
               <Select
                 options={providers.map((opt) => ({
-                  label: opt.name,
-                  value: opt.lastName,
+                  label: opt.name + " " + opt.lastName,
+                  value: opt.name + " " + opt.lastName,
                 }))}
-                className={classes.search}
-
-                onChange={(e) => {
-                  setProviderId(e.target.value);
-                }}
+                styles={customStyles}
               />
             ) : (
-              // <CSelect
-              //   value={providerId}
-              //   defaultValue={providerId}
-              //   onChange={(e) => {
-              //     setProviderId(e.target.value);
-              //   }}
-              // >
-              //   <option value={-1}>پشتیبان را انتخاب کنید</option>
-              // {providers.length > 0 ? (
-              //   providers.map((item) => (
-              //     <option value={item.providerId} key={item.providerId}>
-              //       {item.name + " " + item.lastName}{" "}
-              //     </option>
-              //   ))
-              // ) : (
-              //   <option>پشتیبانی وجود ندارد</option>
-              // )}
-              // </CSelect>
-              <CSpinner
-                style={{ width: "4rem", height: "4rem" }}
-                color="danger"
-                variant="grow"
-              />
+              <CSpinner color="danger" variant="grow" />
             )}
           </CFormGroup>
         ) : null}
