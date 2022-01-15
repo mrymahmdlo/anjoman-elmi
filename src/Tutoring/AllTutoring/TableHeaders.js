@@ -12,16 +12,28 @@ export const TableHeaders = [
     label: "زمان خریداری شده",
   },
   {
-    key: "startDateRange",
+    key: "sessionStartDate",
     label: "زمان شروع",
+  },
+  {
+    key: "startDateRange",
+    label: "زمان رزرو",
   },
   {
     key: "durationMinutes",
     label: " زمان تدریس",
   },
   {
+    key: "studentPhoneNumber",
+    label: " شماره تماس دانش آموز",
+  },
+  {
+    key: "providerPhoneNumber",
+    label: " شماره تماس مشاور",
+  },
+  {
     key: "status",
-    label: "وضعیت شرکت در آزمون",
+    label: "وضعیت برگزاری جلسات",
     _style: { width: "15%" },
     sorter: false,
     filter: false,
@@ -33,11 +45,11 @@ export const TableHeaders = [
   //   sorter: false,
   //   filter: false,
   // },
-  {
-    key: "edit",
-    label: "",
-    _style: { width: "15%" },
-    sorter: false,
-    filter: false,
-  },
+  // {
+  //   key: "edit",
+  //   label: "",
+  //   _style: { width: "10%" },
+  //   sorter: false,
+  //   filter: false,
+  // },
 ];

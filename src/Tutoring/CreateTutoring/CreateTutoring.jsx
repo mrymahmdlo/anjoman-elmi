@@ -31,6 +31,7 @@ const CreateWebinar = () => {
       minProviderRank: +form.minProviderRank,
       maxProviderRank: +form.maxProviderRank,
       price: +form.price,
+      isOffline: form.isOffline !== 0,
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");

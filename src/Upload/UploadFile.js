@@ -28,17 +28,34 @@ export const UploadFile = () => {
     setStatusFile(status.LOADING);
      setFileName(e.target.files[0]);
     UploadFileRequest(e.target.files[0])
-      .then((res) => { 
+      .then((res) => {
          setLink(GetFileDownloadLink(res.data));
-  
+
 
         setStatusFile(status.UPLOADED);
       })
       .catch(() => setStatusFile(status.FAILED));
   };
-  const copyInput = () => {
-    navigator.clipboard.writeText(link);
+
+  const copyToClipboard = () => {
+
+    navigator.permissions.query({name: "clipboard-write"}).then(result => {
+      if (result.state === "granted" || result.state === "prompt") {
+        updateClipboard(link);
+      }
+      else console.log('failed');
+    });
   };
+
+  const updateClipboard = (newClip) => {
+    navigator.clipboard.writeText(newClip).then(() => {
+      console.log('success');
+    })
+      .catch(() => {
+        console.log('Failed to copy');
+      })
+  };
+
 
   return (
     <CForm inline style={{ flexFlow: "row" }}>
@@ -56,7 +73,7 @@ export const UploadFile = () => {
       <CFormGroup className="text-left w-50">
         <CInput className="w-75" type="text" id="textLinkDownload" value={link} disabled />
         {statusFile === status.UPLOADED ? (
-          <CButton className="m-1" onClick={copyInput} color="primary" data-clipboard-target="#textLinkDownload">
+          <CButton className="m-1" onClick={copyToClipboard} color="primary" data-clipboard-target="#textLinkDownload">
             کپی کردن لینک
         </CButton>
         ) : null}

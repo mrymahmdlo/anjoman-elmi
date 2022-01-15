@@ -7,7 +7,6 @@ import {
   CCol,
   CContainer,
   CForm,
-  CInput,
   CInputGroup,
   CInputGroupPrepend,
   CInputGroupText,
@@ -17,7 +16,7 @@ import {
 import { TokenManager } from "./Service/TokenManager";
 import CIcon from "@coreui/icons-react";
 import { PostData } from "src/Service/APIEngine";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 import { Toast } from "src/Utility/Toast";
 
 const Login = () => {
@@ -29,7 +28,8 @@ const Login = () => {
   const history = useHistory();
   const [btnActice, setBtnActive] = useState(false);
 
-  const SubmitLogin = () => {
+  const SubmitLogin = (e) => {
+    e.preventDefault();
     setShowError(false);
     setBtnActive(true);
     PostData("Identity/LogIn", {
@@ -43,7 +43,7 @@ const Login = () => {
         SetUserId(res.user.id);
         history.push("/");
       })
-      .catch((err) => {
+      .catch(() => {
         setShowError(true);
         setErrorContent("احراز هویت با مشکل رو به رو شد");
       }).finally(()=>{
@@ -56,61 +56,61 @@ const Login = () => {
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
         <Toast errorContent={errorContent} showError={showError} />
-        <form method="post">
           <CRow className="justify-content-center">
             <CCol md="8">
               <CCardGroup>
                 <CCard className="p-4">
                   <CCardBody>
-                    <CForm>
+                    <CForm method="post" onSubmit={(e) => SubmitLogin(e)}>
                       <h1>ورود</h1>
-                      <p className="text-muted">با حساب خود وارد شوید.</p>
-                      <CInputGroup className="mb-3">
-                        <CInputGroupPrepend>
-                          <CInputGroupText>
-                            <CIcon name="cil-user" />
-                          </CInputGroupText>
-                        </CInputGroupPrepend>
-                        <CInput
-                          type="text"
-                          placeholder="نام کاربری"
-                          autoComplete="username"
-                          onChange={(e) => setUserName(e.target.value)}
-                        />
-                      </CInputGroup>
-                      <CInputGroup className="mb-4">
-                        <CInputGroupPrepend>
-                          <CInputGroupText>
-                            <CIcon name="cil-lock-locked" />
-                          </CInputGroupText>
-                        </CInputGroupPrepend>
-                        <CInput
-                          type="password"
-                          placeholder="رمز عبور"
-                          autoComplete="current-password"
-                          onChange={(e) => setPassword(e.target.value)}
-                        />
-                      </CInputGroup>
-                      <CRow>
-                        <CCol xs="6">
-                          {!btnActice ? (
-                            <CButton
-                              size="sm"
-                              onClick={SubmitLogin}
-                              className="btn-github btn-brand mr-1 mb-1"
-                            >
-                              ورود
-                            </CButton>
-                          ) : (
-                            <CSpinner
-                              style={{ width: "2rem", height: "2rem" }}
-                              color="primary"
-                              variant="grow"
-                            />
-                          )}
-                        </CCol>
-                      </CRow>
-                    </CForm>
+                        <p className="text-muted">با حساب خود وارد شوید.</p>
+                        <CInputGroup className="mb-3">
+                          <CInputGroupPrepend>
+                            <CInputGroupText>
+                              <CIcon name="cil-user" />
+                            </CInputGroupText>
+                          </CInputGroupPrepend>
+                          <input
+                            type="text"
+                            placeholder="نام کاربری"
+                            autoComplete
+                            onChange={(e) => setUserName(e.target.value)}
+                            autoFocus
+                          />
+                        </CInputGroup>
+                        <CInputGroup className="mb-4">
+                          <CInputGroupPrepend>
+                            <CInputGroupText>
+                              <CIcon name="cil-lock-locked" />
+                            </CInputGroupText>
+                          </CInputGroupPrepend>
+                          <input
+                            type="password"
+                            placeholder="رمز عبور"
+                            autoComplete
+                            onChange={(e) => setPassword(e.target.value)}
+                          />
+                        </CInputGroup>
+                        <CRow>
+                          <CCol xs="6">
+                            {!btnActice ? (
+                              <CButton
+                                size="sm"
+                                className="btn-github btn-brand mr-1 mb-1"
+                                type="submit"
+                              >
+                                ورود
+                              </CButton>
+                            ) : (
+                              <CSpinner
+                                style={{ width: "2rem", height: "2rem" }}
+                                color="primary"
+                                variant="grow"
+                              />
+                            )}
+                          </CCol>
+                        </CRow>
+                      </CForm>
                   </CCardBody>
                 </CCard>
                 <CCard
@@ -127,7 +127,6 @@ const Login = () => {
               </CCardGroup>
             </CCol>
           </CRow>
-        </form>
       </CContainer>
     </div>
   );

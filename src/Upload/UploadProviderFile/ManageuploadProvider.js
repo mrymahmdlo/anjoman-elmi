@@ -4,97 +4,92 @@ import {
   CCardBody,
   CCardHeader,
   CDataTable,
-  CForm,
   CFormGroup,
-  CInput,
-  CLabel,
-  CPagination,
+  CSelect,
+  CCol,
 } from "@coreui/react";
 import { TableHeaders } from "./TableHeaders";
 import { ChangeValue } from "./ChangeValue";
 import { PostDataProvider } from "src/Service/APIProvider";
-import {ProviderScopedSlots} from "./ProviderScopedSlots";
-import {ProviderModal} from './ProviderModal';
+import { ProviderScopedSlots } from "./ProviderScopedSlots";
+import { ProviderModal } from "./ProviderModal";
+import {PostData} from "src/Service/APIEngine";
+
 const ManageuploadProvider = () => {
   const [tableData, setTableData] = useState([]);
-  
+
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
-  const [startDate, setStartDate] = useState("1390/06/10");
-  const [endDate, setEndDate] = useState("1500/07/10");
-  const [phoneNumber, setPhoneNumber] = useState();
   const [filterData, setFilterData] = useState({
     asc: false,
     column: "quizId",
   });
+  const [form, setForm] = useState({});
+  const [providers, setProviders] = useState([]);
 
   const updateData = () => {
     PostDataProvider("Content/GetAll", {
-      //   phoneNumber: phoneNumber,
-      //   fromTime: startDate,
-      //   toTime: endDate,
-    }).then((res) => {
-      let data = ChangeValue(res.data);
-      setTableData(data);
+      providerId: (form.providerId)
+    })
+    .then((res) => {
+      setTableData(ChangeValue(res.data));
     });
   };
 
   useEffect(() => {
     updateData();
-  }, [modal, startDate, endDate, phoneNumber]);
+  }, [modal, form.providerId]);
+
+  useEffect(() => {
+    PostData("Provider/Tutoring", {}).then((res) => {
+      setProviders(res.data);
+    });
+  }, []);
+
   return (
     <>
       <CCard>
         <CCardHeader> مشاهده فایل های بارگزاری شده </CCardHeader>
-        {/* <CCardBody>
-          <CForm inline>
-            <CFormGroup className=" pl-1">
-              <CLabel className="pr-1">جستجو شماره تماس</CLabel>
-              <CInput
-                className="mr-2"
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                value={phoneNumber}
-              />
-            </CFormGroup>
-            <CFormGroup className=" pl-1">
-              <CLabel htmlFor="exampleInputName2" className="pr-1">
-                از تاریخ
-              </CLabel>
-              <CInput
-                className="mr-2"
-                onChange={(e) => setStartDate(e.target.value)}
-                placeholder={startDate}
-              />
-            </CFormGroup>
-            <CFormGroup className="pr-2 pl-1">
-              <CLabel htmlFor="exampleInputEmail2" className="pr-1">
-                تا تاریخ
-              </CLabel>
-              <CInput
-                className="mr-2"
-                onChange={(e) => setEndDate(e.target.value)}
-                placeholder={endDate}
-              />
-            </CFormGroup>
-          </CForm>
-        </CCardBody> */}
-        <CDataTable
-          items={tableData}
-          fields={TableHeaders}
-          striped
-          columnFilter
-          size="sm"
-          sorter={{ external: true, resetable: false }}
-          onSorterValueChange={setFilterData}
-          itemsPerPage={15}
-          pagination
-          scopedSlots={ProviderScopedSlots(
-            updateData,
-            setModal,
-            modal,
-            setModalContent
-          )}
-        />
+        <CCardBody>
+          <CFormGroup>
+            <CCol sm={6}>
+              <CSelect
+                value={form.providerId}
+                onChange={(e) =>
+                  setForm({ ...form, providerId: e.target.value })
+                }
+              >
+                <option value={-1}>پشتیبان را انتخاب کنید</option>
+                {/*<option value={providers.length}>همه پشتیبان ها</option>*/}
+                {providers.length > 0 ? (
+                  providers?.map((item) => (
+                    <option value={item.providerId} key={item.providerId}>
+                      {item.name + " " + item.lastName}{" "}
+                    </option>
+                  ))
+                ) : (
+                  <option>پشتیبانی وجود ندارد</option>
+                )}
+              </CSelect>
+            </CCol>
+          </CFormGroup>
+          <CDataTable
+            items={tableData}
+            fields={TableHeaders}
+            striped
+            size="sm"
+            sorter={{ external: true, resetable: false }}
+            onSorterValueChange={setFilterData}
+            itemsPerPage={15}
+            pagination
+            scopedSlots={ProviderScopedSlots(
+              updateData,
+              setModal,
+              modal,
+              setModalContent
+            )}
+          />
+        </CCardBody>
       </CCard>
       <ProviderModal
         name="مدیریت محتواهای عمومی"

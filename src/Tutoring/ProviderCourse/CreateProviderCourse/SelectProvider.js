@@ -19,7 +19,7 @@ export const SelectProvider = ({ providerId, setProviderId }) => {
          setProviderId(Number(e.target.value))
         }
       >
-
+        <option value={-1}>ارائه دهنده را انتخاب کنید</option>
         {providers.length > 0 ? (
           providers.map((item) => (
             <option value={item.providerId} key={item.providerId}>

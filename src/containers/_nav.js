@@ -1,6 +1,6 @@
 import React from "react";
 import CIcon from "@coreui/icons-react";
-import { cilPencil, cilSettings } from "@coreui/icons";
+import { freeSet } from '@coreui/icons';
 const _nav = [
   {
     _tag: "CSidebarNavItem",
@@ -108,7 +108,7 @@ const _nav = [
     _children: [
       {
         _tag: "CSidebarNavItem",
-        name: "مدیریت تدریس خصوصی",
+        name: "مدیریت محصولات تدریس خصوصی",
         to: "/Tutoring/ManageTutoring",
       },
       {
@@ -133,7 +133,7 @@ const _nav = [
       },
       {
         _tag: "CSidebarNavItem",
-        name: "جلسات برگزار شده",
+        name: "مدیریت جلسات",
         to: "/AllTutoring",
       },
       {
@@ -175,7 +175,7 @@ const _nav = [
   {
     _tag: "CSidebarNavDropdown",
     name: "زمان بندی مشاور",
-    icon: "cil-pencil",
+    icon: <CIcon content={freeSet.cilClock} customClasses="c-sidebar-nav-icon" />,
     _children: [
       {
         _tag: "CSidebarNavItem",

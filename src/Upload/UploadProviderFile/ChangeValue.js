@@ -7,7 +7,7 @@ export const ChangeValue = (arr) => {
            if (key === "contentType") {
              obj[key] =
                obj[key] === 0
-                 ? "تدریس خصوص"
+                 ? "تدریس خصوصی"
                  : obj[key] === 1
                  ? "نمونه برنامه"
                  : "لینک صفحه شخصی";
@@ -17,7 +17,7 @@ export const ChangeValue = (arr) => {
         let jdate = new JDate(date);
         obj[key] = DateFormatter(jdate, date);
       }
-     
+
     })
   );
   return arr;

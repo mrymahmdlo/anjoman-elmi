@@ -26,6 +26,10 @@
       key: "totalMinute",
       label: "مدت زمان جلسه",
     },
+    {
+      key: "isOffline",
+      label: "وضعیت",
+    },
 
     // {
     //   key: "startDateTime",
