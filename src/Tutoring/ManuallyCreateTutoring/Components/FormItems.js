@@ -2,8 +2,23 @@ import { FormNumberInput } from "src/reusable/FormInput";
 import {CSelect} from "@coreui/react";
 import React from "react";
 import {DateTimePickerToGeorgian} from "../../../reusable/DateTimePickerToGeorgian";
+import Select from "react-select";
 
 export const FormItems = (form, setForm, tutorials, providers) => {
+
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      height: 35,
+      width: 340,
+      minHeight: 35,
+    }),
+    option: (provided) => ({
+      ...provided,
+      textAlign: "right",
+    }),
+  };
+
   return [
     {
       name: "",
@@ -31,21 +46,16 @@ export const FormItems = (form, setForm, tutorials, providers) => {
       name: "",
       text: "",
       input: (
-        <CSelect
-          value={form.providerId}
-          onChange={(e) => setForm({ ...form, providerId: e.target.value })}
-        >
-          <option value={-1}>ارائه دهنده را انتخاب کنید</option>
-          {providers.length > 0 ? (
-            providers.map((item) => (
-              <option value={item.providerId} key={item.providerId}>
-                {item.name + " " + item.lastName}
-              </option>
-            ))
-          ) : (
-            <option>پشتیبانی وجود ندارد</option>
-          )}
-        </CSelect>
+        <Select
+          options={providers.map((opt) => ({
+            label: opt.name + " " + opt.lastName,
+            value: opt.name + " " + opt.lastName,
+          }))}
+          defaultValue={{ label: "ارائه دهنده را انتخاب کنید" }}
+          styles={customStyles}
+       
+        />
+      
       ),
       size: 6,
     },
