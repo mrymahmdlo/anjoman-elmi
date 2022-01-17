@@ -82,11 +82,11 @@ export const FormItems = (form, setForm, tutorials, providers) => {
           custom
           name="isOffline"
           style={{ width: "100%" }}
-          onChange={(e) => setForm({ ...form, isOffline: +e.target.value })}
+          onChange={(e) => setForm({ ...form, isOnline: +e.target.value })}
         >
           <option value={-1}>وضعیت درس</option>
-          <option value={0}>آنلاین</option>
-          <option value={1}>آفلاین</option>
+          <option value={1}>آنلاین</option>
+          <option value={0}>آفلاین</option>
         </CSelect>
       ),
       size: 6,
