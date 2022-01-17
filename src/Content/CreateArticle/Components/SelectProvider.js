@@ -36,8 +36,8 @@ export const SelectProvider = ({ providerId, setProviderId }) => {
           }))}
           onChange={(e) =>
             e.target.value === "0"
-              ? setProviderId(null)
-              : setProviderId(e.target.value)
+              ? setProviders(null)
+              : setProviders(e.target.value)
           }
           defaultValue={{ label: "مدیریت", value: "مدیریت" }}
           styles={customStyles}
