@@ -1,6 +1,6 @@
 
   export const TableHeader = [
-   
+
     {
       key: "title",
       label: "عنوان همایش",
