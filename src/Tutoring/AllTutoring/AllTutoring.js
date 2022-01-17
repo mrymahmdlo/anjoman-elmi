@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  CCard,
-  CCardHeader,
-  CDataTable,
+  CCard, CCardBody,
+  CCardHeader, CCol,
+  CDataTable, CFormGroup, CSelect,
 } from "@coreui/react";
 import { TableHeaders } from "./TableHeaders";
 import { ChangeValue } from "./ChangeValue";
 import { PostDataBroad } from "src/Service/APIBroadCast";
 import {TutoringScopedSlots} from './TutoringScopedSlots';
 import { TutoringModal } from "./TutoringModal";
+import {PostData} from "../../Service/APIEngine";
 
 const AllTutoring = () => {
   const [tableData, setTableData] = useState([]);
@@ -22,22 +23,36 @@ const AllTutoring = () => {
     asc: false,
     column: "quizId",
   });
+  const [form, setForm] = useState({});
+  const [providers, setProviders] = useState([]);
 
   const updateData = () => {
-    PostDataBroad("Tutoring/GetAllTutoring", {
-      //   phoneNumber: phoneNumber,
-      //   fromTime: startDate,
-      //   toTime: endDate,
-    }).then((res) => {
-      let data = ChangeValue(res.data);
-      setData(res.data);
-      setTableData(data);
-    });
+    form.providerId ?
+      PostDataBroad("Tutoring/GetAllTutoring", {
+        //   phoneNumber: phoneNumber,
+        //   fromTime: startDate,
+        //   toTime: endDate,
+        providerId: +form.providerId,
+      }).then((res) => {
+        let data = ChangeValue(res.data);
+        setData(res.data);
+        setTableData(data);
+      }) :
+      PostDataBroad("Tutoring/GetAllTutoring", {}).then((res) => {
+        setTableData(ChangeValue(res.data));
+      });
   };
 
   useEffect(() => {
     updateData();
-  }, [modal, startDate, endDate, phoneNumber]);
+  }, [modal, form.providerId]);
+
+  useEffect(() => {
+    PostData("Provider/Tutoring", {}).then((res) => {
+      setProviders(res.data);
+    });
+  }, []);
+
   return (
     <>
       <CCard>
@@ -74,32 +89,56 @@ const AllTutoring = () => {
             </CFormGroup>
           </CForm>
         </CCardBody> */}
-        <CDataTable
-          items={tableData}
-          fields={TableHeaders}
-          striped
-          columnFilter
-          size="sm"
-          sorter={{ external: true, resetable: false }}
-          onSorterValueChange={setFilterData}
-          itemsPerPage={15}
-          pagination
-          scopedSlots={TutoringScopedSlots(
-            data,
-            setModal,
-            modal,
-            setModalTutoring
-          )}
-        />
+        <CCardBody>
+          <CFormGroup>
+            <CCol sm={6}>
+
+              <CSelect
+                value={form.providerId}
+                onChange={(e) =>
+                  setForm({ ...form, providerId: e.target.value })
+                }
+              >
+                <option value={-1}>پشتیبان را انتخاب کنید</option>
+                {providers.length > 0 ? (
+                  providers?.map((item) => (
+                    <option value={item.providerId} key={item.providerId}>
+                      {item.name + " " + item.lastName}{" "}
+                    </option>
+                  ))
+                ) : (
+                  <option>پشتیبانی وجود ندارد</option>
+                )}
+              </CSelect>
+            </CCol>
+          </CFormGroup>
+          <CDataTable
+            items={tableData}
+            fields={TableHeaders}
+            striped
+            columnFilter
+            size="sm"
+            sorter
+            onSorterValueChange={setFilterData}
+            itemsPerPage={15}
+            pagination
+            scopedSlots={TutoringScopedSlots(
+              data,
+              setModal,
+              modal,
+              setModalTutoring
+            )}
+          />
+        </CCardBody>
       </CCard>
-      <TutoringModal
-        name=" تدریس خصوصی"
-        modal={modal}
-        toggle={() => {
-          setModal(!modal);
-        }}
-        modalTutoring={modalTutoring}
-      />
+      {/*  <TutoringModal*/}
+      {/*    name=" تدریس خصوصی"*/}
+      {/*    modal={modal}*/}
+      {/*    toggle={() => {*/}
+      {/*      setModal(!modal);*/}
+      {/*    }}*/}
+      {/*    modalTutoring={modalTutoring}*/}
+      {/*  />*/}
     </>
   );
 };
