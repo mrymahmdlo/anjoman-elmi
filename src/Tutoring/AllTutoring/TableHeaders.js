@@ -8,6 +8,10 @@ export const TableHeaders = [
     label: "نام دانش آموز",
   },
   {
+    key: "courseName",
+    label: "درس",
+  },
+  {
     key: "purchasedDate",
     label: "زمان خریداری شده",
   },
