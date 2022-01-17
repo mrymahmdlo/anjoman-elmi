@@ -34,6 +34,11 @@ export const SelectProvider = ({ providerId, setProviderId }) => {
         }))}
         defaultValue={{ label: "ارائه دهنده را انتخاب کنید" }}
         styles={customStyles}
+        onChange={(e) =>
+          e.target.value === "0"
+            ? setProviderId(null)
+            : setProviderId(e.target.value)
+        }
       />
     </CFormGroup>
   );

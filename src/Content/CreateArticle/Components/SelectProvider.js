@@ -34,6 +34,11 @@ export const SelectProvider = ({ providerId, setProviderId }) => {
             label: opt.name + " " + opt.lastName,
             value: opt.name + " " + opt.lastName,
           }))}
+          onChange={(e) =>
+            e.target.value === "0"
+              ? setProviderId(null)
+              : setProviderId(e.target.value)
+          }
           defaultValue={{ label: "مدیریت", value: "مدیریت" }}
           styles={customStyles}
         />

@@ -51,6 +51,11 @@ export const FormItems = (form, setForm, tutorials, providers) => {
             label: opt.name + " " + opt.lastName,
             value: opt.name + " " + opt.lastName,
           }))}
+          onChange={(e) =>
+            e.target.value === "0"
+              ? setForm(null)
+              : setForm(e.target.value)
+          }
           defaultValue={{ label: "ارائه دهنده را انتخاب کنید" }}
           styles={customStyles}
        

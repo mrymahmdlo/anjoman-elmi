@@ -155,6 +155,11 @@ export const UploadProviderFile = () => {
                   value: opt.name + " " + opt.lastName,
                 }))}
                 styles={customStyles}
+                onChange={(e) =>
+                  e.target.value === "0"
+                    ? setProviderId(null)
+                    : setProviderId(e.target.value)
+                }
               />
             ) : (
               <CSpinner color="danger" variant="grow" />

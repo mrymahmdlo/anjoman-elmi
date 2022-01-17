@@ -70,6 +70,9 @@ const TimeSheetForm = ({ form, setForm }) => {
                 }))}
                 defaultValue={{ label: "ارائه دهنده را انتخاب کنید" }}
                 styles={customStyles}
+                onChange={(e) => {
+                  setForm({ ...form, providerId: e.target.value });
+                }}
               />
 
               {/* <CSelect
