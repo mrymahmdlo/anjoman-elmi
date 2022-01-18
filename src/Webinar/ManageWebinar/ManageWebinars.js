@@ -38,7 +38,7 @@ const ManageWebinars = () => {
           striped
           columnFilter
           size="sm"
-          sorter={{ external: true, resetable: false }}
+          sorter
           onSorterValueChange={setFilterData}
           itemsPerPage={15}
           pagination
