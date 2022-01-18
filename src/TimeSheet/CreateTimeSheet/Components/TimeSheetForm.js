@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import {
   CCardBody,
   CForm,
@@ -53,6 +53,12 @@ const TimeSheetForm = ({ form, setForm }) => {
     });
   }, []);
 
+  const providersArray=providers.map((item)=>({
+      value: item.providerId,
+      label: `${item.name} ${item.lastName}`,
+    }
+  ));
+
   return (
     <CCardBody>
       <CForm action="" method="post">
@@ -63,17 +69,17 @@ const TimeSheetForm = ({ form, setForm }) => {
             <CFormGroup>
               <label htmlFor="nf-title"> ارائه دهنده : </label>
 
-              <Select
-                options={providers.map((opt) => ({
-                  label: opt.name + " " + opt.lastName,
-                  value: opt.name + " " + opt.lastName,
-                }))}
-                defaultValue={{ label: "ارائه دهنده را انتخاب کنید" }}
-                styles={customStyles}
-                onChange={(e) => {
-                  setForm({ ...form, providerId: e.target.value });
-                }}
-              />
+              <Fragment>
+                <Select
+                  options={providersArray}
+                  // defaultValue={providersArray[0]}
+                  // styles={customStyles}
+                  // name='provider'
+                  onChange={(e) => {
+                    setForm({ ...form, providerId: e.value });
+                  }}
+                />
+              </Fragment>
 
               {/* <CSelect
                 value={form.providerId}
