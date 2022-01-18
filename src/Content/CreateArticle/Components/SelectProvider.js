@@ -1,24 +1,9 @@
-import { CFormGroup, CSpinner } from "@coreui/react";
+import { CFormGroup, CSelect } from "@coreui/react";
 import { useEffect, useState } from "react";
 import { PostData } from "src/Service/APIEngine";
-import Select from "react-select";
 
 export const SelectProvider = ({ providerId, setProviderId }) => {
   const [providers, setProviders] = useState([]);
-  const customStyles = {
-    control: (provided) => ({
-      ...provided,
-      height: 35,
-      width: 200,
-      minHeight: 35,
-    }),
-    option: (provided) => ({
-      ...provided,
-      textAlign: "right",
-    }),
-  };
-
-  const [activeProvider, setActiveProvider] = useState(false);
 
   useEffect(() => {
     PostData("Provider/Consultation", {}).then((res) => {
@@ -28,24 +13,7 @@ export const SelectProvider = ({ providerId, setProviderId }) => {
   return (
     <CFormGroup>
       <label>ارائه دهنده</label>
-      {!activeProvider ? (
-        <Select
-          options={providers.map((opt) => ({
-            label: opt.name + " " + opt.lastName,
-            value: opt.name + " " + opt.lastName,
-          }))}
-          onChange={(e) =>
-            e.target.value === "0"
-              ? setProviders(null)
-              : setProviders(e.target.value)
-          }
-          defaultValue={{ label: "مدیریت", value: "مدیریت" }}
-          styles={customStyles}
-        />
-      ) : (
-        <CSpinner color="danger" variant="grow" />
-      )}
-      {/* <CSelect
+      <CSelect
         value={providerId}
         onChange={(e) =>
           e.target.value === "0"
@@ -63,7 +31,7 @@ export const SelectProvider = ({ providerId, setProviderId }) => {
         ) : (
           <option>پشتیبانی وجود ندارد</option>
         )}
-      </CSelect> */}
+      </CSelect>
     </CFormGroup>
   );
 };
