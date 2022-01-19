@@ -6,6 +6,7 @@ import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian"
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 const { CSelect } = require("@coreui/react");
 
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
 
 export const FormItems = (form, setForm, groupIds, courseIds) => {
   return [
@@ -126,9 +127,14 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
       text: "تاریخ و ساعت شروع همایش را وارد کنید",
       input: (
         <DateTimePickerToGeorgian
-          className="form-control"
+          className="form-control cil-list-numbered-rtl"
+          style={{direction: 'rtl !important'}}
           name="startDateTime"
-          value={form.schedules[0]?.startDateTime}
+          value={
+            form.schedules[0]?.startDateTime ?
+              new Date(form.schedules[0]?.startDateTime).toLocaleDateString('fa-IR', options) :
+              form.schedules[0]?.startDateTime
+          }
           onChange={(e) => {
             let sch = form.schedules;
             sch[0].startDateTime = HejriToDotNetGeorgian(e);
