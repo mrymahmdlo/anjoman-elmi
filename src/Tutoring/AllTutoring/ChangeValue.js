@@ -22,7 +22,7 @@ export const ChangeValue = (arr) => {
   //  obj[key] = obj[key] === true ? "آفلاین" : "آنلاین";
   //     }
       if (key === "status") {
-          obj[key] = obj[key] === 0 ?  "خریداری شده" : obj[key] = obj[key] === 1 ?  "رزرو شده" : obj[key] = obj[key] === 2 ? "در حال برگزاری ": obj[key] = obj[key] === 3 ? "برگزار شده   ":null;
+          obj[key] = obj[key] === 0 ?  "خریداری شده" : obj[key] = obj[key] === 1 ?  "رزرو شده" : obj[key] = obj[key] === 2 ? "پشتیبان وارد شده است ": obj[key] = obj[key] === 3 ? "برگزار شده   ": obj[key] = obj[key] === 4 ? "دانش آموز وارد شده است" : null;
 
       }
     })
