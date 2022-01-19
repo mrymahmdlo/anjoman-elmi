@@ -83,7 +83,7 @@ export const FormItems = (form, setForm, tutorials, providers) => {
     },
     {
       name: "تاریخ و ساعت برگزاری",
-      text: "تاریخ و ساعت برگزاری آزمون را وارد کنید",
+      text: "تاریخ و ساعت برگزاری جلسه را وارد کنید",
       input: (
         <DateTimePickerToGeorgian
           className="form-control"
