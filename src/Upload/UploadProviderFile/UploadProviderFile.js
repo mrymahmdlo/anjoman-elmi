@@ -151,14 +151,14 @@ export const UploadProviderFile = () => {
             {!activeProvider ? (
               <Select
                 options={providers.map((opt) => ({
-                  label: opt.name + " " + opt.lastName,
-                  value: opt.name + " " + opt.lastName,
+                  value: +opt.providerId,
+                  label: `${opt.name} ${opt.lastName}`,
                 }))}
                 styles={customStyles}
                 onChange={(e) =>
-                  e.target.value === "0"
+                  e.value === "0"
                     ? setProviderId(null)
-                    : setProviderId(e.target.value)
+                    : setProviderId(e.value)
                 }
               />
             ) : (

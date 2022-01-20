@@ -28,7 +28,7 @@ const EditTimeSheet = ({ obj, setModal }) => {
     console.log(obj);
   }, [obj]);
 const ChangeValues = (day) => {
- 
+
   switch (day) {
     case "یکشنبه":
       return 0;
@@ -45,20 +45,20 @@ const ChangeValues = (day) => {
     case "شنبه":
       return 6;
 
-   
+
   }
 };
   const submitTimeSheet = () => {
     setShowError(false);
     setBtnActive(true);
     console.log(ChangeValues(obj.weekDay));
- 
+
 
     console.log(form.weekDay);
     PostDataProvider("TimeSheet/EditTimeSheet", {
       timeSheetId: obj.timeSheetId,
       providerId: obj.providerId,
-      productId: obj.productId,
+      // productId: obj.productId,
       startPeriodHour: Number(form.startPeriodHour),
       endPeriodHour: Number(form.endPeriodHour),
       weekDay:

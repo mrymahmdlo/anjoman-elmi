@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   CCardBody,
   CForm,
@@ -50,14 +50,16 @@ const TimeSheetForm = ({ form, setForm }) => {
   useEffect(() => {
     PostData("Provider/Tutoring", {}).then((res) => {
       setProviders(res.data);
+      console.log("kjl", res.data);
     });
   }, []);
+  console.log(providers);
 
-  const providersArray=providers.map((item)=>({
-      value: item.providerId,
-      label: `${item.name} ${item.lastName}`,
-    }
-  ));
+  const providersArray = providers.map((item) => ({
+    value: +item.providerId,
+    label: `${item.name} ${item.lastName}`,
+  }));
+  console.log(providersArray);
 
   return (
     <CCardBody>
