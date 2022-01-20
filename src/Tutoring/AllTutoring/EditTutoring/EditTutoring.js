@@ -12,34 +12,49 @@ import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import TuturingForm from "./Components/TutoringForm";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
+import {PostData} from "../../../Service/APIEngine";
+import {ChangeValues} from "./Components/ChangeValues"
+import {GetDataBroad} from "../../../Service/APIBroadCast";
 
-const EditTutoring = ({ obj, setModal }) => {
+const EditTutoring = ({ obj, setModal, tutoringId }) => {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
+  const [providers, setProviders] = useState([]);
+  const [tutorials, setTutorials] = useState([]);
+  useEffect(() => {
+    PostData("Provider/Tutoring", {}).then((res) => {
+      setProviders(res.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    GetDataBroad("Tutorial/GetAll", {}).then((res) => {
+      setTutorials(res.data);
+    });
+  }, []);
 
   useEffect(() => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
-    setForm(obj);
+    if(obj)
+      setForm(ChangeValues(obj));
   }, [obj]);
+
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    PostDataBroad("Tutoring/BuyTutoring", {
-      productId: +form.productId,
-      studentId: +form.studentId,
+    PostDataBroad(`Admin/EditTutoring/${tutoringId}`, {
       providerId: +form.providerId,
-      isOnline: form.isOnline,
+      tutorialId: +form.tutorialId,
       startDateRange: HejriToDotNetGeorgian(form.startDateRange),
-      durationMinutes: +form.durationMinutes,
     })
       .then(() => {
+        setModal(false);
         setErrorContent("داده با موفقیت ثبت شد ");
         setShowError(true);
         setBtnActive(false);
-        setModal(false);
       })
       .catch(() => {
         setErrorContent("خطا در ثبت ویرایش");
@@ -48,12 +63,14 @@ const EditTutoring = ({ obj, setModal }) => {
       });
   };
 
+  console.log('trcfvgbhj',form)
+
   return (
     <div className="App">
       <CContainer fluid>
         <CCard>
-          <CCardHeader> تدریس خصوصی مجدد</CCardHeader>
-          <TuturingForm form={form} setForm={setForm} />
+          <CCardHeader>ویرایش جلسه</CCardHeader>
+          <TuturingForm form={form} setForm={setForm} providers={providers} tutorials={tutorials} />
           <CCardFooter>
             {!btnActice ? (
               <CButton
@@ -62,7 +79,7 @@ const EditTutoring = ({ obj, setModal }) => {
                 color="primary"
                 onClick={submitContent}
               >
-                <CIcon name="cil-scrubber" /> ثبت تدریس خصوصی
+                <CIcon name="cil-scrubber" /> ثبت
               </CButton>
             ) : (
               <CSpinner
