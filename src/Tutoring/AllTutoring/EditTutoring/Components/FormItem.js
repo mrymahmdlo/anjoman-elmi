@@ -4,14 +4,6 @@ import React from "react";
 
 const FormItems = (form, setForm, providers, tutorials) => {
 
-  const options1 = {weekday: 'long'};
-  const options2 = {hour: 'numeric', minute: 'numeric'};
-  const timePattern=(time)=> {
-    return (
-      `${new Date(time).toLocaleDateString('fa-IR', options1)} ${new Date(time).toLocaleDateString('fa-IR', options2)}`
-    )
-  };
-
   return [
     {
       name: "",
@@ -20,7 +12,7 @@ const FormItems = (form, setForm, providers, tutorials) => {
         <CSelect
           value={form.providerId}
           defaultValue={form.providerId}
-          onChange={(e) => setForm({ ...form, providerId: e.target.value })}
+          onChange={(e) => setForm({ ...form, providerId: Number(e.target.value) })}
         >
           <option value={-1}>ارائه دهنده را انتخاب کنید</option>
           {providers.length > 0 ? (
@@ -46,7 +38,7 @@ const FormItems = (form, setForm, providers, tutorials) => {
       input: (
         <CSelect
           value={form.tutorialId}
-          onChange={(e) => setForm({ ...form, tutorialId: e.target.value })}
+          onChange={(e) => setForm({ ...form, tutorialId: Number(e.target.value) })}
         >
           <option value={-1}>جلسه را انتخاب کنید</option>
           {tutorials.length > 0 ? (
@@ -68,7 +60,7 @@ const FormItems = (form, setForm, providers, tutorials) => {
     },
     {
       name: "زمان تدریس خصوصی",
-      text: "تاریخ و ساعت دسترسی به تدریس خصصوصی دانش آموز را وارد کنید",
+      text: "تاریخ و ساعت دسترسی به تدریس خصوصی دانش آموز را وارد کنید",
       input: (
         <DateTimePickerToGeorgian
           className="form-control"

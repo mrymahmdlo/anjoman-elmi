@@ -10,7 +10,7 @@ import {
 import CIcon from "@coreui/icons-react";
 import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
-import TuturingForm from "./Components/TutoringForm";
+import TutoringForm from "./Components/TutoringForm";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 import {PostData} from "../../../Service/APIEngine";
 import {ChangeValues} from "./Components/ChangeValues"
@@ -63,14 +63,12 @@ const EditTutoring = ({ obj, setModal, tutoringId }) => {
       });
   };
 
-  console.log('trcfvgbhj',form)
-
   return (
     <div className="App">
       <CContainer fluid>
         <CCard>
           <CCardHeader>ویرایش جلسه</CCardHeader>
-          <TuturingForm form={form} setForm={setForm} providers={providers} tutorials={tutorials} />
+          <TutoringForm form={form} setForm={setForm} providers={providers} tutorials={tutorials} />
           <CCardFooter>
             {!btnActice ? (
               <CButton
