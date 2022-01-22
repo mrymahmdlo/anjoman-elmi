@@ -1,5 +1,6 @@
 import { CButton, CBadge } from "@coreui/react";
 import EditTutoring from "../AllTutoring/EditTutoring/EditTutoring";
+import CIcon from "@coreui/icons-react";
 
 export const TutoringScopedSlots = (
   tableData,
@@ -16,12 +17,12 @@ export const TutoringScopedSlots = (
             color="primary"
             onClick={() => {
               setModalTutoring(
-                <EditTutoring obj={tableData} setModal={setModal} />
+                <EditTutoring obj={tableData} setModal={setModal} tutoringId={tableData.tutoringId} />
               );
               setModal(true);
             }}
           >
-            تدریس مجدد
+            <CIcon name="cil-pencil" />
           </CButton>
         </td>
       </>

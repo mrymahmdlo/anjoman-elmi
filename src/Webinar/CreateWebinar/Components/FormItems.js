@@ -6,7 +6,13 @@ import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian"
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 const { CSelect } = require("@coreui/react");
 
-const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
+const options1 = {weekday: 'long'};
+const options2 = {hour: 'numeric', minute: 'numeric'};
+const timePattern=(time)=> {
+  return (
+    `${new Date(time).toLocaleDateString('fa-IR', options1)} ${new Date(time).toLocaleDateString('fa-IR', options2)}`
+  )
+};
 
 export const FormItems = (form, setForm, groupIds, courseIds) => {
   return [
@@ -127,12 +133,11 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
       text: "تاریخ و ساعت شروع همایش را وارد کنید",
       input: (
         <DateTimePickerToGeorgian
-          className="form-control cil-list-numbered-rtl"
-          style={{direction: 'rtl !important'}}
+          className="form-control"
           name="startDateTime"
           value={
             form.schedules[0]?.startDateTime ?
-              new Date(form.schedules[0]?.startDateTime).toLocaleDateString('fa-IR', options) :
+              timePattern(form.schedules[0]?.startDateTime) :
               form.schedules[0]?.startDateTime
           }
           onChange={(e) => {
@@ -151,7 +156,11 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
         <DateTimePickerToGeorgian
           className="form-control"
           name="endDateTime"
-          value={form.schedules[0]?.endDateTime}
+          value={
+            form.schedules[0]?.endDateTime ?
+              timePattern(form.schedules[0]?.endDateTime) :
+              form.schedules[0]?.endDateTime
+          }
           onChange={(e) => {
             let sch = form.schedules;
             sch[0].endDateTime = HejriToDotNetGeorgian(e);
