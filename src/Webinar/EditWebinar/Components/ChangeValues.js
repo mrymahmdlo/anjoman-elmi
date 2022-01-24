@@ -7,14 +7,14 @@ export const ChangeValues = (obj) => {
     description: obj.description,
     duration: obj.duration,
     groupId: obj.groupId,
-    groupName: obj.groupName,
+    // groupName: obj.groupName,
     poster: obj.poster,
-    priceAfterHolding: obj.priceAfterHolding,
+    priceAfterHolding: obj.price>=0?obj.price:'0',
     providerId: obj.providerId,
     schedules: [
       {
-        startDateTime: obj.schedules[0].startDateTime,
-        endDateTime: obj.schedules[0].endDateTime,
+        startDateTime: obj.webinarSchedules[0].startDateTime,
+        endDateTime: obj.webinarSchedules[0].endDateTime,
       },
     ],
     title: obj.title,

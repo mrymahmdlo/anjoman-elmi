@@ -15,6 +15,7 @@ import { ChangeValues } from "./Components/ChangeValues";
 
 
 const EditWebinar = ({ obj, setModal }) => {
+  console.log(obj)
   const [form, setForm] = useState({
     schedules: [
       {
