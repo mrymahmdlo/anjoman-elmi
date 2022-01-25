@@ -23,6 +23,8 @@ const EditTutoring = ({ obj, setModal, tutoringId }) => {
   const [btnActice, setBtnActive] = useState(false);
   const [providers, setProviders] = useState([]);
   const [tutorials, setTutorials] = useState([]);
+  const [sponsers, setSponsers] = useState([]);
+
   useEffect(() => {
     PostData("Provider/Tutoring", {}).then((res) => {
       setProviders(res.data);
@@ -34,6 +36,14 @@ const EditTutoring = ({ obj, setModal, tutoringId }) => {
       setTutorials(res.data);
     });
   }, []);
+
+  useEffect(() => {
+    GetDataBroad("Admin/GetSponsers", {}).then((res) => {
+      setSponsers(res.data);
+    });
+  }, []);
+
+  console.log(sponsers);
 
   useEffect(() => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
@@ -68,7 +78,7 @@ const EditTutoring = ({ obj, setModal, tutoringId }) => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>ویرایش جلسه</CCardHeader>
-          <TutoringForm form={form} setForm={setForm} providers={providers} tutorials={tutorials} />
+          <TutoringForm form={form} setForm={setForm} providers={providers} tutorials={tutorials} sponsers={sponsers} />
           <CCardFooter>
             {!btnActice ? (
               <CButton
