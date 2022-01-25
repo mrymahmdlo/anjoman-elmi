@@ -43,8 +43,6 @@ const EditTutoring = ({ obj, setModal, tutoringId }) => {
     });
   }, []);
 
-  console.log(sponsers);
-
   useEffect(() => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
@@ -60,7 +58,7 @@ const EditTutoring = ({ obj, setModal, tutoringId }) => {
       startDateRange: HejriToDotNetGeorgian(form.startDateRange),
     })
       .then((res) => {
-        if (res.data.succeeded == true) {
+        if (res.data.succeeded === true) {
           setErrorContent("داده با موفقیت ثبت شد ");
           setModal(false);
         } else {
@@ -75,6 +73,26 @@ const EditTutoring = ({ obj, setModal, tutoringId }) => {
         setShowError(true);
         setBtnActive(false);
       });
+
+      PostDataBroad(`Admin/SetSponser`, {
+        userId: +form.userId,
+      })
+        .then((res) => {
+          if (res.data.succeeded === true) {
+            setErrorContent("داده با موفقیت ثبت شد ");
+            setModal(false);
+          } else {
+            setErrorContent(res.data.data);
+          }
+  
+          setShowError(true);
+          setBtnActive(false);
+        })
+        .catch(() => {
+          setErrorContent("خطا در ثبت ویرایش");
+          setShowError(true);
+          setBtnActive(false);
+        });
   };
 
   return (
@@ -83,12 +101,6 @@ const EditTutoring = ({ obj, setModal, tutoringId }) => {
         <CCard>
           <CCardHeader>ویرایش جلسه</CCardHeader>
           <TutoringForm form={form} setForm={setForm} providers={providers} tutorials={tutorials} sponsers={sponsers} />
-          <TutoringForm
-            form={form}
-            setForm={setForm}
-            providers={providers}
-            tutorials={tutorials}
-          />
           <CCardFooter>
             {!btnActice ? (
               <CButton
