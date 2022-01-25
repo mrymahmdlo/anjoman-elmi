@@ -136,9 +136,9 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
           className="form-control"
           name="startDateTime"
           value={
-            form.schedules[0]?.startDateTime ?
-              timePattern(form.schedules[0]?.startDateTime) :
-              form.schedules[0]?.startDateTime
+            form.schedules[0]?.startDateTime
+              ? timePattern(form.schedules[0]?.startDateTime)
+              : form.schedules[0]?.startDateTime
           }
           onChange={(e) => {
             let sch = form.schedules;
@@ -157,9 +157,9 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
           className="form-control"
           name="endDateTime"
           value={
-            form.schedules[0]?.endDateTime ?
-              timePattern(form.schedules[0]?.endDateTime) :
-              form.schedules[0]?.endDateTime
+            form.schedules[0]?.endDateTime
+              ? timePattern(form.schedules[0]?.endDateTime)
+              : form.schedules[0]?.endDateTime
           }
           onChange={(e) => {
             let sch = form.schedules;

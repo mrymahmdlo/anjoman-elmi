@@ -9,13 +9,14 @@ export const WebinartScopedSlots = (setModalContent, setModal, modal) => {
   return {
     startDateTime: (item, index) => (
       <>
-
-   
         {
           <td className="py-2 pl-2">
-            {item.schedules?.length > 0 ? (
+            {item.webinarSchedules?.length > 0 ? (
               <>
-                {moment(item.schedules[0].startDateTime, DotNetDateTimeFormat)
+                {moment(
+                  item.webinarSchedules[0].startDateTime,
+                  DotNetDateTimeFormat
+                )
                   .locale("fa")
                   .format(DateTimeFormat)}
               </>
@@ -28,9 +29,12 @@ export const WebinartScopedSlots = (setModalContent, setModal, modal) => {
       <>
         {
           <td className="py-2 pl-2">
-            {item.schedules?.length > 0 ? (
+            {item.webinarSchedules?.length > 0 ? (
               <>
-                {moment(item.schedules[0].endDateTime, DotNetDateTimeFormat)
+                {moment(
+                  item.webinarSchedules[0].endDateTime,
+                  DotNetDateTimeFormat
+                )
                   .locale("fa")
                   .format(DateTimeFormat)}
               </>
