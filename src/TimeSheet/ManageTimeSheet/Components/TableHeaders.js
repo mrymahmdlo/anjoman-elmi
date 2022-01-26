@@ -16,6 +16,14 @@ export const TableHeaders = [
     label: "روز هفته",
   },
   {
+    key: "rechargeCapacityAmount",
+    label: "ظرفیت تدریس",
+  },
+  {
+    key: "capacityMinutes",
+    label: "ظرفیت باقی مانده",
+  },
+  {
     key: "edit",
     label: "",
     _style: { width: "1%" },

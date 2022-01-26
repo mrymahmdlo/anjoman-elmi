@@ -28,11 +28,16 @@ const CreateTimeSheet = () => {
       productId: 0,
       startPeriodHour: Number(form.startPeriodHour),
       endPeriodHour: Number(form.endPeriodHour),
+      rechargeCapacityAmountHour: Number(form.rechargeCapacityAmountHour),
       weekDay: Number(form.weekDay),
     })
-      .then(() => {
+      .then((res) => {
+        if (res.success === true) {
         setErrorContent("داده با موفقیت ثبت شد ");
         history.push("/TimeSheet/ManageTimeSheet");
+        } else {
+          setErrorContent(res.message);
+        }
         setShowError(true);
         setBtnActive(false);
       })
