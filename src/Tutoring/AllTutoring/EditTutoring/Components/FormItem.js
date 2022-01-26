@@ -37,33 +37,6 @@ const FormItems = (form, setForm, providers, tutorials, sponsers) => {
       text: "",
       input: (
         <CSelect
-          value={sponsers.userId}
-          defaultValue={sponsers.userId}
-          onChange={(e) => setForm({ ...form, sponserId: Number(e.target.value) })}
-        >
-          <option value={-1}>اسپانسر را انتخاب کنید</option>
-          {sponsers.length > 0 ? (
-            sponsers.map((item) => (
-              <option
-                value={item.userId}
-                key={item.userId}
-                selected={form.userId === item.userId}
-              >
-                {item.sponserName}
-              </option>
-            ))
-          ) : (
-            <option>اسپانسری وجود ندارد</option>
-          )}
-        </CSelect>
-      ),
-      size: 6,
-    },
-    {
-      name: "",
-      text: "",
-      input: (
-        <CSelect
           value={form.tutorialId}
           onChange={(e) => setForm({ ...form, tutorialId: Number(e.target.value) })}
         >

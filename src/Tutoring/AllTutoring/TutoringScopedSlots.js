@@ -1,5 +1,6 @@
 import { CButton, CBadge } from "@coreui/react";
 import EditTutoring from "../AllTutoring/EditTutoring/EditTutoring";
+import SetSponser from "../AllTutoring/SetSponser/SetSponser";
 import CIcon from "@coreui/icons-react";
 
 export const TutoringScopedSlots = (
@@ -23,6 +24,25 @@ export const TutoringScopedSlots = (
             }}
           >
             <CIcon name="cil-pencil" />
+          </CButton>
+        </td>
+      </>
+    ),
+
+    setSponser: (tableData, index) => (
+      <>
+        <td className="py-2 pl-2" key={tableData.tutoringId}>
+          <CButton
+            className="mr-1"
+            color="info"
+            onClick={() => {
+              setModalTutoring(
+                <SetSponser obj={tableData} setModal={setModal} tutoringId={tableData.tutoringId} />
+              );
+              setModal(true);
+            }}
+          >
+            <CIcon name="cil-user-follow" />
           </CButton>
         </td>
       </>
