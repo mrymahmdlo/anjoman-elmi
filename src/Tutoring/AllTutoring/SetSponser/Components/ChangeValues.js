@@ -1,6 +1,6 @@
 export const ChangeValues = (obj) => {
   let newobj = {
-    tutorialId: +obj.tutorialId,
+    tutoringId: +obj.tutoringId,
     sponserId: +obj.sponserId,
   };
   return newobj;

@@ -37,7 +37,7 @@ const SetSponser = ({ obj, setModal, tutoringId }) => {
     setShowError(false);
     setBtnActive(true);
       PostDataBroad(`Admin/SetSponser`, {
-        tutoringId: +form.tutorialId,
+        tutoringId: +form.tutoringId,
         sponserId: +form.sponserId,
       })
         .then((res) => {
