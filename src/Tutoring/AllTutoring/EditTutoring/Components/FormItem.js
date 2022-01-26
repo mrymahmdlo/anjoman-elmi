@@ -39,7 +39,7 @@ const FormItems = (form, setForm, providers, tutorials, sponsers) => {
         <CSelect
           value={sponsers.userId}
           defaultValue={sponsers.userId}
-          onChange={(e) => setForm({ ...form, userId: Number(e.target.value) })}
+          onChange={(e) => setForm({ ...form, sponserId: Number(e.target.value) })}
         >
           <option value={-1}>اسپانسر را انتخاب کنید</option>
           {sponsers.length > 0 ? (

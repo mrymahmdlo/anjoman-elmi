@@ -75,7 +75,8 @@ const EditTutoring = ({ obj, setModal, tutoringId }) => {
       });
 
       PostDataBroad(`Admin/SetSponser`, {
-        userId: +form.userId,
+        tutoringId: +form.tutorialId,
+        sponserId: +form.sponserId,
       })
         .then((res) => {
           if (res.data.succeeded === true) {

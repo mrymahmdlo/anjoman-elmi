@@ -12,6 +12,10 @@ export const TableHeaders = [
     label: "درس",
   },
   {
+    key: "sponserName",
+    label: "نام اسپانسر",
+  },
+  {
     key: "purchasedDate",
     label: "زمان خریداری شده",
   },
