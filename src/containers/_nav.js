@@ -187,6 +187,11 @@ const _nav = [
         name: "ایجاد زمان بندی",
         to: "/TimeSheet/CreateTimeSheet",
       },
+      {
+        _tag: "CSidebarNavItem",
+        name: "ثبت ظرفیت مدرس",
+        to: "/TimeSheet/CapacityRegistration",
+      },
     ],
   },
 
