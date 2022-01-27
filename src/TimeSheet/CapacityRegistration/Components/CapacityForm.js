@@ -3,7 +3,7 @@ import { CCardBody, CForm, CRow, CFormGroup, CCol } from "@coreui/react";
 import { FormItems } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
 import { PostData } from "src/Service/APIEngine";
-import Select from "react-select";
+
 
 const CapacityForm = ({ form, setForm }) => {
   const [timeSheetId, setTimeSheetId] = useState();
@@ -41,12 +41,7 @@ const CapacityForm = ({ form, setForm }) => {
               <label htmlFor="nf-title"> پشتیبان ها  : </label>
 
               <Fragment>
-                <Select
-                  options={providersArray}
-                  onChange={(e) => {
-                    setForm({ ...form, providerId: e.value });
-                  }}
-                />
+             
               </Fragment>
             </CFormGroup>
           </CCol>
