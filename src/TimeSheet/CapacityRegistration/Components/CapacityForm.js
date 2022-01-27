@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   CCardBody,
   CForm,
@@ -13,6 +13,7 @@ import { GetDataProvider } from "src/Service/APIProvider";
 import { FormItems } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
 import { PostData } from "src/Service/APIEngine";
+import Select from "react-select";
 
 const CapacityForm = ({ form, setForm }) => {
   const [timeSheetId, setTimeSheetId] = useState();
@@ -49,7 +50,19 @@ const CapacityForm = ({ form, setForm }) => {
             <CFormGroup>
               <label htmlFor="nf-title"> ارائه دهنده : </label>
 
-              <CSelect
+              <Fragment>
+                <Select
+                  options={providersArray}
+                  // defaultValue={providersArray[0]}
+                  // styles={customStyles}
+                  // name='provider'
+                  onChange={(e) => {
+                    setForm({ ...form, providerId: e.value });
+                  }}
+                />
+              </Fragment>
+
+              {/* <CSelect
                 value={form.providerId}
                 defaultValue={providerId}
                 onChange={(e) => {
@@ -66,31 +79,9 @@ const CapacityForm = ({ form, setForm }) => {
                 ) : (
                   <option>پشتیبانی وجود ندارد</option>
                 )}
-              </CSelect>
+              </CSelect> */}
             </CFormGroup>
           </CCol>
-
-          {/* <CCol sm={6}>
-            <CFormGroup>
-              <CLabel htmlFor="nf-title">روز هفته</CLabel>
-              <CSelect
-                onChange={(e) => {
-                  setForm({ ...form, weekDay: e.target.value });
-                }}
-              >
-                <option value={-1}>روز هفته را انتخاب کنید</option>
-                {weekDay.map((item, index) => (
-                  <option
-                    key={index}
-                    value={item.id}
-                    selected={`${form.weekDay}` === item.id}
-                  >
-                    {item.name}
-                  </option>
-                ))}
-              </CSelect>
-            </CFormGroup>
-          </CCol> */}
         </CRow>
       </CForm>
     </CCardBody>
