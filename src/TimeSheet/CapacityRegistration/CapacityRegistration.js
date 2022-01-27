@@ -26,9 +26,6 @@ const CreateTimeSheet = () => {
     PostDataProvider("TimeSheet/AddTimeSheet", {
       providerId: Number(form.providerId),
       productId: 0,
-      // startPeriodHour: Number(form.startPeriodHour),
-      // endPeriodHour: Number(form.endPeriodHour),
-      // weekDay: Number(form.weekDay),
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
@@ -47,7 +44,7 @@ const CreateTimeSheet = () => {
     <div className="App">
       <CContainer fluid>
         <CCard>
-          <CCardHeader>ساخت زمان بندی</CCardHeader>
+          <CCardHeader>ظرفیت مدرس</CCardHeader>
           <CapacityForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActive ? (
@@ -57,7 +54,7 @@ const CreateTimeSheet = () => {
                 color="primary"
                 onClick={submitTimeSheet}
               >
-                <CIcon name="cil-scrubber" /> ثبت زمان بندی
+                <CIcon name="cil-scrubber" /> ثبت ظرفیت مدرس 
               </CButton>
             ) : (
               <CSpinner
