@@ -6,6 +6,7 @@ import {
   CCardHeader,
   CContainer,
   CSpinner,
+  CCardSubtitle,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { PostDataProvider } from "src/Service/APIProvider";
@@ -46,6 +47,9 @@ const CreateTimeSheet = () => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>ظرفیت مدرس</CCardHeader>
+          <CCardSubtitle className="p-3">
+          در این بخش می توانید با صرف نظر از طول بازه، برای مدرس مورد نظر ظرفیت مخصوص تمام بازه های قابل تدریس او را تعیین کنید.
+          </CCardSubtitle>
           <CapacityForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActive ? (
@@ -55,7 +59,7 @@ const CreateTimeSheet = () => {
                 color="primary"
                 onClick={submitTimeSheet}
               >
-                <CIcon name="cil-scrubber" /> ثبت ظرفیت مدرس 
+                <CIcon name="cil-scrubber" /> ثبت ظرفیت مدرس
               </CButton>
             ) : (
               <CSpinner

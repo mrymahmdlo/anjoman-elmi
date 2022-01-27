@@ -3,7 +3,7 @@ export const FormItems = (form, setForm) => {
   return [
     {
       name: "ظرفیت مدرس",
-      text: "ظرفیت مدرس را وارد کنید",
+      text: "ظرفیت مدرس را به ساعت وارد کنید",
       input: FormNumberInput(
         form,
         setForm,
