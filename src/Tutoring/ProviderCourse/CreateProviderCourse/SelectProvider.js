@@ -16,7 +16,7 @@ export const SelectProvider = ({ providerId, setProviderId }) => {
       <CSelect
         value={providerId}
         onChange={(e) =>
-         setProviderId(Number(e.target.value))
+          setProviderId(Number(e.target.value))
         }
       >
         <option value={-1}>ارائه دهنده را انتخاب کنید</option>

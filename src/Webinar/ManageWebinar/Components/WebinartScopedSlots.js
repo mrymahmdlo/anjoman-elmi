@@ -9,20 +9,38 @@ export const WebinartScopedSlots = (setModalContent, setModal, modal) => {
   return {
     startDateTime: (item, index) => (
       <>
-        <td className="py-2 pl-2">
-          {moment(item.schedules[0].startDateTime, DotNetDateTimeFormat)
-            .locale("fa")
-            .format(DateTimeFormat)}
-        </td>
+        {
+          <td className="py-2 pl-2">
+            {item.webinarSchedules?.length > 0 ? (
+              <>
+                {moment(
+                  item.webinarSchedules[0].startDateTime,
+                  DotNetDateTimeFormat
+                )
+                  .locale("fa")
+                  .format(DateTimeFormat)}
+              </>
+            ) : null}
+          </td>
+        }
       </>
     ),
     endDateTime: (item, index) => (
       <>
-        <td className="py-2 pl-2">
-          {moment(item.schedules[0].endDateTime, DotNetDateTimeFormat)
-            .locale("fa")
-            .format(DateTimeFormat)}
-        </td>
+        {
+          <td className="py-2 pl-2">
+            {item.webinarSchedules?.length > 0 ? (
+              <>
+                {moment(
+                  item.webinarSchedules[0].endDateTime,
+                  DotNetDateTimeFormat
+                )
+                  .locale("fa")
+                  .format(DateTimeFormat)}
+              </>
+            ) : null}
+          </td>
+        }
       </>
     ),
     edit: (item, index) => (

@@ -44,17 +44,17 @@ export const UploadProviderFile = () => {
       setActiveContent(false);
       if (type === "0") {
         setActiveProvider(true);
-           PostData("Provider/Tutoring", {}).then((res) => {
-             setProviders(res.data);
-             setActiveProvider(false);
-           });
-     
+        PostData("Provider/Tutoring", {}).then((res) => {
+          setProviders(res.data);
+          setActiveProvider(false);
+        });
+
       } else {
         setActiveProvider(true);
-          PostData("Provider/Consultation", {}).then((res) => {
-            setProviders(res.data);
-            setActiveProvider(false);
-          });
+        PostData("Provider/Consultation", {}).then((res) => {
+          setProviders(res.data);
+          setActiveProvider(false);
+        });
       }
     });
   }, [type]);
@@ -176,7 +176,7 @@ export const UploadProviderFile = () => {
           </CFormGroup>
         ) : (
           <CFormGroup className="w-30 m-2">
-        
+
             {UploadFileStatusMark(statusFile)}
             <CInput
               type="file"

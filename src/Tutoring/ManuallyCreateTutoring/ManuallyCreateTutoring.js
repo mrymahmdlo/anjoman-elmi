@@ -41,7 +41,7 @@ export default function ManuallyCreateTutoring() {
       providerId: +form.providerId,
       userPhoneNumber: form.userPhoneNumber,
       productId: +form.productId,
-      isOffline: form.isOffline !== 0,
+      isOnline: form.isOnline !== 0,
       startDate: HejriToDotNetGeorgian(form.startDate),
     })
       .then(() => {

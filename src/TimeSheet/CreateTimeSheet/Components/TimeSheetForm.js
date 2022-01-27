@@ -36,9 +36,9 @@ const TimeSheetForm = ({ form, setForm }) => {
     TextField(item)
   );
   useEffect(() => {
-       PostData("Provider/Tutoring", {}).then((res) => {
-         setProviders(res.data)
-       });
+    PostData("Provider/Tutoring", {}).then((res) => {
+      setProviders(res.data)
+    });
   }, []);
 
   return (
