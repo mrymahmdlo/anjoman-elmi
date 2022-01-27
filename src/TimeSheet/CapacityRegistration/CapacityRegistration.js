@@ -23,9 +23,10 @@ const CreateTimeSheet = () => {
   const submitTimeSheet = () => {
     setShowError(false);
     setBtnActive(true);
-    PostDataProvider("TimeSheet/AddTimeSheet", {
+    PostDataProvider("TimeSheet/SetRechargeAmount", {
       providerId: Number(form.providerId),
       productId: 0,
+      capacity: Number(form.capacity),
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
