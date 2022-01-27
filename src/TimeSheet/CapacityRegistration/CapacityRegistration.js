@@ -12,14 +12,18 @@ import CIcon from "@coreui/icons-react";
 import { PostDataProvider } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
 import CapacityForm from "./Components/CapacityForm";
-import { useHistory } from "react-router";
 
 const CapacityRegistration = () => {
   const [form, setForm] = useState({ providerId: 0, rechargeAmountHour: 0 });
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActive, setBtnActive] = useState(false);
-  const history = useHistory();
+
+  const refreshPage = () => {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 2000);
+  };
 
   const submitTimeSheet = () => {
     setShowError(false);
@@ -30,9 +34,9 @@ const CapacityRegistration = () => {
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
-        history.push("/TimeSheet/ManageTimeSheet");
         setShowError(true);
         setBtnActive(false);
+        refreshPage();
       })
       .catch(() => {
         setErrorContent("ثبت داده ها با مشکل مواجه شد");

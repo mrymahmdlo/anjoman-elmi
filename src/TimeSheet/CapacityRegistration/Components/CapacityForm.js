@@ -7,7 +7,6 @@ import {
   CCol,
   CSelect,
 } from "@coreui/react";
-import { GetDataProvider } from "src/Service/APIProvider";
 import { FormItems } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
 import { PostData } from "src/Service/APIEngine";

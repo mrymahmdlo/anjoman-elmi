@@ -15,6 +15,5 @@ export const FormItems = (form, setForm) => {
       ),
       size: 4,
     },
- 
   ];
 };
