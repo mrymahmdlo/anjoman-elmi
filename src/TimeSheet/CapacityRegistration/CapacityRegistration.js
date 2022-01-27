@@ -14,7 +14,7 @@ import { Toast } from "src/Utility/Toast";
 import CapacityForm from "./Components/CapacityForm";
 import { useHistory } from "react-router";
 
-const CreateTimeSheet = () => {
+const CapacityRegistration = () => {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
@@ -26,8 +26,7 @@ const CreateTimeSheet = () => {
     setBtnActive(true);
     PostDataProvider("TimeSheet/SetRechargeAmount", {
       providerId: Number(form.providerId),
-      productId: 0,
-      capacity: Number(form.capacity),
+      rechargeAmountHour: Number(form.rechargeAmountHour),
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
@@ -76,4 +75,4 @@ const CreateTimeSheet = () => {
   );
 };
 
-export default CreateTimeSheet;
+export default CapacityRegistration;

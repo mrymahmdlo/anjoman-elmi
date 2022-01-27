@@ -1,9 +1,8 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { CSelect, useEffect, useState } from "react";
 import { CCardBody, CForm, CRow, CFormGroup, CCol } from "@coreui/react";
 import { FormItems } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
 import { PostData } from "src/Service/APIEngine";
-import Select from "react-select";
 
 const CapacityForm = ({ form, setForm }) => {
   const [timeSheetId, setTimeSheetId] = useState();
@@ -24,11 +23,6 @@ const CapacityForm = ({ form, setForm }) => {
     });
   }, []);
 
-  const providersArray = providers.map((item) => ({
-    value: +item.providerId,
-    label: `${item.name} ${item.lastName}`,
-  }));
-  console.log(providersArray);
 
   return (
     <CCardBody>
@@ -40,14 +34,24 @@ const CapacityForm = ({ form, setForm }) => {
             <CFormGroup>
               <label htmlFor="nf-title"> پشتیبان ها  : </label>
 
-              <Fragment>
-                <Select
-                  options={providersArray}
-                  onChange={(e) => {
-                    setForm({ ...form, providerId: e.value });
-                  }}
-                />
-              </Fragment>
+              <CSelect
+                value={form.providerId}
+                defaultValue={providerId}
+                onChange={(e) => {
+                  setForm({ ...form, providerId: e.target.value });
+                }}
+              >
+                <option value={-1}>پشتیبان را انتخاب کنید</option>
+                {providers.length > 0 ? (
+                  providers.map((item) => (
+                    <option value={item.providerId} key={item.providerId}>
+                      {item.name + " " + item.lastName}{" "}
+                    </option>
+                  ))
+                ) : (
+                  <option>پشتیبانی وجود ندارد</option>
+                )}
+              </CSelect>
             </CFormGroup>
           </CCol>
         </CRow>

@@ -7,11 +7,11 @@ export const FormItems = (form, setForm) => {
       input: FormNumberInput(
         form,
         setForm,
-        "capacity",
+        "rechargeAmountHour",
         "ظرفیت مدرس",
         0,
         null,
-        () => form.capacity >= "0"
+        () => form.rechargeAmountHour >= "0"
       ),
       size: 1,
     },
