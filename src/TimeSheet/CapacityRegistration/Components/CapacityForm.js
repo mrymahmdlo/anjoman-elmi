@@ -40,6 +40,12 @@ const CapacityForm = ({ form, setForm }) => {
     });
   }, []);
 
+  const providersArray = providers.map((item) => ({
+    value: +item.providerId,
+    label: `${item.name} ${item.lastName}`,
+  }));
+  console.log(providersArray);
+  
   return (
     <CCardBody>
       <CForm action="" method="post">
