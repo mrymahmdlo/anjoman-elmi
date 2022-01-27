@@ -42,7 +42,6 @@ export const FormItems = (form, setForm) => {
         null,
         () => form.rechargeCapacityAmountHour >= "0"
       ),
-      size: 4,
     },
   ];
 };
