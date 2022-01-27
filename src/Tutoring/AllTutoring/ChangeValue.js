@@ -25,6 +25,9 @@ export const ChangeValue = (arr) => {
           obj[key] = obj[key] === 0 ?  "خریداری شده" : obj[key] = obj[key] === 1 ?  "رزرو شده" : obj[key] = obj[key] === 2 ? "پشتیبان وارد شده است ": obj[key] = obj[key] === 3 ? "برگزار شده   ": obj[key] = obj[key] === 4 ? "دانش آموز وارد شده است" : null;
 
       }
+      if (key == "sponserName") {
+        obj[key] = obj[key] === null ? "انتخاب نشده" : obj[key];
+      }
     })
   );
   return arr;

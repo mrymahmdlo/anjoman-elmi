@@ -1,7 +1,7 @@
 export const TableHeaders = [
   {
     key: "providerName",
-    label:" نام مشاور",
+    label: " نام مشاور",
   },
   {
     key: "startPeriodHour",
@@ -17,11 +17,11 @@ export const TableHeaders = [
   },
   {
     key: "rechargeCapacityAmount",
-    label: "ظرفیت تدریس",
+    label: "  ظرفیت تدریس (ساعت) ",
   },
   {
     key: "capacityMinutes",
-    label: "ظرفیت باقی مانده",
+    label: " ظرفیت باقی مانده  (دقیقه)",
   },
   {
     key: "edit",

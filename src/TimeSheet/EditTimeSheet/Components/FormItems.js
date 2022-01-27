@@ -36,11 +36,11 @@ export const FormItems = (form, setForm) => {
       input: FormNumberInput(
         form,
         setForm,
-        "rechargeCapacityAmountHour",
+        "rechargeCapacityAmount",
         "ظرفیت تدریس",
         0,
         null,
-        () => form.rechargeCapacityAmountHour >= "0"
+        () => form.rechargeCapacityAmount >= "0"
       ),
     },
   ];

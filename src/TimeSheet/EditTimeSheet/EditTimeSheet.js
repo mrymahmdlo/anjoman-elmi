@@ -61,7 +61,7 @@ const ChangeValues = (day) => {
       productId: obj.productId,
       startPeriodHour: Number(form.startPeriodHour),
       endPeriodHour: Number(form.endPeriodHour),
-      rechargeCapacityAmountHour: Number(form.rechargeCapacityAmountHour),
+      rechargeCapacityAmountHour: Number(form.rechargeCapacityAmount),
       capacityMinutesour: Number(form.capacityMinutes),
       weekDay:
         form.weekDay !== obj.weekDay
@@ -70,9 +70,9 @@ const ChangeValues = (day) => {
     })
       .then((res) => {
         if (res.success === true) {
-        setErrorContent("داده با موفقیت ثبت شد ");
-        history.push("/TimeSheet/ManageTimeSheet");
-        setModal(false); 
+          setErrorContent("داده با موفقیت ثبت شد ");
+          history.push("/TimeSheet/ManageTimeSheet");
+          setModal(false);
         } else {
           setErrorContent(res.message);
         }

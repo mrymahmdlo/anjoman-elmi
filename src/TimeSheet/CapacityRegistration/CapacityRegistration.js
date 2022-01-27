@@ -51,7 +51,7 @@ const CapacityRegistration = () => {
         <CCard>
           <CCardHeader>ظرفیت مدرس</CCardHeader>
           <CCardSubtitle className="p-3">
-            در این بخش می توانید با صرف نظر از طول بازه، برای مدرس مورد نظر
+            در این بخش می توانید  برای مدرس مورد نظر
             ظرفیت مخصوص تمام بازه های قابل تدریس او را تعیین کنید.
           </CCardSubtitle>
           <CapacityForm form={form} setForm={setForm} />
