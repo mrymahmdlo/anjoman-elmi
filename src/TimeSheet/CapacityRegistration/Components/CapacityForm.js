@@ -14,7 +14,7 @@ import { FormItems } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
 import { PostData } from "src/Service/APIEngine";
 
-const TimeSheetForm = ({ form, setForm }) => {
+const CapacityForm = ({ form, setForm }) => {
   const [timeSheetId, setTimeSheetId] = useState();
   // const [weekDay, setWeekDay] = useState([]);
   const [providers, setProviders] = useState([]);
@@ -97,4 +97,4 @@ const TimeSheetForm = ({ form, setForm }) => {
   );
 };
 
-export default TimeSheetForm;
+export default CapacityForm;

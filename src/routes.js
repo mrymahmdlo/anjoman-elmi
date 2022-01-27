@@ -63,7 +63,7 @@ const ManageTimeSheet = React.lazy(() =>
 const CreateTimeSheet = React.lazy(() =>
   import("./TimeSheet/CreateTimeSheet/CreateTimeSheet")
 );
-const CreateTimeSheet = React.lazy(() =>
+const CapacityRegistration = React.lazy(() =>
   import("./TimeSheet/CapacityRegistration/CapacityRegistration")
 );
 
@@ -219,6 +219,11 @@ const routes = [
     path: "/TimeSheet/CreateTimeSheet",
     name: "CreateTimeSheet",
     component: CreateTimeSheet,
+  },
+  {
+    path: "/TimeSheet/CapacityRegistration",
+    name: "CapacityRegistration",
+    component: CapacityRegistration,
   },
   {
     path: "/AllTutoring",

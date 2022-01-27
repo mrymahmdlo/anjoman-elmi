@@ -10,7 +10,7 @@ import {
 import CIcon from "@coreui/icons-react";
 import { PostDataProvider } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
-import TimeSheetForm from "./Components/TimeSheetForm";
+import CapacityForm from "./Components/CapacityForm";
 import { useHistory } from "react-router";
 
 const CreateTimeSheet = () => {
@@ -48,7 +48,7 @@ const CreateTimeSheet = () => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>ساخت زمان بندی</CCardHeader>
-          <TimeSheetForm form={form} setForm={setForm} />
+          <CapacityForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActive ? (
               <CButton
