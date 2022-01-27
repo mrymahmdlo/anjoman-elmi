@@ -30,7 +30,7 @@ const ManageSubscriptions = () => {
   return (
     <>
       <CCard>
-        <CCardHeader>مدیریت همایش های برترها</CCardHeader>
+        <CCardHeader>مدیریت  سفارشات همایش های برترها</CCardHeader>
         <CDataTable
           items={tableData}
           fields={TableHeader}
