@@ -15,7 +15,7 @@ import CapacityForm from "./Components/CapacityForm";
 import { useHistory } from "react-router";
 
 const CapacityRegistration = () => {
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({ providerId: 0, rechargeAmountHour: 0 });
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActive, setBtnActive] = useState(false);
@@ -47,7 +47,8 @@ const CapacityRegistration = () => {
         <CCard>
           <CCardHeader>ظرفیت مدرس</CCardHeader>
           <CCardSubtitle className="p-3">
-          در این بخش می توانید با صرف نظر از طول بازه، برای مدرس مورد نظر ظرفیت مخصوص تمام بازه های قابل تدریس او را تعیین کنید.
+            در این بخش می توانید با صرف نظر از طول بازه، برای مدرس مورد نظر
+            ظرفیت مخصوص تمام بازه های قابل تدریس او را تعیین کنید.
           </CCardSubtitle>
           <CapacityForm form={form} setForm={setForm} />
           <CCardFooter>

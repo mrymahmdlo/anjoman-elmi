@@ -11,9 +11,9 @@ export const FormItems = (form, setForm) => {
         "ظرفیت مدرس",
         0,
         null,
-        () => form.rechargeAmountHour >= "0"
+        () => form?.rechargeAmountHour >= "0"
       ),
-      size: 1,
+      size: 4,
     },
  
   ];
