@@ -23,6 +23,10 @@ const CreateWebinar = React.lazy(() =>
 const EditWebinar = React.lazy(() =>
   import("./Webinar/EditWebinar/EditWebinar")
 );
+const ManageSubscriptions = React.lazy(() =>
+  import("./Webinar/Subscriptions/ManageSubscriptions")
+);
+
 const CreateExam = React.lazy(() =>
   import("./Exam/CreateNewExam/CreateNewExam")
 );
@@ -31,29 +35,46 @@ const ManageExams = React.lazy(() => import("./Exam/ManageExams/ManageExams"));
 const ExamQuestionBank = React.lazy(() =>
   import("./Exam/ExamQuestionBank/ExamQuestionBank")
 );
-const ManageTutoring = React.lazy(() => import("./Tutoring/ManageTutoring/ManageTutoring"));
+const ManageTutoring = React.lazy(() =>
+  import("./Tutoring/ManageTutoring/ManageTutoring")
+);
 const EditeTutoring = React.lazy(() =>
   import("./Tutoring/EditTutoring/EditTutoring")
 );
-const CreateTutoring=React.lazy(() => import("./Tutoring/CreateTutoring/CreateTutoring"));
+const CreateTutoring = React.lazy(() =>
+  import("./Tutoring/CreateTutoring/CreateTutoring")
+);
 const ProviderCourse = React.lazy(() =>
   import("./Tutoring/ProviderCourse/ProviderCourse")
 );
 const CreateProviderCourse = React.lazy(() =>
   import("./Tutoring/ProviderCourse/CreateProviderCourse/CreateProviderCourse")
 );
-const AllSms = React.lazy(() =>
-  import("./Tutoring/Sms/Sms")
+const AllSms = React.lazy(() => import("./Tutoring/Sms/Sms"));
+const ManageuploadProvider = React.lazy(() =>
+  import("./Upload/UploadProviderFile/ManageuploadProvider")
 );
-const ManageuploadProvider = React.lazy(() => import("./Upload/UploadProviderFile/ManageuploadProvider"));
-const AllTutoring = React.lazy(() => import("./Tutoring/AllTutoring/AllTutoring"));
-const ManuallyCreateTutoring=React.lazy(()=>import('./Tutoring/ManuallyCreateTutoring/ManuallyCreateTutoring'));
+const AllTutoring = React.lazy(() =>
+  import("./Tutoring/AllTutoring/AllTutoring")
+);
+const ManuallyCreateTutoring = React.lazy(() =>
+  import("./Tutoring/ManuallyCreateTutoring/ManuallyCreateTutoring")
+);
 
-const ManageTimeSheet=React.lazy(()=>import("./TimeSheet/ManageTimeSheet/ManageTimeSheet.js"));
-const CreateTimeSheet=React.lazy(()=>import("./TimeSheet/CreateTimeSheet/CreateTimeSheet"));
+const ManageTimeSheet = React.lazy(() =>
+  import("./TimeSheet/ManageTimeSheet/ManageTimeSheet.js")
+);
+const CreateTimeSheet = React.lazy(() =>
+  import("./TimeSheet/CreateTimeSheet/CreateTimeSheet")
+);
+const CapacityRegistration = React.lazy(() =>
+  import("./TimeSheet/CapacityRegistration/CapacityRegistration")
+);
 
 const Upload = React.lazy(() => import("src/Upload/Upload"));
-const UploadProvider = React.lazy(() => import("src/Upload/UploadProviderFile/UploadProvider"));
+const UploadProvider = React.lazy(() =>
+  import("src/Upload/UploadProviderFile/UploadProvider")
+);
 //examples
 const Toaster = React.lazy(() =>
   import("./views/notifications/toaster/Toaster")
@@ -159,6 +180,12 @@ const routes = [
     component: EditWebinar,
   },
   {
+    path: "/Webinar/Subscriptions",
+    name: "ManageSubscriptions",
+    component: ManageSubscriptions,
+  },
+
+  {
     path: "/Tutoring/ManageTutoring",
     name: "ManageTutoring",
     component: ManageTutoring,
@@ -189,8 +216,8 @@ const routes = [
     component: AllSms,
   },
   {
-    path: '/Tutoring/ManuallyCreateTutoring',
-    name: 'ManuallyCreateTutoring',
+    path: "/Tutoring/ManuallyCreateTutoring",
+    name: "ManuallyCreateTutoring",
     component: ManuallyCreateTutoring,
   },
   {
@@ -202,6 +229,11 @@ const routes = [
     path: "/TimeSheet/CreateTimeSheet",
     name: "CreateTimeSheet",
     component: CreateTimeSheet,
+  },
+  {
+    path: "/TimeSheet/CapacityRegistration",
+    name: "CapacityRegistration",
+    component: CapacityRegistration,
   },
   {
     path: "/AllTutoring",
