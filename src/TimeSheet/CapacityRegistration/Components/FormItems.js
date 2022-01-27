@@ -2,19 +2,18 @@ import { FormNumberInput } from "src/reusable/FormInput";
 export const FormItems = (form, setForm) => {
   return [
     {
-      name: "ظرفیت مدرس",
-      text: "ظرفیت مدرس را وارد کنید",
+      name: "ظرفیت مدرس :",
+      text: "ظرفیت مدرس را به ساعت وارد کنید",
       input: FormNumberInput(
         form,
         setForm,
-        "capacity",
+        "rechargeAmountHour",
         "ظرفیت مدرس",
         0,
         null,
-        () => form.capacity >= "0"
+        () => form?.rechargeAmountHour >= "0"
       ),
-      size: 1,
+      size: 4,
     },
- 
   ];
 };

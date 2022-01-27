@@ -6,33 +6,37 @@ import {
   CCardHeader,
   CContainer,
   CSpinner,
+  CCardSubtitle,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { PostDataProvider } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
 import CapacityForm from "./Components/CapacityForm";
-import { useHistory } from "react-router";
 
-const CreateTimeSheet = () => {
-  const [form, setForm] = useState({});
+const CapacityRegistration = () => {
+  const [form, setForm] = useState({ providerId: 0, rechargeAmountHour: 0 });
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActive, setBtnActive] = useState(false);
-  const history = useHistory();
+
+  const refreshPage = () => {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 2000);
+  };
 
   const submitTimeSheet = () => {
     setShowError(false);
     setBtnActive(true);
     PostDataProvider("TimeSheet/SetRechargeAmount", {
       providerId: Number(form.providerId),
-      productId: 0,
-      capacity: Number(form.capacity),
+      rechargeAmountHour: Number(form.rechargeAmountHour),
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
-        history.push("/TimeSheet/ManageTimeSheet");
         setShowError(true);
         setBtnActive(false);
+        refreshPage();
       })
       .catch(() => {
         setErrorContent("ثبت داده ها با مشکل مواجه شد");
@@ -46,6 +50,10 @@ const CreateTimeSheet = () => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>ظرفیت مدرس</CCardHeader>
+          <CCardSubtitle className="p-3">
+            در این بخش می توانید با صرف نظر از طول بازه، برای مدرس مورد نظر
+            ظرفیت مخصوص تمام بازه های قابل تدریس او را تعیین کنید.
+          </CCardSubtitle>
           <CapacityForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActive ? (
@@ -55,7 +63,7 @@ const CreateTimeSheet = () => {
                 color="primary"
                 onClick={submitTimeSheet}
               >
-                <CIcon name="cil-scrubber" /> ثبت ظرفیت مدرس 
+                <CIcon name="cil-scrubber" /> ثبت ظرفیت مدرس
               </CButton>
             ) : (
               <CSpinner
@@ -72,4 +80,4 @@ const CreateTimeSheet = () => {
   );
 };
 
-export default CreateTimeSheet;
+export default CapacityRegistration;
