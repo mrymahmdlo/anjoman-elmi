@@ -95,6 +95,11 @@ const _nav = [
         name: "ایجاد همایش",
         to: "/Webinar/CreateWebinar",
       },
+      {
+        _tag: "CSidebarNavItem",
+        name: "مدیریت سفارشات",
+        to: "/Webinar/Subscriptions",
+      },
     ],
   },
   {
@@ -138,8 +143,8 @@ const _nav = [
       },
       {
         _tag: "CSidebarNavItem",
-        name: 'برگزاری دستی جلسات',
-        to: '/Tutoring/ManuallyCreateTutoring',
+        name: "برگزاری دستی جلسات",
+        to: "/Tutoring/ManuallyCreateTutoring",
       },
     ],
   },
@@ -163,8 +168,6 @@ const _nav = [
         name: "ایجاد آزمون جدید",
         to: "/Exams/CreateExam/QuizInfo",
       },
-
-
     ],
   },
 
@@ -175,7 +178,9 @@ const _nav = [
   {
     _tag: "CSidebarNavDropdown",
     name: "زمان بندی مشاور",
-    icon: <CIcon content={freeSet.cilClock} customClasses="c-sidebar-nav-icon" />,
+    icon: (
+      <CIcon content={freeSet.cilClock} customClasses="c-sidebar-nav-icon" />
+    ),
     _children: [
       {
         _tag: "CSidebarNavItem",
@@ -189,7 +194,6 @@ const _nav = [
       },
     ],
   },
-
 ];
 
 
