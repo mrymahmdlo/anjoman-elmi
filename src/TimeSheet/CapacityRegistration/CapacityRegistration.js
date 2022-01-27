@@ -10,7 +10,7 @@ import {
 import CIcon from "@coreui/icons-react";
 import { PostDataProvider } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
-import CapacityForm from "./Components/CapacityForm";
+import TimeSheetForm from "./Components/TimeSheetForm";
 import { useHistory } from "react-router";
 
 const CreateTimeSheet = () => {
@@ -26,9 +26,9 @@ const CreateTimeSheet = () => {
     PostDataProvider("TimeSheet/AddTimeSheet", {
       providerId: Number(form.providerId),
       productId: 0,
-      startPeriodHour: Number(form.startPeriodHour),
-      endPeriodHour: Number(form.endPeriodHour),
-      weekDay: Number(form.weekDay),
+      // startPeriodHour: Number(form.startPeriodHour),
+      // endPeriodHour: Number(form.endPeriodHour),
+      // weekDay: Number(form.weekDay),
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
@@ -48,7 +48,7 @@ const CreateTimeSheet = () => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>ساخت زمان بندی</CCardHeader>
-          <CapacityForm form={form} setForm={setForm} />
+          <TimeSheetForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActive ? (
               <CButton
