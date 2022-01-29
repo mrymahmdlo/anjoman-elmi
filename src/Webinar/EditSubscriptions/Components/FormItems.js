@@ -13,20 +13,20 @@ const timePattern = (time) => {
 
 export const FormItems = (form, setForm) => {
   return [
-    // {
-    //   name: "لینک  همایش",
-    //   text: "لینک همایش را وارد کنید",
-    //   input: FormTextInput(
-    //     form,
-    //     setForm,
-    //     "webinarLink",
-    //     "لینک همایش",
-    //     0,
-    //     null,
-    //     () => form.webinarLink >= "0"
-    //   ),
-    //   size: 6,
-    // },
+    {
+      name: "لینک  همایش",
+      text: "لینک همایش را وارد کنید",
+      input: FormTextInput(
+        form,
+        setForm,
+        "webinarLink",
+        "لینک همایش",
+        0,
+        null,
+        () => form.webinarLink >= "0"
+      ),
+      size: 6,
+    },
     {
       name: "زمان خرید همایش",
       text: "تاریخ و ساعت خرید همایش را وارد کنید",

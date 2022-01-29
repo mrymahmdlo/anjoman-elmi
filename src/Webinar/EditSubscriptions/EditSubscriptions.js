@@ -39,7 +39,7 @@ const EditSubscriptions = ({ obj, setModal }) => {
       `/webinar/UpdateSubscription?subscriptionId=${obj.subscriptionId}`,
       {
         ...form,
-        // webinarLink: form.webinarLink,
+        webinarLink: form.webinarLink,
         buyDateTime: +form.buyDateTime,
         joinDatetime: +form.joinDatetime,
         cancelDatetime: +form.cancelDatetime,
