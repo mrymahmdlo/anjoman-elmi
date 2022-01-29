@@ -1,6 +1,6 @@
 export const ChangeValues = (obj) => {
   let newobj = {
-    webinarLink: obj.webinarLink,
+    // webinarLink: obj.webinarLink,
     schedules: [
       {
         buyDateTime: obj.webinarSchedules[0].buyDateTime,
