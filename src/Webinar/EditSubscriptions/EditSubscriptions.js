@@ -13,7 +13,7 @@ import { Toast } from "src/Utility/Toast";
 import SubscriptionsForm from "./Components/SubscriptionsForm";
 import { ChangeValues } from "./Components/ChangeValues";
 
-const EditSubscriptions = ({ obj, setModal }) => {
+const EditSubscriptions = ({ obj, setModal, subscriptionId }) => {
   console.log(obj);
   const [form, setForm] = useState({
     buyDateTime: "",
@@ -33,12 +33,10 @@ const EditSubscriptions = ({ obj, setModal }) => {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    // let data = form;
-    // if (form.webinarLink !== "") data["webinarLink"] = form.webinarLink;
     PostDataBroad(
-      `/webinar/UpdateSubscription?subscriptionId=${obj.subscriptionId}`,
+      `/webinar/UpdateSubscription?subscriptionId=${subscriptionId}`,
       {
-        webinarLink: +form.webinarLink,
+        webinarLink: form.webinarLink,
         buyDateTime: +form.buyDateTime,
         joinDatetime: +form.joinDatetime,
         cancelDatetime: +form.cancelDatetime,
