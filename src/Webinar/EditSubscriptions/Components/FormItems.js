@@ -35,14 +35,13 @@ export const FormItems = (form, setForm) => {
           className="form-control"
           name="buyDateTime"
           value={
-            form.schedules[0]?.buyDateTime
-              ? timePattern(form.schedules[0]?.buyDateTime)
-              : form.schedules[0]?.buyDateTime
+            form.buyDateTime
+              ? timePattern(form.buyDateTime)
+              : form.buyDateTime
           }
           onChange={(e) => {
-            let sch = form.schedules;
-            sch[0].buyDateTime = HejriToDotNetGeorgian(e);
-            setForm({ ...form, schedules: sch });
+            form.buyDateTime = HejriToDotNetGeorgian(e);
+            setForm({ ...form, buyDateTime: +e.target.value });
           }}
         />
       ),
@@ -56,14 +55,13 @@ export const FormItems = (form, setForm) => {
           className="form-control"
           name="joinDatetime"
           value={
-            form.schedules[0]?.joinDatetime
-              ? timePattern(form.schedules[0]?.joinDatetime)
-              : form.schedules[0]?.joinDatetime
+            form.joinDatetime
+              ? timePattern(form.joinDatetime)
+              : form.joinDatetime
           }
           onChange={(e) => {
-            let sch = form.schedules;
-            sch[0].joinDatetime = HejriToDotNetGeorgian(e);
-            setForm({ ...form, schedules: sch });
+            form.joinDatetime = HejriToDotNetGeorgian(e);
+            setForm({ ...form, joinDatetime: +e.target.value });
           }}
         />
       ),
@@ -77,14 +75,13 @@ export const FormItems = (form, setForm) => {
           className="form-control"
           name="cancelDatetime"
           value={
-            form.schedules[0]?.cancelDatetime
-              ? timePattern(form.schedules[0]?.cancelDatetime)
-              : form.schedules[0]?.cancelDatetime
+            form.cancelDatetime
+              ? timePattern(form.cancelDatetime)
+              : form.cancelDatetime
           }
           onChange={(e) => {
-            let sch = form.schedules;
-            sch[0].cancelDatetime = HejriToDotNetGeorgian(e);
-            setForm({ ...form, schedules: sch });
+            form.cancelDatetime = HejriToDotNetGeorgian(e);
+            setForm({ ...form, cancelDatetime: +e.target.value });
           }}
         />
       ),

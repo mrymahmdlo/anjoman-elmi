@@ -16,13 +16,9 @@ import { ChangeValues } from "./Components/ChangeValues";
 const EditSubscriptions = ({ obj, setModal }) => {
   console.log(obj);
   const [form, setForm] = useState({
-    schedules: [
-      {
-        buyDateTime: "",
-        joinDatetime: "",
-        cancelDatetime: "",
-      },
-    ],
+    buyDateTime: "",
+    joinDatetime: "",
+    cancelDatetime: "",
   });
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
