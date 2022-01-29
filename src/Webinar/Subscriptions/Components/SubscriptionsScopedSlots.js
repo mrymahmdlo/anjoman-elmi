@@ -1,6 +1,6 @@
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
-
+import EditSubscriptions from "src/Webinar/EditSubscriptions/EditSubscriptions";
 import moment from "jalali-moment";
 const DateTimeFormat = "YYYY/MM/DD HH:mm";
 const DotNetDateTimeFormat = "YYYY-MM-DDTHH:mm";
@@ -42,21 +42,23 @@ export const SubscriptionsScopedSlots = (setModalContent, setModal, modal) => {
         }
       </>
     ),
-    // edit: (item, index) => (
-    //   <>
-    //     <td className="py-2 pl-2" key={item.quizId}>
-    //       <CButton
-    //         className="mr-1"
-    //         color="primary"
-    //         onClick={() => {
-    //           setModalContent(<EditWebinar obj={item} setModal={setModal} />);
-    //           setModal(true);
-    //         }}
-    //       >
-    //         <CIcon name="cil-pencil" />
-    //       </CButton>
-    //     </td>
-    //   </>
-    // ),
+    edit: (item, index) => (
+      <>
+        <td className="py-2 pl-2" key={item.quizId}>
+          <CButton
+            className="mr-1"
+            color="primary"
+            onClick={() => {
+              setModalContent(
+                <EditSubscriptions obj={item} setModal={setModal} />
+              );
+              setModal(true);
+            }}
+          >
+            <CIcon name="cil-pencil" />
+          </CButton>
+        </td>
+      </>
+    ),
   };
 };

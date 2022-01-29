@@ -1,7 +1,7 @@
 import { CCard, CCardHeader, CDataTable } from "@coreui/react";
 import { useEffect, useState } from "react";
-import { WebinartModal } from "./Components/SubscriptionsModal";
-import { WebinartScopedSlots } from "./Components/SubscriptionsScopedSlots";
+import { SubscriptionsModal } from "./Components/SubscriptionsModal";
+import { SubscriptionsScopedSlots } from "./Components/SubscriptionsScopedSlots";
 import { TableHeader } from "./Components/TableHeader";
 import { ChangeValues } from "./Utility/ChangeValues";
 import { PostDataBroad } from "src/Service/APIBroadCast";
@@ -30,7 +30,7 @@ const ManageSubscriptions = () => {
   return (
     <>
       <CCard>
-        <CCardHeader>مدیریت  سفارشات همایش های برترها</CCardHeader>
+        <CCardHeader>مدیریت سفارشات همایش های برترها</CCardHeader>
         <CDataTable
           items={tableData}
           fields={TableHeader}
@@ -41,17 +41,21 @@ const ManageSubscriptions = () => {
           onSorterValueChange={setFilterData}
           itemsPerPage={15}
           pagination
-        //   scopedSlots={WebinartScopedSlots(setModalContent, setModal, modal)}
+          scopedSlots={SubscriptionsScopedSlots(
+            setModalContent,
+            setModal,
+            modal
+          )}
         />
       </CCard>
-      {/* <WebinartModal
-        name="مدیریت همایش"
+      <SubscriptionsModal
+        name="مدیریت سفارشات همایش"
         modal={modal}
         toggle={() => {
           setModal(!modal);
         }}
         modalContent={modalContent}
-      /> */}
+      />
     </>
   );
 };
