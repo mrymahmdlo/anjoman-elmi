@@ -6,14 +6,14 @@ const DateTimeFormat = "YYYY/MM/DD HH:mm";
 const DotNetDateTimeFormat = "YYYY-MM-DDTHH:mm";
 export const SubscriptionsScopedSlots = (setModalContent, setModal, modal) => {
   return {
-    startDateTime: (item, index) => (
+    buyDateTime: (item, index) => (
       <>
         {
           <td className="py-2 pl-2">
             {item.webinarSchedules?.length > 0 ? (
               <>
                 {moment(
-                  item.webinarSchedules[0].startDateTime,
+                  item.webinarSchedules[0].buyDateTime,
                   DotNetDateTimeFormat
                 )
                   .locale("fa")
@@ -24,14 +24,32 @@ export const SubscriptionsScopedSlots = (setModalContent, setModal, modal) => {
         }
       </>
     ),
-    endDateTime: (item, index) => (
+    joinDatetime: (item, index) => (
       <>
         {
           <td className="py-2 pl-2">
             {item.webinarSchedules?.length > 0 ? (
               <>
                 {moment(
-                  item.webinarSchedules[0].endDateTime,
+                  item.webinarSchedules[0].joinDatetime,
+                  DotNetDateTimeFormat
+                )
+                  .locale("fa")
+                  .format(DateTimeFormat)}
+              </>
+            ) : null}
+          </td>
+        }
+      </>
+    ),
+    cancelDatetime: (item, index) => (
+      <>
+        {
+          <td className="py-2 pl-2">
+            {item.webinarSchedules?.length > 0 ? (
+              <>
+                {moment(
+                  item.webinarSchedules[0].cancelDatetime,
                   DotNetDateTimeFormat
                 )
                   .locale("fa")
