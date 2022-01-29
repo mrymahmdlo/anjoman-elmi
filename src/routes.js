@@ -183,7 +183,7 @@ const routes = [
     component: EditWebinar,
   },
   {
-    path: "/Webinar/Subscriptions",
+    path: "/Webinar/ManageSubscriptions",
     name: "ManageSubscriptions",
     component: ManageSubscriptions,
   },
