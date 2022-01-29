@@ -34,14 +34,10 @@ export const FormItems = (form, setForm) => {
         <DateTimePickerToGeorgian
           className="form-control"
           name="buyDateTime"
-          value={
-            form.buyDateTime
-              ? timePattern(form.buyDateTime)
-              : form.buyDateTime
-          }
+          value={form.buyDateTime}
           onChange={(e) => {
-            form.buyDateTime = HejriToDotNetGeorgian(e);
-            setForm({ ...form, buyDateTime: +e.target.value });
+            console.log(form.buyDateTime);
+            setForm({ ...form, buyDateTime: e });
           }}
         />
       ),
@@ -54,14 +50,10 @@ export const FormItems = (form, setForm) => {
         <DateTimePickerToGeorgian
           className="form-control"
           name="joinDatetime"
-          value={
-            form.joinDatetime
-              ? timePattern(form.joinDatetime)
-              : form.joinDatetime
-          }
+          value={form.joinDatetime}
           onChange={(e) => {
-            form.joinDatetime = HejriToDotNetGeorgian(e);
-            setForm({ ...form, joinDatetime: +e.target.value });
+            console.log(form.joinDatetime);
+            setForm({ ...form, joinDatetime: e });
           }}
         />
       ),
@@ -74,14 +66,10 @@ export const FormItems = (form, setForm) => {
         <DateTimePickerToGeorgian
           className="form-control"
           name="cancelDatetime"
-          value={
-            form.cancelDatetime
-              ? timePattern(form.cancelDatetime)
-              : form.cancelDatetime
-          }
+          value={form.cancelDatetime}
           onChange={(e) => {
-            form.cancelDatetime = HejriToDotNetGeorgian(e);
-            setForm({ ...form, cancelDatetime: +e.target.value });
+            console.log(form.cancelDatetime);
+            setForm({ ...form, cancelDatetime: e });
           }}
         />
       ),
