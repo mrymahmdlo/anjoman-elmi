@@ -37,7 +37,7 @@ const EditSubscriptions = ({ obj, setModal }) => {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    let data = form;
+    // let data = form;
     // if (form.webinarLink !== "") data["webinarLink"] = form.webinarLink;
     PostDataBroad(
       `/webinar/UpdateSubscription?subscriptionId=${obj.subscriptionId}`,
