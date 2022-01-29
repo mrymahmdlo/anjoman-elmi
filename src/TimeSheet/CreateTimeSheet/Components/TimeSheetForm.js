@@ -13,22 +13,8 @@ import { GetDataProvider } from "src/Service/APIProvider";
 import { FormItems } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
 import { PostData } from "src/Service/APIEngine";
-import Select from "react-select";
 
 const TimeSheetForm = ({ form, setForm }) => {
-  const customStyles = {
-    control: (provided) => ({
-      ...provided,
-      height: 35,
-      width: 340,
-      minHeight: 35,
-    }),
-    option: (provided) => ({
-      ...provided,
-      textAlign: "right",
-    }),
-  };
-
   const [timeSheetId, setTimeSheetId] = useState();
   const [weekDay, setWeekDay] = useState([]);
   const [providers, setProviders] = useState([]);
@@ -42,11 +28,13 @@ const TimeSheetForm = ({ form, setForm }) => {
     setForm({ ...form, timeSheetId: timeSheetId });
   }, [timeSheetId]);
 
-  useEffect(() => {
-    GetDataProvider("TimeSheet/DaysOfWeek").then((res) => setWeekDay(res));
+  useEffect(()=> {
+    GetDataProvider('TimeSheet/DaysOfWeek').then(res=>setWeekDay(res));
   }, []);
 
-  const items = FormItems(form, setForm).map((item) => TextField(item));
+  const items = FormItems(form, setForm).map((item) =>
+    TextField(item)
+  );
   useEffect(() => {
     PostData("Provider/Tutoring", {}).then((res) => {
       setProviders(res.data);
@@ -64,8 +52,7 @@ const TimeSheetForm = ({ form, setForm }) => {
   return (
     <CCardBody>
       <CForm action="" method="post">
-        <CRow>{items.slice(0, 2)}</CRow>
-        <CRow>{items.slice(2)}</CRow>
+        <CRow>{items.slice(0, 3)}</CRow>
         <CRow>
           <CCol sm={6}>
             <CFormGroup>
@@ -82,15 +69,15 @@ const TimeSheetForm = ({ form, setForm }) => {
                   }}
                 />
               </Fragment>
-
-              {/* <CSelect
+{/* 
+              <CSelect
                 value={form.providerId}
                 defaultValue={providerId}
                 onChange={(e) => {
                   setForm({ ...form, providerId: e.target.value });
                 }}
               >
-                <option value={-1}>پشتیبان را  کنید</option>
+                <option value={-1}>پشتیبان را انتخاب کنید</option>
                 {providers.length > 0 ? (
                   providers.map((item) => (
                     <option value={item.providerId} key={item.providerId}>

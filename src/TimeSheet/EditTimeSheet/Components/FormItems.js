@@ -30,5 +30,18 @@ export const FormItems = (form, setForm) => {
       ),
       size: 4,
     },
+    {
+      name: "ظرفیت تدریس",
+      text: "ظرفیت تدریس را وارد کنید",
+      input: FormNumberInput(
+        form,
+        setForm,
+        "rechargeCapacityAmount",
+        "ظرفیت تدریس",
+        0,
+        null,
+        () => form.rechargeCapacityAmount >= "0"
+      ),
+    },
   ];
 };

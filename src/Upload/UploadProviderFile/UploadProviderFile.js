@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import React, { Component } from "react";
-import Select from "react-select";
 import {
   UploadFileStatusMark,
   status,
@@ -20,19 +18,6 @@ const {
 } = require("@coreui/react");
 
 export const UploadProviderFile = () => {
-  const customStyles = {
-    control: (provided) => ({
-      ...provided,
-      height: 35,
-      width: 200,
-      minHeight: 35,
-    }),
-    option: (provided) => ({
-      ...provided,
-      textAlign: "right",
-    }),
-  };
-
   const [link, setLink] = useState("");
   const [btnActice, setBtnActive] = useState(false);
   const [activeProvider, setActiveProvider] = useState(false);
@@ -43,7 +28,7 @@ export const UploadProviderFile = () => {
   const [providers, setProviders] = useState([]);
   const [providerId, setProviderId] = useState(-1);
   const [contentType, setContentType] = useState([]);
-  const [valueNumber, setValueNumber] = useState([]);
+  const [valueNumber,setValueNumber] = useState([]);
   const [type, setType] = useState(-1);
   useEffect(() => {
     setActiveProvider(true);
@@ -63,6 +48,7 @@ export const UploadProviderFile = () => {
           setProviders(res.data);
           setActiveProvider(false);
         });
+
       } else {
         setActiveProvider(true);
         PostData("Provider/Consultation", {}).then((res) => {
@@ -105,7 +91,6 @@ export const UploadProviderFile = () => {
         setBtnActive(false);
       });
   };
-  console.log(providers);
 
   return (
     <div>
@@ -162,7 +147,11 @@ export const UploadProviderFile = () => {
                 }
               />
             ) : (
-              <CSpinner color="danger" variant="grow" />
+              <CSpinner
+                style={{ width: "4rem", height: "4rem" }}
+                color="danger"
+                variant="grow"
+              />
             )}
           </CFormGroup>
         ) : null}
@@ -181,6 +170,7 @@ export const UploadProviderFile = () => {
           </CFormGroup>
         ) : (
           <CFormGroup className="w-30 m-2">
+
             {UploadFileStatusMark(statusFile)}
             <CInput
               type="file"

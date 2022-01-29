@@ -131,14 +131,14 @@ const AllTutoring = () => {
           />
         </CCardBody>
       </CCard>
-      {/*  <TutoringModal*/}
-      {/*    name=" تدریس خصوصی"*/}
-      {/*    modal={modal}*/}
-      {/*    toggle={() => {*/}
-      {/*      setModal(!modal);*/}
-      {/*    }}*/}
-      {/*    modalTutoring={modalTutoring}*/}
-      {/*  />*/}
+        <TutoringModal
+          name=" تدریس خصوصی"
+          modal={modal}
+          toggle={() => {
+            setModal(!modal);
+          }}
+          modalTutoring={modalTutoring}
+        />
     </>
   );
 };

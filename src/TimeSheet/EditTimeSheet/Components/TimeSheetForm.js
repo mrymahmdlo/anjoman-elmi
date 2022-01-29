@@ -37,7 +37,8 @@ const TimeSheetForm = ({ form, setForm }) => {
     <CCardBody>
       <CForm action="" method="post">
         <CRow>{items.slice(0, 2)}</CRow>
-        <CRow>{items.slice(2)}</CRow>
+        
+
         <CRow>
           <CCol sm={6}>
             <CFormGroup>
@@ -62,6 +63,7 @@ const TimeSheetForm = ({ form, setForm }) => {
               </CFormText>
             </CFormGroup>
           </CCol>
+          <CCol sm={6} style={{ padding: 0}}>{items[2]}</CCol>
         </CRow>
       </CForm>
     </CCardBody>

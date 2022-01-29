@@ -36,6 +36,10 @@ export const TableHeaders = [
     label: " شماره تماس مشاور",
   },
   {
+    key: "sponserName",
+    label: "نام اسپانسر",
+  },
+  {
     key: "status",
     label: "وضعیت برگزاری جلسات",
     _style: { width: "15%" },
@@ -49,11 +53,17 @@ export const TableHeaders = [
   //   sorter: false,
   //   filter: false,
   // },
-  // {
-  //   key: "edit",
-  //   label: "",
-  //   _style: { width: "10%" },
-  //   sorter: false,
-  //   filter: false,
-  // },
+  {
+    key: "setSponser",
+    label: "انتخاب اسپانسر",
+    sorter: false,
+    filter: false,
+  },
+  {
+    key: "edit",
+    label: "ویرایش جلسه",
+    _style: { width: "10%" },
+    sorter: false,
+    filter: false,
+  },
 ];
