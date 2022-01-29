@@ -10,10 +10,10 @@ export const SubscriptionsScopedSlots = (setModalContent, setModal, modal) => {
       <>
         {
           <td className="py-2 pl-2">
-            {item.webinarSchedules?.length > 0 ? (
+            {item.length > 0 ? (
               <>
                 {moment(
-                  item.webinarSchedules[0].buyDateTime,
+                  item.buyDateTime,
                   DotNetDateTimeFormat
                 )
                   .locale("fa")
@@ -28,10 +28,10 @@ export const SubscriptionsScopedSlots = (setModalContent, setModal, modal) => {
       <>
         {
           <td className="py-2 pl-2">
-            {item.webinarSchedules?.length > 0 ? (
+            {item.length > 0 ? (
               <>
                 {moment(
-                  item.webinarSchedules[0].joinDatetime,
+                  item.joinDatetime,
                   DotNetDateTimeFormat
                 )
                   .locale("fa")
@@ -46,10 +46,10 @@ export const SubscriptionsScopedSlots = (setModalContent, setModal, modal) => {
       <>
         {
           <td className="py-2 pl-2">
-            {item.webinarSchedules?.length > 0 ? (
+            {item.length > 0 ? (
               <>
                 {moment(
-                  item.webinarSchedules[0].cancelDatetime,
+                  item.cancelDatetime,
                   DotNetDateTimeFormat
                 )
                   .locale("fa")
