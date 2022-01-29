@@ -15,7 +15,7 @@ const {
 } = require("@coreui/react");
 
 const QuizInfoFormItems = (form, setForm) => {
-  console.log(form, form);
+  console.log(form);
   return [
     {
       name: "نام آزمون",
@@ -245,6 +245,7 @@ const GroupIdSelect = (groupIds, form, setForm) => {
                 value={item.id}
                 checked={form?.groupCodes?.includes(+item.id)}
                 onChange={(e) => {
+                  debugger;
                   let arry = form.groupCodes;
                   e.target.checked
                     ? arry.push(+e.target.value)

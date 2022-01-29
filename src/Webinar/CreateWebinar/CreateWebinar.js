@@ -22,6 +22,7 @@ const CreateWebinar = () => {
         subject: "",
       },
     ],
+    providerId: [],
   });
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
