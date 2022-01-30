@@ -34,7 +34,7 @@ const EditSubscriptions = ({ obj, setModal, subscriptionId }) => {
     setShowError(false);
     setBtnActive(true);
     PostDataBroad(
-      `/webinar/UpdateSubscription?subscriptionId=${subscriptionId}`,//it is undifiend
+      `/webinar/UpdateSubscription?subscriptionId=${obj.subscriptionId}`,//it is undifiend
       {
         webinarLink: form.webinarLink,
         buyDateTime: HejriToDotNetGeorgian(form.buyDateTime),

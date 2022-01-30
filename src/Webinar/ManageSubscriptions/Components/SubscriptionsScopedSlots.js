@@ -1,8 +1,12 @@
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
 import EditSubscriptions from "src/Webinar/EditSubscriptions/EditSubscriptions";
+import { Toast } from "src/Utility/Toast";
+import { useState } from "react";
 
 export const SubscriptionsScopedSlots = (setModalContent, setModal, modal) => {
+  const [showError, setShowError] = useState(false);
+  const [errorContent, setErrorContent] = useState("");
   return {
     webinarLink: (item, index) => (
       <>
@@ -17,15 +21,16 @@ export const SubscriptionsScopedSlots = (setModalContent, setModal, modal) => {
                     navigator.clipboard
                       .writeText(item.webinarLink)
                       .then(() => {
-                        setModalContent("success"); //replace with toast -> persian
+                        setModalContent("success"); 
                       })
                       .catch(() => {
-                        setModalContent("Failed to copy"); //replace with toast -> persian
+                        <Toast showError={showError} errorContent={errorContent} /> 
                       })
-                      .finally(() => setModal(true)); //replace with toast
-                  } else console.log("failed"); //replace with toast -> persian
+                      .finally(() => setModal(true));
+                  } else {<Toast showError={showError} errorContent={errorContent} />} 
                 });
             }}
+            
           >
             کپی
           </CButton>
