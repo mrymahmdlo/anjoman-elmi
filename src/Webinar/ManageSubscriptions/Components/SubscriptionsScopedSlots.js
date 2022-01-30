@@ -4,7 +4,12 @@ import EditSubscriptions from "src/Webinar/EditSubscriptions/EditSubscriptions";
 import { Toast } from "src/Utility/Toast";
 import { useState } from "react";
 
-export const SubscriptionsScopedSlots = (setModalContent, setModal, modal) => {
+export const SubscriptionsScopedSlots = (
+  setModalContent,
+  setModal,
+  modal,
+  subscriptionId
+) => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   return {
@@ -21,18 +26,22 @@ export const SubscriptionsScopedSlots = (setModalContent, setModal, modal) => {
                     navigator.clipboard
                       .writeText(item.webinarLink)
                       .then(() => {
-                        setModalContent("success"); 
+                        setModalContent("success");
                       })
                       .catch(() => {
-                        <Toast showError={showError} errorContent={errorContent} /> 
+                        <Toast
+                          showError={showError}
+                          errorContent={errorContent}
+                        />;
                       })
                       .finally(() => setModal(true));
-                  } else {<Toast showError={showError} errorContent={errorContent} />} 
+                  } else {
+                    <Toast showError={showError} errorContent={errorContent} />;
+                  }
                 });
             }}
-            
           >
-            کپی
+          کپی 
           </CButton>
         </td>
       </>
@@ -44,7 +53,11 @@ export const SubscriptionsScopedSlots = (setModalContent, setModal, modal) => {
             color="primary"
             onClick={() => {
               setModalContent(
-                <EditSubscriptions obj={item} setModal={setModal} /> //subscriptionId is missing
+                <EditSubscriptions
+                  obj={item}
+                  setModal={setModal}
+                  subscriptionId={subscriptionId}
+                /> //subscriptionId is missing
               );
               setModal(true);
             }}

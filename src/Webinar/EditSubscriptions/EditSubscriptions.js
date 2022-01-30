@@ -29,12 +29,12 @@ const EditSubscriptions = ({ obj, setModal, subscriptionId }) => {
     setShowError(true);
     setForm(ChangeValues(obj));
   }, [obj]);
-
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
+    console.log(obj);
     PostDataBroad(
-      `/webinar/UpdateSubscription?subscriptionId=${obj.subscriptionId}`,//it is undifiend
+      `webinar/UpdateSubscription?subscriptionId=${obj.subscriptionId}`,
       {
         webinarLink: form.webinarLink,
         buyDateTime: HejriToDotNetGeorgian(form.buyDateTime),
@@ -54,7 +54,7 @@ const EditSubscriptions = ({ obj, setModal, subscriptionId }) => {
         setBtnActive(false);
       });
   };
-
+  console.log(obj);
   return (
     <div className="App">
       <CContainer fluid>
