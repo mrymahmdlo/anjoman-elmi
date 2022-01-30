@@ -1,74 +1,45 @@
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
 import EditSubscriptions from "src/Webinar/EditSubscriptions/EditSubscriptions";
-import moment from "jalali-moment";
-const DateTimeFormat = "YYYY/MM/DD HH:mm";
-const DotNetDateTimeFormat = "YYYY-MM-DDTHH:mm";
+
 export const SubscriptionsScopedSlots = (setModalContent, setModal, modal) => {
   return {
-    buyDateTime: (item, index) => (
+    webinarLink: (item, index) => (
       <>
-        {
-          <td className="py-2 pl-2">
-            {item.length > 0 ? (
-              <>
-                {moment(
-                  item.buyDateTime,
-                  DotNetDateTimeFormat
-                )
-                  .locale("fa")
-                  .format(DateTimeFormat)}
-              </>
-            ) : null}
-          </td>
-        }
-      </>
-    ),
-    joinDatetime: (item, index) => (
-      <>
-        {
-          <td className="py-2 pl-2">
-            {item.length > 0 ? (
-              <>
-                {moment(
-                  item.joinDatetime,
-                  DotNetDateTimeFormat
-                )
-                  .locale("fa")
-                  .format(DateTimeFormat)}
-              </>
-            ) : null}
-          </td>
-        }
-      </>
-    ),
-    cancelDatetime: (item, index) => (
-      <>
-        {
-          <td className="py-2 pl-2">
-            {item.length > 0 ? (
-              <>
-                {moment(
-                  item.cancelDatetime,
-                  DotNetDateTimeFormat
-                )
-                  .locale("fa")
-                  .format(DateTimeFormat)}
-              </>
-            ) : null}
-          </td>
-        }
+        <td className="py-2 pl-2">
+          <CButton
+            color="success"
+            onClick={() => {
+              navigator.permissions
+                .query({ name: "clipboard-write" })
+                .then((result) => {
+                  if (result.state === "granted" || result.state === "prompt") {
+                    navigator.clipboard
+                      .writeText(item.webinarLink)
+                      .then(() => {
+                        setModalContent("success"); //replace with toast -> persian
+                      })
+                      .catch(() => {
+                        setModalContent("Failed to copy"); //replace with toast -> persian
+                      })
+                      .finally(() => setModal(true)); //replace with toast
+                  } else console.log("failed"); //replace with toast -> persian
+                });
+            }}
+          >
+            کپی
+          </CButton>
+        </td>
       </>
     ),
     edit: (item, index) => (
       <>
-        <td className="py-2 pl-2" key={item.quizId}>
+        <td className="py-2 pl-2">
           <CButton
-            className="mr-1"
             color="primary"
             onClick={() => {
               setModalContent(
-                <EditSubscriptions obj={item} setModal={setModal} />
+                <EditSubscriptions obj={item} setModal={setModal} /> //subscriptionId is missing
               );
               setModal(true);
             }}

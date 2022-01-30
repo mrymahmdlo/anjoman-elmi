@@ -1,10 +1,11 @@
 export const TableHeader = [
   {
     key: "userId",
-    label: "نام کاربر",
+    label: "شناسه کاربر",
+    _style: { width: "1%" },
   },
   {
-    key: "webinarId",
+    key: "webinarName",
     label: "نام همایش",
   },
   {
@@ -21,7 +22,10 @@ export const TableHeader = [
   },
   {
     key: "webinarLink",
-    label: "لینک ورود به همایش",
+    label: "لینک همایش",
+    _style: { width: "1%" },
+    sorter: false,
+    filter: false,
   },
   {
     key: "edit",

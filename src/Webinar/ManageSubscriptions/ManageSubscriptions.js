@@ -9,11 +9,6 @@ const ManageSubscriptions = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
-  const [filterData, setFilterData] = useState({
-    asc: false,
-    column: "quizId",
-  });
-
   const updateData = () => {
     PostDataBroad("webinar/GetSubscriptions", {
       webinarId: 0,
@@ -38,7 +33,6 @@ const ManageSubscriptions = () => {
           columnFilter
           size="sm"
           sorter
-          onSorterValueChange={setFilterData}
           itemsPerPage={15}
           pagination
           scopedSlots={SubscriptionsScopedSlots(

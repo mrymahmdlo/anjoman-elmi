@@ -12,9 +12,9 @@ import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import SubscriptionsForm from "./Components/SubscriptionsForm";
 import { ChangeValues } from "./Components/ChangeValues";
+import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 
 const EditSubscriptions = ({ obj, setModal, subscriptionId }) => {
-  console.log(obj);
   const [form, setForm] = useState({
     buyDateTime: "",
     joinDatetime: "",
@@ -34,22 +34,22 @@ const EditSubscriptions = ({ obj, setModal, subscriptionId }) => {
     setShowError(false);
     setBtnActive(true);
     PostDataBroad(
-      `/webinar/UpdateSubscription?subscriptionId=${subscriptionId}`,
+      `/webinar/UpdateSubscription?subscriptionId=${subscriptionId}`,//it is undifiend
       {
         webinarLink: form.webinarLink,
-        buyDateTime: +form.buyDateTime,
-        joinDatetime: +form.joinDatetime,
-        cancelDatetime: +form.cancelDatetime,
+        buyDateTime: HejriToDotNetGeorgian(form.buyDateTime),
+        joinDatetime: HejriToDotNetGeorgian(form.joinDatetime),
+        cancelDatetime: HejriToDotNetGeorgian(form.cancelDatetime),
       }
     )
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
         setShowError(true);
-        setBtnActive(false);
-        setModal(false);
       })
       .catch(() => {
         setErrorContent("خطا در ثبت ویرایش");
+      })
+      .finally(() => {
         setShowError(true);
         setBtnActive(false);
       });

@@ -1,15 +1,5 @@
 import { FormTextInput } from "src/reusable/FormInput";
 import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian";
-import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
-const { CSelect } = require("@coreui/react");
-
-const options1 = { weekday: "long" };
-const options2 = { hour: "numeric", minute: "numeric" };
-const timePattern = (time) => {
-  return `${new Date(time).toLocaleDateString("fa-IR", options1)} ${new Date(
-    time
-  ).toLocaleDateString("fa-IR", options2)}`;
-};
 
 export const FormItems = (form, setForm) => {
   return [
@@ -36,7 +26,6 @@ export const FormItems = (form, setForm) => {
           name="buyDateTime"
           value={form.buyDateTime}
           onChange={(e) => {
-            console.log(form.buyDateTime);
             setForm({ ...form, buyDateTime: e });
           }}
         />
@@ -52,7 +41,6 @@ export const FormItems = (form, setForm) => {
           name="joinDatetime"
           value={form.joinDatetime}
           onChange={(e) => {
-            console.log(form.joinDatetime);
             setForm({ ...form, joinDatetime: e });
           }}
         />
@@ -68,7 +56,6 @@ export const FormItems = (form, setForm) => {
           name="cancelDatetime"
           value={form.cancelDatetime}
           onChange={(e) => {
-            console.log(form.cancelDatetime);
             setForm({ ...form, cancelDatetime: e });
           }}
         />
