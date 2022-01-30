@@ -46,6 +46,7 @@
     "react-event-timeline": "^1.6.3",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
+    "react-select": "^5.2.2",
     "redux": "^4.0.5",
     "sass": "^1.32.8"
   },
