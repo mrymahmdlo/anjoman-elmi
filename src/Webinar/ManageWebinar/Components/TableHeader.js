@@ -22,6 +22,10 @@
       label: "مدت زمان جلسه",
     },
     {
+      key: "productProvider",
+      label: "پشتیبان ها",
+    },
+    {
       key: "capacity",
       label: "ظرفیت",
     },
