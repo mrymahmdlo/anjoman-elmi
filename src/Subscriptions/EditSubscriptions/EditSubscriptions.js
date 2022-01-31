@@ -8,60 +8,61 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import {  PostDataBroad } from "src/Service/APIBroadCast";
+import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
-import TuturingForm from "src/Tutoring/CreateTutoring/Components/TuturingForm";
+import SubscriptionsForm from "./Components/SubscriptionsForm";
 import { ChangeValues } from "./Components/ChangeValues";
-
-
-const EditTutoring = ({ obj, setModal }) => {
-  const [form, setForm] = useState({});
+import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
+import { useHistory } from "react-router";
+const EditSubscriptions = ({ obj ,setModal}) => {
+  const [form, setForm] = useState({
+    buyDateTime: "",
+    joinDatetime: "",
+    cancelDatetime: "",
+  });
+   const history = useHistory();
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
 
   useEffect(() => {
-  
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
     setForm(ChangeValues(obj));
   }, [obj]);
-
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    let data = form;
-    PostDataBroad(`Tutorial/Update?tutorialId=${obj.tutorialId}`, {
-      // ...form,
-      // title: form.title,
-      groupId: +form.groupId,
-      courseId: +form.courseId,
-      totalMinute: +form.totalMinute,
-      title: form.title,
-      description: "",
-      minProviderRank: +form.minProviderRank,
-      maxProviderRank: +form.maxProviderRank,
-      price: 0,
-    })
+    PostDataBroad(
+      `webinar/UpdateSubscription?subscriptionId=${obj.subscriptionId}`,
+      {
+        webinarLink: form.webinarLink,
+        buyDateTime: HejriToDotNetGeorgian(form.buyDateTime),
+        joinDatetime: HejriToDotNetGeorgian(form.joinDatetime),
+        cancelDatetime: HejriToDotNetGeorgian(form.cancelDatetime),
+      }
+    )
       .then(() => {
+        
         setErrorContent("داده با موفقیت ثبت شد ");
+       setModal(false);
         setShowError(true);
-        setBtnActive(false);
-        setModal(false);
       })
       .catch(() => {
         setErrorContent("خطا در ثبت ویرایش");
+      })
+      .finally(() => {
         setShowError(true);
         setBtnActive(false);
       });
   };
-
+  console.log(obj);
   return (
     <div className="App">
       <CContainer fluid>
         <CCard>
-          <CCardHeader>ویرایش تدریس خصوصی</CCardHeader>
-          <TuturingForm form={form} setForm={setForm} preData={form.poster} />
+          <CCardHeader>ویرایش سفارشات همایش</CCardHeader>
+          <SubscriptionsForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActice ? (
               <CButton
@@ -70,7 +71,7 @@ const EditTutoring = ({ obj, setModal }) => {
                 color="primary"
                 onClick={submitContent}
               >
-                <CIcon name="cil-scrubber" /> ثبت تدریس خصوصی
+                <CIcon name="cil-scrubber" /> ثبت سفارشات همایش
               </CButton>
             ) : (
               <CSpinner
@@ -87,4 +88,4 @@ const EditTutoring = ({ obj, setModal }) => {
   );
 };
 
-export default EditTutoring;
+export default EditSubscriptions;
