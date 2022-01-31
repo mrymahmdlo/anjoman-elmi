@@ -21,7 +21,7 @@ const EditTutoring = ({ obj, setModal }) => {
   const [btnActice, setBtnActive] = useState(false);
 
   useEffect(() => {
-    console.log('obj',obj)
+  
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
     setForm(ChangeValues(obj));

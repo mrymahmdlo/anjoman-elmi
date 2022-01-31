@@ -3,7 +3,7 @@ import { CButton } from "@coreui/react";
 import EditSubscriptions from "src/Webinar/EditSubscriptions/EditSubscriptions";
 import { Toast } from "src/Utility/Toast";
 import { useState } from "react";
-
+const { CInput, CSwitch } = require("@coreui/react");
 export const SubscriptionsScopedSlots = (
   setModalContent,
   setModal,
@@ -16,33 +16,10 @@ export const SubscriptionsScopedSlots = (
     webinarLink: (item, index) => (
       <>
         <td className="py-2 pl-2">
-          <CButton
-            color="success"
-            onClick={() => {
-              navigator.permissions
-                .query({ name: "clipboard-write" })
-                .then((result) => {
-                  if (result.state === "granted" || result.state === "prompt") {
-                    navigator.clipboard
-                      .writeText(item.webinarLink)
-                      .then(() => {
-                        setModalContent("success");
-                      })
-                      .catch(() => {
-                        <Toast
-                          showError={showError}
-                          errorContent={errorContent}
-                        />;
-                      })
-                      .finally(() => setModal(true));
-                  } else {
-                    <Toast showError={showError} errorContent={errorContent} />;
-                  }
-                });
-            }}
-          >
-          کپی 
-          </CButton>
+          <div style={{ width: 200 }}>
+            {" "}
+            <CInput disabled value={item.webinarLink} />
+          </div>
         </td>
       </>
     ),

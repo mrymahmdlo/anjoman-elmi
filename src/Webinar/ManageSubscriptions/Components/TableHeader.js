@@ -1,7 +1,7 @@
 export const TableHeader = [
   {
-    key: "userId",
-    label: "شناسه کاربر",
+    key: " userFullName",
+    label: "نام کاربر",
     _style: { width: "1%" },
   },
   {

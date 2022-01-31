@@ -13,13 +13,14 @@ import { Toast } from "src/Utility/Toast";
 import SubscriptionsForm from "./Components/SubscriptionsForm";
 import { ChangeValues } from "./Components/ChangeValues";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
-
-const EditSubscriptions = ({ obj, setModal, subscriptionId }) => {
+import { useHistory } from "react-router";
+const EditSubscriptions = ({ obj ,setModal}) => {
   const [form, setForm] = useState({
     buyDateTime: "",
     joinDatetime: "",
     cancelDatetime: "",
   });
+   const history = useHistory();
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
@@ -32,7 +33,6 @@ const EditSubscriptions = ({ obj, setModal, subscriptionId }) => {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    console.log(obj);
     PostDataBroad(
       `webinar/UpdateSubscription?subscriptionId=${obj.subscriptionId}`,
       {
@@ -43,7 +43,9 @@ const EditSubscriptions = ({ obj, setModal, subscriptionId }) => {
       }
     )
       .then(() => {
+        
         setErrorContent("داده با موفقیت ثبت شد ");
+       setModal(false);
         setShowError(true);
       })
       .catch(() => {
