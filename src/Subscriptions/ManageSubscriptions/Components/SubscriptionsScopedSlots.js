@@ -1,13 +1,11 @@
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
 import EditSubscriptions from "src/Subscriptions/EditSubscriptions/EditSubscriptions";
-import { Toast } from "src/Utility/Toast";
 import { useState } from "react";
-const { CInput, CSwitch } = require("@coreui/react");
+const { CInput } = require("@coreui/react");
 export const SubscriptionsScopedSlots = (
   setModalContent,
   setModal,
-  modal,
   subscriptionId
 ) => {
   const [showError, setShowError] = useState(false);
@@ -34,7 +32,7 @@ export const SubscriptionsScopedSlots = (
                   obj={item}
                   setModal={setModal}
                   subscriptionId={subscriptionId}
-                /> //subscriptionId is missing
+                /> 
               );
               setModal(true);
             }}
