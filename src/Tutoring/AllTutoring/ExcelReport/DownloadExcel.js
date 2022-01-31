@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   CButton,
   CCard,
@@ -11,17 +11,17 @@ import CIcon from "@coreui/icons-react";
 import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
-import {GetFileDownloadLink, PostData} from "../../../Service/APIEngine";
+import {  PostData } from "../../../Service/APIEngine";
 import DownloadExcelForm from "./Components/DownloadExcelForm";
-import {Link} from "react-router-dom";
 
-export default function DownloadExcel(data, setModal) {
+
+export default function DownloadExcel( setModal) {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActive, setBtnActive] = useState(false);
   const [providers, setProviders] = useState([]);
-  const [link, setLink] = useState("");
+
 
   useEffect(() => {
     PostData("Provider/Tutoring", {}).then((res) => {
@@ -29,33 +29,35 @@ export default function DownloadExcel(data, setModal) {
     });
   }, []);
 
-  useEffect(() => {
-    setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
-    setShowError(true);
-  }, [data]);
+ 
 
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
     PostDataBroad(`Tutoring/ExportCsv`, {
-      providerId: +form.providerId,
-      studentId: +form.studentId,
-      FromTime: HejriToDotNetGeorgian(form.FromTime),
-      ToTime: HejriToDotNetGeorgian(form.ToTime),
+      FromTime: "2021-01-15T18:43:24.972Z",
+      ToTime: "2022-01-23T18:43:24.972Z",
+      studentId: 21500,
+      providerId: 4214,
+
+      // providerId: +form.providerId,
+      // studentId: +form.studentId,
+      // FromTime: HejriToDotNetGeorgian(form.FromTime),
+      // ToTime: HejriToDotNetGeorgian(form.ToTime),
     })
       .then((res) => {
-        setLink(GetFileDownloadLink(res.data));
-        if (res.data.succeeded === true) {
+      
+           const linkSource = `data:csv;base64,${res}`;
+           const downloadLink = document.createElement("a");
+           downloadLink.href = linkSource;
+           downloadLink.download = 'Tutorings-1400%2F11%2F07.csv';
+           downloadLink.click();
+    
           setErrorContent("داده با موفقیت ثبت شد ");
           setModal(false);
-        } else {
-          setErrorContent(res.data.data);
-        }
-        setShowError(true);
-        setBtnActive(false);
       })
       .catch(() => {
-        setErrorContent("لطفا فیلد های  ضروری را پر یا اصلاح کنید");
+      
         setShowError(true);
         setBtnActive(false);
       });
@@ -66,10 +68,14 @@ export default function DownloadExcel(data, setModal) {
       <CContainer fluid>
         <CCard>
           <CCardHeader>دانلود گزارش اکسل</CCardHeader>
-          <DownloadExcelForm form={form} setForm={setForm} providers={providers} />
+          <DownloadExcelForm
+            form={form}
+            setForm={setForm}
+            providers={providers}
+          />
           <CCardFooter>
             {!btnActive ? (
-              <Link to={link}>
+              
                 <CButton
                   type="submit"
                   size="sm"
@@ -79,7 +85,7 @@ export default function DownloadExcel(data, setModal) {
                 >
                   <CIcon name="cil-scrubber" /> دانلود فایل اکسل
                 </CButton>
-              </Link>
+             
             ) : (
               <CSpinner
                 style={{ width: "2rem", height: "2rem" }}

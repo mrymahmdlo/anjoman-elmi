@@ -127,7 +127,7 @@ const AllTutoring = () => {
                   onMouseLeave={() => setBgColor("#027a40")}
                   onClick={() => {
                     setModalTutoring(
-                      <DownloadExcel data={data} setModal={setModal}/>
+                      <DownloadExcel  setModal={setModal}/>
                     );
                     setModal(true);
                   }}
