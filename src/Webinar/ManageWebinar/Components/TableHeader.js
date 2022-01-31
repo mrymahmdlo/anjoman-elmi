@@ -14,16 +14,16 @@
       label: "گروه",
     },
     {
+      key: "productProvider",
+      label: "پشتیبان ها",
+    },
+    {
       key: "countOfSession",
       label: "تعداد جلسات",
     },
     {
       key: "duration",
       label: "مدت زمان جلسه",
-    },
-    {
-      key: "productProvider",
-      label: "پشتیبان ها",
     },
     {
       key: "capacity",

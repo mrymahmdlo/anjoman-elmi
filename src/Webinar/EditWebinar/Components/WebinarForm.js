@@ -18,7 +18,7 @@ const WebinarForm = ({ form, setForm, preData }) => {
   }, [form]);
 
   useEffect(() => {
-    setForm({ ...form, providerId: providerId });
+    setForm({ ...form, providerId: Number(providerId) });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [providerId]);
 
@@ -42,6 +42,7 @@ const WebinarForm = ({ form, setForm, preData }) => {
 
   useEffect(() => {
     if (imageHash !== form.poster) setForm({ ...form, poster: imageHash });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageHash, form]);
 
   return (
