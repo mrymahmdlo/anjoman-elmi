@@ -20,13 +20,9 @@ const {
 
 export const UploadFile = () => {
   const [link, setLink] = useState("");
-  const [fileName, setFileName] = useState();
-  const [data, setData] = useState();
   const [statusFile, setStatusFile] = useState(2);
-  const [copyText, setCopyText] = useState("کپی");
   const UploadFile = async (e) => {
     setStatusFile(status.LOADING);
-     setFileName(e.target.files[0]);
     UploadFileRequest(e.target.files[0])
       .then((res) => {
          setLink(GetFileDownloadLink(res.data));
