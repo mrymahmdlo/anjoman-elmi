@@ -10,7 +10,7 @@ import {
 import CIcon from "@coreui/icons-react";
 import {  PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
-import WebinarForm from "src/Webinar/CreateWebinar/Components/WebinarForm";
+import WebinarForm from "./Components/WebinarForm";
 import { ChangeValues } from "./Components/ChangeValues";
 
 
@@ -24,7 +24,7 @@ const EditWebinar = ({ obj, setModal }) => {
         subject: "",
       },
     ],
-    providerIds: [],
+   
   });
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
@@ -53,7 +53,7 @@ const EditWebinar = ({ obj, setModal }) => {
       courseId: +form.courseId,
       countOfSession: +form.countOfSession,
       priceAfterHolding: +form.priceAfterHolding,
-      providerId: +form.providerIds,
+      providerId: +form.providerId,
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");

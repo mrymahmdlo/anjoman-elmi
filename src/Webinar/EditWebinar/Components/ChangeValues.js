@@ -9,8 +9,8 @@ export const ChangeValues = (obj) => {
     groupId: obj.groupId,
     // groupName: obj.groupName,
     poster: obj.poster,
-    priceAfterHolding: obj.price>=0?obj.price:'0',
-    providerIds: [obj.productProvider[0].userId],
+    priceAfterHolding: obj.price >= 0 ? obj.price : "0",
+    providerId: obj.productProvider[0].userId,
     schedules: [
       {
         startDateTime: obj.webinarSchedules[0].startDateTime,
