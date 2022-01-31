@@ -1,6 +1,6 @@
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
-import EditSubscriptions from "src/Webinar/EditSubscriptions/EditSubscriptions";
+import EditSubscriptions from "src/Subscriptions/EditSubscriptions/EditSubscriptions";
 import { Toast } from "src/Utility/Toast";
 import { useState } from "react";
 const { CInput, CSwitch } = require("@coreui/react");
