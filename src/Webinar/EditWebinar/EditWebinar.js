@@ -24,7 +24,7 @@ const EditWebinar = ({ obj, setModal }) => {
         subject: "",
       },
     ],
-    providerId: [],
+    providerIds: [],
   });
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
@@ -35,6 +35,8 @@ const EditWebinar = ({ obj, setModal }) => {
     setShowError(true);
     setForm(ChangeValues(obj));
   }, [obj]);
+
+  console.log(form)
 
   const submitContent = () => {
     setShowError(false);
@@ -51,6 +53,7 @@ const EditWebinar = ({ obj, setModal }) => {
       courseId: +form.courseId,
       countOfSession: +form.countOfSession,
       priceAfterHolding: +form.priceAfterHolding,
+      providerId: +form.providerIds,
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");

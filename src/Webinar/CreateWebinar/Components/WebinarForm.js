@@ -14,14 +14,14 @@ const WebinarForm = ({ form, setForm, preData }) => {
   const [courseIds, setCourseIds] = useState([]);
   const [providerId, setProviderId] = useState();
 
-  useEffect(() => {
-    if (form.providerId) setProviderId(form.providerId);
-  }, [form]);
+  // useEffect(() => {
+  //   if (form.providerIds) setProviderId(form.providerIds);
+  // }, [form]);
 
-  useEffect(() => {
-    setForm({ ...form, providerId: providerId });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [providerId]);
+  // useEffect(() => {
+  //   setForm({ ...form, providerIds: providerId });
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [providerId]);
 
   useEffect(() => {
     GetData("BasicInfo/Groups").then((res) => setGroupIds(res));
@@ -45,8 +45,6 @@ const WebinarForm = ({ form, setForm, preData }) => {
     if (imageHash !== form.poster) setForm({ ...form, poster: imageHash });
   }, [imageHash, form]);
 
-  console.log(form)
-
   return (
     <CCardBody>
       <CForm action="" method="post">
@@ -58,8 +56,8 @@ const WebinarForm = ({ form, setForm, preData }) => {
           {" "}
           {/* <SelectProvider providerId= {providerId} setProviderId={setProviderId} /> */}
           <MultiselectProvider 
-            providerId={providerId}
-            setProviderId={setProviderId}
+            // providerId={providerId}
+            // setProviderId={setProviderId}
             form={form}
             setForm={setForm}
           />

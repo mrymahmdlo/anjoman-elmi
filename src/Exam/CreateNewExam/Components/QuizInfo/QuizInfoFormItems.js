@@ -245,7 +245,6 @@ const GroupIdSelect = (groupIds, form, setForm) => {
                 value={item.id}
                 checked={form?.groupCodes?.includes(+item.id)}
                 onChange={(e) => {
-                  debugger;
                   let arry = form.groupCodes;
                   e.target.checked
                     ? arry.push(+e.target.value)

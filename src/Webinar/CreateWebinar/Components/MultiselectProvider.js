@@ -10,7 +10,6 @@ const {
 
 const MultiselectProvider = ({ form, setForm }) => {
   const [providers, setProviders] = useState([]);
-  const [providerId, setProviderId] = useState();
 
   useEffect(() => {
     PostData("Provider/Consultation", {}).then((res) => {
@@ -18,16 +17,8 @@ const MultiselectProvider = ({ form, setForm }) => {
     });
   }, []);
 
-  useEffect(() => {
-    setForm({
-      ...form,
-      providerId: providerId,
-    });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [providerId]);
-
   const options = providers.map((item) => (
-    {value: item.providerId, providerId: item.providerId, label: item.name + " " + item.lastName}
+    {value: item.providerId, label: item.name + " " + item.lastName}
   ));  
 
   return (
@@ -41,7 +32,17 @@ const MultiselectProvider = ({ form, setForm }) => {
             className="basic-multi-select"
             classNamePrefix="select"
             options={options}
-            onChange={setProviderId}
+            defaultValue={form.providerIds}
+            onChange={(e) => {
+              let arry = form.providerIds;
+              e
+                ? arry.push(+e[e.length -1].value)
+                : (arry = arry.filter((x) => x !== +e[e.length -1].value));
+              setForm({
+                ...form,
+                providerIds: arry,
+              });
+            }}
           /
           >
           <CFormText className="help-block">
