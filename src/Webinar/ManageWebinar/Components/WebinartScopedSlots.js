@@ -46,7 +46,7 @@ export const WebinartScopedSlots = (setModalContent, setModal, modal) => {
     productProvider: (item, index) => (
       <>
         {
-          <div className="py-2 pl-2">
+          <td className="py-2 pl-2">
             {item.productProvider?.length > 0 ? (
               <>
               {item.productProvider.map((items) => (
@@ -58,7 +58,7 @@ export const WebinartScopedSlots = (setModalContent, setModal, modal) => {
                 ))} 
               </>
             ) : null}
-          </div>
+          </td>
         }
       </>
     ),
