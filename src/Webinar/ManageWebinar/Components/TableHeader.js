@@ -1,6 +1,5 @@
 
   export const TableHeader = [
-
     {
       key: "title",
       label: "عنوان همایش",
@@ -37,11 +36,12 @@
       key: "endDateTime",
       label: "زمان پایان",
     },
-    {
-      key: "edit",
-      label: "",
-      _style: { width: "1%" },
-      sorter: false,
-      filter: false,
-    },
+  
+    // {
+    //   key: "edit",
+    //   label: "",
+    //   _style: { width: "1%" },
+    //   sorter: false,
+    //   filter: false,
+    // },
   ];

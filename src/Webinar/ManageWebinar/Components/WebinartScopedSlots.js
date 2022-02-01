@@ -1,11 +1,12 @@
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
 import EditWebinar from "src/Webinar/EditWebinar/EditWebinar";
+import LinkWebinar from './LinkWebinar'
 import moment from "jalali-moment";
 const DateTimeFormat = "YYYY/MM/DD HH:mm";
 const DotNetDateTimeFormat = "YYYY-MM-DDTHH:mm";
 export const WebinartScopedSlots = (setModalContent, setModal, modal) => {
-
+const toggle=(item)=>{}
   return {
     startDateTime: (item, index) => (
       <>
@@ -49,34 +50,45 @@ export const WebinartScopedSlots = (setModalContent, setModal, modal) => {
           <td className="py-2 pl-2">
             {item.productProvider?.length > 0 ? (
               <>
-              {item.productProvider.map((items) => (
-                <>
-                  <p>
-                    {items.name + " " + items.lastName}
-                  </p>
-                </>  
-                ))} 
+                {item.productProvider.map((items) => (
+                  <>
+                    <p>{items.name + " " + items.lastName}</p>
+         {/* <CButton
+             className="mr-1"
+            color="primary"
+            onClick={() => {
+              setModalContent(
+                <LinkWebinar obj={item} items={items} setModal={setModal} />
+              );
+              setModal(true);
+            }}
+          >
+            <CIcon name="cil-pencil" />
+           </CButton> */}
+                  </>
+                ))}
               </>
             ) : null}
           </td>
         }
       </>
     ),
-    edit: (item, index) => (
-      <>
-        <td className="py-2 pl-2" key={item.quizId}>
-          <CButton
-            className="mr-1"
-            color="primary"
-            onClick={() => {
-              setModalContent(<EditWebinar obj={item} setModal={setModal} />);
-              setModal(true);
-            }}
-          >
-            <CIcon name="cil-pencil" />
-          </CButton>
-        </td>
-      </>
-    ),
+
+    // edit: (item, index) => (
+    //   <>
+    //     <td className="py-2 pl-2" key={item.quizId}>
+    //       <CButton
+    //         className="mr-1"
+    //         color="primary"
+    //         onClick={() => {
+    //           setModalContent(<EditWebinar obj={item} setModal={setModal} />);
+    //           setModal(true);
+    //         }}
+    //       >
+    //         <CIcon name="cil-pencil" />
+    //       </CButton>
+    //     </td>
+    //   </>
+    // ),
   };
 };
