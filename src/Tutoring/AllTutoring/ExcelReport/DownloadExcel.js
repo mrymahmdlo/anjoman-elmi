@@ -34,33 +34,42 @@ export default function DownloadExcel( setModal) {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    PostDataBroad(`Tutoring/ExportCsv`, {
-      FromTime: "2021-01-15T18:43:24.972Z",
+    // PostDataBroad(`Tutoring/ExportCsv`, {
+      // FromTime: "2021-01-15T18:43:24.972Z",
+      // ToTime: "2022-01-23T18:43:24.972Z",
+      // studentId: 21500,
+      // providerId: 4214,
+
+    //   providerId: +form.providerId,
+    //   studentId: +form.studentId,
+    //   FromTime: HejriToDotNetGeorgian(form.FromTime),
+    //   ToTime: HejriToDotNetGeorgian(form.ToTime),
+    // })
+
+       const requestOptions = {
+         method: "POST",
+         headers: { "Content-Type": "application/json" },
+         body: JSON.stringify({
+           FromTime: "2021-01-15T18:43:24.972Z",
       ToTime: "2022-01-23T18:43:24.972Z",
       studentId: 21500,
       providerId: 4214,
-
-      // providerId: +form.providerId,
-      // studentId: +form.studentId,
-      // FromTime: HejriToDotNetGeorgian(form.FromTime),
-      // ToTime: HejriToDotNetGeorgian(form.ToTime),
-    })
-      .then((res) => {
-      
-           const linkSource = `data:csv;base64,${res}`;
-           const downloadLink = document.createElement("a");
-           downloadLink.href = linkSource;
-           downloadLink.download = 'Tutorings-1400%2F11%2F07.csv';
-           downloadLink.click();
-    
-          setErrorContent("داده با موفقیت ثبت شد ");
-          setModal(false);
-      })
-      .catch(() => {
-      
-        setShowError(true);
-        setBtnActive(false);
-      });
+         }),
+       };
+       fetch(
+         "https://api.bamis.ir/dev/v1/broadcast/Tutoring/ExportCsv",
+         requestOptions
+       ).then((response) => {
+         response.blob().then((blob) => {
+           let url = window.URL.createObjectURL(blob);
+           let a = document.createElement("a");
+           a.href = url;
+           a.download = "Tutorings.csv";
+           a.click();
+         });
+         //window.location.href = response.url;
+          setBtnActive(false);
+       });
   };
 
   return (
