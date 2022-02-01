@@ -55,7 +55,7 @@ export const WebinartScopedSlots = (setModalContent, setModal, modal) => {
                     {items.name + " " + items.lastName}
                   </p>
                 </>  
-                ))};
+                ))} 
               </>
             ) : null}
           </div>

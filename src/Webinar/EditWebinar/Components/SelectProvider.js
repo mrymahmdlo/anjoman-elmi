@@ -16,12 +16,10 @@ console.log(providerId);
       <CSelect
         value={providerId}
         onChange={(e) =>
-          e.target.value === "0"
-            ? setProviderId(null)
-            : setProviderId(e.target.value)
+         setProviderId(e.target.value)
         }
       >
-        <option value={0}>مدیریت</option>
+     
         {providers.length > 0 ? (
           providers.map((item) => (
             <option value={item.providerId} key={item.providerId}>

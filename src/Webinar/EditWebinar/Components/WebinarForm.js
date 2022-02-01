@@ -5,7 +5,7 @@ import { FormItems } from "../../CreateWebinar/Components/FormItems";
 import { TextField } from "src/Utility/InputGroup";
 import { CoreFileInput } from "src/Utility/CoreFileInput";
 import { CKEditorField } from "src/reusable/CKEditorInput";
-import { SelectProvider } from "../../../Content/CreateArticle/Components/SelectProvider";
+import { SelectProvider } from "./SelectProvider"
 
 const WebinarForm = ({ form, setForm, preData }) => {
   const [imageHash, setImageHash] = useState("");
