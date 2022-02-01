@@ -24,7 +24,7 @@ const EditSubscriptions = ({ obj ,setModal}) => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
-
+console.log(obj)
   useEffect(() => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
@@ -33,19 +33,32 @@ const EditSubscriptions = ({ obj ,setModal}) => {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
+    console.log('m',form.joinDatetime);
+     console.log('g',form.cancelDatetime);
     PostDataBroad(
       `webinar/UpdateSubscription?subscriptionId=${obj.subscriptionId}`,
       {
+        userId: obj?.userId,
+        webinarId: obj?.webinar.webinarId,
+        token: obj?.token,
         webinarLink: form.webinarLink,
-        buyDateTime: HejriToDotNetGeorgian(form.buyDateTime),
-        joinDatetime: HejriToDotNetGeorgian(form.joinDatetime),
-        cancelDatetime: HejriToDotNetGeorgian(form.cancelDatetime),
+        buyDateTime:
+          form.buyDateTime !== null
+            ? HejriToDotNetGeorgian(form.buyDateTime)
+            : null,
+        joinDatetime:
+          form.joinDatetime !== null
+            ? HejriToDotNetGeorgian(form.joinDatetime)
+            : null,
+        cancelDatetime:
+          form.cancelDatetime !== null
+            ? HejriToDotNetGeorgian(form.cancelDatetime)
+            : null,
       }
     )
       .then(() => {
-        
         setErrorContent("داده با موفقیت ثبت شد ");
-       setModal(false);
+        setModal(false);
         setShowError(true);
       })
       .catch(() => {
