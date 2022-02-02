@@ -35,7 +35,7 @@ const EditWebinar = ({ obj, setModal }) => {
     setShowError(true);
     setForm(ChangeValues(obj));
   }, [obj]);
-
+console.log('f',form)
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);

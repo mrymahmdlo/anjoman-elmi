@@ -33,20 +33,20 @@ const FormItems = (form, setForm, providers) => {
       ),
       size: 6,
     },
-    {
-      name: "",
-      text: "کد دانش آموز را وارد کنید",
-      input: FormNumberInput(
-        form,
-        setForm,
-        "studentId",
-        "کد دانش آموز",
-        0,
-        null,
-        () => form.studentId >= "0"
-      ),
-      size: 6,
-    },
+    // {
+    //   name: "",
+    //   text: "کد دانش آموز را وارد کنید",
+    //   input: FormNumberInput(
+    //     form,
+    //     setForm,
+    //     "studentId",
+    //     "کد دانش آموز",
+    //     0,
+    //     null,
+    //     () => form.studentId >= "0"
+    //   ),
+    //   size: 6,
+    // },
     {
       name: "زمان شروع",
       text: "زمان شروع را وارد کنید",

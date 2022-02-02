@@ -27,10 +27,13 @@ const MultiselectProvider = ({ form, setForm }) => {
     {value: item.providerId, label: item.name + " " + item.lastName}
   ));  
 
-  const defaultValue = form.providerIds.map((item) => (
-    {value: item, label: item}
-  ));  
+  const defaultValue = form.providerIds.map((item) => ({
+    value: item.userId,
+    label: item.name + " " + item.lastName,
+  }));  
 
+console.log("lll", defaultValue);
+console.log("aa", options.value);
   return (
     <>
       <CCol sm="6">
@@ -42,18 +45,19 @@ const MultiselectProvider = ({ form, setForm }) => {
             className="basic-multi-select"
             classNamePrefix="select"
             options={options}
-            // defaultValue={[defaultValue]}
+            value={defaultValue.map((i)=>i)}
+            // value={{ label: "Select Dept", value: 0 }}
             onChange={(e) => {
-              var arry = e.map(function(item) {
-                return item.value; 
+              console.log('e',e);
+              var arry = e.map(function (item) {
+                return item.value;
               });
               setForm({
                 ...form,
                 providerIds: arry,
               });
             }}
-          /
-          >
+          />
           <CFormText className="help-block">
             {" "}
             تا لود شدن مشاور ها منتظر بمانید
