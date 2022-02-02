@@ -45,6 +45,9 @@ export default function DownloadExcel() {
       <CContainer fluid>
         <CCard>
           <CCardHeader>دانلود گزارش اکسل</CCardHeader>
+          <p style={{margin: '1em 1em -1em 0', color: '#777', fontSize: '14px'}}>
+            پر کردن همه ی فیلد ها ضروری نیست.
+          </p>
           <DownloadExcelForm
             form={form}
             setForm={setForm}
