@@ -1,4 +1,5 @@
 import { TokenManager } from "src/Identity/Service/TokenManager";
+import {HejriToDotNetGeorgian} from "../Utility/DateTime";
 const { GetToken } = TokenManager();
 const secret = "AMP_!YUHDSJHYG@&12312!W@sAs";
 
@@ -84,6 +85,24 @@ export const postFormData = async (url, form) => {
   }
 };
 
+const DownloadExcelReportBroad = async (url, body) => {
+  return await fetch(BaseUrl + url, {
+    method: "POST",
+    headers: {
+      "content-type" : "application/json"
+    },
+    body: JSON.stringify(body),
+  }).then((res) => {
+    res.blob().then((blob) => {
+      let url = window.URL.createObjectURL(blob);
+      let a = document.createElement("a");
+      a.href = url;
+      a.download = "Tutoring.csv";
+      a.click();
+    });
+  });
+};
+
 const GetFileDownloadLink = (hash) => BaseUrl + "File/Download/" + hash;
 
-export { PostDataBroad, GetDataBroad, UploadFileRequest, GetFileDownloadLink };
+export { PostDataBroad, GetDataBroad, UploadFileRequest, GetFileDownloadLink, DownloadExcelReportBroad };
