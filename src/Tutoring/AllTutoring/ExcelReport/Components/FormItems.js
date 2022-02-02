@@ -55,10 +55,7 @@ const FormItems = (form, setForm, providers) => {
           className="form-control"
           name="startDateRange"
           value={form.FromTime}
-          onChange={(e) => {
-            console.log(form.FromTime)
-            setForm({ ...form, FromTime: e });
-          }}
+          onChange={(e) => setForm({ ...form, FromTime: e })}
         />
       ),
       size: 6,
@@ -71,10 +68,7 @@ const FormItems = (form, setForm, providers) => {
           className="form-control"
           name="startDateRange"
           value={form.ToTime}
-          onChange={(e) => {
-            console.log(form.ToTime)
-            setForm({ ...form, ToTime: e });
-          }}
+          onChange={(e) => setForm({ ...form, ToTime: e })}
         />
       ),
       size: 6,

@@ -8,20 +8,18 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 import {  PostData } from "../../../Service/APIEngine";
 import DownloadExcelForm from "./Components/DownloadExcelForm";
+import {DownloadExcelReportBroad} from "src/Service/APIBroadCast";
 
-
-export default function DownloadExcel( setModal) {
+export default function DownloadExcel() {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActive, setBtnActive] = useState(false);
   const [providers, setProviders] = useState([]);
-
 
   useEffect(() => {
     PostData("Provider/Tutoring", {}).then((res) => {
@@ -29,47 +27,17 @@ export default function DownloadExcel( setModal) {
     });
   }, []);
 
- 
+  const body={};
+  if(form.providerId) body.providerId = +form.providerId;
+  if(form.studentId) body.studentId = +form.studentId;
+  if(form.FromTime) body.FromTime = HejriToDotNetGeorgian(form.FromTime);
+  if(form.ToTime) body.ToTime = HejriToDotNetGeorgian(form.ToTime);
 
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    // PostDataBroad(`Tutoring/ExportCsv`, {
-      // FromTime: "2021-01-15T18:43:24.972Z",
-      // ToTime: "2022-01-23T18:43:24.972Z",
-      // studentId: 21500,
-      // providerId: 4214,
-
-    //   providerId: +form.providerId,
-    //   studentId: +form.studentId,
-    //   FromTime: HejriToDotNetGeorgian(form.FromTime),
-    //   ToTime: HejriToDotNetGeorgian(form.ToTime),
-    // })
-
-       const requestOptions = {
-         method: "POST",
-         headers: { "Content-Type": "application/json" },
-         body: JSON.stringify({
-           FromTime: "2021-01-15T18:43:24.972Z",
-      ToTime: "2022-01-23T18:43:24.972Z",
-      studentId: 21500,
-      providerId: 4214,
-         }),
-       };
-       fetch(
-         "https://api.bamis.ir/dev/v1/broadcast/Tutoring/ExportCsv",
-         requestOptions
-       ).then((response) => {
-         response.blob().then((blob) => {
-           let url = window.URL.createObjectURL(blob);
-           let a = document.createElement("a");
-           a.href = url;
-           a.download = "Tutorings.csv";
-           a.click();
-         });
-         //window.location.href = response.url;
-          setBtnActive(false);
-       });
+    DownloadExcelReportBroad('Tutoring/ExportCsv', body)
+      .then(() => setBtnActive(false))
   };
 
   return (
@@ -84,7 +52,6 @@ export default function DownloadExcel( setModal) {
           />
           <CCardFooter>
             {!btnActive ? (
-              
                 <CButton
                   type="submit"
                   size="sm"
@@ -94,7 +61,6 @@ export default function DownloadExcel( setModal) {
                 >
                   <CIcon name="cil-scrubber" /> دانلود فایل اکسل
                 </CButton>
-             
             ) : (
               <CSpinner
                 style={{ width: "2rem", height: "2rem" }}
