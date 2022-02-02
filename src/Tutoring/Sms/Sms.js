@@ -11,8 +11,8 @@ import {
   CLabel,
   CPagination,
 } from "@coreui/react";
-import { TableHeaders } from "./TableHeaders";
-import { ChangeValue } from "./ChangeValue";
+import { TableHeadersSms } from "./TableHeaders";
+import { ChangeValueSms } from "./ChangeValue";
 import { PostDataBroad } from "src/Service/APIBroadCast";
 const Sms = () => {
   const [tableData, setTableData] = useState([]);
@@ -32,7 +32,7 @@ const Sms = () => {
       // fromTime: startDate?startDate:'',
       // toTime: endDate?endDate:"",
     }).then((res) => {
-      let data = ChangeValue(res.data);
+      let data = ChangeValueSms(res.data);
       setTableData(data);
     });
   };
@@ -78,7 +78,7 @@ const Sms = () => {
         </CCardBody> */}
         <CDataTable
           items={tableData}
-          fields={TableHeaders}
+          fields={TableHeadersSms}
           striped
           columnFilter
           size="sm"

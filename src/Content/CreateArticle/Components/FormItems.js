@@ -2,7 +2,7 @@ import { FormSwitchInput, FormTextInput } from "src/reusable/FormInput";
 
 const { CSelect } = require("@coreui/react");
 
-export const FormItems = (form, setForm, groupIds, courseIds) => {
+export const FormItemsArticles = (form, setForm, groupIds, courseIds) => {
   return [
     {
       name: "عنوان محتوای عمومی",

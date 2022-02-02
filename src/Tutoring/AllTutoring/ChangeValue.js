@@ -2,7 +2,7 @@ import { DotNetGeorgianToHejri } from "src/Utility/DateTime";
 import JDate from "jalali-date";
 import { DateFormatter } from "src/Utility/DateFormatter";
 
-export const ChangeValue = (arr) => {
+export const ChangeValuesAllTutoring = (arr) => {
   arr.forEach((obj) =>
     Object.keys(obj).forEach(function (key) {
       if (

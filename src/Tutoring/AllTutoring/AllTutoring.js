@@ -5,11 +5,11 @@ import {
   CCardHeader, CCol,
   CDataTable, CFormGroup, CRow, CSelect,
 } from "@coreui/react";
-import { TableHeaders } from "./TableHeaders";
-import { ChangeValue } from "./ChangeValue";
+import { TableHeadersAllTutoring } from "./TableHeaders";
+import { ChangeValuesAllTutoring } from "./ChangeValue";
 import { PostDataBroad } from "src/Service/APIBroadCast";
-import {TutoringScopedSlots} from './TutoringScopedSlots';
-import { TutoringModal } from "./TutoringModal";
+import {AllTutoringScopedSlots} from './TutoringScopedSlots';
+import { TutoringModalAllTutoring } from "./TutoringModal";
 import {PostData} from "../../Service/APIEngine";
 import DownloadExcel from "./ExcelReport/DownloadExcel";
 
@@ -36,12 +36,12 @@ const AllTutoring = () => {
         //   toTime: endDate,
         providerId: +form.providerId,
       }).then((res) => {
-        let data = ChangeValue(res.data);
+        let data = ChangeValuesAllTutoring(res.data);
         setData(res.data);
         setTableData(data);
       }) :
       PostDataBroad("Tutoring/GetAllTutoring", {}).then((res) => {
-        setTableData(ChangeValue(res.data));
+        setTableData(ChangeValuesAllTutoring(res.data));
       });
   };
 
@@ -139,7 +139,7 @@ const AllTutoring = () => {
           </CFormGroup>
           <CDataTable
             items={tableData}
-            fields={TableHeaders}
+            fields={TableHeadersAllTutoring}
             striped
             columnFilter
             size="sm"
@@ -147,7 +147,7 @@ const AllTutoring = () => {
             onSorterValueChange={setFilterData}
             itemsPerPage={15}
             pagination
-            scopedSlots={TutoringScopedSlots(
+            scopedSlots={AllTutoringScopedSlots(
               data,
               setModal,
               modal,
@@ -156,7 +156,7 @@ const AllTutoring = () => {
           />
         </CCardBody>
       </CCard>
-        <TutoringModal
+        <TutoringModalAllTutoring
           name=" تدریس خصوصی"
           modal={modal}
           toggle={() => {

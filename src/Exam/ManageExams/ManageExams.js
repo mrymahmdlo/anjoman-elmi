@@ -13,7 +13,7 @@ import { ExamModalContainer } from "../CreateNewExam/Components/ExamModalContain
 import ExamService from "../ExamService/ExamService";
 import { ExamTableHeaders } from "./Components/ExamsTableHeaders";
 import { ExamScopedSlots } from "./Components/ScopedSlots";
-import { ChangeValues } from "./Utility/ChangeValues";
+import { ChangeValuesManageExams } from "./Utility/ChangeValues";
 
 const ManageExams = () => {
   const [tableData, setTableData] = useState([]);
@@ -41,7 +41,7 @@ const ManageExams = () => {
     }).then((res) => {
       setTableFields([...res.data.headers, ...ExamTableHeaders]);
       let data = res.data.rows;
-      ChangeValues(data);
+      ChangeValuesManageExams(data);
       setTableData(data);
     }).catch((err) => {
       setModalContent(err.error);

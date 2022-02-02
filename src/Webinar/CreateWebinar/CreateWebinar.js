@@ -10,7 +10,7 @@ import {
 import CIcon from "@coreui/icons-react";
 import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
-import WebinarForm from "./Components/WebinarForm";
+import CreateWebinarForm from "./Components/WebinarForm";
 import { useHistory } from "react-router";
 const CreateWebinar = () => {
 
@@ -59,7 +59,7 @@ const history = useHistory();
       <CContainer fluid>
         <CCard>
           <CCardHeader>ساخت همایش</CCardHeader>
-          <WebinarForm form={form} setForm={setForm} />
+          <CreateWebinarForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActice ? (
               <CButton

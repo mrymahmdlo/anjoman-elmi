@@ -23,7 +23,7 @@ const subcategories = [
   { name: "OfflineMinuteConsultation", label: "آفلاین" },
 ];
 
-export const EditForm = ({ orderDetailId, onSubmit }) => {
+export const MinuteCallsEditForm = ({ orderDetailId, onSubmit }) => {
   const [collapse, setCollapse] = useState(false);
   const [collapseS, setCollapseS] = useState(false);
   const [providers, setProviders] = useState([]);

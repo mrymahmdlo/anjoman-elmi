@@ -1,4 +1,4 @@
-export const TableHeaders = [
+export const TableHeadersAllTutoring = [
   {
     key: "providerName",
     label: "نام مشاور",

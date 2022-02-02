@@ -1,5 +1,5 @@
 
-  export const TableHeader = [
+  export const TableHeaderManageTutoring = [
     {
       key: "title",
       label: "عنوان ",

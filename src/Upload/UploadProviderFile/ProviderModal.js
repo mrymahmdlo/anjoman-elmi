@@ -6,7 +6,7 @@ import {
   CModalHeader,
 } from "@coreui/react";
 
-export const ProviderModal = ({ name, modal, toggle, modalContent }) => {
+export const ProviderModalUpload = ({ name, modal, toggle, modalContent }) => {
   return (
     <CModal show={modal} onClose={toggle}>
       <CModalHeader closeButton>{name}</CModalHeader>

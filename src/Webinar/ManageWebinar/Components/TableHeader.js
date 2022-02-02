@@ -1,5 +1,5 @@
 
-  export const TableHeader = [
+  export const TableHeaderWebinar = [
     {
       key: "title",
       label: "عنوان همایش",
@@ -36,7 +36,7 @@
       key: "endDateTime",
       label: "زمان پایان",
     },
-  
+
     // {
     //   key: "edit",
     //   label: "",

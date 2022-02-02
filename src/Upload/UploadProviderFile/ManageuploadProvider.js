@@ -8,11 +8,11 @@ import {
   CSelect,
   CCol,
 } from "@coreui/react";
-import { TableHeaders } from "./TableHeaders";
-import { ChangeValue } from "./ChangeValue";
+import { TableHeadersUpload } from "./TableHeaders";
+import { ChangeValueUpload } from "./ChangeValue";
 import { PostDataProvider } from "src/Service/APIProvider";
 import { ProviderScopedSlots } from "./ProviderScopedSlots";
-import { ProviderModal } from "./ProviderModal";
+import { ProviderModalUpload } from "./ProviderModal";
 import {PostData} from "src/Service/APIEngine";
 
 const ManageuploadProvider = () => {
@@ -32,7 +32,7 @@ const ManageuploadProvider = () => {
       providerId: (form.providerId)
     })
     .then((res) => {
-      setTableData(ChangeValue(res.data));
+      setTableData(ChangeValueUpload(res.data));
     });
   };
 
@@ -75,7 +75,7 @@ const ManageuploadProvider = () => {
           </CFormGroup>
           <CDataTable
             items={tableData}
-            fields={TableHeaders}
+            fields={TableHeadersUpload}
             striped
             size="sm"
             sorter
@@ -91,7 +91,7 @@ const ManageuploadProvider = () => {
           />
         </CCardBody>
       </CCard>
-      <ProviderModal
+      <ProviderModalUpload
         name="مدیریت محتواهای عمومی"
         modal={modal}
         toggle={() => {

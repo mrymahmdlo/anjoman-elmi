@@ -1,5 +1,5 @@
 import { FormNumberInput } from "src/reusable/FormInput";
-export const FormItems = (form, setForm) => {
+export const FormItemsCapacityRegistration = (form, setForm) => {
   return [
     {
       name: "ظرفیت مدرس :",

@@ -11,7 +11,7 @@ import CIcon from "@coreui/icons-react";
 import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import SubscriptionsForm from "./Components/SubscriptionsForm";
-import { ChangeValues } from "./Components/ChangeValues";
+import { ChangeValuesEditSubscriptions } from "./Components/ChangeValues";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 import { useHistory } from "react-router";
 const EditSubscriptions = ({ obj ,setModal}) => {
@@ -28,7 +28,7 @@ console.log(obj)
   useEffect(() => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
-    setForm(ChangeValues(obj));
+    setForm(ChangeValuesEditSubscriptions(obj));
   }, [obj]);
   const submitContent = () => {
     setShowError(false);

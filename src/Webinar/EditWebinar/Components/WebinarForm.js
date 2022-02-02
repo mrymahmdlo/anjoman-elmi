@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { CCardBody, CForm, CRow } from "@coreui/react";
 import { GetData } from "src/Service/APIEngine";
-import { FormItems } from "../../CreateWebinar/Components/FormItems";
+import { FormItemsWebinar } from "../../CreateWebinar/Components/FormItems";
 import { TextField } from "src/Utility/InputGroup";
 import { CoreFileInput } from "src/Utility/CoreFileInput";
 import { CKEditorField } from "src/reusable/CKEditorInput";
-import { SelectProvider } from "./SelectProvider"
+import { SelectProviderWebinar } from "./SelectProvider"
 
-const WebinarForm = ({ form, setForm, preData }) => {
+const EditWebinarForm = ({ form, setForm, preData }) => {
   const [imageHash, setImageHash] = useState("");
   const [groupIds, setGroupIds] = useState([]);
   const [courseIds, setCourseIds] = useState([]);
@@ -36,7 +36,7 @@ const WebinarForm = ({ form, setForm, preData }) => {
     }
   }, [form.groupId]);
 
-  const items = FormItems(form, setForm, groupIds, courseIds).map((item) =>
+  const items = FormItemsWebinar(form, setForm, groupIds, courseIds).map((item) =>
     TextField(item)
   );
 
@@ -54,7 +54,7 @@ const WebinarForm = ({ form, setForm, preData }) => {
         <CRow>{items.slice(7, 9)}</CRow>
         <CRow>
           {" "}
-          <SelectProvider
+          <SelectProviderWebinar
             providerId={providerId}
             setProviderId={setProviderId}
           />
@@ -79,4 +79,4 @@ const WebinarForm = ({ form, setForm, preData }) => {
   );
 };
 
-export default WebinarForm;
+export default EditWebinarForm;

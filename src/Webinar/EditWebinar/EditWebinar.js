@@ -10,8 +10,8 @@ import {
 import CIcon from "@coreui/icons-react";
 import {  PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
-import WebinarForm from "./Components/WebinarForm";
-import { ChangeValues } from "./Components/ChangeValues";
+import EditWebinarForm from "./Components/WebinarForm";
+import { ChangeValuesEditWebinar } from "./Components/ChangeValues";
 
 
 const EditWebinar = ({ obj, setModal }) => {
@@ -33,7 +33,7 @@ const EditWebinar = ({ obj, setModal }) => {
   useEffect(() => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
-    setForm(ChangeValues(obj));
+    setForm(ChangeValuesEditWebinar(obj));
   }, [obj]);
 
   const submitContent = () => {
@@ -71,7 +71,7 @@ const EditWebinar = ({ obj, setModal }) => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>ویرایش همایش</CCardHeader>
-          <WebinarForm form={form} setForm={setForm} preData={form.poster} />
+          <EditWebinarForm form={form} setForm={setForm} preData={form.poster} />
           <CCardFooter>
             {!btnActice ? (
               <CButton

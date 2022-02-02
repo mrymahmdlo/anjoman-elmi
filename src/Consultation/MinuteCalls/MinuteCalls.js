@@ -12,8 +12,8 @@ import {
 } from "@coreui/react";
 import { ModalContainer } from "./ModalContent/ModalContainer";
 import { PostData } from "src/Service/APIEngine";
-import { ChangeValues } from "./Utility/ChangeValues";
-import { ScopedSlots } from "./Utility/ScopedSlots";
+import { ChangeValuesMinuteCalls } from "./Utility/ChangeValues";
+import { MinuteCallsScopedSlots } from "./Utility/ScopedSlots";
 
 const Tables = () => {
   const [tableData, setTableData] = useState([]);
@@ -81,7 +81,7 @@ const Tables = () => {
           ],
         ]);
         let data = res.data.rows;
-        ChangeValues(data);
+        ChangeValuesMinuteCalls(data);
         setTableData(data);
         setPageNum(Math.ceil(res.data.totalCount / 20));
       })
@@ -140,7 +140,7 @@ const Tables = () => {
             onSorterValueChange={setFilterData}
             itemsPerPage={20}
             pagination
-            scopedSlots={ScopedSlots(
+            scopedSlots={MinuteCallsScopedSlots(
               setModal,
               modal,
               setModalContent,

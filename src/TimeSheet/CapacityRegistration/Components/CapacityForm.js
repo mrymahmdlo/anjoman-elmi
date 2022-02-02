@@ -7,7 +7,7 @@ import {
   CCol,
   CSelect,
 } from "@coreui/react";
-import { FormItems } from "./FormItems";
+import { FormItemsCapacityRegistration } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
 import { PostData } from "src/Service/APIEngine";
 
@@ -15,7 +15,7 @@ const CapacityForm = ({ form, setForm }) => {
   const [providers, setProviders] = useState([]);
   const [providerId, setProviderId] = useState(-1);
 
-  const items = FormItems(form, setForm).map((item) => TextField(item));
+  const items = FormItemsCapacityRegistration(form, setForm).map((item) => TextField(item));
   useEffect(() => {
     PostData("Provider/Tutoring", {}).then((res) => {
       setProviders(res.data);

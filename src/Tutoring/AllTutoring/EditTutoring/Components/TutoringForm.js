@@ -1,10 +1,10 @@
 import React from "react";
 import { CCardBody, CForm, CRow } from "@coreui/react";
-import { FormItems } from "./FormItem";
+import { FormItemsEditAllTutoring } from "./FormItem";
 import { TextField } from "src/Utility/InputGroup";
 
-const TutoringForm = ({ form, setForm, providers, tutorials }) => {
-  const items = FormItems(form, setForm, providers, tutorials).map((item) => TextField(item));
+const EditAllTutoringForm = ({ form, setForm, providers, tutorials }) => {
+  const items = FormItemsEditAllTutoring(form, setForm, providers, tutorials).map((item) => TextField(item));
 
   return (
     <CCardBody>
@@ -17,4 +17,4 @@ const TutoringForm = ({ form, setForm, providers, tutorials }) => {
   );
 };
 
-export default TutoringForm;
+export default EditAllTutoringForm;

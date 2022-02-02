@@ -10,7 +10,7 @@ import {
 import CIcon from "@coreui/icons-react";
 import { PostDataBroad } from "../../Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
-import TutoringForm from "./Components/TutoringForm";
+import ManuallyCreateTutoringForm from "./Components/TutoringForm";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 
 export default function ManuallyCreateTutoring() {
@@ -71,7 +71,7 @@ export default function ManuallyCreateTutoring() {
       <CContainer fluid>
         <CCard>
           <CCardHeader>برگزاری دستی جلسه</CCardHeader>
-          <TutoringForm form={form} setForm={setForm} />
+          <ManuallyCreateTutoringForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActive ? (
               <CButton

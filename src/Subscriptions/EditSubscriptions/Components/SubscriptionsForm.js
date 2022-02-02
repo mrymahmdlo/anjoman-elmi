@@ -1,10 +1,10 @@
 import React from "react";
 import { CCardBody, CForm, CRow } from "@coreui/react";
-import { FormItems } from "./FormItems";
+import { FormItemsSubscriptions } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
 
 const SubscriptionsForm = ({ form, setForm }) => {
-  const items = FormItems(form, setForm).map((item) => TextField(item));
+  const items = FormItemsSubscriptions(form, setForm).map((item) => TextField(item));
 
   return (
     <CCardBody>

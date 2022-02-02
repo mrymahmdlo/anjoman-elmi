@@ -1,7 +1,7 @@
 import JDate from "jalali-date";
 import { DateFormatter } from "src/Utility/DateFormatter";
 
-export const ChangeValues = (arr) => {
+export const ChangeValuesManageWebinar = (arr) => {
   arr.forEach((obj) =>
     Object.keys(obj).forEach(function (key) {
       if (key === "startDate" || key === "endDate" ) {

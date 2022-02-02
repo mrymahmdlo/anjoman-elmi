@@ -3,7 +3,7 @@ import {CSelect} from "@coreui/react";
 import React from "react";
 import {FormNumberInput} from "../../../../reusable/FormInput";
 
-const FormItems = (form, setForm, providers) => {
+const FormItemsDownloadExcel = (form, setForm, providers) => {
 
   return [
     {
@@ -76,4 +76,4 @@ const FormItems = (form, setForm, providers) => {
   ];
 };
 
-export { FormItems };
+export { FormItemsDownloadExcel };

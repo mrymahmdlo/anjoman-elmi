@@ -10,7 +10,7 @@ import {
 import CIcon from "@coreui/icons-react";
 import {  PostDataProvider } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
-import TimeSheetForm from './Components/TimeSheetForm';
+import EditTimeSheetForm from './Components/TimeSheetForm';
 import { useHistory } from "react-router";
 
 
@@ -28,7 +28,7 @@ const EditTimeSheet = ({ obj, setModal }) => {
     console.log(obj);
   }, [obj]);
 const ChangeValues = (day) => {
- 
+
   switch (day) {
     case "یکشنبه":
       return 0;
@@ -45,14 +45,14 @@ const ChangeValues = (day) => {
     case "شنبه":
       return 6;
 
-   
+
   }
 };
   const submitTimeSheet = () => {
     setShowError(false);
     setBtnActive(true);
     console.log(ChangeValues(obj.weekDay));
- 
+
 
     console.log(form.weekDay);
     PostDataProvider("TimeSheet/EditTimeSheet", {
@@ -91,7 +91,7 @@ const ChangeValues = (day) => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>ویرایش زمان بندی</CCardHeader>
-          <TimeSheetForm form={form} setForm={setForm} />
+          <EditTimeSheetForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActive ? (
               <CButton

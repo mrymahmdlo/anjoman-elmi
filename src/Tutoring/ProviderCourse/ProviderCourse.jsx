@@ -1,8 +1,8 @@
 import { CCard, CCardHeader, CDataTable } from "@coreui/react";
 import { useEffect, useState } from "react";
-import { ModalProvider } from "./ModalProvider";
-import { ScopedSlots } from "./ScopedSlots";
-import { TableHeader } from "./TableHeader";
+import { ProviderModalProviderCourse } from "./ModalProvider";
+import { ProviderCourseScopedSlots } from "./ScopedSlots";
+import { TableHeaderProviderCourse } from "./TableHeader";
 // import { ChangeValues } from "./Utility/ChangeValues";
 import { GetDataBroad } from "src/Service/APIBroadCast";
 const ManageTutoring = () => {
@@ -30,7 +30,7 @@ const ManageTutoring = () => {
         <CCardHeader>مدیریت درس مشاور</CCardHeader>
         <CDataTable
           items={tableData}
-          fields={TableHeader}
+          fields={TableHeaderProviderCourse}
           striped
           columnFilter
           size="sm"
@@ -38,7 +38,7 @@ const ManageTutoring = () => {
           onSorterValueChange={setFilterData}
           itemsPerPage={15}
           pagination
-          scopedSlots={ScopedSlots(
+          scopedSlots={ProviderCourseScopedSlots(
             updateData,
             setModal,
             modal,
@@ -46,7 +46,7 @@ const ManageTutoring = () => {
           )}
         />
       </CCard>
-      <ModalProvider
+      <ProviderModalProviderCourse
         name="مدیریت درس مشاور"
         modal={modal}
         toggle={() => {

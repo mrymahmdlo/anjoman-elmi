@@ -1,4 +1,4 @@
-export const ChangeValues = (obj) => {
+export const ChangeValuesEditArticles = (obj) => {
   let newobj = {
     contentId: obj.contentId,
     title: obj.title,

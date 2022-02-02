@@ -1,10 +1,10 @@
 import React from "react";
 import { CCardBody, CForm, CRow } from "@coreui/react";
-import { FormItems } from "./FormItem";
+import { FormItemsSetSponsor } from "./FormItem";
 import { TextField } from "src/Utility/InputGroup";
 
-const SponserForm = ({ form, setForm, sponsers }) => {
-  const items = FormItems(form, setForm, sponsers).map((item) => TextField(item));
+const SponsorForm = ({ form, setForm, sponsors }) => {
+  const items = FormItemsSetSponsor(form, setForm, sponsors).map((item) => TextField(item));
 
   return (
     <CCardBody>
@@ -15,4 +15,4 @@ const SponserForm = ({ form, setForm, sponsers }) => {
   );
 };
 
-export default SponserForm;
+export default SponsorForm;

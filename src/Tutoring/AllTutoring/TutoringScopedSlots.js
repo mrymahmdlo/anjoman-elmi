@@ -1,9 +1,9 @@
 import { CButton, CBadge } from "@coreui/react";
-import EditTutoring from "../AllTutoring/EditTutoring/EditTutoring";
-import SetSponser from "../AllTutoring/SetSponser/SetSponser";
+import EditAllTutoring from "../AllTutoring/EditTutoring/EditTutoring";
+import SetSponsor from "./SetSponsor/SetSponsor";
 import CIcon from "@coreui/icons-react";
 
-export const TutoringScopedSlots = (
+export const AllTutoringScopedSlots = (
   tableData,
   setModal,
   modal,
@@ -18,7 +18,7 @@ export const TutoringScopedSlots = (
             color="primary"
             onClick={() => {
               setModalTutoring(
-                <EditTutoring obj={tableData} setModal={setModal} tutoringId={tableData.tutoringId} />
+                <EditAllTutoring obj={tableData} setModal={setModal} tutoringId={tableData.tutoringId} />
               );
               setModal(true);
             }}
@@ -37,7 +37,7 @@ export const TutoringScopedSlots = (
             color="info"
             onClick={() => {
               setModalTutoring(
-                <SetSponser obj={tableData} setModal={setModal} tutoringId={tableData.tutoringId} />
+                <SetSponsor obj={tableData} setModal={setModal} tutoringId={tableData.tutoringId} />
               );
               setModal(true);
             }}

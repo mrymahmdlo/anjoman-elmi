@@ -1,4 +1,4 @@
-export const ChangeValues = (obj) => {
+export const ChangeValuesEditSubscriptions = (obj) => {
   let newobj = {
     webinarLink: obj.webinarLink,
 

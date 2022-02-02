@@ -1,11 +1,11 @@
 import { CCard, CCardHeader, CDataTable } from "@coreui/react";
 import { useEffect, useState } from "react";
-import { TutoringModal } from "./Components/TutoringModal";
-import { TutoringScopedSlots } from "./Components/TutoringScopedSlots";
-import { TableHeader } from "./Components/TableHeader";
+import { TutoringModalManageTutoring } from "./Components/TutoringModal";
+import { ManageTutoringScopedSlots } from "./Components/TutoringScopedSlots";
+import { TableHeaderManageTutoring } from "./Components/TableHeader";
 // import { ChangeValues } from "./Utility/ChangeValues";
 import { GetDataBroad } from "src/Service/APIBroadCast";
-import {ChangeValues} from "./Components/ChangeValue";
+import {ChangeValuesManageTutoring} from "./Components/ChangeValue";
 
 const ManageTutoring = () => {
   const [tableData, setTableData] = useState([]);
@@ -19,7 +19,7 @@ const ManageTutoring = () => {
   const updateData = () => {
     GetDataBroad("Tutorial/GetAll").then((res) => {
       //   let data = ChangeValues(res.data);
-      setTableData(ChangeValues(res.data));
+      setTableData(ChangeValuesManageTutoring(res.data));
     });
   };
 
@@ -32,7 +32,7 @@ const ManageTutoring = () => {
         <CCardHeader>مدیریت تدریس خصوصی برترها</CCardHeader>
         <CDataTable
           items={tableData}
-          fields={TableHeader}
+          fields={TableHeaderManageTutoring}
           striped
           hover
           columnFilter
@@ -41,7 +41,7 @@ const ManageTutoring = () => {
           onSorterValueChange={setFilterData}
           itemsPerPage={15}
           pagination
-          scopedSlots={TutoringScopedSlots(
+          scopedSlots={ManageTutoringScopedSlots(
             updateData,
             setModal,
             modal,
@@ -49,7 +49,7 @@ const ManageTutoring = () => {
           )}
         />
       </CCard>
-      <TutoringModal
+      <TutoringModalManageTutoring
         name="مدیریت تدریس خصوصی"
         modal={modal}
         toggle={() => {

@@ -10,10 +10,10 @@ import {
   CCol,
 } from "@coreui/react";
 import { GetData } from "src/Service/APIEngine";
-import { FormItems } from "./FormItems";
+import { FormItemsCreateTutoring } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
 
-const TuturingForm = ({ form, setForm, preData }) => {
+const CreateTutoringForm = ({ form, setForm, preData }) => {
   const [groupIds, setGroupIds] = useState([]);
   const [courseIds, setCourseIds] = useState([]);
   const [providerId, setProviderId] = useState();
@@ -53,7 +53,7 @@ const TuturingForm = ({ form, setForm, preData }) => {
     }
   }, [form.groupId]);
 
-  const items = FormItems(form, setForm, groupIds, courseIds).map((item) =>
+  const items = FormItemsCreateTutoring(form, setForm, groupIds, courseIds).map((item) =>
     TextField(item)
   );
 
@@ -143,4 +143,4 @@ const TuturingForm = ({ form, setForm, preData }) => {
   );
 };
 
-export default TuturingForm;
+export default CreateTutoringForm;

@@ -1,4 +1,4 @@
-export const ChangeValues = (arr) => {
+export const ChangeValuesManageArticles = (arr) => {
   arr.forEach((obj) => {
     if (obj["writerProviderName"] === null) {
       obj["writerProviderName"] = "مدیریت";

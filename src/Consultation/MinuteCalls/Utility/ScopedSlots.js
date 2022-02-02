@@ -3,9 +3,9 @@ import { useState } from "react";
 import { PostData } from "src/Service/APIEngine";
 import { Toast } from "src/Utility/Toast";
 import { Activity } from "../ModalContent/Activity";
-import { EditForm } from "../ModalContent/EditForm";
+import { MinuteCallsEditForm } from "../ModalContent/EditForm";
 
-export const ScopedSlots = (setModal, modal, setModalContent, updateData) => {
+export const MinuteCallsScopedSlots = (setModal, modal, setModalContent, updateData) => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   return {
@@ -54,7 +54,7 @@ export const ScopedSlots = (setModal, modal, setModalContent, updateData) => {
               onClick={() => {
                 setModal(!modal);
                 setModalContent(
-                  <EditForm
+                  <MinuteCallsEditForm
                     orderDetailId={item.orderDetailId}
                     onSubmit={async() => {
                       setModal(false);

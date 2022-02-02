@@ -1,7 +1,7 @@
 import JDate from "jalali-date";
 import { DateFormatter } from "src/Utility/DateFormatter";
 
-export const ChangeValue = (arr) => {
+export const ChangeValueSms = (arr) => {
   arr.forEach((obj) =>
     Object.keys(obj).forEach(function (key) {
       if (key === "time" || key === "endDate" || key === "resultDate") {
@@ -9,7 +9,7 @@ export const ChangeValue = (arr) => {
         let jdate = new JDate(date);
         obj[key] = DateFormatter(jdate, date);
       }
-     
+
     })
   );
   return arr;

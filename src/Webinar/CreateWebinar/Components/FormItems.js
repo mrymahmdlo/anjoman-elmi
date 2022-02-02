@@ -14,7 +14,7 @@ const timePattern=(time)=> {
   )
 };
 
-export const FormItems = (form, setForm, groupIds, courseIds) => {
+export const FormItemsWebinar = (form, setForm, groupIds, courseIds) => {
   return [
     {
       name: "عنوان  همایش",

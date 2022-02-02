@@ -1,5 +1,5 @@
 
-  export const TableHeader = [
+  export const TableHeaderProviderCourse = [
     {
       key: "providerName",
       label: "نام مشاور ",

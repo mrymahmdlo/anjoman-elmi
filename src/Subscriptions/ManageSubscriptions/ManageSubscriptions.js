@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { SubscriptionsModal } from "./Components/SubscriptionsModal";
 import { SubscriptionsScopedSlots } from "./Components/SubscriptionsScopedSlots";
 import { TableHeader } from "./Components/TableHeader";
-import { ChangeValues } from "./Utility/ChangeValues";
+import { ChangeValuesManageSubscriptions } from "./Utility/ChangeValues";
 import { PostDataBroad } from "src/Service/APIBroadCast";
 const ManageSubscriptions = () => {
   const [tableData, setTableData] = useState([]);
@@ -14,7 +14,7 @@ const ManageSubscriptions = () => {
       webinarId: 0,
       userId: 0,
     }).then((res) => {
-      let data = ChangeValues(res.data);
+      let data = ChangeValuesManageSubscriptions(res.data);
       setTableData(data);
     });
   };

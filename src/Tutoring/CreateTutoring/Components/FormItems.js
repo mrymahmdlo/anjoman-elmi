@@ -7,7 +7,7 @@ import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 const { CSelect } = require("@coreui/react");
 
 
-export const FormItems = (form, setForm, groupIds, courseIds) => {
+export const FormItemsCreateTutoring = (form, setForm, groupIds, courseIds) => {
   return [
     {
       name: "عنوان  ",

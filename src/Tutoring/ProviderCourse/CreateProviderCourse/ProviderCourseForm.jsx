@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { CCardBody, CCol, CForm, CRow, CLabel } from "@coreui/react";
 import { GetData } from "src/Service/APIEngine";
-import { FormItems } from "./FormItems";
+import { FormItemsProviderCourse } from "./FormItems";
 import { SwitchField, TextField } from "src/Utility/InputGroup";
-import { SelectProvider } from "./SelectProvider";
+import { SelectProviderProviderCourse } from "./SelectProvider";
 
 const ArticleForm = ({ form, setForm, preData }) => {
   const [groupIds, setGroupIds] = useState([]);
@@ -33,7 +33,7 @@ const ArticleForm = ({ form, setForm, preData }) => {
     }
   }, [form.groupId]);
 
-  const items = FormItems(form, setForm, groupIds, courseIds).map((item) =>
+  const items = FormItemsProviderCourse(form, setForm, groupIds, courseIds).map((item) =>
     TextField(item)
   );
 
@@ -43,9 +43,9 @@ const ArticleForm = ({ form, setForm, preData }) => {
         <CLabel className="m-2"></CLabel>
         <CRow>{items.slice(0, 2)}</CRow>
         <CRow>
-          
+
           <CCol sm={4}>
-            <SelectProvider
+            <SelectProviderProviderCourse
               providerId={providerId}
               setProviderId={setProviderId}
             />
