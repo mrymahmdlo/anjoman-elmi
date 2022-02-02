@@ -8,6 +8,8 @@ const { CSelect } = require("@coreui/react");
 
 
 export const FormItemsCreateTutoring = (form, setForm, groupIds, courseIds) => {
+  console.log('sss',form.courseId)
+  console.log('ws',courseIds);
   return [
     {
       name: "عنوان  ",
