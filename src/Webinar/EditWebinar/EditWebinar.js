@@ -51,7 +51,6 @@ const EditWebinar = ({ obj, setModal }) => {
       courseId: +form.courseId,
       countOfSession: +form.countOfSession,
       priceAfterHolding: +form.priceAfterHolding,
-      providerId: +form.providerIds,
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");

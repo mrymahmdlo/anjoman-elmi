@@ -25,7 +25,7 @@ const ManageWebinars = () => {
     });
   };
 
-   useEffect(() => {
+  useEffect(() => {
      updateData();
    }, [modal]);
   return (

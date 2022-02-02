@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { PostData } from "src/Service/APIEngine";
 import Select from "react-select";
+import { GetDataBroad } from "src/Service/APIBroadCast";
 const {
   CCol,
   CFormGroup,
@@ -10,6 +11,11 @@ const {
 
 const MultiselectProvider = ({ form, setForm }) => {
   const [providers, setProviders] = useState([]);
+  // const [providerIds, setProviderIds] = useState([]);
+
+  // GetDataBroad("Webinar/GetAll").then((res) => {
+  //   setProviderIds(res.data.productProvider);
+  // });
 
   useEffect(() => {
     PostData("Provider/Consultation", {}).then((res) => {
@@ -19,6 +25,10 @@ const MultiselectProvider = ({ form, setForm }) => {
 
   const options = providers.map((item) => (
     {value: item.providerId, label: item.name + " " + item.lastName}
+  ));  
+
+  const defaultValue = form.providerIds.map((item) => (
+    {value: item, label: item}
   ));  
 
   return (
@@ -32,12 +42,11 @@ const MultiselectProvider = ({ form, setForm }) => {
             className="basic-multi-select"
             classNamePrefix="select"
             options={options}
-            defaultValue={form.providerIds}
+            // defaultValue={[defaultValue]}
             onChange={(e) => {
-              let arry = form.providerIds;
-              e
-                ? arry.push(+e[e.length -1].value)
-                : (arry = arry.filter((x) => x !== +e[e.length -1].value));
+              var arry = e.map(function(item) {
+                return item.value; 
+              });
               setForm({
                 ...form,
                 providerIds: arry,
