@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { PostData } from "src/Service/APIEngine";
 import Select from "react-select";
-import { GetDataBroad } from "src/Service/APIBroadCast";
 const {
   CCol,
   CFormGroup,
@@ -11,6 +10,7 @@ const {
 
 const MultiselectProvider = ({ form, setForm }) => {
   const [providers, setProviders] = useState([]);
+  const [selected, setSelected] = useState([]);
   // const [providerIds, setProviderIds] = useState([]);
 
   // GetDataBroad("Webinar/GetAll").then((res) => {
@@ -32,8 +32,6 @@ const MultiselectProvider = ({ form, setForm }) => {
     label: item.name + " " + item.lastName,
   }));  
 
-console.log("lll", defaultValue);
-console.log("aa", options.value);
   return (
     <>
       <CCol sm="6">
@@ -45,10 +43,9 @@ console.log("aa", options.value);
             className="basic-multi-select"
             classNamePrefix="select"
             options={options}
-            value={defaultValue.map((i)=>i)}
-            // value={{ label: "Select Dept", value: 0 }}
+            value={selected.length===0 ? defaultValue.map((i)=>i) : selected}
             onChange={(e) => {
-              console.log('e',e);
+              setSelected(e);
               var arry = e.map(function (item) {
                 return item.value;
               });
