@@ -13,14 +13,13 @@ import { Toast } from "src/Utility/Toast";
 import SubscriptionsForm from "./Components/SubscriptionsForm";
 import { ChangeValuesEditSubscriptions } from "./Components/ChangeValues";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
-import { useHistory } from "react-router";
+
 const EditSubscriptions = ({ obj ,setModal}) => {
   const [form, setForm] = useState({
     buyDateTime: "",
     joinDatetime: "",
     cancelDatetime: "",
   });
-   const history = useHistory();
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);

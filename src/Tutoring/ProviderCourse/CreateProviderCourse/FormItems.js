@@ -1,15 +1,7 @@
-import {
-  FormTextInput,
-  FormNumberInput,
-} from "src/reusable/FormInput";
-import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian";
-import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 const { CSelect } = require("@coreui/react");
-
 
 export const FormItemsProviderCourse = (form, setForm, groupIds, courseIds) => {
   return [
-
     {
       name: "مقطع تحصیلی",
       text: "مقطع تحصیلی مخاطب  را وارد کنید",
@@ -34,7 +26,6 @@ export const FormItemsProviderCourse = (form, setForm, groupIds, courseIds) => {
       ),
       size: 6,
     },
-
     {
       name: "درس",
       text: "درس مربوطه  را انتخاب کنید",

@@ -1,4 +1,5 @@
 import { FormNumberInput } from "src/reusable/FormInput";
+
 export const FormItemsCapacityRegistration = (form, setForm) => {
   return [
     {

@@ -13,7 +13,6 @@ import { Toast } from "src/Utility/Toast";
 import CreateTutoringForm from "src/Tutoring/CreateTutoring/Components/TuturingForm";
 import { ChangeValuesEditTutoring } from "./Components/ChangeValues";
 
-
 const EditTutoring = ({ obj, setModal }) => {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
@@ -21,7 +20,6 @@ const EditTutoring = ({ obj, setModal }) => {
   const [btnActice, setBtnActive] = useState(false);
 
   useEffect(() => {
-
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
     setForm(ChangeValuesEditTutoring(obj));
@@ -30,10 +28,7 @@ const EditTutoring = ({ obj, setModal }) => {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    let data = form;
     PostDataBroad(`Tutorial/Update?tutorialId=${obj.tutorialId}`, {
-      // ...form,
-      // title: form.title,
       groupId: +form.groupId,
       courseId: +form.courseId,
       totalMinute: +form.totalMinute,

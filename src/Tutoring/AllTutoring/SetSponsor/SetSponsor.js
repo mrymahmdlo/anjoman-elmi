@@ -14,7 +14,7 @@ import TutoringForm from "./Components/SponsorForm";
 import { ChangeValuesSetSponsor } from "./Components/ChangeValues";
 import { GetDataBroad } from "../../../Service/APIBroadCast";
 
-const SetSponsor = ({ obj, setModal, tutoringId }) => {
+const SetSponsor = ({ obj, setModal }) => {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");

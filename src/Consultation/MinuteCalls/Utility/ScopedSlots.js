@@ -28,7 +28,7 @@ export const MinuteCallsScopedSlots = (setModal, modal, setModalContent, updateD
         </td>
       );
     },
-    orderDetail: (item, index) => {
+    orderDetail: (item) => {
       return (
         <>
           <td className="py-2 pl-2" key={item.orderId}>
@@ -46,7 +46,7 @@ export const MinuteCallsScopedSlots = (setModal, modal, setModalContent, updateD
         </>
       );
     },
-    orderEdit: (item, index) => {
+    orderEdit: (item) => {
       return (
         <>
           <td className="py-2 pl-2" key={item.orderId}>
@@ -74,7 +74,7 @@ export const MinuteCallsScopedSlots = (setModal, modal, setModalContent, updateD
         </>
       );
     },
-    smsSender: (item, index) => {
+    smsSender: (item) => {
       return (
         <>
           <td className="py-2 pl-2" key={item.orderId}>
@@ -90,7 +90,7 @@ export const MinuteCallsScopedSlots = (setModal, modal, setModalContent, updateD
                     setErrorContent(res.data);
                     return res;
                   })
-                  .catch((err) => {
+                  .catch(() => {
                     setShowError(true);
                     setErrorContent(
                       "بدون ایجاد ویرایش، امکان ارسال یادآور ممکن نیست"

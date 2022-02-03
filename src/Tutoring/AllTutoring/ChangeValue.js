@@ -1,4 +1,3 @@
-import { DotNetGeorgianToHejri } from "src/Utility/DateTime";
 import JDate from "jalali-date";
 import { DateFormatter } from "src/Utility/DateFormatter";
 
@@ -18,14 +17,11 @@ export const ChangeValuesAllTutoring = (arr) => {
           obj[key] = "-";
         }
       }
-  //     if (key === "isOnline") {
-  //  obj[key] = obj[key] === true ? "آفلاین" : "آنلاین";
-  //     }
       if (key === "status") {
           obj[key] = obj[key] === 0 ?  "خریداری شده" : obj[key] = obj[key] === 1 ?  "رزرو شده" : obj[key] = obj[key] === 2 ? "پشتیبان وارد شده است ": obj[key] = obj[key] === 3 ? "برگزار شده   ": obj[key] = obj[key] === 4 ? "دانش آموز وارد شده است" : null;
 
       }
-      if (key == "sponserName") {
+      if (key === "sponserName") {
         obj[key] = obj[key] === null ? "انتخاب نشده" : obj[key];
       }
     })

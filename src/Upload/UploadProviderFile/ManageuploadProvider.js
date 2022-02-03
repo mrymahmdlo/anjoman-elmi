@@ -17,7 +17,6 @@ import {PostData} from "src/Service/APIEngine";
 
 const ManageuploadProvider = () => {
   const [tableData, setTableData] = useState([]);
-
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const [filterData, setFilterData] = useState({
@@ -60,7 +59,6 @@ const ManageuploadProvider = () => {
                 }
               >
                 <option value={-1}>پشتیبان را انتخاب کنید</option>
-                {/*<option value={providers.length}>همه پشتیبان ها</option>*/}
                 {providers.length > 0 ? (
                   providers?.map((item) => (
                     <option value={item.providerId} key={item.providerId}>

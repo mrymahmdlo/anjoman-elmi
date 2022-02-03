@@ -4,8 +4,8 @@ import {
 } from "src/reusable/FormInput";
 import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
-const { CSelect } = require("@coreui/react");
 
+const { CSelect } = require("@coreui/react");
 const options1 = {weekday: 'long'};
 const options2 = {hour: 'numeric', minute: 'numeric'};
 const timePattern=(time)=> {

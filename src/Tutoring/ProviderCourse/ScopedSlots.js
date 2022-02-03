@@ -1,15 +1,12 @@
 import CIcon from "@coreui/icons-react";
 import { CButton, CBadge } from "@coreui/react";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { GetData } from "src/Service/APIEngine";
 import { Toast } from "src/Utility/Toast";
-import EditTutoring from "src/Tutoring/EditTutoring/EditTutoring";
 import { PostDataBroad } from "src/Service/APIBroadCast";
+
 export const ProviderCourseScopedSlots = (updateData, setModal, modal, setModalTutoring) => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
-  const history = useHistory();
   const handleDelete = (Id) => {
     PostDataBroad("ProviderCourse/Remove/" + Id)
       .then(() => {
@@ -33,23 +30,7 @@ export const ProviderCourseScopedSlots = (updateData, setModal, modal, setModalT
         </td>
       );
     },
-    // edit: (item, index) => (
-    //   <>
-    //     <td className="py-2 pl-2" key={item.productId}>
-    //       <CButton
-    //         className="mr-1"
-    //         color="primary"
-    //         onClick={() => {
-    //           setModalTutoring(<EditTutoring obj={item} setModal={setModal} />);
-    //           setModal(true);
-    //         }}
-    //       >
-    //         <CIcon name="cil-pencil" />
-    //       </CButton>
-    //     </td>
-    //   </>
-    // ),
-    delete: (item, index) => (
+    delete: (item) => (
       <>
         <td className="py-2 pl-2" key={item.rowId}>
           <CButton

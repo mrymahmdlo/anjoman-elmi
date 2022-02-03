@@ -35,7 +35,7 @@ export const AddQuestionFromBank = ({ quizId, item }) => {
           setErrorContent(res.message);
         }
       })
-      .catch((err) => setErrorContent("خطا در ثبت سوال"))
+      .catch(() => setErrorContent("خطا در ثبت سوال"))
       .finally(() => setShowError(true));
   };
 

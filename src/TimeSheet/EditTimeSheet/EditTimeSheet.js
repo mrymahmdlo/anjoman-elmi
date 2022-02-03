@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import {
   CButton,
   CCard,
@@ -8,13 +8,12 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import {  PostDataProvider } from "src/Service/APIProvider";
-import { Toast } from "src/Utility/Toast";
+import {PostDataProvider} from "src/Service/APIProvider";
+import {Toast} from "src/Utility/Toast";
 import EditTimeSheetForm from './Components/TimeSheetForm';
-import { useHistory } from "react-router";
+import {useHistory} from "react-router";
 
-
-const EditTimeSheet = ({ obj, setModal }) => {
+const EditTimeSheet = ({obj, setModal}) => {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
@@ -27,33 +26,29 @@ const EditTimeSheet = ({ obj, setModal }) => {
     setForm(obj);
     console.log(obj);
   }, [obj]);
-const ChangeValues = (day) => {
+  const ChangeValues = (day) => {
 
-  switch (day) {
-    case "یکشنبه":
-      return 0;
-    case "دوشنبه":
-       return 1;
-    case "سه شنبه":
-       return 2;
-    case "چهارشنبه":
-      return 3;
-    case "پنج شنبه":
-       return 4;
-    case "جمعه":
-       return 5;
-    case "شنبه":
-      return 6;
-
-
-  }
-};
+    switch (day) {
+      case "یکشنبه":
+        return 0;
+      case "دوشنبه":
+        return 1;
+      case "سه شنبه":
+        return 2;
+      case "چهارشنبه":
+        return 3;
+      case "پنج شنبه":
+        return 4;
+      case "جمعه":
+        return 5;
+      case "شنبه":
+        return 6;
+    }
+  };
   const submitTimeSheet = () => {
     setShowError(false);
     setBtnActive(true);
     console.log(ChangeValues(obj.weekDay));
-
-
     console.log(form.weekDay);
     PostDataProvider("TimeSheet/EditTimeSheet", {
       timeSheetId: obj.timeSheetId,
@@ -91,7 +86,7 @@ const ChangeValues = (day) => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>ویرایش زمان بندی</CCardHeader>
-          <EditTimeSheetForm form={form} setForm={setForm} />
+          <EditTimeSheetForm form={form} setForm={setForm}/>
           <CCardFooter>
             {!btnActive ? (
               <CButton
@@ -100,11 +95,11 @@ const ChangeValues = (day) => {
                 color="primary"
                 onClick={submitTimeSheet}
               >
-                <CIcon name="cil-scrubber" /> ثبت زمان بندی
+                <CIcon name="cil-scrubber"/> ثبت زمان بندی
               </CButton>
             ) : (
               <CSpinner
-                style={{ width: "2rem", height: "2rem" }}
+                style={{width: "2rem", height: "2rem"}}
                 color=""
                 variant="grow"
               />
@@ -112,7 +107,7 @@ const ChangeValues = (day) => {
           </CCardFooter>
         </CCard>
       </CContainer>
-      <Toast showError={showError} errorContent={errorContent} />
+      <Toast showError={showError} errorContent={errorContent}/>
     </div>
   );
 };

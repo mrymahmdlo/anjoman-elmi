@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { TutoringModalManageTutoring } from "./Components/TutoringModal";
 import { ManageTutoringScopedSlots } from "./Components/TutoringScopedSlots";
 import { TableHeaderManageTutoring } from "./Components/TableHeader";
-// import { ChangeValues } from "./Utility/ChangeValues";
 import { GetDataBroad } from "src/Service/APIBroadCast";
 import {ChangeValuesManageTutoring} from "./Components/ChangeValue";
 
@@ -18,7 +17,6 @@ const ManageTutoring = () => {
 
   const updateData = () => {
     GetDataBroad("Tutorial/GetAll").then((res) => {
-      //   let data = ChangeValues(res.data);
       setTableData(ChangeValuesManageTutoring(res.data));
     });
   };

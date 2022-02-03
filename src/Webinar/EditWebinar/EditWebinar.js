@@ -13,7 +13,6 @@ import { Toast } from "src/Utility/Toast";
 import EditWebinarForm from "./Components/WebinarForm";
 import { ChangeValuesEditWebinar } from "./Components/ChangeValues";
 
-
 const EditWebinar = ({ obj, setModal }) => {
   console.log(obj)
   const [form, setForm] = useState({
@@ -35,7 +34,7 @@ const EditWebinar = ({ obj, setModal }) => {
     setShowError(true);
     setForm(ChangeValuesEditWebinar(obj));
   }, [obj]);
-console.log('f',form)
+  console.log('f',form)
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);

@@ -20,7 +20,6 @@ const ArticleForm = ({ form, setForm, preData }) => {
   useEffect(() => {
 
     setForm({ ...form, writerProviderId: providerId });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [providerId]);
 
   useEffect(() => {
@@ -42,7 +41,6 @@ const ArticleForm = ({ form, setForm, preData }) => {
   );
   useEffect(() => {
     if (imageHash !== form.Image) setForm({ ...form, Image: imageHash });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageHash, form]);
   return (
     <CCardBody>

@@ -9,6 +9,7 @@ import { WebinartScopedSlots } from "./Components/WebinartScopedSlots";
 import { TableHeaderWebinar } from "./Components/TableHeader";
 import { ChangeValuesManageWebinar } from "./Utility/ChangeValues";
 import { GetDataBroad } from "src/Service/APIBroadCast";
+
 const ManageWebinars = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);

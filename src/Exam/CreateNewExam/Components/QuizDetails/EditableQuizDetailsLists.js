@@ -29,7 +29,7 @@ export const EditableQuizDetailsLists = () => {
     <>
       <CListGroup className="w-100">
         <CListGroupItem active>
-          <div className="d-flex align-items-center" s>
+          <div className="d-flex align-items-center">
             <dt className="col-sm-10">زیرآزمون ها</dt>
             <dd>
               <CButton

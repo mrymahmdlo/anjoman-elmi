@@ -1,17 +1,15 @@
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
 import EditWebinar from "src/Webinar/EditWebinar/EditWebinar";
-import LinkWebinar from './LinkWebinar';
 import { PostDataBroad } from "src/Service/APIBroadCast";
 import moment from "jalali-moment";
-const { CSwitch } = require("@coreui/react");
 
+const { CSwitch } = require("@coreui/react");
 const DateTimeFormat = "YYYY/MM/DD HH:mm";
 const DotNetDateTimeFormat = "YYYY-MM-DDTHH:mm";
-export const WebinartScopedSlots = (setModalContent, setModal, modal) => {
-const toggle=(item)=>{}
+export const WebinartScopedSlots = (setModalContent, setModal) => {
   return {
-    startDateTime: (item, index) => (
+    startDateTime: (item) => (
       <>
         {
           <td className="py-2 pl-2">
@@ -29,7 +27,7 @@ const toggle=(item)=>{}
         }
       </>
     ),
-    endDateTime: (item, index) => (
+    endDateTime: (item) => (
       <>
         {
           <td className="py-2 pl-2">
@@ -47,7 +45,7 @@ const toggle=(item)=>{}
         }
       </>
     ),
-    active: (item, index) => (
+    active: (item) => (
       <td>
       <CSwitch
       className="mt-2"
@@ -59,7 +57,7 @@ const toggle=(item)=>{}
        />
       </td>
     ),
-    productProvider: (item, index) => (
+    productProvider: (item) => (
       <>
         {
           <td className="py-2 pl-2">
@@ -77,7 +75,7 @@ const toggle=(item)=>{}
       </>
     ),
 
-    edit: (item, index) => (
+    edit: (item) => (
       <>
         <td className="py-2 pl-2" key={item.quizId}>
           <CButton

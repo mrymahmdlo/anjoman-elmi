@@ -13,7 +13,6 @@ import { PostData } from "src/Service/APIEngine";
 
 const CapacityForm = ({ form, setForm }) => {
   const [providers, setProviders] = useState([]);
-  const [providerId, setProviderId] = useState(-1);
 
   const items = FormItemsCapacityRegistration(form, setForm).map((item) => TextField(item));
   useEffect(() => {
@@ -32,7 +31,7 @@ const CapacityForm = ({ form, setForm }) => {
 
               <CSelect
                 value={form.providerId}
-                defaultValue={providerId}
+                defaultValue={-1}
                 onChange={(e) => {
                   setForm({ ...form, providerId: e.target.value });
                 }}

@@ -12,6 +12,7 @@ import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import CreateTutoringForm from "./Components/TuturingForm";
 import { useHistory } from "react-router";
+
 const CreateWebinar = () => {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
@@ -22,7 +23,6 @@ const CreateWebinar = () => {
     setShowError(false);
     setBtnActive(true);
     PostDataBroad("Tutorial/Create", {
-      //   ...form,
       groupId: +form.groupId,
       courseId: +form.courseId,
       totalMinute: +form.totalMinute,

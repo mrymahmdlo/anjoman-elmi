@@ -4,7 +4,6 @@ import {
   CForm,
   CRow,
   CSelect,
-  CFormText,
   CFormGroup,
   CLabel,
   CCol,
@@ -18,7 +17,6 @@ const CreateTimeSheetForm = ({ form, setForm }) => {
   const [timeSheetId, setTimeSheetId] = useState();
   const [weekDay, setWeekDay] = useState([]);
   const [providers, setProviders] = useState([]);
-  const [providerId, setProviderId] = useState(-1);
 
   useEffect(() => {
     if (form.timeSheetId) setTimeSheetId(form.timeSheetId);
@@ -52,7 +50,7 @@ const CreateTimeSheetForm = ({ form, setForm }) => {
 
               <CSelect
                 value={form.providerId}
-                defaultValue={providerId}
+                defaultValue={-1}
                 onChange={(e) => {
                   setForm({ ...form, providerId: e.target.value });
                 }}

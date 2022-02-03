@@ -36,7 +36,6 @@ const Tables = () => {
 
   useEffect(() => {
     updateData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, filterData, startDate, endDate, search]);
 
   const updateData = async () => {

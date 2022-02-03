@@ -1,14 +1,12 @@
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { PostDataProvider } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
 
 export const ProviderScopedSlots = (updateData, setModal, modal, setModalContent) => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
-  const history = useHistory();
   const handleDelete = (contentId) => {
     PostDataProvider(`Content/Delete/${contentId}`)
       .then(() => {
@@ -25,7 +23,7 @@ export const ProviderScopedSlots = (updateData, setModal, modal, setModalContent
   };
 
   return {
-    delete: (item, index) => (
+    delete: (item) => (
       <>
         <td className="py-2 pl-2" key={item.contentId}>
           <CButton

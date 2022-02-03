@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { ProviderModalProviderCourse } from "./ModalProvider";
 import { ProviderCourseScopedSlots } from "./ScopedSlots";
 import { TableHeaderProviderCourse } from "./TableHeader";
-// import { ChangeValues } from "./Utility/ChangeValues";
 import { GetDataBroad } from "src/Service/APIBroadCast";
+
 const ManageTutoring = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);
@@ -16,7 +16,6 @@ const ManageTutoring = () => {
 
   const updateData = () => {
     GetDataBroad("ProviderCourse/GetAll").then((res) => {
-      //   let data = ChangeValues(res.data);
       setTableData(res.data);
     });
   };

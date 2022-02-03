@@ -2,21 +2,16 @@ import React, { useEffect, useState } from "react";
 import { CCardBody, CCol, CForm, CRow, CLabel } from "@coreui/react";
 import { GetData } from "src/Service/APIEngine";
 import { FormItemsProviderCourse } from "./FormItems";
-import { SwitchField, TextField } from "src/Utility/InputGroup";
+import { TextField } from "src/Utility/InputGroup";
 import { SelectProviderProviderCourse } from "./SelectProvider";
 
-const ArticleForm = ({ form, setForm, preData }) => {
+const ArticleForm = ({ form, setForm }) => {
   const [groupIds, setGroupIds] = useState([]);
   const [courseIds, setCourseIds] = useState([]);
   const [providerId, setProviderId] = useState();
 
-  // useEffect(() => {
-  //   if (form.writerProviderId) setProviderId(form.writerProviderId);
-  // }, [form]);
-
   useEffect(() => {
     setForm({ ...form, providerId: providerId });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [providerId]);
 
   useEffect(() => {
@@ -43,17 +38,12 @@ const ArticleForm = ({ form, setForm, preData }) => {
         <CLabel className="m-2"></CLabel>
         <CRow>{items.slice(0, 2)}</CRow>
         <CRow>
-
           <CCol sm={4}>
             <SelectProviderProviderCourse
               providerId={providerId}
               setProviderId={setProviderId}
             />
           </CCol>
-        </CRow>
-
-        <CRow>
-          {/* {SwitchField(FormItems(form, setForm, groupIds, courseIds)[4])} */}
         </CRow>
       </CForm>
     </CCardBody>

@@ -10,7 +10,7 @@ export const AllTutoringScopedSlots = (
   setModalTutoring
 ) => {
   return {
-    edit: (tableData, index) => (
+    edit: (tableData) => (
       <>
         <td className="py-2 pl-2" key={tableData.tutoringId}>
           <CButton
@@ -29,7 +29,7 @@ export const AllTutoringScopedSlots = (
       </>
     ),
 
-    setSponser: (tableData, index) => (
+    setSponser: (tableData) => (
       <>
         <td className="py-2 pl-2" key={tableData.tutoringId}>
           <CButton
@@ -53,7 +53,6 @@ export const AllTutoringScopedSlots = (
         <td className="py-2 pl-2">
           <CBadge
             style={{ direction: "ltr" }}
-            // color={item.status === "آماده ی شرکت" ? "success" : "danger"}
           >
             {item.status}
           </CBadge>

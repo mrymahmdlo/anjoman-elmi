@@ -1,5 +1,5 @@
 import { GeorgianToHejri } from "src/Utility/DateTime";
-const { CInput, CSwitch } = require("@coreui/react");
+
 export const ChangeValuesManageSubscriptions = (arr) => {
   arr.forEach((obj) =>
     Object.keys(obj).forEach(function (key) {

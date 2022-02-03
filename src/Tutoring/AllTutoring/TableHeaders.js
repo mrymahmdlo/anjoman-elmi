@@ -46,13 +46,6 @@ export const TableHeadersAllTutoring = [
     sorter: false,
     filter: false,
   },
-  // {
-  //   key: "isOnline",
-  //   label: "وضعیت مشاور",
-  //   _style: { width: "15%" },
-  //   sorter: false,
-  //   filter: false,
-  // },
   {
     key: "setSponser",
     label: "انتخاب اسپانسر",
