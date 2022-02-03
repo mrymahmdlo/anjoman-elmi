@@ -1,7 +1,7 @@
 import { FormTextInput } from "src/reusable/FormInput";
 import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian";
 
-export const FormItems = (form, setForm) => {
+export const FormItemsSubscriptions = (form, setForm) => {
   return [
     {
       name: "لینک  همایش",

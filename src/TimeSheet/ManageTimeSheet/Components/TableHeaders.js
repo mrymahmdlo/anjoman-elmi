@@ -1,4 +1,4 @@
-export const TableHeaders = [
+export const TableHeadersTimeSheet = [
   {
     key: "providerName",
     label: " نام مشاور",

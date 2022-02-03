@@ -10,10 +10,10 @@ import {
 import CIcon from "@coreui/icons-react";
 import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
-import WebinarForm from "./Components/WebinarForm";
+import CreateWebinarForm from "./Components/WebinarForm";
 import { useHistory } from "react-router";
-const CreateWebinar = () => {
 
+const CreateWebinar = () => {
   const [form, setForm] = useState({
     schedules: [
       {
@@ -27,7 +27,7 @@ const CreateWebinar = () => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
-const history = useHistory();
+  const history = useHistory();
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
@@ -59,7 +59,7 @@ const history = useHistory();
       <CContainer fluid>
         <CCard>
           <CCardHeader>ساخت همایش</CCardHeader>
-          <WebinarForm form={form} setForm={setForm} />
+          <CreateWebinarForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActice ? (
               <CButton

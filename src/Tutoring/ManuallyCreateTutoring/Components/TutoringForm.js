@@ -9,11 +9,11 @@ import {
   CLabel,
 } from "@coreui/react";
 import {GetData, PostData} from "src/Service/APIEngine";
-import { FormItems } from "./FormItems";
+import { FormItemsManuallyCreateTutoring } from "./FormItems";
 import { TextField } from "../../../Utility/InputGroup";
 import { GetDataBroad } from "../../../Service/APIBroadCast";
 
-const TutoringForm = ({ form, setForm }) => {
+const ManuallyCreateTutoringForm = ({ form, setForm }) => {
   const [tutorials, setTutorials] = useState([]);
   const [groupIds, setGroupIds] = useState([]);
   const [groupId, setGroupId] = useState(0);
@@ -46,7 +46,7 @@ const TutoringForm = ({ form, setForm }) => {
     setForm({ ...form, providerId: providerId });
   }, [providerId]);
 
-  const items = FormItems(form, setForm, tutorials, providers).map(
+  const items = FormItemsManuallyCreateTutoring(form, setForm, tutorials, providers).map(
     (item) => TextField(item)
   );
 
@@ -91,4 +91,4 @@ const TutoringForm = ({ form, setForm }) => {
   );
 };
 
-export default TutoringForm;
+export default ManuallyCreateTutoringForm;

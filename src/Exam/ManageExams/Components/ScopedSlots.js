@@ -64,7 +64,7 @@ export const ExamScopedSlots = (
         </td>
       );
     },
-    examDetail: (item, index) => (
+    examDetail: (item) => (
       <>
         <td className="py-2 pl-2" key={item.orderId}>
           <CButton
@@ -82,7 +82,7 @@ export const ExamScopedSlots = (
         </td>
       </>
     ),
-    examEdit: (item, index) => (
+    examEdit: (item) => (
       <>
         <td className="py-2 pl-2" key={item.quizId}>
           <CButton
@@ -97,7 +97,7 @@ export const ExamScopedSlots = (
         </td>
       </>
     ),
-    examDelete: (item, index) => (
+    examDelete: (item) => (
       <>
         <td className="py-2 pl-2" key={item.quizId}>
           <CButton

@@ -1,4 +1,4 @@
-export const TableHeaders = [
+export const TableHeadersUpload = [
   {
     key: "providerName",
     label: "نام مشاور",
@@ -15,7 +15,7 @@ export const TableHeaders = [
     key: "contentType",
     label: " نوع",
   },
- 
+
   {
     key: "delete",
     label: "",

@@ -1,4 +1,4 @@
-export const ChangeValues = (arr, options) => {
+export const ChangeValuesExamQuestionBank = (arr, options) => {
   arr.forEach((obj) =>
     Object.keys(obj).forEach(function (key) {
       if (key === "questionLevel") {

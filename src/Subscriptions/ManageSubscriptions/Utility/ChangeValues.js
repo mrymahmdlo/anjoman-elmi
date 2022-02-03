@@ -1,6 +1,6 @@
 import { GeorgianToHejri } from "src/Utility/DateTime";
-const { CInput, CSwitch } = require("@coreui/react");
-export const ChangeValues = (arr) => {
+
+export const ChangeValuesManageSubscriptions = (arr) => {
   arr.forEach((obj) =>
     Object.keys(obj).forEach(function (key) {
       if (
@@ -13,7 +13,7 @@ export const ChangeValues = (arr) => {
       if (key === "webinar") {
         obj["webinarName"] = obj.webinar.title;
       }
-     
+
     })
   );
   return arr;

@@ -2,12 +2,9 @@ import {
   FormTextInput,
   FormNumberInput,
 } from "src/reusable/FormInput";
-import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian";
-import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 const { CSelect } = require("@coreui/react");
 
-
-export const FormItems = (form, setForm, groupIds, courseIds) => {
+export const FormItemsCreateTutoring = (form, setForm, groupIds, courseIds) => {
   console.log('sss',form.courseId)
   console.log('ws',courseIds);
   return [
@@ -31,8 +28,6 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
       ),
       size: 4,
     },
-
-
     {
       name: "مقطع تحصیلی",
       text: "مقطع تحصیلی مخاطب  را وارد کنید",

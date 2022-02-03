@@ -10,9 +10,8 @@ import {
 import CIcon from "@coreui/icons-react";
 import {  PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
-import TuturingForm from "src/Tutoring/CreateTutoring/Components/TuturingForm";
-import { ChangeValues } from "./Components/ChangeValues";
-
+import CreateTutoringForm from "src/Tutoring/CreateTutoring/Components/TuturingForm";
+import { ChangeValuesEditTutoring } from "./Components/ChangeValues";
 
 const EditTutoring = ({ obj, setModal }) => {
   const [form, setForm] = useState({});
@@ -21,19 +20,15 @@ const EditTutoring = ({ obj, setModal }) => {
   const [btnActice, setBtnActive] = useState(false);
 
   useEffect(() => {
-  
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
-    setForm(ChangeValues(obj));
+    setForm(ChangeValuesEditTutoring(obj));
   }, [obj]);
 
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    let data = form;
     PostDataBroad(`Tutorial/Update?tutorialId=${obj.tutorialId}`, {
-      // ...form,
-      // title: form.title,
       groupId: +form.groupId,
       courseId: +form.courseId,
       totalMinute: +form.totalMinute,
@@ -61,7 +56,7 @@ const EditTutoring = ({ obj, setModal }) => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>ویرایش تدریس خصوصی</CCardHeader>
-          <TuturingForm form={form} setForm={setForm} preData={form.poster} />
+          <CreateTutoringForm form={form} setForm={setForm} preData={form.poster} />
           <CCardFooter>
             {!btnActice ? (
               <CButton

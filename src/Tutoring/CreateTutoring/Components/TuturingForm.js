@@ -4,40 +4,25 @@ import {
   CForm,
   CRow,
   CSelect,
-  CFormText,
   CFormGroup,
   CLabel,
   CCol,
 } from "@coreui/react";
 import { GetData } from "src/Service/APIEngine";
-import { FormItems } from "./FormItems";
+import { FormItemsCreateTutoring } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
 
-const TuturingForm = ({ form, setForm, preData }) => {
+const CreateTutoringForm = ({ form, setForm }) => {
   const [groupIds, setGroupIds] = useState([]);
   const [courseIds, setCourseIds] = useState([]);
   const [providerId, setProviderId] = useState();
-  const [providerRank, setProviderRank] = useState();
 
   useEffect(() => {
     if (form.providerId) setProviderId(form.providerId);
   }, [form]);
-  // useEffect(() => {
-
-  //     switch (providerRank) {
-  //       case "1 تا 50":
-  //         setForm({ ...form, minProviderRank: 0, maxProviderRank: 50 });
-  //       case "51 تا 500":
-  //         setForm({ ...form, minProviderRank: 50, maxProviderRank: 500 });
-  //       case "500 به بالا":
-  //         setForm({ ...form, minProviderRank: 500, maxProviderRank: 500000 });
-  //     }
-
-  // }, [providerRank,form]);
 
   useEffect(() => {
     setForm({ ...form, providerId: providerId });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [providerId]);
   useEffect(() => {
     GetData("BasicInfo/Groups").then((res) => setGroupIds(res));
@@ -53,7 +38,7 @@ const TuturingForm = ({ form, setForm, preData }) => {
     }
   }, [form.groupId]);
 
-  const items = FormItems(form, setForm, groupIds, courseIds).map((item) =>
+  const items = FormItemsCreateTutoring(form, setForm, groupIds, courseIds).map((item) =>
     TextField(item)
   );
 
@@ -92,19 +77,19 @@ const TuturingForm = ({ form, setForm, preData }) => {
               <CSelect
                 onChange={(e) => {
                   console.log(e.target.value);
-                  if (e.target.value == 0) {
+                  if (e.target.value === 0) {
                     setForm({
                       ...form,
                       minProviderRank: 0,
                       maxProviderRank: 50,
                     });
-                  } else if (e.target.value == 50) {
+                  } else if (e.target.value === 50) {
                     setForm({
                       ...form,
                       minProviderRank: 50,
                       maxProviderRank: 500,
                     });
-                  } else if (e.target.value == 500) {
+                  } else if (e.target.value === 500) {
                     setForm({
                       ...form,
                       minProviderRank: 500,
@@ -122,7 +107,7 @@ const TuturingForm = ({ form, setForm, preData }) => {
                   <option
                     key={index}
                     value={item.id}
-                    selected={`${form.minProviderRank}` == item.id}
+                    selected={`${form.minProviderRank}` === item.id}
                   >
                     {item.name}
                   </option>
@@ -131,16 +116,9 @@ const TuturingForm = ({ form, setForm, preData }) => {
             </CFormGroup>
           </CCol>
         </CRow>
-        {/* <CKEditorField
-          name="متن محتوا"
-          text="لطفا متن محتوای خود را وارد کنید"
-          fieldName="description"
-          form={form}
-          setForm={setForm}
-        /> */}
       </CForm>
     </CCardBody>
   );
 };
 
-export default TuturingForm;
+export default CreateTutoringForm;

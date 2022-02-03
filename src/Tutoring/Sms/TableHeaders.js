@@ -1,4 +1,4 @@
-export const TableHeaders = [
+export const TableHeadersSms = [
   {
     key: "recipientNumber",
     label: "شماره تماس",

@@ -16,8 +16,8 @@ import PreviewQuestion from "../CreateNewExam/Components/CreateQuestions/Preview
 import { ExamModalContainer } from "../CreateNewExam/Components/ExamModalContainer";
 import ExamService from "../ExamService/ExamService";
 import { AddQuestionFromBank } from "./Component/AddQuestionFromBank";
-import { ChangeValues } from "./Component/ChangeValue";
-import { TableHeader } from "./Component/TableHeader";
+import { ChangeValuesExamQuestionBank } from "./Component/ChangeValue";
+import { TableHeaderExam } from "./Component/TableHeader";
 import ImportQuestion from "./Service/ImportQuestion";
 
 const ExamQuestionBank = () => {
@@ -54,7 +54,7 @@ const ExamQuestionBank = () => {
   useEffect(() => {
     if (filterOptions !== null) {
       ImportQuestion.GetQuestion(filters).then((res) =>
-        setData(ChangeValues(res.data, filterOptions?.course.options))
+        setData(ChangeValuesExamQuestionBank(res.data, filterOptions?.course.options))
       );
     }
   }, [filters, filterOptions]);
@@ -100,7 +100,7 @@ const ExamQuestionBank = () => {
       <CCardBody>
         <CDataTable
           items={data}
-          fields={TableHeader}
+          fields={TableHeaderExam}
           striped
           itemsPerPage={15}
           pagination

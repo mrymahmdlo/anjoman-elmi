@@ -5,11 +5,11 @@ import {
   CCardHeader, CCol,
   CDataTable, CFormGroup, CRow, CSelect,
 } from "@coreui/react";
-import { TableHeaders } from "./TableHeaders";
-import { ChangeValue } from "./ChangeValue";
+import { TableHeadersAllTutoring } from "./TableHeaders";
+import { ChangeValuesAllTutoring } from "./ChangeValue";
 import { PostDataBroad } from "src/Service/APIBroadCast";
-import {TutoringScopedSlots} from './TutoringScopedSlots';
-import { TutoringModal } from "./TutoringModal";
+import {AllTutoringScopedSlots} from './TutoringScopedSlots';
+import { TutoringModalAllTutoring } from "./TutoringModal";
 import {PostData} from "../../Service/APIEngine";
 import DownloadExcel from "./ExcelReport/DownloadExcel";
 
@@ -18,9 +18,6 @@ const AllTutoring = () => {
   const [data, setData] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalTutoring, setModalTutoring] = useState("");
-  const [startDate, setStartDate] = useState("1390/06/10");
-  const [endDate, setEndDate] = useState("1500/07/10");
-  const [phoneNumber, setPhoneNumber] = useState();
   const [filterData, setFilterData] = useState({
     asc: false,
     column: "quizId",
@@ -31,17 +28,14 @@ const AllTutoring = () => {
   const updateData = () => {
     form.providerId ?
       PostDataBroad("Tutoring/GetAllTutoring", {
-        //   phoneNumber: phoneNumber,
-        //   fromTime: startDate,
-        //   toTime: endDate,
         providerId: +form.providerId,
       }).then((res) => {
-        let data = ChangeValue(res.data);
+        let data = ChangeValuesAllTutoring(res.data);
         setData(res.data);
         setTableData(data);
       }) :
       PostDataBroad("Tutoring/GetAllTutoring", {}).then((res) => {
-        setTableData(ChangeValue(res.data));
+        setTableData(ChangeValuesAllTutoring(res.data));
       });
   };
 
@@ -65,38 +59,6 @@ const AllTutoring = () => {
     <>
       <CCard>
         <CCardHeader> مشاهده جلسات برگزار شده </CCardHeader>
-        {/* <CCardBody>
-          <CForm inline>
-            <CFormGroup className=" pl-1">
-              <CLabel className="pr-1">جستجو شماره تماس</CLabel>
-              <CInput
-                className="mr-2"
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                value={phoneNumber}
-              />
-            </CFormGroup>
-            <CFormGroup className=" pl-1">
-              <CLabel htmlFor="exampleInputName2" className="pr-1">
-                از تاریخ
-              </CLabel>
-              <CInput
-                className="mr-2"
-                onChange={(e) => setStartDate(e.target.value)}
-                placeholder={startDate}
-              />
-            </CFormGroup>
-            <CFormGroup className="pr-2 pl-1">
-              <CLabel htmlFor="exampleInputEmail2" className="pr-1">
-                تا تاریخ
-              </CLabel>
-              <CInput
-                className="mr-2"
-                onChange={(e) => setEndDate(e.target.value)}
-                placeholder={endDate}
-              />
-            </CFormGroup>
-          </CForm>
-        </CCardBody> */}
         <CCardBody>
           <CFormGroup>
             <CRow>
@@ -139,7 +101,7 @@ const AllTutoring = () => {
           </CFormGroup>
           <CDataTable
             items={tableData}
-            fields={TableHeaders}
+            fields={TableHeadersAllTutoring}
             striped
             columnFilter
             size="sm"
@@ -147,7 +109,7 @@ const AllTutoring = () => {
             onSorterValueChange={setFilterData}
             itemsPerPage={15}
             pagination
-            scopedSlots={TutoringScopedSlots(
+            scopedSlots={AllTutoringScopedSlots(
               data,
               setModal,
               modal,
@@ -156,7 +118,7 @@ const AllTutoring = () => {
           />
         </CCardBody>
       </CCard>
-        <TutoringModal
+        <TutoringModalAllTutoring
           name=" تدریس خصوصی"
           modal={modal}
           toggle={() => {

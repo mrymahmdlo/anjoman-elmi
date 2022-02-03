@@ -29,7 +29,6 @@ export default function DownloadExcel() {
 
   const body={};
   if(form.providerId) body.providerId = +form.providerId;
-  // if(form.studentId) body.studentId = +form.studentId;
   if(form.FromTime) body.FromTime = HejriToDotNetGeorgian(form.FromTime);
   if(form.ToTime) body.ToTime = HejriToDotNetGeorgian(form.ToTime);
 

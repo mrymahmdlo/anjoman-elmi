@@ -1,17 +1,16 @@
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
 import EditWebinar from "src/Webinar/EditWebinar/EditWebinar";
-import LinkWebinar from './LinkWebinar';
 import { PostDataBroad } from "src/Service/APIBroadCast";
 import moment from "jalali-moment";
-const { CSwitch } = require("@coreui/react");
+import LinkWebinar from "./LinkWebinar";
 
+const { CSwitch } = require("@coreui/react");
 const DateTimeFormat = "YYYY/MM/DD HH:mm";
 const DotNetDateTimeFormat = "YYYY-MM-DDTHH:mm";
-export const WebinartScopedSlots = (setModalContent, setModal, modal) => {
-const toggle=(item)=>{}
+export const WebinartScopedSlots = (setModalContent, setModal) => {
   return {
-    startDateTime: (item, index) => (
+    startDateTime: (item) => (
       <>
         {
           <td className="py-2 pl-2">
@@ -29,7 +28,7 @@ const toggle=(item)=>{}
         }
       </>
     ),
-    endDateTime: (item, index) => (
+    endDateTime: (item) => (
       <>
         {
           <td className="py-2 pl-2">
@@ -47,22 +46,25 @@ const toggle=(item)=>{}
         }
       </>
     ),
-    active: (item, index) => (
+    active: (item) => (
       <td>
-      <CSwitch
-      className="mt-2"
-      color="info"
-      onClick={(e) => {
-        PostDataBroad(`Webinar/SetActivation?webinarId=${item.webinarId}`, e.target.checked)
-      }}
-      defaultChecked={item.isActive}
-       />
+        <CSwitch
+          className="mt-2"
+          color="info"
+          onClick={(e) => {
+            PostDataBroad(
+              `Webinar/SetActivation?webinarId=${item.webinarId}`,
+              e.target.checked
+            );
+          }}
+          defaultChecked={item.isActive}
+        />
       </td>
     ),
-    productProvider: (item, index) => (
+    productProvider: (item) => (
       <>
         {
-          <td className="py-2 pl-2">
+          <td className="py-2 pl-2" >
             {item.productProvider?.length > 0 ? (
               <>
                 {item.productProvider.map((items) => (
@@ -77,9 +79,9 @@ const toggle=(item)=>{}
       </>
     ),
 
-    edit: (item, index) => (
+    edit: (item) => (
       <>
-        <td className="py-2 pl-2" key={item.quizId}>
+        <td className="py-2 pl-2" key={item.webinarId}>
           <CButton
             className="mr-1"
             color="primary"
@@ -89,6 +91,22 @@ const toggle=(item)=>{}
             }}
           >
             <CIcon name="cil-pencil" />
+          </CButton>
+        </td>
+      </>
+    ),
+    link: (item) => (
+      <>
+        <td className="py-2 pl-2" key={item.webinarId}>
+          <CButton
+            className="mr-1"
+            color="primary"
+            onClick={() => {
+              setModalContent(<LinkWebinar obj={item} setModal={setModal} />);
+              setModal(true);
+            }}
+          >
+            دریافت لینک
           </CButton>
         </td>
       </>

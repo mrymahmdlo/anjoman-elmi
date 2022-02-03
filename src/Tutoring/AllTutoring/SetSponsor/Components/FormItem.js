@@ -1,7 +1,7 @@
 import {CSelect} from "@coreui/react";
 import React from "react";
 
-const FormItems = (form, setForm, sponsers) => {
+const FormItemsSetSponsor = (form, setForm, sponsors) => {
 
   return [
     {
@@ -9,13 +9,13 @@ const FormItems = (form, setForm, sponsers) => {
       text: "",
       input: (
         <CSelect
-          value={sponsers.userId}
-          defaultValue={sponsers.userId}
+          value={sponsors.userId}
+          defaultValue={sponsors.userId}
           onChange={(e) => setForm({ ...form, sponserId: Number(e.target.value) })}
         >
           <option value={-1}>اسپانسر را انتخاب کنید</option>
-          {sponsers.length > 0 ? (
-            sponsers.map((item) => (
+          {sponsors.length > 0 ? (
+            sponsors.map((item) => (
               <option
                 value={item.userId}
                 key={item.userId}
@@ -34,4 +34,4 @@ const FormItems = (form, setForm, sponsers) => {
   ];
 };
 
-export { FormItems };
+export { FormItemsSetSponsor };

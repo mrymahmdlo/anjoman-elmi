@@ -1,5 +1,4 @@
 import { TokenManager } from "src/Identity/Service/TokenManager";
-import {HejriToDotNetGeorgian} from "../Utility/DateTime";
 const { GetToken } = TokenManager();
 const secret = "AMP_!YUHDSJHYG@&12312!W@sAs";
 

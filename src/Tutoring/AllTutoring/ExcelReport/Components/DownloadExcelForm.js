@@ -1,10 +1,10 @@
 import React from "react";
 import { CCardBody, CForm, CRow } from "@coreui/react";
-import { FormItems } from "./FormItems";
+import { FormItemsDownloadExcel } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
 
 const DownloadExcelForm = ({ form, setForm, providers }) => {
-  const items = FormItems(form, setForm, providers).map((item) => TextField(item));
+  const items = FormItemsDownloadExcel(form, setForm, providers).map((item) => TextField(item));
 
   return (
     <CCardBody>

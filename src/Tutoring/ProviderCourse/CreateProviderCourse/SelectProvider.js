@@ -2,7 +2,7 @@ import { CFormGroup, CSelect } from "@coreui/react";
 import { useEffect, useState } from "react";
 import { PostData } from "src/Service/APIEngine";
 
-export const SelectProvider = ({ providerId, setProviderId }) => {
+export const SelectProviderProviderCourse = ({ providerId, setProviderId }) => {
   const [providers, setProviders] = useState([]);
 
   useEffect(() => {
