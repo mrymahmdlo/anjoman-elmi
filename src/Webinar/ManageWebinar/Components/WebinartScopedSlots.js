@@ -4,6 +4,7 @@ import EditWebinar from "src/Webinar/EditWebinar/EditWebinar";
 import { PostDataBroad } from "src/Service/APIBroadCast";
 import moment from "jalali-moment";
 import LinkWebinar from "./LinkWebinar";
+import { freeSet } from '@coreui/icons';
 
 const { CSwitch } = require("@coreui/react");
 const DateTimeFormat = "YYYY/MM/DD HH:mm";
@@ -106,7 +107,7 @@ export const WebinartScopedSlots = (setModalContent, setModal) => {
               setModal(true);
             }}
           >
-            دریافت لینک
+            <CIcon content={freeSet.cilLink}/>
           </CButton>
         </td>
       </>
