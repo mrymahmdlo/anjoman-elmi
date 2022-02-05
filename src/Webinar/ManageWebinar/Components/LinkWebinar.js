@@ -10,6 +10,7 @@ const LinkWebinar = ({obj, setModal}) => {
   const [index, setIndex] = useState();
 
   const showLink = (item) => {
+
     PostDataBroad("Webinar/GetStatus", {
       webinarId: obj.webinarId,
       userId: item.userId,
@@ -63,7 +64,8 @@ const LinkWebinar = ({obj, setModal}) => {
                     <CButton
                       className="mr-1"
                       color="primary"
-                      onClick={(item) => {
+                      onClick={() => {
+                    
                         showLink(item);
                         setIndex(i);
                       }}
