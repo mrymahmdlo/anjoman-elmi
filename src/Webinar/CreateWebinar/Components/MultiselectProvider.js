@@ -6,7 +6,7 @@ const { CCol, CFormGroup, CLabel, CFormText } = require("@coreui/react");
 const MultiselectProvider = ({ form, setForm }) => {
   const [providers, setProviders] = useState([]);
   const [selected, setSelected] = useState([]);
-console.log('for',form)
+  console.log('for',form)
   // const [providerIds, setProviderIds] = useState([]);
 
   // GetDataBroad("Webinar/GetAll").then((res) => {
@@ -28,7 +28,6 @@ console.log('for',form)
     value: item.userId,
     label: item.name + " " + item.lastName,
   }));
-  console.log(defaultValue);
 
   return (
     <>
@@ -47,7 +46,6 @@ console.log('for',form)
                 : selected
             }
             onChange={(e) => {
-             
               setSelected(e);
               var arry = e.map(function (item) {
                 return item.value;
