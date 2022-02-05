@@ -1,8 +1,9 @@
 import { TokenManager } from "src/Identity/Service/TokenManager";
+
 const { GetToken } = TokenManager();
 const secret = "AMP_!YUHDSJHYG@&12312!W@sAs";
 
-export const BaseUrl = process.env.REACT_APP_API_BASE;
+export const BaseUrl = window.config.API_BASE;
 const GetData = (url) => {
   return fetch(BaseUrl + url, {
     method: "GET",

@@ -29,11 +29,38 @@ export const UploadFile = () => {
   };
 
   const copyToClipboard = () => {
-    navigator.permissions.query({name: "clipboard-write"}).then(result => {
-      if (result.state === "granted" || result.state === "prompt") {
-        updateClipboard(link);
-      } else console.log('failed');
-    });
+    if (typeof (navigator.clipboard) == 'undefined') {
+      console.log('navigator.clipboard is undefined');
+      let textArea = document.createElement("textarea");
+      textArea.value = link;
+      textArea.style.position = "fixed";  //avoid scrolling to bottom
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      try {
+        let successful = document.execCommand('copy');
+        let msg = successful ? 'successful' : 'unsuccessful';
+        console.log(msg);
+      } catch (err) {
+        console.log('Was not possible to copy te text: ', err);
+      }
+
+      document.body.removeChild(textArea)
+      return;
+    }
+    navigator.clipboard.writeText(link).then(
+      function () {
+        console.log(`successful!`);
+      }, function (err) {
+        console.log('unsuccessful!', err);
+      });
+    // navigator.permissions.query({name: "clipboard-write"}).then(result => {
+    //   if (result.state === "granted" || result.state === "prompt") {
+    //     updateClipboard(link);
+    //   }
+    //   else console.log('failed');
+    // });
   };
 
   const updateClipboard = (newClip) => {

@@ -43,11 +43,11 @@ const AllTutoring = () => {
     updateData();
   }, [modal, form.providerId]);
 
-  useEffect(() => {
-    PostData("Provider/Tutoring", {}).then((res) => {
-      setProviders(res.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   PostData("Provider/Tutoring", {}).then((res) => {
+  //     setProviders(res.data);
+  //   });
+  // }, []);
 
   const [bgColor, setBgColor]=useState('#027a40');
   const styles={
@@ -62,7 +62,7 @@ const AllTutoring = () => {
         <CCardBody>
           <CFormGroup>
             <CRow>
-              <CCol sm={6}>
+              {/* <CCol sm={6}>
 
                 <CSelect
                   value={form.providerId}
@@ -81,7 +81,7 @@ const AllTutoring = () => {
                     <option>پشتیبانی وجود ندارد</option>
                   )}
                 </CSelect>
-              </CCol>
+              </CCol> */}
               <CCol>
                 <CButton
                   style={styles}

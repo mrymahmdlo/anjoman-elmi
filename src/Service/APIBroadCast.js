@@ -2,7 +2,7 @@ import { TokenManager } from "src/Identity/Service/TokenManager";
 const { GetToken } = TokenManager();
 const secret = "AMP_!YUHDSJHYG@&12312!W@sAs";
 
-export const BaseUrl = process.env.REACT_APP_Broad_BASE;
+export const BaseUrl = window.config.Broad_BASE;
 const GetDataBroad = (url) => {
   return fetch(BaseUrl + url, {
     method: "GET",
