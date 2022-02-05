@@ -37,13 +37,13 @@ export const FormItemsWebinar = (form, setForm, groupIds, courseIds) => {
       size: 4,
     },
     {
-      name: "زمان  همایش",
+      name: "  مدت زمان  همایش (دقیقه)",
       text: "مدت زمان این همایش را تعیین کنید",
       input: FormNumberInput(
         form,
         setForm,
         "duration",
-        "زمان همایش",
+        "مدت زمان همایش ",
         0,
         null,
         () => form.duration >= "0"
