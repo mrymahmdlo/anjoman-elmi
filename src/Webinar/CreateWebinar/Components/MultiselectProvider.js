@@ -5,13 +5,7 @@ const { CCol, CFormGroup, CLabel, CFormText } = require("@coreui/react");
 
 const MultiselectProvider = ({ form, setForm }) => {
   const [providers, setProviders] = useState([]);
-  const [selected, setSelected] = useState([]);
-  console.log('for',form)
-  // const [providerIds, setProviderIds] = useState([]);
-
-  // GetDataBroad("Webinar/GetAll").then((res) => {
-  //   setProviderIds(res.data.productProvider);
-  // });
+  const [selected, setSelected] = useState(null);
 
   useEffect(() => {
     PostData("Provider/Consultation", {}).then((res) => {
@@ -24,10 +18,13 @@ const MultiselectProvider = ({ form, setForm }) => {
     label: item.name + " " + item.lastName,
   }));
 
-  const defaultValue = form.providerIds.map((item) => ({
-    value: item.userId,
-    label: item.name + " " + item.lastName,
-  }));
+  const defaultValue =
+    form.providerIds ?
+      form.providerIds.map((item) => ({
+        value: item.userId,
+        label: item.name + " " + item.lastName,
+      }))
+      : null;
 
   return (
     <>
@@ -40,16 +37,10 @@ const MultiselectProvider = ({ form, setForm }) => {
             className="basic-multi-select"
             classNamePrefix="select"
             options={options}
-            value={
-              selected.length === 0 
-                ? defaultValue.map((i) => i)
-                : selected
-            }
+            value={selected===null ? defaultValue : selected}
             onChange={(e) => {
               setSelected(e);
-              var arry = e.map(function (item) {
-                return item.value;
-              });
+              let arry = e ? e.map((item) => item.value) : null;
               setForm({
                 ...form,
                 providerIds: arry,

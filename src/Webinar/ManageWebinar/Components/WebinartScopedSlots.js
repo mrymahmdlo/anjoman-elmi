@@ -80,22 +80,22 @@ export const WebinartScopedSlots = (setModalContent, setModal) => {
       </>
     ),
 
-    // edit: (item) => (
-    //   <>
-    //     <td className="py-2 pl-2" key={item.webinarId}>
-    //       <CButton
-    //         className="mr-1"
-    //         color="primary"
-    //         onClick={() => {
-    //           setModalContent(<EditWebinar obj={item} setModal={setModal} />);
-    //           setModal(true);
-    //         }}
-    //       >
-    //         <CIcon name="cil-pencil" />
-    //       </CButton>
-    //     </td>
-    //   </>
-    // ),
+    edit: (item) => (
+      <>
+        <td className="py-2 pl-2" key={item.webinarId}>
+          <CButton
+            className="mr-1"
+            color="primary"
+            onClick={() => {
+              setModalContent(<EditWebinar obj={item} setModal={setModal} />);
+              setModal(true);
+            }}
+          >
+            <CIcon name="cil-pencil" />
+          </CButton>
+        </td>
+      </>
+    ),
     link: (item) => (
       <>
         <td className="py-2 pl-2" key={item.webinarId}>
