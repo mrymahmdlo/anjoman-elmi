@@ -3,14 +3,13 @@ import {
   CButton,
   CCard, CCardBody,
   CCardHeader, CCol,
-  CDataTable, CFormGroup, CRow, CSelect,
+  CDataTable, CFormGroup, CRow, 
 } from "@coreui/react";
 import { TableHeadersAllTutoring } from "./TableHeaders";
 import { ChangeValuesAllTutoring } from "./ChangeValue";
 import { PostDataBroad } from "src/Service/APIBroadCast";
 import {AllTutoringScopedSlots} from './TutoringScopedSlots';
 import { TutoringModalAllTutoring } from "./TutoringModal";
-import {PostData} from "../../Service/APIEngine";
 import DownloadExcel from "./ExcelReport/DownloadExcel";
 
 const AllTutoring = () => {
@@ -23,7 +22,7 @@ const AllTutoring = () => {
     column: "quizId",
   });
   const [form, setForm] = useState({});
-  const [providers, setProviders] = useState([]);
+ 
 
   const updateData = () => {
     form.providerId ?
@@ -43,11 +42,7 @@ const AllTutoring = () => {
     updateData();
   }, [modal, form.providerId]);
 
-  // useEffect(() => {
-  //   PostData("Provider/Tutoring", {}).then((res) => {
-  //     setProviders(res.data);
-  //   });
-  // }, []);
+
 
   const [bgColor, setBgColor]=useState('#027a40');
   const styles={
@@ -62,26 +57,7 @@ const AllTutoring = () => {
         <CCardBody>
           <CFormGroup>
             <CRow>
-              {/* <CCol sm={6}>
-
-                <CSelect
-                  value={form.providerId}
-                  onChange={(e) =>
-                    setForm({ ...form, providerId: e.target.value })
-                  }
-                >
-                  <option value={0}>پشتیبان را انتخاب کنید</option>
-                  {providers.length > 0 ? (
-                    providers?.map((item) => (
-                      <option value={item.providerId} key={item.providerId}>
-                        {item.name + " " + item.lastName}{" "}
-                      </option>
-                    ))
-                  ) : (
-                    <option>پشتیبانی وجود ندارد</option>
-                  )}
-                </CSelect>
-              </CCol> */}
+             
               <CCol>
                 <CButton
                   style={styles}
