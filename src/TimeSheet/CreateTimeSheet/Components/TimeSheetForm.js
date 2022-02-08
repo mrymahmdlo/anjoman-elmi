@@ -1,22 +1,24 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CCardBody,
   CForm,
   CRow,
   CSelect,
+  CFormText,
   CFormGroup,
   CLabel,
   CCol,
 } from "@coreui/react";
 import { GetDataProvider } from "src/Service/APIProvider";
-import { FormItemsCreateTimeSheet } from "./FormItems";
+import { FormItems } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
 import { PostData } from "src/Service/APIEngine";
 
-const CreateTimeSheetForm = ({ form, setForm }) => {
+const TimeSheetForm = ({ form, setForm }) => {
   const [timeSheetId, setTimeSheetId] = useState();
   const [weekDay, setWeekDay] = useState([]);
   const [providers, setProviders] = useState([]);
+  const [providerId, setProviderId] = useState(-1);
 
   useEffect(() => {
     if (form.timeSheetId) setTimeSheetId(form.timeSheetId);
@@ -30,22 +32,14 @@ const CreateTimeSheetForm = ({ form, setForm }) => {
     GetDataProvider('TimeSheet/DaysOfWeek').then(res=>setWeekDay(res));
   }, []);
 
-  const items = FormItemsCreateTimeSheet(form, setForm).map((item) =>
+  const items = FormItems(form, setForm).map((item) =>
     TextField(item)
   );
   useEffect(() => {
     PostData("Provider/Tutoring", {}).then((res) => {
-      setProviders(res.data);
-      console.log("kjl", res.data);
+      setProviders(res.data)
     });
   }, []);
-  console.log(providers);
-
-  const providersArray = providers.map((item) => ({
-    value: +item.providerId,
-    label: `${item.name} ${item.lastName}`,
-  }));
-  console.log(providersArray);
 
   return (
     <CCardBody>
@@ -56,21 +50,9 @@ const CreateTimeSheetForm = ({ form, setForm }) => {
             <CFormGroup>
               <label htmlFor="nf-title"> ارائه دهنده : </label>
 
-              <Fragment>
-                <Select
-                  options={providersArray}
-                  // defaultValue={providersArray[0]}
-                  // styles={customStyles}
-                  // name='provider'
-                  onChange={(e) => {
-                    setForm({ ...form, providerId: e.value });
-                  }}
-                />
-              </Fragment>
-{/* 
               <CSelect
                 value={form.providerId}
-                defaultValue={-1}
+                defaultValue={providerId}
                 onChange={(e) => {
                   setForm({ ...form, providerId: e.target.value });
                 }}
@@ -85,7 +67,7 @@ const CreateTimeSheetForm = ({ form, setForm }) => {
                 ) : (
                   <option>پشتیبانی وجود ندارد</option>
                 )}
-              </CSelect> */}
+              </CSelect>
             </CFormGroup>
           </CCol>
 
@@ -116,4 +98,4 @@ const CreateTimeSheetForm = ({ form, setForm }) => {
   );
 };
 
-export default CreateTimeSheetForm;
+export default TimeSheetForm;
