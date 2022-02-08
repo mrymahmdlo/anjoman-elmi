@@ -137,12 +137,11 @@ export const FormItemsWebinar = (form, setForm, groupIds, courseIds) => {
           name="startDateTime"
           value={
             form.schedules[0]?.startDateTime
-              ? timePattern(form.schedules[0]?.startDateTime)
-              : form.schedules[0]?.startDateTime
           }
           onChange={(e) => {
             let sch = form.schedules;
-            sch[0].startDateTime = HejriToDotNetGeorgian(e);
+            console.log(e)
+            sch[0].startDateTime =e;
             setForm({ ...form, schedules: sch });
           }}
         />
@@ -158,12 +157,10 @@ export const FormItemsWebinar = (form, setForm, groupIds, courseIds) => {
           name="endDateTime"
           value={
             form.schedules[0]?.endDateTime
-              ? timePattern(form.schedules[0]?.endDateTime)
-              : form.schedules[0]?.endDateTime
           }
           onChange={(e) => {
             let sch = form.schedules;
-            sch[0].endDateTime = HejriToDotNetGeorgian(e);
+            sch[0].endDateTime = e;
             setForm({ ...form, schedules: sch });
           }}
         />

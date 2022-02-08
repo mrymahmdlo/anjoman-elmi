@@ -12,6 +12,7 @@ import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import CreateWebinarForm from "./Components/WebinarForm";
 import { useHistory } from "react-router";
+import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 
 const CreateWebinar = () => {
   const [form, setForm] = useState({
@@ -28,9 +29,11 @@ const CreateWebinar = () => {
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
   const history = useHistory();
+ 
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
+ 
     PostDataBroad("Webinar/Create", {
       ...form,
       title: form.title,
@@ -40,10 +43,17 @@ const CreateWebinar = () => {
       courseId: +form.courseId,
       countOfSession: +form.countOfSession,
       priceAfterHolding: +form.priceAfterHolding,
+      schedules: [
+        {
+          startDateTime: HejriToDotNetGeorgian(form.schedules[0].startDateTime),
+          endDateTime: HejriToDotNetGeorgian(form.schedules[0].endDateTime),
+          subject: "",
+        },
+      ],
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
-         history.push("/Webinar/ManageWebinars");
+        history.push("/Webinar/ManageWebinars");
         setShowError(true);
         setBtnActive(false);
       })

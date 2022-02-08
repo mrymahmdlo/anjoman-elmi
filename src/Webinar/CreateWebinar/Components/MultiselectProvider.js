@@ -8,10 +8,12 @@ const MultiselectProvider = ({ form, setForm }) => {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    PostData("Provider/Consultation", {}).then((res) => {
+    PostData("Provider/Webinar", {
+      GroupIds: form?.groupId ? [form.groupId] : [1],
+    }).then((res) => {
       setProviders(res.data);
     });
-  }, []);
+  }, [form.groupId]);
 
   const options = providers.map((item) => ({
     value: item.providerId,
