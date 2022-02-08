@@ -1,5 +1,4 @@
-import JDate from "jalali-date";
-import { DateFormatter } from "src/Utility/DateFormatter";
+import { GeorgianToHejri } from "src/Utility/DateTime";
 
 export const ChangeValueUpload = (arr) => {
   arr.forEach((obj) =>
@@ -13,9 +12,7 @@ export const ChangeValueUpload = (arr) => {
                  : "لینک صفحه شخصی";
            }
       if (key === "dateSubmitted") {
-        let date = new Date(obj[key]);
-        let jdate = new JDate(date);
-        obj[key] = DateFormatter(jdate, date);
+        obj[key] = obj[key] ? GeorgianToHejri(obj[key]) : "ندارد";
       }
 
     })

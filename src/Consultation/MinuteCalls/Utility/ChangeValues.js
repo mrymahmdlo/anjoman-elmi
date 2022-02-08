@@ -1,5 +1,4 @@
-import JDate from "jalali-date";
-import { DateFormatter } from "src/Utility/DateFormatter";
+import { GeorgianToHejri } from "src/Utility/DateTime";
 
 export const ChangeValuesMinuteCalls = (arr) => {
   arr.forEach((obj) =>
@@ -12,9 +11,7 @@ export const ChangeValuesMinuteCalls = (arr) => {
         obj[key] !== null &&
         obj[key] !== "تماس آنلاین"
       ) {
-        let date = new Date(obj[key]);
-        let jdate = new JDate(date);
-        obj[key] = DateFormatter(jdate, date);
+        obj[key] = obj[key] ? GeorgianToHejri(obj[key]) : "ندارد";
       }
       if (obj[key] === null) {
         obj[key] = "ثبت نشده";

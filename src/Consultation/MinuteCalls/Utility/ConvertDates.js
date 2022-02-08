@@ -1,13 +1,10 @@
-import JDate from "jalali-date";
-import { DateFormatter } from "../../../Utility/DateFormatter";
+import { GeorgianToHejri } from "src/Utility/DateTime";
 export const ConvertDates = (arr) => {
   arr.forEach((obj) =>
     Object.keys(obj).forEach(function (key) {
       if (key === "doneDateTime" && obj[key] === null) return;
       if (key === "startDateTime" || key === "doneDateTime") {
-        let date = new Date(obj[key]);
-        let jdate = new JDate(date);
-        obj[key] = DateFormatter(jdate, date);
+        obj[key] = obj[key] ? GeorgianToHejri(obj[key]) : "ندارد";
       }
     })
   );
