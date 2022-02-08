@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { CCardBody, CCol, CForm, CRow ,CLabel} from "@coreui/react";
 import { GetData } from "src/Service/APIEngine";
-import { FormItems } from "./FormItems";
+import { FormItemsArticles } from "./FormItems";
 import { SwitchField, TextField } from "src/Utility/InputGroup";
 import { CKEditorField } from "src/reusable/CKEditorInput";
 import { CoreFileInput } from "src/Utility/CoreFileInput";
-import { SelectProvider } from "./SelectProvider";
+import { SelectProviderCreateArticle } from "./SelectProvider";
 
 const ArticleForm = ({ form, setForm, preData }) => {
   const [imageHash, setImageHash] = useState("");
@@ -20,7 +20,6 @@ const ArticleForm = ({ form, setForm, preData }) => {
   useEffect(() => {
 
     setForm({ ...form, writerProviderId: providerId });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [providerId]);
 
   useEffect(() => {
@@ -37,12 +36,11 @@ const ArticleForm = ({ form, setForm, preData }) => {
     }
   }, [form.groupId]);
 
-  const items = FormItems(form, setForm, groupIds, courseIds).map((item) =>
+  const items = FormItemsArticles(form, setForm, groupIds, courseIds).map((item) =>
     TextField(item)
   );
   useEffect(() => {
     if (imageHash !== form.Image) setForm({ ...form, Image: imageHash });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageHash, form]);
   return (
     <CCardBody>
@@ -50,14 +48,14 @@ const ArticleForm = ({ form, setForm, preData }) => {
           <CLabel className="m-2">
             در این قسمت میتوانید محتوای متنی خود را آپلود کنید. ابتدا عنوان متن و دقیقه تخمینی مطالعه آن را وارد کنید.سپس اگر محتوا از
             سمت مدیریت نوشته شده است، از قسمت ارائه دهنده "مدیریت" را انتخاب کنید در غیر این صورت نام پشتیبان های موجود در سایت در لیست داده شده است، اسم
-            پشتیبان مد نظر را پیدا و انتخاب کنید.  
+            پشتیبان مد نظر را پیدا و انتخاب کنید.
             اگر برای گروه آزمایشی و درس خاصی است، میتوانید از قسمت " مقطع تحصیلی " و "درس" فیلتر مد نظر خود را انتخاب کنید.
           </CLabel>
         <CRow>{items.slice(0, 2)}</CRow>
         <CRow>
           {items.slice(2, 4)}{" "}
           <CCol sm={4}>
-            <SelectProvider
+            <SelectProviderCreateArticle
               providerId={providerId}
               setProviderId={setProviderId}
             />
@@ -67,7 +65,7 @@ const ArticleForm = ({ form, setForm, preData }) => {
              سپس عکس محتوا را در قسمت " آپلود عکس محتوا" آپلود کنید .            درصورتی که محتوای ارائه شده ،محتوای اطلاع رسانی و مهمی میباشد. از کلید محتوای مهم، آن را فعال کنید(اگر دکمه آبی شد،فعال شده است)
           </CLabel>
         <CRow>
-          {SwitchField(FormItems(form, setForm, groupIds, courseIds)[4])}
+          {SwitchField(FormItemsArticles(form, setForm, groupIds, courseIds)[4])}
           <CoreFileInput
             preData={preData}
             title="آپلود عکس محتوا"

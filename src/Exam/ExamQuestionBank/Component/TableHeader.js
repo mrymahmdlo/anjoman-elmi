@@ -1,4 +1,4 @@
-export const TableHeader = [
+export const TableHeaderExam = [
   {
     key: "questionText",
     label: "متن سوال",

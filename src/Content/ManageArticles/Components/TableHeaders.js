@@ -1,4 +1,4 @@
-export const TableHeaders = [
+export const TableHeadersArticles = [
   {
     key: "title",
     label: "عنوان مقاله",

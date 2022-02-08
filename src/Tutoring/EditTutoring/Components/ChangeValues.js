@@ -1,4 +1,4 @@
-export const ChangeValues = (obj) => {
+export const ChangeValuesEditTutoring = (obj) => {
 
   let newobj = {
     title: obj.title,

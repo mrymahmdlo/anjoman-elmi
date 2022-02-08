@@ -4,8 +4,8 @@ import {
 } from "src/reusable/FormInput";
 import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
-const { CSelect } = require("@coreui/react");
 
+const { CSelect } = require("@coreui/react");
 const options1 = {weekday: 'long'};
 const options2 = {hour: 'numeric', minute: 'numeric'};
 const timePattern=(time)=> {
@@ -14,7 +14,7 @@ const timePattern=(time)=> {
   )
 };
 
-export const FormItems = (form, setForm, groupIds, courseIds) => {
+export const FormItemsWebinar = (form, setForm, groupIds, courseIds) => {
   return [
     {
       name: "عنوان  همایش",
@@ -37,13 +37,13 @@ export const FormItems = (form, setForm, groupIds, courseIds) => {
       size: 4,
     },
     {
-      name: "زمان  همایش",
+      name: "  مدت زمان  همایش (دقیقه)",
       text: "مدت زمان این همایش را تعیین کنید",
       input: FormNumberInput(
         form,
         setForm,
         "duration",
-        "زمان همایش",
+        "مدت زمان همایش ",
         0,
         null,
         () => form.duration >= "0"

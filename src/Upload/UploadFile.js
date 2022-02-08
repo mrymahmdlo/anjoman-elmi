@@ -1,12 +1,10 @@
-import CIcon from "@coreui/icons-react";
-import { useState } from "react";
+import {useState} from "react";
 import {
   UploadFileStatusMark,
   status,
 } from "src/reusable/UploadFileStatusMark";
 import {
   UploadFileRequest,
-  GetFileDownload,
   GetFileDownloadLink,
 } from "src/Service/APIEngine";
 
@@ -15,36 +13,54 @@ const {
   CFormGroup,
   CInput,
   CButton,
-  CTooltip,
 } = require("@coreui/react");
 
 export const UploadFile = () => {
   const [link, setLink] = useState("");
-  const [fileName, setFileName] = useState();
-  const [data, setData] = useState();
   const [statusFile, setStatusFile] = useState(2);
-  const [copyText, setCopyText] = useState("کپی");
   const UploadFile = async (e) => {
     setStatusFile(status.LOADING);
-     setFileName(e.target.files[0]);
     UploadFileRequest(e.target.files[0])
       .then((res) => {
-         setLink(GetFileDownloadLink(res.data));
-
-
+        setLink(GetFileDownloadLink(res.data));
         setStatusFile(status.UPLOADED);
       })
       .catch(() => setStatusFile(status.FAILED));
   };
 
   const copyToClipboard = () => {
+    if (typeof (navigator.clipboard) == 'undefined') {
+      console.log('navigator.clipboard is undefined');
+      let textArea = document.createElement("textarea");
+      textArea.value = link;
+      textArea.style.position = "fixed";  //avoid scrolling to bottom
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
 
-    navigator.permissions.query({name: "clipboard-write"}).then(result => {
-      if (result.state === "granted" || result.state === "prompt") {
-        updateClipboard(link);
+      try {
+        let successful = document.execCommand('copy');
+        let msg = successful ? 'successful' : 'unsuccessful';
+        console.log(msg);
+      } catch (err) {
+        console.log('Was not possible to copy te text: ', err);
       }
-      else console.log('failed');
-    });
+
+      document.body.removeChild(textArea)
+      return;
+    }
+    navigator.clipboard.writeText(link).then(
+      function () {
+        console.log(`successful!`);
+      }, function (err) {
+        console.log('unsuccessful!', err);
+      });
+    // navigator.permissions.query({name: "clipboard-write"}).then(result => {
+    //   if (result.state === "granted" || result.state === "prompt") {
+    //     updateClipboard(link);
+    //   }
+    //   else console.log('failed');
+    // });
   };
 
   const updateClipboard = (newClip) => {
@@ -56,9 +72,8 @@ export const UploadFile = () => {
       })
   };
 
-
   return (
-    <CForm inline style={{ flexFlow: "row" }}>
+    <CForm inline style={{flexFlow: "row"}}>
       <CFormGroup className="w-50 m-2">
         {UploadFileStatusMark(statusFile)}
         <CInput
@@ -71,11 +86,11 @@ export const UploadFile = () => {
         />
       </CFormGroup>
       <CFormGroup className="text-left w-50">
-        <CInput className="w-75" type="text" id="textLinkDownload" value={link} disabled />
+        <CInput className="w-75" type="text" id="textLinkDownload" value={link} disabled/>
         {statusFile === status.UPLOADED ? (
           <CButton className="m-1" onClick={copyToClipboard} color="primary" data-clipboard-target="#textLinkDownload">
             کپی کردن لینک
-        </CButton>
+          </CButton>
         ) : null}
       </CFormGroup>
     </CForm>

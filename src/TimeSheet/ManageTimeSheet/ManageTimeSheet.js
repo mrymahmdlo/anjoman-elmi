@@ -9,15 +9,15 @@ import {
   CCol,
 } from "@coreui/react";
 import {PostDataProvider} from "src/Service/APIProvider";
-import {ChangeValues} from "./Components/ChangeValue";
+import {ChangeValuesTimeSheet} from "./Components/ChangeValue";
 import {TimeSheetModal} from "./Components/TimeSheetModal";
 import {TimeSheetScopedSlots} from "./Components/TimeSheetScopedSlots";
-import {TableHeaders} from "./Components/TableHeaders";
+import {TableHeadersTimeSheet} from "./Components/TableHeaders";
 import {PostData} from "src/Service/APIEngine";
 
 const ManageTimeSheet = () => {
   const [tableData, setTableData] = useState([]);
-  const tableFields = TableHeaders;
+  const tableFields = TableHeadersTimeSheet;
   const [modal, setModal] = useState(false);
   const [modalTimeSheet, setModalTimeSheet] = useState("");
   const [form, setForm] = useState({});
@@ -27,7 +27,7 @@ const ManageTimeSheet = () => {
     PostDataProvider("TimeSheet/GetTimeSheets", {
       providerId: Number(form.providerId)
     }).then((res) => {
-      setTableData(ChangeValues(res.data));
+      setTableData(ChangeValuesTimeSheet(res.data));
     });
   };
 

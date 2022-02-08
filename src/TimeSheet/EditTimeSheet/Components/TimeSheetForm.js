@@ -10,10 +10,10 @@ import {
   CCol,
 } from "@coreui/react";
 import { GetDataProvider } from "src/Service/APIProvider";
-import { FormItems } from "./FormItems";
+import { FormItemsEditTimeSheet } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
 
-const TimeSheetForm = ({ form, setForm }) => {
+const EditTimeSheetForm = ({ form, setForm }) => {
   const [timeSheetId, setTimeSheetId] = useState();
   const [weekDay, setWeekDay] = useState([]);
 
@@ -29,7 +29,7 @@ const TimeSheetForm = ({ form, setForm }) => {
     GetDataProvider('TimeSheet/DaysOfWeek').then(res=>setWeekDay(res));
   }, []);
 
-  const items = FormItems(form, setForm).map((item) =>
+  const items = FormItemsEditTimeSheet(form, setForm).map((item) =>
     TextField(item)
   );
 
@@ -37,7 +37,7 @@ const TimeSheetForm = ({ form, setForm }) => {
     <CCardBody>
       <CForm action="" method="post">
         <CRow>{items.slice(0, 2)}</CRow>
-        
+
 
         <CRow>
           <CCol sm={6}>
@@ -70,4 +70,4 @@ const TimeSheetForm = ({ form, setForm }) => {
   );
 };
 
-export default TimeSheetForm;
+export default EditTimeSheetForm;

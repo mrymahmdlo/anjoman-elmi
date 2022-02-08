@@ -1,7 +1,7 @@
 import JDate from "jalali-date";
 import { DateFormatter } from "src/Utility/DateFormatter";
 
-export const ChangeValues = (arr) => {
+export const ChangeValuesMinuteCalls = (arr) => {
   arr.forEach((obj) =>
     Object.keys(obj).forEach(function (key) {
       if (key === "reserveDateTime" && obj[key] === null) {

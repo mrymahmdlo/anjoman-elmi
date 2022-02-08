@@ -10,13 +10,13 @@ import {
 import CIcon from "@coreui/icons-react";
 import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
-import TutoringForm from "./Components/TutoringForm";
+import EditAllTutoringForm from "./Components/TutoringForm";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 import { PostData } from "../../../Service/APIEngine";
-import { ChangeValues } from "./Components/ChangeValues";
+import { ChangeValuesEditAllTutoring } from "./Components/ChangeValues";
 import { GetDataBroad } from "../../../Service/APIBroadCast";
 
-const EditTutoring = ({ obj, setModal, tutoringId }) => {
+const EditAllTutoring = ({ obj, setModal, tutoringId }) => {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
@@ -39,7 +39,7 @@ const EditTutoring = ({ obj, setModal, tutoringId }) => {
   useEffect(() => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
-    if (obj) setForm(ChangeValues(obj));
+    if (obj) setForm(ChangeValuesEditAllTutoring(obj));
   }, [obj]);
 
   const submitContent = () => {
@@ -73,7 +73,7 @@ const EditTutoring = ({ obj, setModal, tutoringId }) => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>ویرایش جلسه</CCardHeader>
-          <TutoringForm form={form} setForm={setForm} providers={providers} tutorials={tutorials} />
+          <EditAllTutoringForm form={form} setForm={setForm} providers={providers} tutorials={tutorials} />
           <CCardFooter>
             {!btnActice ? (
               <CButton
@@ -99,4 +99,4 @@ const EditTutoring = ({ obj, setModal, tutoringId }) => {
   );
 };
 
-export default EditTutoring;
+export default EditAllTutoring;

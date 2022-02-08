@@ -3,7 +3,7 @@ import {CSelect} from "@coreui/react";
 import React from "react";
 import {DateTimePickerToGeorgian} from "../../../reusable/DateTimePickerToGeorgian";
 
-export const FormItems = (form, setForm, tutorials, providers) => {
+export const FormItemsManuallyCreateTutoring = (form, setForm, tutorials, providers) => {
   return [
     {
       name: "",

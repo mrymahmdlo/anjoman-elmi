@@ -1,7 +1,7 @@
 import { TokenManager } from "src/Identity/Service/TokenManager";
 const { GetToken } = TokenManager();
 
-export const BaseUrl = process.env.REACT_APP_EXAM_BASE;
+export const BaseUrl = window.config.EXAM_BASE;
 
 const sendRequest = async (url, body) => {
   const init = {

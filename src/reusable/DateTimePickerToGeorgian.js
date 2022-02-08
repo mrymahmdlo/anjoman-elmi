@@ -11,7 +11,6 @@ export const DateTimePickerToGeorgian = ({ value = "", onChange }) => {
     onChange(e.target.value);
     setValid(valid);
   };
-
   const picker = useRef();
   return (
     <CInputGroup>
@@ -22,8 +21,8 @@ export const DateTimePickerToGeorgian = ({ value = "", onChange }) => {
         <CIcon name="cil-calendar" />
       </CButton>
       <CInput
-        valid={isValid && value}
-        invalid={!isValid || !value}
+        valid={isValid && value !== null}
+        invalid={!isValid || value === null}
         value={value}
         dir="ltr"
         onChange={handleChange}

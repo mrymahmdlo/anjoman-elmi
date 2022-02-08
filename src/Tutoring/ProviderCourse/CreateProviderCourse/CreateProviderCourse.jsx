@@ -8,23 +8,19 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-// import { CheckForm } from "./Components/CheckForm";
-import { PostData } from "src/Service/APIEngine";
 import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
-import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
 import ProviderCourseForm from "./ProviderCourseForm";
 import { useHistory } from "react-router";
 
 const CreateProviderCourse = () => {
-  const now = new Date();
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
   const history = useHistory();
-   
-   console.log(form)
+
+  console.log(form)
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);

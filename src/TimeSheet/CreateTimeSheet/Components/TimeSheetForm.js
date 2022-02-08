@@ -4,21 +4,19 @@ import {
   CForm,
   CRow,
   CSelect,
-  CFormText,
   CFormGroup,
   CLabel,
   CCol,
 } from "@coreui/react";
 import { GetDataProvider } from "src/Service/APIProvider";
-import { FormItems } from "./FormItems";
+import { FormItemsCreateTimeSheet } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
 import { PostData } from "src/Service/APIEngine";
 
-const TimeSheetForm = ({ form, setForm }) => {
+const CreateTimeSheetForm = ({ form, setForm }) => {
   const [timeSheetId, setTimeSheetId] = useState();
   const [weekDay, setWeekDay] = useState([]);
   const [providers, setProviders] = useState([]);
-  const [providerId, setProviderId] = useState(-1);
 
   useEffect(() => {
     if (form.timeSheetId) setTimeSheetId(form.timeSheetId);
@@ -32,7 +30,7 @@ const TimeSheetForm = ({ form, setForm }) => {
     GetDataProvider('TimeSheet/DaysOfWeek').then(res=>setWeekDay(res));
   }, []);
 
-  const items = FormItems(form, setForm).map((item) =>
+  const items = FormItemsCreateTimeSheet(form, setForm).map((item) =>
     TextField(item)
   );
   useEffect(() => {
@@ -72,7 +70,7 @@ const TimeSheetForm = ({ form, setForm }) => {
 {/* 
               <CSelect
                 value={form.providerId}
-                defaultValue={providerId}
+                defaultValue={-1}
                 onChange={(e) => {
                   setForm({ ...form, providerId: e.target.value });
                 }}
@@ -118,4 +116,4 @@ const TimeSheetForm = ({ form, setForm }) => {
   );
 };
 
-export default TimeSheetForm;
+export default CreateTimeSheetForm;

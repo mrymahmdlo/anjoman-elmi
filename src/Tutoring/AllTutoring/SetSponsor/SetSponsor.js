@@ -10,27 +10,27 @@ import {
 import CIcon from "@coreui/icons-react";
 import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
-import TutoringForm from "./Components/SponserForm";
-import { ChangeValues } from "./Components/ChangeValues";
+import TutoringForm from "./Components/SponsorForm";
+import { ChangeValuesSetSponsor } from "./Components/ChangeValues";
 import { GetDataBroad } from "../../../Service/APIBroadCast";
 
-const SetSponser = ({ obj, setModal, tutoringId }) => {
+const SetSponsor = ({ obj, setModal }) => {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
-  const [sponsers, setSponsers] = useState([]);
+  const [sponsors, setSponsors] = useState([]);
 
   useEffect(() => {
     GetDataBroad("Admin/GetSponsers", {}).then((res) => {
-      setSponsers(res.data);
+      setSponsors(res.data);
     });
   }, []);
 
   useEffect(() => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
-    if (obj) setForm(ChangeValues(obj));
+    if (obj) setForm(ChangeValuesSetSponsor(obj));
   }, [obj]);
 
   const submitContent = () => {
@@ -47,7 +47,7 @@ const SetSponser = ({ obj, setModal, tutoringId }) => {
           } else {
             setErrorContent(res.data.data);
           }
-  
+
           setShowError(true);
           setBtnActive(false);
         })
@@ -63,7 +63,7 @@ const SetSponser = ({ obj, setModal, tutoringId }) => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>انتخاب اسپانسر</CCardHeader>
-          <TutoringForm form={form} setForm={setForm} sponsers={sponsers} />
+          <TutoringForm form={form} setForm={setForm} sponsors={sponsors} />
           <CCardFooter>
             {!btnActice ? (
               <CButton
@@ -89,4 +89,4 @@ const SetSponser = ({ obj, setModal, tutoringId }) => {
   );
 };
 
-export default SetSponser;
+export default SetSponsor;

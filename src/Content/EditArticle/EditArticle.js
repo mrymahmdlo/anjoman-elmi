@@ -12,7 +12,7 @@ import { GetData, postFormData } from "src/Service/APIEngine";
 import { Toast } from "src/Utility/Toast";
 import ArticleForm from "src/Content/CreateArticle/Components/ArticleForm";
 import { useHistory, useParams } from "react-router";
-import { ChangeValues } from "./Components/ChangeValues";
+import { ChangeValuesEditArticles } from "./Components/ChangeValues";
 import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
 
 const EditArticle = () => {
@@ -28,7 +28,7 @@ const EditArticle = () => {
     setShowError(true);
     GetData("FreeContent/GetFreeContent?contentId=" + id)
       .then((res) => {
-        setForm(ChangeValues(res.data));
+        setForm(ChangeValuesEditArticles(res.data));
       })
       .finally(() => {
         setShowError(false);
@@ -39,7 +39,7 @@ const EditArticle = () => {
     setShowError(false);
     setBtnActive(true);
     const now = new Date();
-    
+
     if (!form.writerProviderId) delete form["writerProviderId"];
     if (!form.image) {
       delete form["image"];

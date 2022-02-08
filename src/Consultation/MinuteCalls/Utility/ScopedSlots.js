@@ -3,9 +3,9 @@ import { useState } from "react";
 import { PostData } from "src/Service/APIEngine";
 import { Toast } from "src/Utility/Toast";
 import { Activity } from "../ModalContent/Activity";
-import { EditForm } from "../ModalContent/EditForm";
+import { MinuteCallsEditForm } from "../ModalContent/EditForm";
 
-export const ScopedSlots = (setModal, modal, setModalContent, updateData) => {
+export const MinuteCallsScopedSlots = (setModal, modal, setModalContent, updateData) => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   return {
@@ -28,7 +28,7 @@ export const ScopedSlots = (setModal, modal, setModalContent, updateData) => {
         </td>
       );
     },
-    orderDetail: (item, index) => {
+    orderDetail: (item) => {
       return (
         <>
           <td className="py-2 pl-2" key={item.orderId}>
@@ -46,7 +46,7 @@ export const ScopedSlots = (setModal, modal, setModalContent, updateData) => {
         </>
       );
     },
-    orderEdit: (item, index) => {
+    orderEdit: (item) => {
       return (
         <>
           <td className="py-2 pl-2" key={item.orderId}>
@@ -54,7 +54,7 @@ export const ScopedSlots = (setModal, modal, setModalContent, updateData) => {
               onClick={() => {
                 setModal(!modal);
                 setModalContent(
-                  <EditForm
+                  <MinuteCallsEditForm
                     orderDetailId={item.orderDetailId}
                     onSubmit={async() => {
                       setModal(false);
@@ -74,7 +74,7 @@ export const ScopedSlots = (setModal, modal, setModalContent, updateData) => {
         </>
       );
     },
-    smsSender: (item, index) => {
+    smsSender: (item) => {
       return (
         <>
           <td className="py-2 pl-2" key={item.orderId}>
@@ -90,7 +90,7 @@ export const ScopedSlots = (setModal, modal, setModalContent, updateData) => {
                     setErrorContent(res.data);
                     return res;
                   })
-                  .catch((err) => {
+                  .catch(() => {
                     setShowError(true);
                     setErrorContent(
                       "بدون ایجاد ویرایش، امکان ارسال یادآور ممکن نیست"

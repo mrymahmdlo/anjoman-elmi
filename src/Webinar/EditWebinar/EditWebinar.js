@@ -10,12 +10,10 @@ import {
 import CIcon from "@coreui/icons-react";
 import {  PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
-import WebinarForm from "src/Webinar/CreateWebinar/Components/WebinarForm";
-import { ChangeValues } from "./Components/ChangeValues";
-
+import EditWebinarForm from "./Components/WebinarForm";
+import { ChangeValuesEditWebinar } from "./Components/ChangeValues";
 
 const EditWebinar = ({ obj, setModal }) => {
-  console.log(obj)
   const [form, setForm] = useState({
     schedules: [
       {
@@ -24,6 +22,7 @@ const EditWebinar = ({ obj, setModal }) => {
         subject: "",
       },
     ],
+    providerIds: [],
   });
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
@@ -32,15 +31,15 @@ const EditWebinar = ({ obj, setModal }) => {
   useEffect(() => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
-    setForm(ChangeValues(obj));
+    setForm(ChangeValuesEditWebinar(obj));
   }, [obj]);
-
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
     let data = form;
     if (form.poster !== "") data["poster"] = form.poster;
     delete data["Image"];
+    
     PostDataBroad(`Webinar/Update?webinarId=${obj.webinarId}`, {
       ...form,
       title: form.title,
@@ -50,6 +49,9 @@ const EditWebinar = ({ obj, setModal }) => {
       courseId: +form.courseId,
       countOfSession: +form.countOfSession,
       priceAfterHolding: +form.priceAfterHolding,
+      providerIds: +form.providerIds.map((item) => item.userId)
+        ? form.providerIds.map((item) => item.userId)
+        : form.providerIds,
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
@@ -69,7 +71,7 @@ const EditWebinar = ({ obj, setModal }) => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>ویرایش همایش</CCardHeader>
-          <WebinarForm form={form} setForm={setForm} preData={form.poster} />
+          <EditWebinarForm form={form} setForm={setForm} preData={form.poster} />
           <CCardFooter>
             {!btnActice ? (
               <CButton

@@ -1,4 +1,4 @@
-export const ChangeValues = (obj) => {
+export const ChangeValuesEditWebinar = (obj) => {
   let newobj = {
     capacity: obj.capacity,
     countOfSession: obj.countOfSession,
@@ -7,10 +7,9 @@ export const ChangeValues = (obj) => {
     description: obj.description,
     duration: obj.duration,
     groupId: obj.groupId,
-    // groupName: obj.groupName,
     poster: obj.poster,
-    priceAfterHolding: obj.price>=0?obj.price:'0',
-    providerId: obj.providerId,
+    priceAfterHolding: obj.price >= 0 ? obj.price : "0",
+    providerIds: obj.productProvider,
     schedules: [
       {
         startDateTime: obj.webinarSchedules[0].startDateTime,

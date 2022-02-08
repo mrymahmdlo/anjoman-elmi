@@ -15,7 +15,7 @@ const {
 } = require("@coreui/react");
 
 const QuizInfoFormItems = (form, setForm) => {
-  console.log(form, form);
+  console.log(form);
   return [
     {
       name: "نام آزمون",

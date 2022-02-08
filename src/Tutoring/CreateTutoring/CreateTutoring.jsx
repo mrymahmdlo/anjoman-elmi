@@ -10,8 +10,9 @@ import {
 import CIcon from "@coreui/icons-react";
 import { PostDataBroad } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
-import TuturingForm from "./Components/TuturingForm";
+import CreateTutoringForm from "./Components/TuturingForm";
 import { useHistory } from "react-router";
+
 const CreateWebinar = () => {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
@@ -22,7 +23,6 @@ const CreateWebinar = () => {
     setShowError(false);
     setBtnActive(true);
     PostDataBroad("Tutorial/Create", {
-      //   ...form,
       groupId: +form.groupId,
       courseId: +form.courseId,
       totalMinute: +form.totalMinute,
@@ -51,7 +51,7 @@ const CreateWebinar = () => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>ساخت تدریس خصوصی</CCardHeader>
-          <TuturingForm form={form} setForm={setForm} />
+          <CreateTutoringForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActice ? (
               <CButton

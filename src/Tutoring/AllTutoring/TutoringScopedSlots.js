@@ -1,16 +1,16 @@
 import { CButton, CBadge } from "@coreui/react";
-import EditTutoring from "../AllTutoring/EditTutoring/EditTutoring";
-import SetSponser from "../AllTutoring/SetSponser/SetSponser";
+import EditAllTutoring from "../AllTutoring/EditTutoring/EditTutoring";
+import SetSponsor from "./SetSponsor/SetSponsor";
 import CIcon from "@coreui/icons-react";
 
-export const TutoringScopedSlots = (
+export const AllTutoringScopedSlots = (
   tableData,
   setModal,
   modal,
   setModalTutoring
 ) => {
   return {
-    edit: (tableData, index) => (
+    edit: (tableData) => (
       <>
         <td className="py-2 pl-2" key={tableData.tutoringId}>
           <CButton
@@ -18,7 +18,7 @@ export const TutoringScopedSlots = (
             color="primary"
             onClick={() => {
               setModalTutoring(
-                <EditTutoring obj={tableData} setModal={setModal} tutoringId={tableData.tutoringId} />
+                <EditAllTutoring obj={tableData} setModal={setModal} tutoringId={tableData.tutoringId} />
               );
               setModal(true);
             }}
@@ -29,7 +29,7 @@ export const TutoringScopedSlots = (
       </>
     ),
 
-    setSponser: (tableData, index) => (
+    setSponser: (tableData) => (
       <>
         <td className="py-2 pl-2" key={tableData.tutoringId}>
           <CButton
@@ -37,7 +37,7 @@ export const TutoringScopedSlots = (
             color="info"
             onClick={() => {
               setModalTutoring(
-                <SetSponser obj={tableData} setModal={setModal} tutoringId={tableData.tutoringId} />
+                <SetSponsor obj={tableData} setModal={setModal} tutoringId={tableData.tutoringId} />
               );
               setModal(true);
             }}
@@ -53,7 +53,6 @@ export const TutoringScopedSlots = (
         <td className="py-2 pl-2">
           <CBadge
             style={{ direction: "ltr" }}
-            // color={item.status === "آماده ی شرکت" ? "success" : "danger"}
           >
             {item.status}
           </CBadge>

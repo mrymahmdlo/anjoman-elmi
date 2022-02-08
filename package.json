@@ -1,7 +1,7 @@
 {
   "homepage": "/",
   "name": "@coreui/coreui-free-react-admin-template",
-  "version": "3.3.7",
+  "version": "3.3.9",
   "description": "پنل مدیریت سایت برترها",
   "author": {
     "name": "CoreUI",
@@ -44,8 +44,12 @@
     "react-app-polyfill": "^2.0.0",
     "react-dom": "^17.0.2",
     "react-event-timeline": "^1.6.3",
+    "react-multi-select-component": "^4.1.15",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
+    "react-searchable-dropdown": "^2.0.3",
+    "react-select": "^3.1.0",
+    "react-select-search": "^3.0.9",
     "redux": "^4.0.5",
     "sass": "^1.32.8"
   },

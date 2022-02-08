@@ -155,7 +155,7 @@ export const UploadProviderFile = () => {
             )}
           </CFormGroup>
         ) : null}
-        {type == "2" ? (
+        {type === "2" ? (
           <CFormGroup className="text-left w-40 m-2">
             <label className="p-1 mr-1  "> شمارنده : </label>
             <CInput

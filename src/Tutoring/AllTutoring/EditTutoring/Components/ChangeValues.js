@@ -1,4 +1,4 @@
-export const ChangeValues = (obj) => {
+export const ChangeValuesEditAllTutoring = (obj) => {
   let newobj = {
     providerId: +obj.providerId,
     tutorialId: +obj.tutorialId,
