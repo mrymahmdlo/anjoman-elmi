@@ -10,10 +10,10 @@ import {
 } from "@coreui/react";
 import { TableHeadersUpload } from "./TableHeaders";
 import { ChangeValueUpload } from "./ChangeValue";
-import { PostDataProvider } from "src/Service/APIProvider";
+import { APIProviderPost } from "src/Service/APIProvider";
 import { ProviderScopedSlots } from "./ProviderScopedSlots";
 import { ProviderModalUpload } from "./ProviderModal";
-import {PostData} from "src/Service/APIEngine";
+import {APICorePost} from "src/Service/APIBase";
 
 const ManageuploadProvider = () => {
   const [tableData, setTableData] = useState([]);
@@ -27,7 +27,7 @@ const ManageuploadProvider = () => {
   const [providers, setProviders] = useState([]);
 
   const updateData = () => {
-    PostDataProvider("Content/GetAll", {
+    APIProviderPost("Content/GetAll", {
       providerId: (form.providerId)
     })
     .then((res) => {
@@ -40,7 +40,7 @@ const ManageuploadProvider = () => {
   }, [modal, form.providerId]);
 
   useEffect(() => {
-    PostData("Provider/Tutoring", {}).then((res) => {
+    APICorePost("Provider/Tutoring").then((res) => {
       setProviders(res.data);
     });
   }, []);

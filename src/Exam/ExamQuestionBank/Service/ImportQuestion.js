@@ -1,4 +1,4 @@
-const { sendRequest } = require("src/Service/APIExamEngine");
+import { APIExamSendRequest } from "src/Service/APIExam";
 
 const routes = {
   importQuestion: "AdminPanel/ImportQuestion",
@@ -7,9 +7,9 @@ const routes = {
 
 const ImportQuestion = {
   AddQuestion: async (body) =>
-    await sendRequest(routes.importQuestion, body),
+    await APIExamSendRequest(routes.importQuestion, body),
   GetQuestion: async (filters) =>
-    await sendRequest(routes.getQuestion, filters),
+    await APIExamSendRequest(routes.getQuestion, filters),
 };
 
 export default ImportQuestion;

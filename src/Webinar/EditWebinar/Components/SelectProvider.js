@@ -1,12 +1,11 @@
 import { CFormGroup, CSelect } from "@coreui/react";
 import { useEffect, useState } from "react";
-import { PostData } from "src/Service/APIEngine";
+import { APICorePost } from "src/Service/APIBase";
 
 export const SelectProviderWebinar = ({ providerId, setProviderId }) => {
   const [providers, setProviders] = useState([]);
-  console.log(providerId);
   useEffect(() => {
-    PostData("Provider/Consultation", {}).then((res) => {
+    APICorePost("Provider/Consultation").then((res) => {
       setProviders(res.data);
     });
   }, []);
@@ -16,9 +15,7 @@ export const SelectProviderWebinar = ({ providerId, setProviderId }) => {
       <label>ارائه دهنده</label>
       <CSelect
         value={providerId}
-        onChange={(e) =>
-         setProviderId(e.target.value)
-        }
+        onChange={(e) => setProviderId(e.target.value)}
       >
         {providers.length > 0 ? (
           providers.map((item) => (

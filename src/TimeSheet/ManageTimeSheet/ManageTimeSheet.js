@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   CCard,
   CCardBody,
@@ -8,12 +8,12 @@ import {
   CSelect,
   CCol,
 } from "@coreui/react";
-import {PostDataProvider} from "src/Service/APIProvider";
-import {ChangeValuesTimeSheet} from "./Components/ChangeValue";
-import {TimeSheetModal} from "./Components/TimeSheetModal";
-import {TimeSheetScopedSlots} from "./Components/TimeSheetScopedSlots";
-import {TableHeadersTimeSheet} from "./Components/TableHeaders";
-import {PostData} from "src/Service/APIEngine";
+import { APIProviderPost } from "src/Service/APIProvider";
+import { ChangeValuesTimeSheet } from "./Components/ChangeValue";
+import { TimeSheetModal } from "./Components/TimeSheetModal";
+import { TimeSheetScopedSlots } from "./Components/TimeSheetScopedSlots";
+import { TableHeadersTimeSheet } from "./Components/TableHeaders";
+import { APICorePost } from "src/Service/APIBase";
 
 const ManageTimeSheet = () => {
   const [tableData, setTableData] = useState([]);
@@ -24,8 +24,8 @@ const ManageTimeSheet = () => {
   const [providers, setProviders] = useState([]);
 
   const updateData = () => {
-    PostDataProvider("TimeSheet/GetTimeSheets", {
-      providerId: Number(form.providerId)
+    APIProviderPost("TimeSheet/GetTimeSheets", {
+      providerId: Number(form.providerId),
     }).then((res) => {
       setTableData(ChangeValuesTimeSheet(res.data));
     });
@@ -36,7 +36,7 @@ const ManageTimeSheet = () => {
   }, [modal, form.providerId]);
 
   useEffect(() => {
-    PostData("Provider/Tutoring", {}).then((res) => {
+    APICorePost("Provider/Tutoring").then((res) => {
       setProviders(res.data);
     });
   }, []);
@@ -48,7 +48,6 @@ const ManageTimeSheet = () => {
         <CCardBody>
           <CFormGroup>
             <CCol sm={6}>
-
               <CSelect
                 value={form.providerId}
                 onChange={(e) =>

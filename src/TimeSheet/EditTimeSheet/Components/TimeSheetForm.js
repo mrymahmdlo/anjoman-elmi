@@ -9,7 +9,7 @@ import {
   CLabel,
   CCol,
 } from "@coreui/react";
-import { GetDataProvider } from "src/Service/APIProvider";
+import { APIProviderGet } from "src/Service/APIProvider";
 import { FormItemsEditTimeSheet } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
 
@@ -26,7 +26,7 @@ const EditTimeSheetForm = ({ form, setForm }) => {
   }, [timeSheetId]);
 
   useEffect(()=> {
-    GetDataProvider('TimeSheet/DaysOfWeek').then(res=>setWeekDay(res));
+    APIProviderGet('TimeSheet/DaysOfWeek').then(res=>setWeekDay(res));
   }, []);
 
   const items = FormItemsEditTimeSheet(form, setForm).map((item) =>

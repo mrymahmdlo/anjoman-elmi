@@ -8,10 +8,10 @@ import {
   CLabel,
   CCol,
 } from "@coreui/react";
-import { GetDataProvider } from "src/Service/APIProvider";
+import { APIProviderGet } from "src/Service/APIProvider";
 import { FormItemsCreateTimeSheet } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
-import { PostData } from "src/Service/APIEngine";
+import { APICorePost } from "src/Service/APIBase";
 
 const CreateTimeSheetForm = ({ form, setForm }) => {
   const [timeSheetId, setTimeSheetId] = useState();
@@ -27,14 +27,14 @@ const CreateTimeSheetForm = ({ form, setForm }) => {
   }, [timeSheetId]);
 
   useEffect(()=> {
-    GetDataProvider('TimeSheet/DaysOfWeek').then(res=>setWeekDay(res));
+    APIProviderGet('TimeSheet/DaysOfWeek').then(res=>setWeekDay(res));
   }, []);
 
   const items = FormItemsCreateTimeSheet(form, setForm).map((item) =>
     TextField(item)
   );
   useEffect(() => {
-    PostData("Provider/Tutoring", {}).then((res) => {
+    APICorePost("Provider/Tutoring").then((res) => {
       setProviders(res.data)
     });
   }, []);

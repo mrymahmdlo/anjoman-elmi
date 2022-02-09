@@ -9,7 +9,7 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import {CheckForm} from "./Components/CheckForm";
-import { PostData } from "src/Service/APIEngine";
+import { APICorePost } from "src/Service/APIBase";
 import { Toast } from "src/Utility/Toast";
 import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
 import ArticleForm from "./Components/ArticleForm";
@@ -30,7 +30,7 @@ const CreateFreeContent = () => {
     setShowError(false);
     setBtnActive(true);
     if(CheckForm(form)){
-      PostData("FreeContent/CreateFreeContent", form)
+      APICorePost("FreeContent/CreateFreeContent", form)
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
         history.push("/Content/FreeContent/ManageArticles");

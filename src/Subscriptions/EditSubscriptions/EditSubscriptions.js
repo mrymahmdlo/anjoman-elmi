@@ -8,7 +8,7 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { PostDataBroad } from "src/Service/APIBroadCast";
+import { APIBoardcastPost } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import SubscriptionsForm from "./Components/SubscriptionsForm";
 import { ChangeValuesEditSubscriptions } from "./Components/ChangeValues";
@@ -23,7 +23,6 @@ const EditSubscriptions = ({ obj ,setModal}) => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
-console.log(obj)
   useEffect(() => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
@@ -32,9 +31,7 @@ console.log(obj)
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    console.log('m',form.joinDatetime);
-     console.log('g',form.cancelDatetime);
-    PostDataBroad(
+     APIBoardcastPost(
       `webinar/UpdateSubscription?subscriptionId=${obj.subscriptionId}`,
       {
         userId: obj?.userId,
@@ -68,7 +65,6 @@ console.log(obj)
         setBtnActive(false);
       });
   };
-  console.log(obj);
   return (
     <div className="App">
       <CContainer fluid>

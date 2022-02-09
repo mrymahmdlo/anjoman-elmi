@@ -1,14 +1,14 @@
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
 import { useState } from "react";
-import { PostDataProvider } from "src/Service/APIProvider";
+import { APIProviderPost } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
 
 export const ProviderScopedSlots = (updateData, setModal, modal, setModalContent) => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const handleDelete = (contentId) => {
-    PostDataProvider(`Content/Delete/${contentId}`)
+    APIProviderPost(`Content/Delete/${contentId}`)
       .then(() => {
         setErrorContent("داده با موفقیت حذف شد");
         setModal(false);

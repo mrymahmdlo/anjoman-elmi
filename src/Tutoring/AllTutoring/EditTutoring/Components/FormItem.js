@@ -67,7 +67,6 @@ const FormItemsEditAllTutoring = (form, setForm, providers, tutorials) => {
           name="startDateRange"
           value={form.startDateRange}
           onChange={(e) => {
-            console.log(form.startDateRange)
             setForm({ ...form, startDateRange: e });
           }}
         />

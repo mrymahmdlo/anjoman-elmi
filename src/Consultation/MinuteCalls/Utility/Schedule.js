@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetData } from "src/Service/APIEngine";
+import { APICoreGet } from "src/Service/APIBase";
 import { DotNetGeorgianToHejri } from "src/Utility/DateTime";
 
 const { CFormText, CButton, CSpinner } = require("@coreui/react");
@@ -8,7 +8,7 @@ export const Schedule = ({ providerId, setForm, form }) => {
   const [schedule, setSchedule] = useState([]);
   useEffect(() => {
     if (providerId)
-      GetData("Provider/Schedule/Call?providerId=" + providerId).then((res) => {
+    APICoreGet("Provider/Schedule/Call?providerId=" + providerId).then((res) => {
         setSchedule(res.data);
       });
   }, [providerId]);

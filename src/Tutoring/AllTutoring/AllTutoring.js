@@ -15,8 +15,8 @@ import {
 } from "@coreui/react";
 import { TableHeadersAllTutoring } from "./TableHeaders";
 import { ChangeValuesAllTutoring } from "./ChangeValue";
-import { PostDataBroad } from "src/Service/APIBroadCast";
-import { AllTutoringScopedSlots } from "./TutoringScopedSlots";
+import { APIBoardcastPost } from "src/Service/APIBroadCast";
+import {AllTutoringScopedSlots} from './TutoringScopedSlots';
 import { TutoringModalAllTutoring } from "./TutoringModal";
 import DownloadExcel from "./ExcelReport/DownloadExcel";
 
@@ -33,22 +33,22 @@ const AllTutoring = () => {
     const [pageNum, setPageNum] = useState(1);
   const [filterData, setFilterData] = useState({
     asc: false,
-    column: "purchasedDate",
+    column: null,
   });
   const [form, setForm] = useState({});
  const capitalizeFirstLetter = (string) => {
    return string?.charAt(0).toUpperCase() + string?.slice(1);
  };
   const updateData = () => {
-    PostDataBroad("Admin/Tutoring/GetAll", {
+    APIBoardcastPost("Admin/Tutoring/GetAll", {
       filterModel: {
         fromDateTime: startDate,
         toDateTime: endDate,
       },
       dataTableModel: {
-        orderCol: capitalizeFirstLetter(filterData.column),
+        orderCol: filterData.column,
         searchTerm: search,
-        orderAscending: filterData.asc, 
+        orderAscending: filterData.asc,
         page: currentPage,
         length: 15,
       },
@@ -57,7 +57,7 @@ const AllTutoring = () => {
       let data = res.data.rows;
       ChangeValuesAllTutoring(data);
       setTableData(data);
-        setPageNum(Math.ceil(res.data.totalCount / 20));
+      setPageNum(Math.ceil(res.data.totalCount / 20));
     });
   };
 
@@ -129,7 +129,8 @@ const AllTutoring = () => {
                 field.key !== "tutoringId" &&
                 field.key !== "providerId" &&
                 field.key !== "studentId" &&
-                field.key !== "tutorialId"
+                field.key !== "tutorialId" &&
+                field.key !== "sponserId"
             )}
             striped
             columnFilter

@@ -8,7 +8,7 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { PostDataBroad } from "src/Service/APIBroadCast";
+import { APIBoardcastPost } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import CreateWebinarForm from "./Components/WebinarForm";
 import { useHistory } from "react-router";
@@ -33,8 +33,7 @@ const CreateWebinar = () => {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
- 
-    PostDataBroad("Webinar/Create", {
+    APIBoardcastPost("Webinar/Create", {
       ...form,
       title: form.title,
       duration: +form.duration,

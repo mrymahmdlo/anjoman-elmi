@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
-import { PostDataProvider } from "src/Service/APIProvider";
+import { APIProviderPost } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
 import EditTimeSheet from "../../EditTimeSheet/EditTimeSheet";
 
@@ -9,7 +9,7 @@ export const TimeSheetScopedSlots = (updateData, setModal, modal, setModalTimeSh
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const handleDelete = (Id) => {
-    PostDataProvider("TimeSheet/Delete/" + Id)
+    APIProviderPost("TimeSheet/Delete/" + Id)
       .then(() => {
         setErrorContent("داده با موفقیت حذف شد");
         setModal(false);

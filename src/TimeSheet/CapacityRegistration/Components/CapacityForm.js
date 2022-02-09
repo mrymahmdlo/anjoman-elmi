@@ -9,14 +9,14 @@ import {
 } from "@coreui/react";
 import { FormItemsCapacityRegistration } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
-import { PostData } from "src/Service/APIEngine";
+import { APICorePost } from "src/Service/APIBase";
 
 const CapacityForm = ({ form, setForm }) => {
   const [providers, setProviders] = useState([]);
 
   const items = FormItemsCapacityRegistration(form, setForm).map((item) => TextField(item));
   useEffect(() => {
-    PostData("Provider/Tutoring", {}).then((res) => {
+    APICorePost("Provider/Tutoring").then((res) => {
       setProviders(res.data);
     });
   }, []);

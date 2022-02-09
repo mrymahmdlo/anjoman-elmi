@@ -2,7 +2,7 @@ import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { GetData } from "src/Service/APIEngine";
+import { APICoreGet } from "src/Service/APIBase";
 import { Toast } from "src/Utility/Toast";
 
 export const ContentScopedSlots = (
@@ -15,7 +15,7 @@ export const ContentScopedSlots = (
   const [errorContent, setErrorContent] = useState("");
   const history = useHistory();
   const handleDelete = (contentId) => {
-    GetData("FreeContent/DeleteFreeContent?contentId=" + contentId)
+    APICoreGet("FreeContent/DeleteFreeContent?contentId=" + contentId)
       .then(() => {
         setErrorContent("داده با موفقیت حذف شد");
         setModal(false);
