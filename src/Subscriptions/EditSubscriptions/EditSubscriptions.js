@@ -23,7 +23,6 @@ const EditSubscriptions = ({ obj ,setModal}) => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
-console.log(obj)
   useEffect(() => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
@@ -32,8 +31,6 @@ console.log(obj)
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    console.log('m',form.joinDatetime);
-     console.log('g',form.cancelDatetime);
      APIBoardcastPost(
       `webinar/UpdateSubscription?subscriptionId=${obj.subscriptionId}`,
       {
@@ -68,7 +65,6 @@ console.log(obj)
         setBtnActive(false);
       });
   };
-  console.log(obj);
   return (
     <div className="App">
       <CContainer fluid>

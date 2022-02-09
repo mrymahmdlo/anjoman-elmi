@@ -8,7 +8,7 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import {PostDataProvider} from "src/Service/APIProvider";
+import {APIProviderPost} from "src/Service/APIProvider";
 import {Toast} from "src/Utility/Toast";
 import EditTimeSheetForm from './Components/TimeSheetForm';
 import {useHistory} from "react-router";
@@ -24,7 +24,6 @@ const EditTimeSheet = ({obj, setModal}) => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
     setForm(obj);
-    console.log(obj);
   }, [obj]);
   const ChangeValues = (day) => {
 
@@ -48,9 +47,7 @@ const EditTimeSheet = ({obj, setModal}) => {
   const submitTimeSheet = () => {
     setShowError(false);
     setBtnActive(true);
-    console.log(ChangeValues(obj.weekDay));
-    console.log(form.weekDay);
-    PostDataProvider("TimeSheet/EditTimeSheet", {
+    APIProviderPost("TimeSheet/EditTimeSheet", {
       timeSheetId: obj.timeSheetId,
       providerId: obj.providerId,
       productId: obj.productId,

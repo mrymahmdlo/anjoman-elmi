@@ -1,4 +1,4 @@
-import { sendFormData, sendRequest } from "src/Service/APIExamEngine";
+import { APICExamFormData, APIExamSendRequest } from "src/Service/APIExam";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 
 const Routes = {
@@ -31,12 +31,12 @@ const TableRoutes = {
 
 const ExamService = {
   GetAllQuiz: async (filters) =>
-    await sendRequest(TableRoutes.GetAllQuiz, filters),
-  DeleteQuiz: (quizId) => sendRequest(Routes.DeleteQuiz + quizId, {}),
+    await APIExamSendRequest(TableRoutes.GetAllQuiz, filters),
+  DeleteQuiz: (quizId) => APIExamSendRequest(Routes.DeleteQuiz + quizId, {}),
   UploadAnswerVideo: async (quizId, form) =>
-    sendRequest(Routes.UploadAnswerVideo + quizId, form),
+    APIExamSendRequest(Routes.UploadAnswerVideo + quizId, form),
   CreateQuizInfo: (form) =>
-    sendRequest(Routes.CreateQuizInfo, {
+    APIExamSendRequest(Routes.CreateQuizInfo, {
       ...form,
       endDate: HejriToDotNetGeorgian(form.endDate),
       resultDate: HejriToDotNetGeorgian(form.resultDate),
@@ -50,7 +50,7 @@ const ExamService = {
       quizType: +form.quizType,
     }),
   UpdateQuizInfo: (quizId, form) => {
-    return sendRequest(Routes.UpdateQuizInfo + quizId, {
+    return APIExamSendRequest(Routes.UpdateQuizInfo + quizId, {
       ...form,
       endDate: HejriToDotNetGeorgian(form.endDate),
       resultDate: HejriToDotNetGeorgian(form.resultDate),
@@ -65,14 +65,14 @@ const ExamService = {
     });
   },
   UploadQuestionFile: async (quizId, data) =>
-    await sendFormData(Routes.UploadQuestionFile + quizId, data),
+    await APICExamFormData(Routes.UploadQuestionFile + quizId, data),
   UploadAnswerFile: async (quizId, data) =>
-    await sendFormData(Routes.UploadAnswerFile + quizId, data),
+    await APICExamFormData(Routes.UploadAnswerFile + quizId, data),
   GetQuizDetails: async (quizId) =>
-    await sendRequest(Routes.GetQuizDetails + quizId),
-  GetDropDowns: async () => await sendRequest(Routes.GetDropDowns),
+    await APIExamSendRequest(Routes.GetQuizDetails + quizId),
+  GetDropDowns: async () => await APIExamSendRequest(Routes.GetDropDowns),
   CreateQuizDetails: (form) =>
-    sendRequest(Routes.CreateQuizDetails, {
+    APIExamSendRequest(Routes.CreateQuizDetails, {
       ...form,
       quizId: +form.quizId,
       rowId: +form.rowId,
@@ -82,14 +82,14 @@ const ExamService = {
       totalMinutes: +form.totalMinutes,
     }),
   UploadExcel: async (quizId, file) =>
-    await sendFormData(Routes.UploadExcel + quizId, file),
+    await APICExamFormData(Routes.UploadExcel + quizId, file),
   DeleteQuizInfoDetails: async (quizId, rowId) =>
-    await sendRequest(
+    await APIExamSendRequest(
       Routes.DeleteQuizInfoDetails + quizId + "/" + rowId + "/0",
       {}
     ),
   UpdateQuizInfoDetail: async (rowId, form) =>
-    await sendRequest(Routes.UpdateQuizInfoDetail + rowId, {
+    await APIExamSendRequest(Routes.UpdateQuizInfoDetail + rowId, {
       ...form,
       quizId: +form.quizId,
       rowId: +form.rowId,
@@ -99,7 +99,7 @@ const ExamService = {
       totalMinutes: +form.totalMinutes,
     }),
   CreateQuestions: async (form) =>
-    await sendRequest(Routes.CreateQuestions, {
+    await APIExamSendRequest(Routes.CreateQuestions, {
       ...form,
       quizId: +form.quizId,
       questionNo: +form.questionNo,
@@ -108,11 +108,11 @@ const ExamService = {
       answerCount: +form.answerCount,
       questionLevel: +form.questionLevel,
     }),
-  GetQuestions: (quizId) => sendRequest(Routes.GetQuestions + quizId),
+  GetQuestions: (quizId) => APIExamSendRequest(Routes.GetQuestions + quizId),
   DeleteQuestion: async (quizId, numQ) =>
-    await sendRequest(Routes.DeleteQuestion + quizId + "/" + numQ, {}),
+    await APIExamSendRequest(Routes.DeleteQuestion + quizId + "/" + numQ, {}),
   UpdateQuestion: async (numQ, form) =>
-    await sendRequest(Routes.UpdateQuestion + numQ, {
+    await APIExamSendRequest(Routes.UpdateQuestion + numQ, {
       ...form,
       quizId: +form.quizId,
       questionNo: +form.questionNo,
@@ -122,17 +122,19 @@ const ExamService = {
       questionLevel: +form.questionLevel,
     }),
   SwapQuizDetail: async (form) =>
-    await sendRequest(Routes.SwapQuizDetail, {
+    await APIExamSendRequest(Routes.SwapQuizDetail, {
       quizId: +form.quizId,
       firstId: +form.firstId,
       secondId: +form.secondId,
     }),
   GetQuizFilesNames: async (quizId) =>
-    await sendRequest(Routes.GetQuizFilesNames + quizId),
-  GetQuizInfo: async (quizId) => await sendRequest(Routes.GetQuizInfo + quizId),
-  FinalCheck: async (quizId) => await sendRequest(Routes.FinalCheck + quizId),
+    await APIExamSendRequest(Routes.GetQuizFilesNames + quizId),
+  GetQuizInfo: async (quizId) =>
+    await APIExamSendRequest(Routes.GetQuizInfo + quizId),
+  FinalCheck: async (quizId) =>
+    await APIExamSendRequest(Routes.FinalCheck + quizId),
   SwapQuestions: async (form) =>
-    await sendRequest(Routes.SwapQuestions, {
+    await APIExamSendRequest(Routes.SwapQuestions, {
       quizId: +form.quizId,
       firstId: +form.firstId,
       secondId: +form.secondId,

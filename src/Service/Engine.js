@@ -2,7 +2,6 @@ import { TokenManager } from "src/Identity/Service/TokenManager";
 const { GetToken } = TokenManager();
 
 const secret = "AMP_!YUHDSJHYG@&12312!W@sAs";
-
 const headers = {
   "content-Type": "application/json; charset=utf-8",
   Authorization: "Bearer " + GetToken(),
@@ -19,7 +18,6 @@ const sendRequest = async (url, body) => {
   } else {
     res = await fetch(url, { headers });
   }
-
   if (res.status < 400) {
     try {
       const text = await res.text();
@@ -62,7 +60,7 @@ const sendFormData = async (url, form) => {
   throw error;
 };
 
-const UploadFile = async (base, file) => {
+const uploadFile = async (base, file) => {
   const form = new FormData();
   form.append("file", file);
   form.append("secret", secret);
@@ -74,19 +72,41 @@ const UploadFile = async (base, file) => {
     method: "POST",
     body: form,
   };
-
   const res = await fetch(base + "File/Upload", init);
-  if (res.status < 400) {
-    try {
-      const text = await res.text();
-      const json = JSON.parse(text);
-      return json;
-    } catch (err) {
-      return true;
-    }
+  try {
+    const json = await res.json();
+    if (res.status < 400) return json;
+    throw json;
+  } catch {
+    return null;
   }
-  const error = await res.json();
-  throw error;
 };
 
-export { secret, sendRequest, sendFormData, UploadFile };
+const downloadExcel = async (url, body, name = "file.csv") => {
+  return await fetch(url, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(body),
+  }).then((res) => {
+    res.blob().then((blob) => {
+      let url = window.URL.createObjectURL(blob);
+      let a = document.createElement("a");
+      a.href = url;
+      a.download = name;
+      a.click();
+    });
+  });
+};
+
+const getFileLink = (base, hash) => base + "File/Download/" + hash;
+
+export {
+  secret,
+  sendRequest,
+  sendFormData,
+  uploadFile,
+  getFileLink,
+  downloadExcel,
+};

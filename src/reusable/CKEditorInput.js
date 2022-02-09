@@ -2,7 +2,7 @@ import { CFormGroup, CFormText, CLabel } from "@coreui/react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import React from "react";
-import { GetFileDownloadLink, APICoreUpload } from "src/Service/APIBase";
+import { APICoreFileLink, APICoreUpload } from "src/Service/APIBase";
 
 class MyUploadAdapter {
   constructor(loader) {
@@ -12,7 +12,7 @@ class MyUploadAdapter {
   upload() {
     return this.loader.file.then((file) =>
     APICoreUpload(file)
-        .then((res) => ({ default: GetFileDownloadLink(res.data) }))
+        .then((res) => ({ default: APICoreFileLink(res.data) }))
         .catch()
     );
   }

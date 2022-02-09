@@ -27,7 +27,6 @@ const LinkWebinar = ({ obj, setModal }) => {
 
   const copyToClipboard = () => {
     if (typeof navigator.clipboard == "undefined") {
-      console.log("navigator.clipboard is undefined");
       let textArea = document.createElement("textarea");
       textArea.value = data?.webinarLink;
       textArea.style.position = "fixed"; //avoid scrolling to bottom
@@ -37,10 +36,7 @@ const LinkWebinar = ({ obj, setModal }) => {
 
       try {
         let successful = document.execCommand("copy");
-        let msg = successful ? "successful" : "unsuccessful";
-        console.log(msg);
       } catch (err) {
-        console.log("Was not possible to copy te text: ", err);
       }
 
       document.body.removeChild(textArea);
@@ -48,10 +44,8 @@ const LinkWebinar = ({ obj, setModal }) => {
     }
     navigator.clipboard.writeText(data?.webinarLink).then(
       function () {
-        console.log(`successful!`);
       },
       function (err) {
-        console.log("unsuccessful!", err);
       }
     );
   };

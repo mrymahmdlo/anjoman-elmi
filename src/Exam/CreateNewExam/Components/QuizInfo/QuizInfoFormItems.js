@@ -15,7 +15,6 @@ const {
 } = require("@coreui/react");
 
 const QuizInfoFormItems = (form, setForm) => {
-  console.log(form);
   return [
     {
       name: "نام آزمون",
@@ -196,7 +195,6 @@ const QuizModeSelect = ({ form, setForm }) => {
 };
 const QuizTypeSelect = ({ form, setForm }) => {
 
-  console.log(form);
   return (
     <CCol sm="3">
       <CFormGroup>
@@ -204,7 +202,6 @@ const QuizTypeSelect = ({ form, setForm }) => {
         <CSelect
           defaultValue={1}
           onChange={(e) => {
-            console.log("1", e.target.value);
             setForm({ ...form, quizType: e.target.value });
           }}
         >

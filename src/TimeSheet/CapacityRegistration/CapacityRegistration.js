@@ -9,7 +9,7 @@ import {
   CCardSubtitle,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { PostDataProvider } from "src/Service/APIProvider";
+import { APIProviderPost } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
 import CapacityForm from "./Components/CapacityForm";
 
@@ -28,7 +28,7 @@ const CapacityRegistration = () => {
   const submitTimeSheet = () => {
     setShowError(false);
     setBtnActive(true);
-    PostDataProvider("TimeSheet/SetRechargeAmount", {
+    APIProviderPost("TimeSheet/SetRechargeAmount", {
       providerId: Number(form.providerId),
       rechargeAmountHour: Number(form.rechargeAmountHour),
     })

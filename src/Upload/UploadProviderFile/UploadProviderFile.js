@@ -3,9 +3,9 @@ import {
   UploadFileStatusMark,
   status,
 } from "src/reusable/UploadFileStatusMark";
-import { APICoreUpload, GetFileDownloadLink } from "src/Service/APIBase";
+import { APICoreUpload, APICoreFileLink } from "src/Service/APIBase";
 import { APICorePost } from "src/Service/APIBase";
-import { GetDataProvider, PostDataProvider } from "src/Service/APIProvider";
+import { APIProviderGet, APIProviderPost } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
 
 const {
@@ -28,7 +28,7 @@ export const UploadProviderFile = () => {
   const [providers, setProviders] = useState([]);
   const [providerId, setProviderId] = useState(-1);
   const [contentType, setContentType] = useState([]);
-  const [valueNumber,setValueNumber] = useState([]);
+  const [valueNumber, setValueNumber] = useState([]);
   const [type, setType] = useState(-1);
   useEffect(() => {
     setActiveProvider(true);
@@ -39,7 +39,7 @@ export const UploadProviderFile = () => {
   }, []);
   useEffect(() => {
     setActiveContent(true);
-    GetDataProvider("Content/ContentTypes").then((res) => {
+    APIProviderGet("Content/ContentTypes").then((res) => {
       setContentType(res);
       setActiveContent(false);
       if (type === "0") {
@@ -48,7 +48,6 @@ export const UploadProviderFile = () => {
           setProviders(res.data);
           setActiveProvider(false);
         });
-
       } else {
         setActiveProvider(true);
         APICorePost("Provider/Consultation").then((res) => {
@@ -63,7 +62,7 @@ export const UploadProviderFile = () => {
     setStatusFile(status.LOADING);
     APICoreUpload(e?.target.files[0])
       .then((res) => {
-        setLink(GetFileDownloadLink(res.data));
+        setLink(APICoreFileLink(res.data));
 
         setStatusFile(status.UPLOADED);
       })
@@ -72,7 +71,7 @@ export const UploadProviderFile = () => {
   const handleSumbit = () => {
     setBtnActive(true);
     setShowError(false);
-    PostDataProvider("Content/Upload", {
+    APIProviderPost("Content/Upload", {
       contentType: Number(type),
       providerId: providerId,
       link: link.toString(),
@@ -107,7 +106,6 @@ export const UploadProviderFile = () => {
               defaultValue={type}
               onChange={(e) => {
                 setType(e.target.value);
-                console.log(e.target.value);
               }}
             >
               <option value={-1}>نوع را انتخاب کنید</option>
@@ -176,7 +174,6 @@ export const UploadProviderFile = () => {
           </CFormGroup>
         ) : (
           <CFormGroup className="w-30 m-2">
-
             {UploadFileStatusMark(statusFile)}
             <CInput
               type="file"

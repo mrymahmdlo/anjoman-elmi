@@ -10,7 +10,6 @@ export const DateTimePicker = ({ value, onChange }) => {
   const handleChange = (e) => {
     const valid = moment(e.target.value, "YYYY/MM/DD HH:mm").isValid();
     onChange(e.target.value);
-    console.log(e.target.value);
     setValid(valid);
   };
 

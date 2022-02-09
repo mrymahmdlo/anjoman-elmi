@@ -35,7 +35,6 @@ const EditQuizInfoForm = () => {
 
     setBtnActive(true);
     ExamService.GetQuizInfo(exam.quizId).then((res) => {
-      console.log('res',res)
       let data = res.data;
       setForm({
         ...data,

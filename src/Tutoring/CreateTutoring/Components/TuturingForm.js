@@ -76,7 +76,6 @@ const CreateTutoringForm = ({ form, setForm }) => {
               <CLabel htmlFor="nf-title">رتبه </CLabel>
               <CSelect
                 onChange={(e) => {
-                  console.log(e.target.value);
                   if (e.target.value === 0) {
                     setForm({
                       ...form,

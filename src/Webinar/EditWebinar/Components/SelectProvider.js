@@ -4,7 +4,6 @@ import { APICorePost } from "src/Service/APIBase";
 
 export const SelectProviderWebinar = ({ providerId, setProviderId }) => {
   const [providers, setProviders] = useState([]);
-  console.log(providerId);
   useEffect(() => {
     APICorePost("Provider/Consultation").then((res) => {
       setProviders(res.data);

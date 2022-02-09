@@ -1,27 +1,20 @@
-import { sendFormData, sendRequest, UploadFile } from "./Engine";
+import { getFileLink, sendFormData, sendRequest, uploadFile } from "./Engine";
+export const baseUrl = process.env.REACT_APP_API_BASE;
 
-export const BaseUrl = process.env.REACT_APP_API_BASE;
+const APICoreGet = (url) => sendRequest(baseUrl + url);
 
-const APICoreGet = (url) => sendRequest(BaseUrl + url);
+const APICorePost = async (url, body = {}) => sendRequest(baseUrl + url, body);
 
-const APICorePost = async (url, body = {}) => sendRequest(BaseUrl + url, body);
+const APICoreFormData = async (url, form) => sendFormData(baseUrl + url, form);
 
-const APICoreFormData = async (url, form) => sendFormData(BaseUrl + url, form);
+const APICoreUpload = async (file) => uploadFile(baseUrl, file);
 
-const APICoreUpload = async (file) => UploadFile(BaseUrl, file);
-
-const GetFileDownload = async (hash) => {
-  return fetch(BaseUrl + `file/Download?hashId=${hash}`, {
-    method: "GET",
-  }).then((res) => res.json());
-};
-const GetFileDownloadLink = async (hash) => BaseUrl + "File/Download/" + hash;
+const APICoreFileLink = (hash) => getFileLink(baseUrl, hash);
 
 export {
   APICoreGet,
   APICorePost,
   APICoreFormData,
+  APICoreFileLink,
   APICoreUpload,
-  GetFileDownloadLink,
-  GetFileDownload,
 };

@@ -12,7 +12,7 @@ import { Toast } from "src/Utility/Toast";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 import { APICorePost } from "../../../Service/APIBase";
 import DownloadExcelForm from "./Components/DownloadExcelForm";
-import { DownloadExcelReportBroad } from "src/Service/APIBroadCast";
+import { APIBoardcastDownloadExcel } from "src/Service/APIBroadCast";
 
 export default function DownloadExcel() {
   const [form, setForm] = useState({});
@@ -35,7 +35,7 @@ export default function DownloadExcel() {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    DownloadExcelReportBroad("Tutoring/ExportCsv", body).then(() =>
+    APIBoardcastDownloadExcel("Tutoring/ExportCsv", body).then(() =>
       setBtnActive(false)
     );
   };

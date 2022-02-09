@@ -8,7 +8,7 @@ import {
   CSelect,
   CCol,
 } from "@coreui/react";
-import { PostDataProvider } from "src/Service/APIProvider";
+import { APIProviderPost } from "src/Service/APIProvider";
 import { ChangeValuesTimeSheet } from "./Components/ChangeValue";
 import { TimeSheetModal } from "./Components/TimeSheetModal";
 import { TimeSheetScopedSlots } from "./Components/TimeSheetScopedSlots";
@@ -24,7 +24,7 @@ const ManageTimeSheet = () => {
   const [providers, setProviders] = useState([]);
 
   const updateData = () => {
-    PostDataProvider("TimeSheet/GetTimeSheets", {
+    APIProviderPost("TimeSheet/GetTimeSheets", {
       providerId: Number(form.providerId),
     }).then((res) => {
       setTableData(ChangeValuesTimeSheet(res.data));

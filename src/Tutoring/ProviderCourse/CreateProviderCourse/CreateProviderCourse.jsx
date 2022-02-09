@@ -20,7 +20,6 @@ const CreateProviderCourse = () => {
   const [btnActice, setBtnActive] = useState(false);
   const history = useHistory();
 
-  console.log(form)
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
