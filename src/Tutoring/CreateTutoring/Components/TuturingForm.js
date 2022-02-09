@@ -8,7 +8,7 @@ import {
   CLabel,
   CCol,
 } from "@coreui/react";
-import { GetData } from "src/Service/APIEngine";
+import { APICoreGet } from "src/Service/APIBase";
 import { FormItemsCreateTutoring } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
 
@@ -25,12 +25,12 @@ const CreateTutoringForm = ({ form, setForm }) => {
     setForm({ ...form, providerId: providerId });
   }, [providerId]);
   useEffect(() => {
-    GetData("BasicInfo/Groups").then((res) => setGroupIds(res));
+    APICoreGet("BasicInfo/Groups").then((res) => setGroupIds(res));
   }, []);
 
   useEffect(() => {
     if (form.groupId && form.groupId !== "")
-      GetData("BasicInfo/CoursesByGroupId?groupId=" + form.groupId).then(
+    APICoreGet("BasicInfo/CoursesByGroupId?groupId=" + form.groupId).then(
         (res) => setCourseIds(res)
       );
     else {

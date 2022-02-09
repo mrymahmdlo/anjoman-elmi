@@ -8,11 +8,11 @@ import {
 } from "@coreui/react";
 import { useState } from "react";
 import { UploadFileStatusMark, status } from "../reusable/UploadFileStatusMark";
-import { UploadFileRequest } from "src/Service/APIEngine";
+import { APICoreUpload } from "src/Service/APIBase";
 
 const UploadFile = async (file, setStatusFile, setHashId) => {
   setStatusFile(status.LOADING);
-  await UploadFileRequest(file)
+  await APICoreUpload(file)
     .then((res) => {
       setHashId(res.data);
       setStatusFile(status.UPLOADED);
@@ -44,8 +44,10 @@ export const CoreFileInput = ({ title, setHashId, type, preData }) => {
         {preData ? (
           <CFormText className="help-block">
             برای دیدن فایل آپلود شده
-            <a href={preData} target="_blank" rel="noreferrer"  > کلیک کنید</a>
-            
+            <a href={preData} target="_blank" rel="noreferrer">
+              {" "}
+              کلیک کنید
+            </a>
           </CFormText>
         ) : (
           <CFormText className="help-block">فایل را آپلود کنید</CFormText>

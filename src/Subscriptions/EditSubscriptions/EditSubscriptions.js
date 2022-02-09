@@ -8,7 +8,7 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { PostDataBroad } from "src/Service/APIBroadCast";
+import { APIBoardcastPost } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import SubscriptionsForm from "./Components/SubscriptionsForm";
 import { ChangeValuesEditSubscriptions } from "./Components/ChangeValues";
@@ -34,7 +34,7 @@ console.log(obj)
     setBtnActive(true);
     console.log('m',form.joinDatetime);
      console.log('g',form.cancelDatetime);
-    PostDataBroad(
+     APIBoardcastPost(
       `webinar/UpdateSubscription?subscriptionId=${obj.subscriptionId}`,
       {
         userId: obj?.userId,

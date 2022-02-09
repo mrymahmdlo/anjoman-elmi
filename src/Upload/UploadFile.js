@@ -4,9 +4,9 @@ import {
   status,
 } from "src/reusable/UploadFileStatusMark";
 import {
-  UploadFileRequest,
+  APICoreUpload,
   GetFileDownloadLink,
-} from "src/Service/APIEngine";
+} from "src/Service/APIBase";
 
 const {
   CForm,
@@ -20,7 +20,7 @@ export const UploadFile = () => {
   const [statusFile, setStatusFile] = useState(2);
   const UploadFile = async (e) => {
     setStatusFile(status.LOADING);
-    UploadFileRequest(e.target.files[0])
+    APICoreUpload(e.target.files[0])
       .then((res) => {
         setLink(GetFileDownloadLink(res.data));
         setStatusFile(status.UPLOADED);

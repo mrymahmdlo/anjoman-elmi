@@ -6,7 +6,7 @@ import {
 } from "@coreui/react";
 import {TableHeadersSms} from "./TableHeaders";
 import {ChangeValueSms} from "./ChangeValue";
-import {PostDataBroad} from "src/Service/APIBroadCast";
+import {APIBoardcastPost} from "src/Service/APIBroadCast";
 
 const Sms = () => {
   const [tableData, setTableData] = useState([]);
@@ -16,7 +16,7 @@ const Sms = () => {
   });
 
   const updateData = () => {
-    PostDataBroad("Main/AllSms", {
+    APIBoardcastPost("Main/AllSms", {
     }).then((res) => {
       let data = ChangeValueSms(res.data);
       setTableData(data);

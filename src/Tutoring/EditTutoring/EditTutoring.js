@@ -8,7 +8,7 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import {  PostDataBroad } from "src/Service/APIBroadCast";
+import {  APIBoardcastPost } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import CreateTutoringForm from "src/Tutoring/CreateTutoring/Components/TuturingForm";
 import { ChangeValuesEditTutoring } from "./Components/ChangeValues";
@@ -28,7 +28,7 @@ const EditTutoring = ({ obj, setModal }) => {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    PostDataBroad(`Tutorial/Update?tutorialId=${obj.tutorialId}`, {
+    APIBoardcastPost(`Tutorial/Update?tutorialId=${obj.tutorialId}`, {
       groupId: +form.groupId,
       courseId: +form.courseId,
       totalMinute: +form.totalMinute,
@@ -36,6 +36,7 @@ const EditTutoring = ({ obj, setModal }) => {
       description: "",
       minProviderRank: +form.minProviderRank,
       maxProviderRank: +form.maxProviderRank,
+      // where is isOffline?
       price: 0,
     })
       .then(() => {

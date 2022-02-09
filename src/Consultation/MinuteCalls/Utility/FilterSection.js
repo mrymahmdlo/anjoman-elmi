@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { GetData } from "src/Service/APIEngine";
+import { APICoreGet } from "src/Service/APIBase";
 
 const { CFormText, CButton, CSpinner } = require("@coreui/react");
 
 export const FilterSection = ({ setGroupId, setStatus, setRank }) => {
   const [filters, setFilters] = useState([]);
   useEffect(() => {
-    GetData("Provider/Filters").then((res) => {
+    APICoreGet("Provider/Filters").then((res) => {
       setFilters(res.data);
     });
   }, []);

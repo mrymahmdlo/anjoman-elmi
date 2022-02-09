@@ -11,7 +11,7 @@ import {
   CPagination,
 } from "@coreui/react";
 import { ModalContainer } from "./ModalContent/ModalContainer";
-import { PostData } from "src/Service/APIEngine";
+import { APICorePost } from "src/Service/APIBase";
 import { ChangeValuesMinuteCalls } from "./Utility/ChangeValues";
 import { MinuteCallsScopedSlots } from "./Utility/ScopedSlots";
 
@@ -39,7 +39,7 @@ const Tables = () => {
   }, [currentPage, filterData, startDate, endDate, search]);
 
   const updateData = async () => {
-    PostData("MinuteConsultation/Order", {
+    APICorePost("MinuteConsultation/Order", {
       filterModel: {
         fromDateTime: startDate,
         toDateTime: endDate,

@@ -8,7 +8,7 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { PostDataBroad } from "src/Service/APIBroadCast";
+import { APIBoardcastPost } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import ProviderCourseForm from "./ProviderCourseForm";
 import { useHistory } from "react-router";
@@ -25,7 +25,7 @@ const CreateProviderCourse = () => {
     setShowError(false);
     setBtnActive(true);
    delete form["groupId"];
-    PostDataBroad("ProviderCourse/CreateProviderCourse", form)
+   APIBoardcastPost("ProviderCourse/CreateProviderCourse", form)
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
         history.push("/ProviderCourse/ProviderCourse");

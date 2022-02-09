@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ProviderModalProviderCourse } from "./ModalProvider";
 import { ProviderCourseScopedSlots } from "./ScopedSlots";
 import { TableHeaderProviderCourse } from "./TableHeader";
-import { GetDataBroad } from "src/Service/APIBroadCast";
+import { APIBoardcastGet } from "src/Service/APIBroadCast";
 
 const ManageTutoring = () => {
   const [tableData, setTableData] = useState([]);
@@ -15,7 +15,7 @@ const ManageTutoring = () => {
   });
 
   const updateData = () => {
-    GetDataBroad("ProviderCourse/GetAll").then((res) => {
+    APIBoardcastGet("ProviderCourse/GetAll").then((res) => {
       setTableData(res.data);
     });
   };

@@ -13,7 +13,7 @@ import { ChangeValueUpload } from "./ChangeValue";
 import { PostDataProvider } from "src/Service/APIProvider";
 import { ProviderScopedSlots } from "./ProviderScopedSlots";
 import { ProviderModalUpload } from "./ProviderModal";
-import {PostData} from "src/Service/APIEngine";
+import {APICorePost} from "src/Service/APIBase";
 
 const ManageuploadProvider = () => {
   const [tableData, setTableData] = useState([]);
@@ -40,7 +40,7 @@ const ManageuploadProvider = () => {
   }, [modal, form.providerId]);
 
   useEffect(() => {
-    PostData("Provider/Tutoring", {}).then((res) => {
+    APICorePost("Provider/Tutoring").then((res) => {
       setProviders(res.data);
     });
   }, []);

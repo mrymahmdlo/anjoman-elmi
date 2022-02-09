@@ -1,13 +1,13 @@
 import CIcon from "@coreui/icons-react";
 import { useEffect, useState } from "react";
 import { Timeline, TimelineEvent } from "react-event-timeline";
-import { GetData } from "src/Service/APIEngine";
+import { APICoreGet } from "src/Service/APIBase";
 import { ConvertDates } from "../Utility/ConvertDates";
 
 export const Activity = ({ item }) => {
   const [timelines, setTimeline] = useState([]);
   useEffect(() => {
-    GetData("MinuteConsultation/Activity/" + item.orderDetailId)
+    APICoreGet("MinuteConsultation/Activity/" + item.orderDetailId)
       .then((res) => {
         let data = res.data;
         ConvertDates(data);

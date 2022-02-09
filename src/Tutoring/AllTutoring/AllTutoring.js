@@ -7,7 +7,7 @@ import {
 } from "@coreui/react";
 import { TableHeadersAllTutoring } from "./TableHeaders";
 import { ChangeValuesAllTutoring } from "./ChangeValue";
-import { PostDataBroad } from "src/Service/APIBroadCast";
+import { APIBoardcastPost } from "src/Service/APIBroadCast";
 import {AllTutoringScopedSlots} from './TutoringScopedSlots';
 import { TutoringModalAllTutoring } from "./TutoringModal";
 import DownloadExcel from "./ExcelReport/DownloadExcel";
@@ -26,14 +26,14 @@ const AllTutoring = () => {
 
   const updateData = () => {
     form.providerId ?
-      PostDataBroad("Tutoring/GetAllTutoring", {
+    APIBoardcastPost("Tutoring/GetAllTutoring", {
         providerId: +form.providerId,
       }).then((res) => {
         let data = ChangeValuesAllTutoring(res.data);
         setData(res.data);
         setTableData(data);
       }) :
-      PostDataBroad("Tutoring/GetAllTutoring", {}).then((res) => {
+      APIBoardcastPost("Tutoring/GetAllTutoring", {}).then((res) => {
         setTableData(ChangeValuesAllTutoring(res.data));
       });
   };

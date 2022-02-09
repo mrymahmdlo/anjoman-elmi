@@ -8,7 +8,7 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import {  PostDataBroad } from "src/Service/APIBroadCast";
+import {  APIBoardcastPost } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import EditWebinarForm from "./Components/WebinarForm";
 import { ChangeValuesEditWebinar } from "./Components/ChangeValues";
@@ -40,7 +40,7 @@ const EditWebinar = ({ obj, setModal }) => {
     if (form.poster !== "") data["poster"] = form.poster;
     delete data["Image"];
     
-    PostDataBroad(`Webinar/Update?webinarId=${obj.webinarId}`, {
+    APIBoardcastPost(`Webinar/Update?webinarId=${obj.webinarId}`, {
       ...form,
       title: form.title,
       duration: +form.duration,

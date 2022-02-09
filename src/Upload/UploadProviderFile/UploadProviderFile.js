@@ -3,8 +3,8 @@ import {
   UploadFileStatusMark,
   status,
 } from "src/reusable/UploadFileStatusMark";
-import { UploadFileRequest, GetFileDownloadLink } from "src/Service/APIEngine";
-import { PostData } from "src/Service/APIEngine";
+import { APICoreUpload, GetFileDownloadLink } from "src/Service/APIBase";
+import { APICorePost } from "src/Service/APIBase";
 import { GetDataProvider, PostDataProvider } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
 
@@ -32,7 +32,7 @@ export const UploadProviderFile = () => {
   const [type, setType] = useState(-1);
   useEffect(() => {
     setActiveProvider(true);
-    PostData("Provider/Consultation", {}).then((res) => {
+    APICorePost("Provider/Consultation").then((res) => {
       setProviders(res.data);
       setActiveProvider(false);
     });
@@ -44,14 +44,14 @@ export const UploadProviderFile = () => {
       setActiveContent(false);
       if (type === "0") {
         setActiveProvider(true);
-        PostData("Provider/Tutoring", {}).then((res) => {
+        APICorePost("Provider/Tutoring").then((res) => {
           setProviders(res.data);
           setActiveProvider(false);
         });
 
       } else {
         setActiveProvider(true);
-        PostData("Provider/Consultation", {}).then((res) => {
+        APICorePost("Provider/Consultation").then((res) => {
           setProviders(res.data);
           setActiveProvider(false);
         });
@@ -61,7 +61,7 @@ export const UploadProviderFile = () => {
 
   const UploadFile = async (e) => {
     setStatusFile(status.LOADING);
-    UploadFileRequest(e?.target.files[0])
+    APICoreUpload(e?.target.files[0])
       .then((res) => {
         setLink(GetFileDownloadLink(res.data));
 
