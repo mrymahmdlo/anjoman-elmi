@@ -1,53 +1,67 @@
 import React, { useEffect, useState } from "react";
 import {
   CButton,
-  CCard, CCardBody,
-  CCardHeader, CCol,
-  CDataTable, CFormGroup, CRow, 
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CCol,
+  CDataTable,
+  CFormGroup,
+  CRow,
 } from "@coreui/react";
 import { TableHeadersAllTutoring } from "./TableHeaders";
 import { ChangeValuesAllTutoring } from "./ChangeValue";
 import { APIBoardcastPost } from "src/Service/APIBroadCast";
-import {AllTutoringScopedSlots} from './TutoringScopedSlots';
+import { AllTutoringScopedSlots } from "./TutoringScopedSlots";
 import { TutoringModalAllTutoring } from "./TutoringModal";
 import DownloadExcel from "./ExcelReport/DownloadExcel";
 
 const AllTutoring = () => {
   const [tableData, setTableData] = useState([]);
-  const [data, setData] = useState([]);
+  // todo
+  // useless
+  // const [data, setData] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalTutoring, setModalTutoring] = useState("");
-  const [filterData, setFilterData] = useState({
-    asc: false,
-    column: "quizId",
-  });
-  const [form, setForm] = useState({});
- 
+  // const [filterData, setFilterData] = useState({
+  //   asc: false,
+  //   column: "quizId",
+  // });
 
+  // todo
+  // form is uncorrect!
+  // always {}
+  // either delete it or correct it
+
+  //const [form, setForm] = useState({});
+  const form = {};
+  // remove comment after you done plz!
   const updateData = () => {
-    form.providerId ?
-    APIBoardcastPost("Tutoring/GetAllTutoring", {
-        providerId: +form.providerId,
-      }).then((res) => {
-        let data = ChangeValuesAllTutoring(res.data);
-        setData(res.data);
-        setTableData(data);
-      }) :
-      APIBoardcastPost("Tutoring/GetAllTutoring", {}).then((res) => {
-        setTableData(ChangeValuesAllTutoring(res.data));
-      });
+    form.providerId
+      ? APIBoardcastPost("Tutoring/GetAllTutoring", {
+          providerId: +form.providerId,
+        }).then((res) => {
+          let data = ChangeValuesAllTutoring(res.data);
+          //setData(res.data);
+          setTableData(data);
+        })
+      : // todo
+        // add service
+        // add loading
+        APIBoardcastPost("Tutoring/GetAllTutoring", {}).then((res) => {
+          setTableData(ChangeValuesAllTutoring(res.data));
+        });
   };
 
   useEffect(() => {
     updateData();
-  }, [modal, form.providerId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modal]); //, form.providerId]);
 
-
-
-  const [bgColor, setBgColor]=useState('#027a40');
-  const styles={
+  const [bgColor, setBgColor] = useState("#027a40");
+  const styles = {
     backgroundColor: `${bgColor}`,
-    color: '#fff',
+    color: "#fff",
   };
 
   return (
@@ -57,16 +71,13 @@ const AllTutoring = () => {
         <CCardBody>
           <CFormGroup>
             <CRow>
-             
               <CCol>
                 <CButton
                   style={styles}
                   onMouseEnter={() => setBgColor("#00944e")}
                   onMouseLeave={() => setBgColor("#027a40")}
                   onClick={() => {
-                    setModalTutoring(
-                      <DownloadExcel  setModal={setModal}/>
-                    );
+                    setModalTutoring(<DownloadExcel setModal={setModal} />);
                     setModal(true);
                   }}
                 >
@@ -82,26 +93,24 @@ const AllTutoring = () => {
             columnFilter
             size="sm"
             sorter
-            onSorterValueChange={setFilterData}
+            //onSorterValueChange={setFilterData}
             itemsPerPage={15}
             pagination
-            scopedSlots={AllTutoringScopedSlots(
-              data,
-              setModal,
-              modal,
-              setModalTutoring
-            )}
+            scopedSlots={AllTutoringScopedSlots({
+              setModal: setModal,
+              setModalTutoring: setModalTutoring,
+            })}
           />
         </CCardBody>
       </CCard>
-        <TutoringModalAllTutoring
-          name=" تدریس خصوصی"
-          modal={modal}
-          toggle={() => {
-            setModal(!modal);
-          }}
-          modalTutoring={modalTutoring}
-        />
+      <TutoringModalAllTutoring
+        name=" تدریس خصوصی"
+        modal={modal}
+        toggle={() => {
+          setModal(!modal);
+        }}
+        modalTutoring={modalTutoring}
+      />
     </>
   );
 };

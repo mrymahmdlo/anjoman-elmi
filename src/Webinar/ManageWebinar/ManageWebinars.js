@@ -9,17 +9,23 @@ import { WebinartScopedSlots } from "./Components/WebinartScopedSlots";
 import { TableHeaderWebinar } from "./Components/TableHeader";
 import { ChangeValuesManageWebinar } from "./Utility/ChangeValues";
 import { APIBoardcastGet } from "src/Service/APIBroadCast";
+import React from "react";
 
 const ManageWebinars = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
-  const [filterData, setFilterData] = useState({
-    asc: false,
-    column: "quizId",
-  });
+  // todo
+  // either use it or delete it
+  // const [filterData, setFilterData] = useState({
+  //   asc: false,
+  //   column: "quizId",
+  // });
 
   const updateData = () => {
+    // todo
+    // add service
+    // add loading
     APIBoardcastGet("Webinar/GetAll").then((res) => {
       let data = ChangeValuesManageWebinar(res.data);
       setTableData(data);
@@ -40,7 +46,7 @@ const ManageWebinars = () => {
           columnFilter
           size="sm"
           sorter
-          onSorterValueChange={setFilterData}
+          //onSorterValueChange={setFilterData}
           itemsPerPage={15}
           pagination
           scopedSlots={WebinartScopedSlots(setModalContent, setModal, modal)}

@@ -7,13 +7,16 @@ import {
 import {TableHeadersSms} from "./TableHeaders";
 import {ChangeValueSms} from "./ChangeValue";
 import {APIBoardcastPost} from "src/Service/APIBroadCast";
+import React from "react";
 
 const Sms = () => {
   const [tableData, setTableData] = useState([]);
-  const [filterData, setFilterData] = useState({
-    asc: false,
-    column: "quizId",
-  });
+  // todo
+  // either use it or delete it
+  // const [filterData, setFilterData] = useState({
+  //   asc: false,
+  //   column: "quizId",
+  // });
 
   const updateData = () => {
     APIBoardcastPost("Main/AllSms", {
@@ -37,7 +40,7 @@ const Sms = () => {
           columnFilter
           size="sm"
           sorter
-          onSorterValueChange={setFilterData}
+          //onSorterValueChange={setFilterData}
           itemsPerPage={15}
           pagination
         />

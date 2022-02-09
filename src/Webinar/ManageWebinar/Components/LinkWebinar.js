@@ -12,7 +12,7 @@ import { APIBoardcastPost } from "src/Service/APIBroadCast";
 import CIcon from "@coreui/icons-react";
 import { freeSet } from "@coreui/icons";
 
-const LinkWebinar = ({ obj, setModal }) => {
+const LinkWebinar = ({ obj }) => {
   const [data, setData] = useState();
   const [index, setIndex] = useState();
 
@@ -24,30 +24,23 @@ const LinkWebinar = ({ obj, setModal }) => {
       isProvider: true,
     }).then((res) => setData(res.data));
   };
-
+// todo
+// duplicated!!!!!!!1
+// correct it
   const copyToClipboard = () => {
     if (typeof navigator.clipboard == "undefined") {
       let textArea = document.createElement("textarea");
       textArea.value = data?.webinarLink;
-      textArea.style.position = "fixed"; //avoid scrolling to bottom
+      textArea.style.position = "fixed"; 
       document.body.appendChild(textArea);
       textArea.focus();
       textArea.select();
 
-      try {
-        let successful = document.execCommand("copy");
-      } catch (err) {
-      }
 
       document.body.removeChild(textArea);
       return;
     }
-    navigator.clipboard.writeText(data?.webinarLink).then(
-      function () {
-      },
-      function (err) {
-      }
-    );
+    navigator.clipboard.writeText(data?.webinarLink);
   };
 
   return (

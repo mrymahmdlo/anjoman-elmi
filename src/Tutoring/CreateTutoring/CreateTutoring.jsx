@@ -13,6 +13,8 @@ import { Toast } from "src/Utility/Toast";
 import CreateTutoringForm from "./Components/TuturingForm";
 import { useHistory } from "react-router";
 
+// todo
+// to format js not jsx
 const CreateWebinar = () => {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
@@ -22,12 +24,14 @@ const CreateWebinar = () => {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
+    // todo
+    // add service
     APIBoardcastPost("Tutorial/Create", {
       groupId: +form.groupId,
       courseId: +form.courseId,
       totalMinute: +form.totalMinute,
       title: form.title,
-      description: '',
+      description: "",
       minProviderRank: +form.minProviderRank,
       maxProviderRank: +form.maxProviderRank,
       price: +form.price,
@@ -35,7 +39,7 @@ const CreateWebinar = () => {
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
-                history.push("/Tutoring/ManageTutoring");
+        history.push("/Tutoring/ManageTutoring");
         setShowError(true);
         setBtnActive(false);
       })

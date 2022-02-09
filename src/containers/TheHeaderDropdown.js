@@ -31,15 +31,6 @@ const TheHeaderDropdown = () => {
           <strong> {GetName()} </strong>
         </CDropdownItem>
         <CDropdownItem>
-          <CIcon name="cil-user" className="mfe-2" />
-          پروفایل
-        </CDropdownItem>
-        <CDropdownItem>
-          <CIcon name="cil-settings" className="mfe-2" />
-          ویرایش
-        </CDropdownItem>
-        <CDropdownItem divider />
-        <CDropdownItem>
           <CButton
             onClick={() => {
               ResetToken();

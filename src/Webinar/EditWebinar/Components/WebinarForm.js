@@ -18,6 +18,8 @@ const EditWebinarForm = ({ form, setForm, preData }) => {
 
   useEffect(() => {
     if (form.groupId && form.groupId !== "")
+    // todo
+    // add service
     APICoreGet("BasicInfo/CoursesByGroupId?groupId=" + form.groupId).then(
         (res) => setCourseIds(res)
       );
@@ -32,6 +34,7 @@ const EditWebinarForm = ({ form, setForm, preData }) => {
 
   useEffect(() => {
     if (imageHash !== form.poster) setForm({ ...form, poster: imageHash });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageHash, form]);
 
   return (

@@ -10,6 +10,7 @@ import {
   CLabel,
   CSelect,
 } from "@coreui/react";
+import * as React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import PreviewQuestion from "../CreateNewExam/Components/CreateQuestions/PreviewQuestion";
@@ -54,7 +55,9 @@ const ExamQuestionBank = () => {
   useEffect(() => {
     if (filterOptions !== null) {
       ImportQuestion.GetQuestion(filters).then((res) =>
-        setData(ChangeValuesExamQuestionBank(res.data, filterOptions?.course.options))
+        setData(
+          ChangeValuesExamQuestionBank(res.data, filterOptions?.course.options)
+        )
       );
     }
   }, [filters, filterOptions]);

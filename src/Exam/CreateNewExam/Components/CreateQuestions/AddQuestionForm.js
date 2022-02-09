@@ -10,7 +10,8 @@ import {
 } from "./QuestionFormValidators";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
 import { CKEditorField } from "src/reusable/CKEditorInput";
-
+// todo
+// change it to import
 const { CCardBody, CRow, CButton, CSpinner } = require("@coreui/react");
 
 const AddQuestionForm = ({ numQ, setUpdated }) => {

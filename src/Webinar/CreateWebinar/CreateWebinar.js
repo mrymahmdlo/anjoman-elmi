@@ -31,6 +31,8 @@ const CreateWebinar = () => {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
+    // todo
+    // add service
     APIBoardcastPost("Webinar/Create", {
       ...form,
       title: form.title,
@@ -43,7 +45,7 @@ const CreateWebinar = () => {
     })
       .then(() => {
         setErrorContent("داده با موفقیت ثبت شد ");
-         history.push("/Webinar/ManageWebinars");
+        history.push("/Webinar/ManageWebinars");
         setShowError(true);
         setBtnActive(false);
       })

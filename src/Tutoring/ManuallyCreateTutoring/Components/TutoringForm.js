@@ -21,10 +21,14 @@ const ManuallyCreateTutoringForm = ({ form, setForm }) => {
   const [providerId, setProviderId] = useState();
 
   useEffect(() => {
+    // todo
+    // add service
     APICoreGet("BasicInfo/Groups").then((res) => setGroupIds(res));
   }, []);
 
   const getTutorials = (groupId) => {
+    // todo
+    // add service
     APIBoardcastGet(`Admin/GetAllTutorialForAdmin?groupId=${groupId}`).then(
       (res) => setTutorials(res.data)
     );
@@ -44,6 +48,7 @@ const ManuallyCreateTutoringForm = ({ form, setForm }) => {
 
   useEffect(() => {
     setForm({ ...form, providerId: providerId });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [providerId]);
 
   const items = FormItemsManuallyCreateTutoring(form, setForm, tutorials, providers).map(

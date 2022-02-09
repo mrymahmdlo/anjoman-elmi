@@ -5,6 +5,7 @@ import {
   CModalFooter,
   CModalHeader,
 } from "@coreui/react";
+import React from "react";
 
 export const ProviderModalUpload = ({ name, modal, toggle, modalContent }) => {
   return (

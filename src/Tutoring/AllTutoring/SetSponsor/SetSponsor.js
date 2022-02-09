@@ -22,6 +22,8 @@ const SetSponsor = ({ obj, setModal }) => {
   const [sponsors, setSponsors] = useState([]);
 
   useEffect(() => {
+    // todo
+    // add service
     APIBoardcastGet("Admin/GetSponsers").then((res) => {
       setSponsors(res.data);
     });
@@ -36,6 +38,8 @@ const SetSponsor = ({ obj, setModal }) => {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
+    // todo
+    // add service
     APIBoardcastPost(`Admin/SetSponser`, {
       tutoringId: +form.tutoringId,
       sponserId: +form.sponserId,

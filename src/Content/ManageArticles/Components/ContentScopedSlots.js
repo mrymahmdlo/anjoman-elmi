@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { APICoreGet } from "src/Service/APIBase";
 import { Toast } from "src/Utility/Toast";
+import * as React from "react";
 
 export const ContentScopedSlots = (
   updateData,
@@ -30,7 +31,7 @@ export const ContentScopedSlots = (
   };
 
   return {
-    edit: (item, index) => (
+    edit: (item) => (
       <>
         <td className="py-2 pl-2" key={item.contentId}>
           <CButton
@@ -45,7 +46,7 @@ export const ContentScopedSlots = (
         </td>
       </>
     ),
-    delete: (item, index) => (
+    delete: (item) => (
       <>
         <td className="py-2 pl-2" key={item.contentId}>
           <CButton

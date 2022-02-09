@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import MinuteCallsService from "src/Consultation/Service/MinuteCalls";
-
+import * as React from "react";
+// todo
+// change it to import
 const { CFormText, CButton, CSpinner } = require("@coreui/react");
 
 export const FilterSection = ({ setGroupId, setStatus, setRank }) => {

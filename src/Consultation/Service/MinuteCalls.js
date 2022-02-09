@@ -1,3 +1,5 @@
+// todo
+// change it to import
 const { APICoreGet, APICorePost } = require("src/Service/APIBase");
 
 const Routes = {

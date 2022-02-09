@@ -7,7 +7,9 @@ import { APICoreUpload, APICoreFileLink } from "src/Service/APIBase";
 import { APICorePost } from "src/Service/APIBase";
 import { APIProviderGet, APIProviderPost } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
-
+import React from "react";
+// todo
+// change it to import
 const {
   CForm,
   CFormGroup,
@@ -32,6 +34,8 @@ export const UploadProviderFile = () => {
   const [type, setType] = useState(-1);
   useEffect(() => {
     setActiveProvider(true);
+    // todo
+    // add service
     APICorePost("Provider/Consultation").then((res) => {
       setProviders(res.data);
       setActiveProvider(false);
@@ -39,6 +43,8 @@ export const UploadProviderFile = () => {
   }, []);
   useEffect(() => {
     setActiveContent(true);
+    // todo
+    // add service
     APIProviderGet("Content/ContentTypes").then((res) => {
       setContentType(res);
       setActiveContent(false);

@@ -3,6 +3,7 @@ import { CButton, CBadge } from "@coreui/react";
 import { useState } from "react";
 import { Toast } from "src/Utility/Toast";
 import { APIBoardcastPost } from "src/Service/APIBroadCast";
+import React from "react";
 
 export const ProviderCourseScopedSlots = (updateData, setModal, modal, setModalTutoring) => {
   const [showError, setShowError] = useState(false);

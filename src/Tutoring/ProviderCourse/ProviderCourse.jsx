@@ -4,15 +4,20 @@ import { ProviderModalProviderCourse } from "./ModalProvider";
 import { ProviderCourseScopedSlots } from "./ScopedSlots";
 import { TableHeaderProviderCourse } from "./TableHeader";
 import { APIBoardcastGet } from "src/Service/APIBroadCast";
+import React from "react";
 
+// todo
+// change format to js
 const ManageTutoring = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalTutoring, setModalTutoring] = useState("");
-  const [filterData, setFilterData] = useState({
-    asc: false,
-    column: "quizId",
-  });
+  // todo
+  // either use it or remove it
+  // const [filterData, setFilterData] = useState({
+  //   asc: false,
+  //   column: "quizId",
+  // });
 
   const updateData = () => {
     APIBoardcastGet("ProviderCourse/GetAll").then((res) => {
@@ -24,6 +29,8 @@ const ManageTutoring = () => {
     updateData();
   }, [modal]);
   return (
+    // todo
+    // table not update after delete a row
     <>
       <CCard>
         <CCardHeader>مدیریت درس مشاور</CCardHeader>
@@ -34,7 +41,7 @@ const ManageTutoring = () => {
           columnFilter
           size="sm"
           sorter
-          onSorterValueChange={setFilterData}
+          //onSorterValueChange={setFilterData}
           itemsPerPage={15}
           pagination
           scopedSlots={ProviderCourseScopedSlots(

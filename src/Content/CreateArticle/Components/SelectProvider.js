@@ -1,6 +1,7 @@
 import { CFormGroup, CSelect } from "@coreui/react";
 import { useEffect, useState } from "react";
 import { APICorePost } from "src/Service/APIBase";
+import * as React from "react";
 
 export const SelectProviderCreateArticle = ({ providerId, setProviderId }) => {
   const [providers, setProviders] = useState([]);

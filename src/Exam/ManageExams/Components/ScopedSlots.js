@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import ExamService from "src/Exam/ExamService/ExamService";
 import { Toast } from "src/Utility/Toast";
 import ExamDetails from "./ExamDetails";
+import * as React from "react";
 
 export const ExamScopedSlots = (
   updateData,

@@ -33,9 +33,13 @@ const ManageTimeSheet = () => {
 
   useEffect(() => {
     updateData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modal, form.providerId]);
 
   useEffect(() => {
+    // todo
+    // add service
+    // add loading
     APICorePost("Provider/Tutoring").then((res) => {
       setProviders(res.data);
     });
@@ -55,7 +59,6 @@ const ManageTimeSheet = () => {
                 }
               >
                 <option value={-1}>پشتیبان را انتخاب کنید</option>
-                {/*<option value={providers.length}>همه پشتیبان ها</option>*/}
                 {providers.length > 0 ? (
                   providers?.map((item) => (
                     <option value={item.providerId} key={item.providerId}>

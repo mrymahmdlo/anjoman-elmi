@@ -4,6 +4,7 @@ import MinuteCallsService from "src/Consultation/Service/MinuteCalls";
 import { Toast } from "src/Utility/Toast";
 import { Activity } from "../ModalContent/Activity";
 import { MinuteCallsEditForm } from "../ModalContent/EditForm";
+import * as React from "react";
 
 export const MinuteCallsScopedSlots = (
   setModal,

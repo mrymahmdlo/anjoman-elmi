@@ -4,10 +4,18 @@ import { FormItemsEditAllTutoring } from "./FormItem";
 import { TextField } from "src/Utility/InputGroup";
 
 const EditAllTutoringForm = ({ form, setForm, providers, tutorials }) => {
-  const items = FormItemsEditAllTutoring(form, setForm, providers, tutorials).map((item) => TextField(item));
+  const items = FormItemsEditAllTutoring(
+    form,
+    setForm,
+    providers,
+    tutorials
+  ).map((item) => TextField(item));
 
   return (
     <CCardBody>
+      {
+        // todo => use map
+      }
       <CForm action="" method="post">
         <CRow>{items[0]}</CRow>
         <CRow>{items[1]}</CRow>

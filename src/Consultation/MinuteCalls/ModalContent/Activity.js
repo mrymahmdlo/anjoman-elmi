@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Timeline, TimelineEvent } from "react-event-timeline";
 import MinuteCallsService from "src/Consultation/Service/MinuteCalls";
 import { ConvertDates } from "../Utility/ConvertDates";
+import * as React from "react";
 
 export const Activity = ({ item }) => {
   const [timelines, setTimeline] = useState([]);

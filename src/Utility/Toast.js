@@ -1,4 +1,5 @@
 import { CToast, CToastBody, CToaster, CToastHeader } from "@coreui/react";
+import React from "react";
 
 export const Toast = ({ showError, errorContent }) => {
   return (

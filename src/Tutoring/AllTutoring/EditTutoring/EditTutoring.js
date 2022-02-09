@@ -25,12 +25,16 @@ const EditAllTutoring = ({ obj, setModal, tutoringId }) => {
   const [tutorials, setTutorials] = useState([]);
 
   useEffect(() => {
+    // todo
+    // add service
     APICorePost("Provider/Tutoring").then((res) => {
       setProviders(res.data);
     });
   }, []);
 
   useEffect(() => {
+    // todo
+    // add service
     APIBoardcastGet("Tutorial/GetAll", {}).then((res) => {
       setTutorials(res.data);
     });
@@ -45,6 +49,8 @@ const EditAllTutoring = ({ obj, setModal, tutoringId }) => {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
+    // todo
+    // add service
     APIBoardcastPost(`Admin/EditTutoring/${tutoringId}`, {
       providerId: +form.providerId,
       tutorialId: +form.tutorialId,

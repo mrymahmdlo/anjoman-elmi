@@ -4,7 +4,9 @@ import {
   status,
 } from "src/reusable/UploadFileStatusMark";
 import { APICoreUpload, APICoreFileLink } from "src/Service/APIBase";
-
+import React from "react";
+// todo
+// change it to import
 const { CForm, CFormGroup, CInput, CButton } = require("@coreui/react");
 
 export const UploadFile = () => {
@@ -24,14 +26,10 @@ export const UploadFile = () => {
     if (typeof navigator.clipboard == "undefined") {
       let textArea = document.createElement("textarea");
       textArea.value = link;
-      textArea.style.position = "fixed"; //avoid scrolling to bottom
+      textArea.style.position = "fixed"; 
       document.body.appendChild(textArea);
       textArea.focus();
       textArea.select();
-
-      try {
-        let successful = document.execCommand("copy");
-      } catch (err) {}
 
       document.body.removeChild(textArea);
       return;

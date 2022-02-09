@@ -5,6 +5,7 @@ import { ChangeValuesManageArticles } from "./Components/ChangeValue";
 import { ContentModal } from "./Components/ContentModal";
 import { ContentScopedSlots } from "./Components/ContentScopedSlots";
 import { TableHeadersArticles } from "./Components/TableHeaders";
+import * as React from "react";
 
 const ManaeArticles = () => {
   const [tableData, setTableData] = useState([]);
