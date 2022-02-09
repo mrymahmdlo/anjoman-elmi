@@ -13,14 +13,17 @@ const GetDataBroad = (url) => {
 };
 
 const PostDataBroad = async (url, body) => {
-  const data = await fetch(BaseUrl + url, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json; charset=utf-8",
-      Authorization: "Bearer " + GetToken(),
-    },
-    body: JSON.stringify(body),
-  });
+  const data = await fetch(
+    "http://api.bamis.ir/dev/v1/broadcast/Admin/Tutoring/GetAll",
+    {
+      method: "POST",
+      headers: {
+        "content-type": "application/json; charset=utf-8",
+        Authorization: "Bearer " + GetToken(),
+      },
+      body: JSON.stringify(body),
+    }
+  );
 
   if (data.status < 400) {
     try {

@@ -11,6 +11,7 @@ import {
   CInput,
   CLabel,
   CRow,
+  CPagination,
 } from "@coreui/react";
 import { TableHeadersAllTutoring } from "./TableHeaders";
 import { ChangeValuesAllTutoring } from "./ChangeValue";
@@ -29,30 +30,34 @@ const AllTutoring = () => {
   const [startDate, setStartDate] = useState("1390/06/10");
   const [endDate, setEndDate] = useState("1500/07/10");
   const [currentPage, setActivePage] = useState(1);
+    const [pageNum, setPageNum] = useState(1);
   const [filterData, setFilterData] = useState({
     asc: false,
-    column: "tutoringId",
+    column: "purchasedDate",
   });
   const [form, setForm] = useState({});
-
+ const capitalizeFirstLetter = (string) => {
+   return string?.charAt(0).toUpperCase() + string?.slice(1);
+ };
   const updateData = () => {
-    PostDataBroad("Tutoring/GetAllTutoring", {
+    PostDataBroad("Admin/Tutoring/GetAll", {
       filterModel: {
         fromDateTime: startDate,
         toDateTime: endDate,
       },
       dataTableModel: {
-        orderCol: filterData.column,
+        orderCol: capitalizeFirstLetter(filterData.column),
         searchTerm: search,
-        orderAscending: filterData.asc,
-        page: 1,
-        length: 100000,
+        orderAscending: filterData.asc, 
+        page: currentPage,
+        length: 15,
       },
     }).then((res) => {
       setTableFields([...res.data.headers, ...TableHeadersAllTutoring]);
       let data = res.data.rows;
       ChangeValuesAllTutoring(data);
       setTableData(data);
+        setPageNum(Math.ceil(res.data.totalCount / 20));
     });
   };
 
@@ -71,17 +76,15 @@ const AllTutoring = () => {
       <CCard>
         <CCardHeader> مشاهده جلسات برگزار شده </CCardHeader>
         <CCardBody>
-          <CRow className=" pb-3">
-            <CForm inline>
-              <CFormGroup className=" pl-1">
-                <CLabel className="pr-1">جستجو</CLabel>
-                <CInput
-                  className="mr-2"
-                  onChange={(e) => setSearch(e.target.value)}
-                  value={search}
-                />
-              </CFormGroup>
-            </CForm>
+          <CForm inline>
+            <CFormGroup className=" pl-1">
+              <CLabel className="pr-1">جستجو</CLabel>
+              <CInput
+                className="mr-2"
+                onChange={(e) => setSearch(e.target.value)}
+                value={search}
+              />
+            </CFormGroup>
             <CFormGroup className=" pl-1">
               <CLabel htmlFor="exampleInputName2" className="pr-1">
                 از تاریخ
@@ -102,25 +105,32 @@ const AllTutoring = () => {
                 placeholder={endDate}
               />
             </CFormGroup>
-
-            <CCol>
-              <CButton
-                style={styles}
-                onMouseEnter={() => setBgColor("#00944e")}
-                onMouseLeave={() => setBgColor("#027a40")}
-                onClick={() => {
-                  setModalTutoring(<DownloadExcel setModal={setModal} />);
-                  setModal(true);
-                }}
-              >
-                دریافت گزارش اکسل
-              </CButton>
-            </CCol>
-          </CRow>
-
+          </CForm>
+        </CCardBody>
+        <CCol>
+          <CButton
+            style={styles}
+            className="mr-2"
+            onMouseEnter={() => setBgColor("#00944e")}
+            onMouseLeave={() => setBgColor("#027a40")}
+            onClick={() => {
+              setModalTutoring(<DownloadExcel setModal={setModal} />);
+              setModal(true);
+            }}
+          >
+            دریافت گزارش اکسل
+          </CButton>
+        </CCol>
+        <CCardBody>
           <CDataTable
             items={tableData}
-            fields={tableFields}
+            fields={tableFields.filter(
+              (field) =>
+                field.key !== "tutoringId" &&
+                field.key !== "providerId" &&
+                field.key !== "studentId" &&
+                field.key !== "tutorialId"
+            )}
             striped
             columnFilter
             size="sm"
@@ -136,6 +146,12 @@ const AllTutoring = () => {
             )}
           />
         </CCardBody>
+        <CPagination
+          className="pr-3 d-flex"
+          activePage={currentPage}
+          pages={pageNum}
+          onActivePageChange={(i) => setActivePage(i)}
+        ></CPagination>
       </CCard>
       <TutoringModalAllTutoring
         name=" تدریس خصوصی"
