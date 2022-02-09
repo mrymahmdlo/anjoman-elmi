@@ -55,7 +55,7 @@ const EditTimeSheet = ({ obj, setModal }) => {
     APIProviderPost("TimeSheet/EditTimeSheet", {
       timeSheetId: obj.timeSheetId,
       providerId: obj.providerId,
-      productId: obj.productId,
+      // productId: obj.productId,
       startPeriodHour: Number(form.startPeriodHour),
       endPeriodHour: Number(form.endPeriodHour),
       rechargeCapacityAmountHour: Number(form.rechargeCapacityAmount),

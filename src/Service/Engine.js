@@ -12,7 +12,7 @@ const sendRequest = async (url, body) => {
   if (body) {
     res = await fetch(url, {
       method: "POST",
-      headers,
+      headers: headers,
       body: JSON.stringify(body),
     });
   } else {
