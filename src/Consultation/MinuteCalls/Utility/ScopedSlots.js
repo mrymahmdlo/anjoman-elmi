@@ -1,6 +1,6 @@
 import { CButton, CProgress } from "@coreui/react";
 import { useState } from "react";
-import MinuteCallsService from "src/Consultation/Service/MinuteCalls";
+import MinuteCallsService from "../../Service/MinuteCallsService";
 import { Toast } from "src/Utility/Toast";
 import { Activity } from "../ModalContent/Activity";
 import { MinuteCallsEditForm } from "../ModalContent/EditForm";

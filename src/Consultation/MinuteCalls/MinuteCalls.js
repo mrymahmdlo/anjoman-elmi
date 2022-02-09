@@ -13,7 +13,7 @@ import {
 import { ModalContainer } from "./ModalContent/ModalContainer";
 import { ChangeValuesMinuteCalls } from "./Utility/ChangeValues";
 import { MinuteCallsScopedSlots } from "./Utility/ScopedSlots";
-import MinuteCallsService from "../Service/MinuteCalls";
+import MinuteCallsService from "../Service/MinuteCallsService";
 
 const Tables = () => {
   const [tableData, setTableData] = useState([]);

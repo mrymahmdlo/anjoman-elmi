@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MinuteCallsService from "src/Consultation/Service/MinuteCalls";
+import MinuteCallsService from "../../Service/MinuteCallsService";
 import * as React from "react";
 // todo
 // change it to import

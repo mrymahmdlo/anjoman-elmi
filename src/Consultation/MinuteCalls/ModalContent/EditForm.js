@@ -16,7 +16,7 @@ import {
   HejriToDotNetGeorgian,
 } from "src/Utility/DateTime";
 import { Schedule } from "../Utility/Schedule";
-import MinuteCallsService from "src/Consultation/Service/MinuteCalls";
+import MinuteCallsService from "../../Service/MinuteCallsService";
 
 const subcategories = [
   { name: "MinuteConsultation", label: "آنلاین" },
