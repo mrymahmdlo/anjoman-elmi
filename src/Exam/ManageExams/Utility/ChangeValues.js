@@ -1,13 +1,10 @@
-import JDate from "jalali-date";
-import { DateFormatter } from "src/Utility/DateFormatter";
+import { GeorgianToHejri } from "src/Utility/DateTime";
 
 export const ChangeValuesManageExams = (arr) => {
   arr.forEach((obj) =>
     Object.keys(obj).forEach(function (key) {
       if (key === "startDate" || key === "endDate" || key === "resultDate") {
-        let date = new Date(obj[key]);
-        let jdate = new JDate(date);
-        obj[key] = DateFormatter(jdate, date);
+        obj[key] = obj[key] ? GeorgianToHejri(obj[key]) : "ندارد";
       }
       if (key === "questionFileReady" || key === "answerFileReady") {
         obj[key] = obj[key] === true ? "بله" : "خیر";

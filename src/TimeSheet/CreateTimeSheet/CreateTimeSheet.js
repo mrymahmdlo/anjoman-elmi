@@ -27,7 +27,7 @@ const CreateTimeSheet = () => {
     // add service
     APIProviderPost("TimeSheet/AddTimeSheet", {
       providerId: Number(form.providerId),
-      productId: 0,
+      // productId: 0,
       startPeriodHour: Number(form.startPeriodHour),
       endPeriodHour: Number(form.endPeriodHour),
       rechargeCapacityAmountHour: Number(form.rechargeCapacityAmountHour),
