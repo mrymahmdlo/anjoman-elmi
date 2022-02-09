@@ -1,7 +1,7 @@
 import CIcon from "@coreui/icons-react";
 import { CButton, CListGroup, CListGroupItem, CSpinner } from "@coreui/react";
 import React, { useEffect, useState } from "react";
-import ExamService from "src/Exam/ExamService/ExamService";
+import ExamService from "../../../ExamService/ExamService";
 import { ExamContext } from "../../CreateNewExam";
 import { ExamModalContainer } from "../ExamModalContainer";
 import AddNewCourseForm from "./AddNewCourseForm";

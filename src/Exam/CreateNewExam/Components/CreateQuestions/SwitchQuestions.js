@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ExamService from "src/Exam/ExamService/ExamService";
+import ExamService from "../../../ExamService/ExamService";
 import { TextField } from "src/Utility/InputGroup";
 import { ExamContext } from "../../CreateNewExam";
 import { FormNumberInput } from "src/reusable/FormInput";

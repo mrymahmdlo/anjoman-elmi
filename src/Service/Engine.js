@@ -1,4 +1,4 @@
-import { TokenManager } from "src/Identity/Service/TokenManager";
+import { TokenManager } from "../Identity/Service/TokenManager";
 const { GetToken } = TokenManager();
 
 const secret = "AMP_!YUHDSJHYG@&12312!W@sAs";

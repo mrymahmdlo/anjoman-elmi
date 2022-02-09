@@ -20,7 +20,7 @@ import {
   InitialForm,
   QuizInfoValidators,
 } from "../Components/QuizInfo/QuizInfoValidators";
-import ExamService from "src/Exam/ExamService/ExamService";
+import ExamService from "../../ExamService/ExamService";
 import { ExamContext } from "../CreateNewExam";
 import { CKEditorField } from "src/reusable/CKEditorInput";
 import { useHistory } from "react-router";

@@ -8,7 +8,7 @@ import {
   CImg,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { TokenManager } from "src/Identity/Service/TokenManager";
+import { TokenManager } from "../Identity/Service/TokenManager";
 import { useHistory } from "react-router-dom";
 
 const TheHeaderDropdown = () => {
