@@ -44,7 +44,6 @@ const ManageTimeSheet = () => {
       setProviders(res.data);
     });
   }, []);
-  console.log(providers)
 
   return (
     <>

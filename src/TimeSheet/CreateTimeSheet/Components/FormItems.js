@@ -1,6 +1,6 @@
 import { FormNumberInput } from "src/reusable/FormInput";
 
-export const FormItems = (form, setForm) => {
+export const FormItemsCreateTimeSheet = (form, setForm) => {
   return [
     {
       name: "زمان شروع",

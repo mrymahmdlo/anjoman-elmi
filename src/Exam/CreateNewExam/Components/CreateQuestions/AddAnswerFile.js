@@ -1,7 +1,7 @@
 import CIcon from "@coreui/icons-react";
 import React, { useEffect, useState } from "react";
-import ExamService from "src/Exam/ExamService/ExamService";
-import { UploadExcel } from "src/Exam/ExamService/ExamUploadFile";
+import ExamService from "../../../ExamService/ExamService";
+import { UploadExcel } from "../../../ExamService/ExamUploadFile";
 import { ExamContext } from "../../CreateNewExam";
 
 const {// todo

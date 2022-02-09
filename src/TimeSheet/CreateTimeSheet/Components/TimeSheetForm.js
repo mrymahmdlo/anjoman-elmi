@@ -4,7 +4,6 @@ import {
   CForm,
   CRow,
   CSelect,
-  CFormText,
   CFormGroup,
   CLabel,
   CCol,
@@ -18,7 +17,6 @@ const TimeSheetForm = ({ form, setForm }) => {
   const [timeSheetId, setTimeSheetId] = useState();
   const [weekDay, setWeekDay] = useState([]);
   const [providers, setProviders] = useState([]);
-  const [providerId, setProviderId] = useState(-1);
 
   useEffect(() => {
     if (form.timeSheetId) setTimeSheetId(form.timeSheetId);
@@ -26,23 +24,23 @@ const TimeSheetForm = ({ form, setForm }) => {
 
   useEffect(() => {
     setForm({ ...form, timeSheetId: timeSheetId });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeSheetId]);
 
-  useEffect(()=> {
+  useEffect(() => {
     // todo
     // add service
-    APIProviderGet('TimeSheet/DaysOfWeek').then(res=>setWeekDay(res));
+    APIProviderGet("TimeSheet/DaysOfWeek").then((res) => setWeekDay(res));
   }, []);
 
-  const items = FormItems(form, setForm).map((item) =>
+  const items = FormItemsCreateTimeSheet(form, setForm).map((item) =>
     TextField(item)
   );
   useEffect(() => {
     // todo
     // add service
     APICorePost("Provider/Tutoring").then((res) => {
-      setProviders(res.data)
+      setProviders(res.data);
     });
   }, []);
 
@@ -57,7 +55,7 @@ const TimeSheetForm = ({ form, setForm }) => {
 
               <CSelect
                 value={form.providerId}
-                defaultValue={providerId}
+                defaultValue={-1}
                 onChange={(e) => {
                   setForm({ ...form, providerId: e.target.value });
                 }}

@@ -18,7 +18,7 @@ import {
 import { SwitchField, TextField } from "src/Utility/InputGroup";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
 import { QuizInfoValidators } from "../Components/QuizInfo/QuizInfoValidators";
-import ExamService from "src/Exam/ExamService/ExamService";
+import ExamService from "../../ExamService/ExamService";
 import { ExamContext } from "../CreateNewExam";
 import { GeorgianToHejri } from "src/Utility/DateTime";
 import AddFilesButtons from "../Components/QuizInfo/AddFilesButtons";

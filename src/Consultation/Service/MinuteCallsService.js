@@ -1,6 +1,6 @@
 // todo
 // change it to import
-const { APICoreGet, APICorePost } = require("src/Service/APIBase");
+import { APICoreGet, APICorePost } from "../../Service/APIBase";
 
 const Routes = {
   Activity: "MinuteConsultation/Activity/",

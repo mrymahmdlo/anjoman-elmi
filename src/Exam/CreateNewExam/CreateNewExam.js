@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CCard, CContainer } from "@coreui/react";
 import { Toast } from "src/Utility/Toast";
-import { TokenManager } from "src/Identity/Service/TokenManager";
+import { TokenManager } from "../../Identity/Service/TokenManager";
 import QuizInfoForm from "./Forms/QuizInfoForm";
 import QuizDetailsForm from "./Forms/QuizDetailsForm";
 import { ExamBreadcrumb } from "./Components/ExamBreadcrumb";

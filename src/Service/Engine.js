@@ -1,4 +1,4 @@
-import { TokenManager } from "src/Identity/Service/TokenManager";
+import { TokenManager } from "../Identity/Service/TokenManager";
 const { GetToken } = TokenManager();
 
 const secret = "AMP_!YUHDSJHYG@&12312!W@sAs";
@@ -12,7 +12,7 @@ const sendRequest = async (url, body) => {
   if (body) {
     res = await fetch(url, {
       method: "POST",
-      headers,
+      headers: headers,
       body: JSON.stringify(body),
     });
   } else {

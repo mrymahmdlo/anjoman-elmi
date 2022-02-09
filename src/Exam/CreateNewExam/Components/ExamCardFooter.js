@@ -1,6 +1,6 @@
 import { ExamContext } from "../CreateNewExam";
 import React, { useState } from "react";
-import ExamService from "src/Exam/ExamService/ExamService";
+import ExamService from "../../ExamService/ExamService";
 import { useHistory } from "react-router";
 import { ExamModalContainer } from "./ExamModalContainer";
 // todo
