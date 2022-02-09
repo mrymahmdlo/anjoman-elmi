@@ -1,4 +1,4 @@
-import { downloadExcel, sendRequest } from "./Engine";
+import { downloadFile, sendRequest } from "./Engine";
 
 const baseUrl = process.env.REACT_APP_Broad_BASE;
 
@@ -8,6 +8,6 @@ const APIBoardcastPost = async (url, body = {}) =>
   sendRequest(baseUrl + url, body);
 
 const APIBoardcastDownloadExcel = async (url, body) =>
-  downloadExcel(baseUrl + url, body, "Tutoring.csv");
+  downloadFile(baseUrl + url, body, "Tutoring.csv");
 
 export { APIBoardcastPost, APIBoardcastGet, APIBoardcastDownloadExcel };

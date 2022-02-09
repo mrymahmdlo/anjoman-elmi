@@ -35,6 +35,27 @@ const sendRequest = async (url, body) => {
   throw error;
 };
 
+// post form data
+const postFormData = async (url, body) => {
+  const init = {
+    headers: {
+      Authorization: "Bearer " + GetToken(),
+    },
+    method: "POST",
+    body,
+  };
+
+  const res = await fetch(url, init);
+  try {
+    const json = await res.json();
+    if (res.status < 400) return json;
+    throw json;
+  } catch {
+    return null;
+  }
+};
+
+// convert to FormData then fetch
 const sendFormData = async (url, form) => {
   const formData = new FormData();
   for (var key in form) {
@@ -82,7 +103,7 @@ const uploadFile = async (base, file) => {
   }
 };
 
-const downloadExcel = async (url, body, name = "file.csv") => {
+const downloadFile = async (url, body, name = "file.csv") => {
   return await fetch(url, {
     method: "POST",
     headers: {
@@ -108,5 +129,6 @@ export {
   sendFormData,
   uploadFile,
   getFileLink,
-  downloadExcel,
+  downloadFile,
+  postFormData,
 };
