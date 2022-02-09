@@ -16,6 +16,8 @@ const CapacityForm = ({ form, setForm }) => {
 
   const items = FormItemsCapacityRegistration(form, setForm).map((item) => TextField(item));
   useEffect(() => {
+    // todo
+    // add service
     APICorePost("Provider/Tutoring").then((res) => {
       setProviders(res.data);
     });

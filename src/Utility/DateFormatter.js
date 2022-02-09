@@ -1,3 +1,6 @@
+// todo
+// remove this file safely
+
 export const DateFormatter = (jdate, date) => {
   let string =
     ("0" + date.getHours()).substr(-2) +

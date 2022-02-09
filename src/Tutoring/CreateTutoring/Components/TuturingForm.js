@@ -23,6 +23,7 @@ const CreateTutoringForm = ({ form, setForm }) => {
 
   useEffect(() => {
     setForm({ ...form, providerId: providerId });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [providerId]);
   useEffect(() => {
     APICoreGet("BasicInfo/Groups").then((res) => setGroupIds(res));

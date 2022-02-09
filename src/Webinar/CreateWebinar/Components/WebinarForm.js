@@ -13,11 +13,15 @@ const CreateWebinarForm = ({ form, setForm, preData }) => {
   const [courseIds, setCourseIds] = useState([]);
 
   useEffect(() => {
+    // todo
+    // add service
     APICoreGet("BasicInfo/Groups").then((res) => setGroupIds(res));
   }, []);
 
   useEffect(() => {
     if (form.groupId && form.groupId !== "")
+    // todo
+    // add service
     APICoreGet("BasicInfo/CoursesByGroupId?groupId=" + form.groupId).then(
         (res) => setCourseIds(res)
       );
@@ -32,6 +36,7 @@ const CreateWebinarForm = ({ form, setForm, preData }) => {
 
   useEffect(() => {
     if (imageHash !== form.poster) setForm({ ...form, poster: imageHash });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageHash, form]);
 
   return (

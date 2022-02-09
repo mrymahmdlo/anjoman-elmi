@@ -3,6 +3,7 @@ import { CButton } from "@coreui/react";
 import { useState } from "react";
 import { APIProviderPost } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
+import React from "react";
 
 export const ProviderScopedSlots = (updateData, setModal, modal, setModalContent) => {
   const [showError, setShowError] = useState(false);

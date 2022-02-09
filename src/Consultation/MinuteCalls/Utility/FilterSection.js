@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { APICoreGet } from "src/Service/APIBase";
-
+import MinuteCallsService from "../../Service/MinuteCallsService";
+import * as React from "react";
+// todo
+// change it to import
 const { CFormText, CButton, CSpinner } = require("@coreui/react");
 
 export const FilterSection = ({ setGroupId, setStatus, setRank }) => {
   const [filters, setFilters] = useState([]);
   useEffect(() => {
-    APICoreGet("Provider/Filters").then((res) => {
+    MinuteCallsService.Filters().then((res) => {
       setFilters(res.data);
     });
   }, []);

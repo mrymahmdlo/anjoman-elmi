@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import ExamService from "src/Exam/ExamService/ExamService";
+import ExamService from "../../../ExamService/ExamService";
 import { TextField } from "src/Utility/InputGroup";
 import { ExamContext } from "../../CreateNewExam";
 import { QuizDetailsFormItems } from "./QuizDetailsFormItems";
 import { InitialForm } from "./QuizDetailsValidators";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
 import { QuizDetailsValidators } from "./QuizDetailsValidators";
-
+// todo
+// change it to import
 const { CCardBody, CRow, CButton, CSpinner } = require("@coreui/react");
 
 const EditQuizDetailForm = ({ item, setUpdated }) => {

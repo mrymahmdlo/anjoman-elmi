@@ -8,7 +8,7 @@ import {
 } from "@coreui/react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ExamService from "src/Exam/ExamService/ExamService";
+import ExamService from "../../../ExamService/ExamService";
 import { ExamContext } from "../../CreateNewExam";
 import { ExamModalContainer } from "../ExamModalContainer";
 import AddQuestionForm from "./AddQuestionForm";

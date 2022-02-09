@@ -27,6 +27,8 @@ export const FormItemsManuallyCreateTutoring = (form, setForm, tutorials, provid
       ),
       size: 6,
     },
+    // todo
+    // repeated!!!
     {
       name: "",
       text: "",

@@ -5,7 +5,9 @@ import {
   CModalFooter,
   CModalHeader,
 } from "@coreui/react";
-
+import React from "react";
+// todo
+// change format to js
 export const ProviderModalProviderCourse = ({ name, modal, toggle, modalTutoring }) => {
   return (
     <CModal show={modal} onClose={toggle}>

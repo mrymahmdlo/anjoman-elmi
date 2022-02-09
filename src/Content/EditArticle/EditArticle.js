@@ -10,7 +10,7 @@ import {
 import CIcon from "@coreui/icons-react";
 import { APICoreGet, APICoreFormData } from "src/Service/APIBase";
 import { Toast } from "src/Utility/Toast";
-import ArticleForm from "src/Content/CreateArticle/Components/ArticleForm";
+import ArticleForm from "../CreateArticle/Components/ArticleForm";
 import { useHistory, useParams } from "react-router";
 import { ChangeValuesEditArticles } from "./Components/ChangeValues";
 import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";

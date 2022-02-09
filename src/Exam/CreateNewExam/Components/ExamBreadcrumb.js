@@ -1,4 +1,5 @@
 import { CBreadcrumb, CBreadcrumbItem } from "@coreui/react";
+import * as React from "react";
 
 const stageTexts = [
   "اطلاعات آزمون",

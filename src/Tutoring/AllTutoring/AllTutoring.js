@@ -10,19 +10,17 @@ import {
   CFormGroup,
   CInput,
   CLabel,
-  CRow,
   CPagination,
 } from "@coreui/react";
 import { TableHeadersAllTutoring } from "./TableHeaders";
 import { ChangeValuesAllTutoring } from "./ChangeValue";
 import { APIBoardcastPost } from "src/Service/APIBroadCast";
-import {AllTutoringScopedSlots} from './TutoringScopedSlots';
+import { AllTutoringScopedSlots } from "./TutoringScopedSlots";
 import { TutoringModalAllTutoring } from "./TutoringModal";
 import DownloadExcel from "./ExcelReport/DownloadExcel";
 
 const AllTutoring = () => {
   const [tableData, setTableData] = useState([]);
-  const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState(false);
   const [modalTutoring, setModalTutoring] = useState("");
@@ -30,15 +28,11 @@ const AllTutoring = () => {
   const [startDate, setStartDate] = useState("1390/06/10");
   const [endDate, setEndDate] = useState("1500/07/10");
   const [currentPage, setActivePage] = useState(1);
-    const [pageNum, setPageNum] = useState(1);
+  const [pageNum, setPageNum] = useState(1);
   const [filterData, setFilterData] = useState({
     asc: false,
     column: null,
   });
-  const [form, setForm] = useState({});
- const capitalizeFirstLetter = (string) => {
-   return string?.charAt(0).toUpperCase() + string?.slice(1);
- };
   const updateData = () => {
     APIBoardcastPost("Admin/Tutoring/GetAll", {
       filterModel: {
@@ -63,6 +57,7 @@ const AllTutoring = () => {
 
   useEffect(() => {
     updateData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modal, currentPage, filterData, startDate, endDate, search]);
 
   const [bgColor, setBgColor] = useState("#027a40");
@@ -139,12 +134,10 @@ const AllTutoring = () => {
             onSorterValueChange={setFilterData}
             itemsPerPage={15}
             pagination
-            scopedSlots={AllTutoringScopedSlots(
-              data,
-              setModal,
-              modal,
-              setModalTutoring
-            )}
+            scopedSlots={AllTutoringScopedSlots({
+              setModal: setModal,
+              setModalTutoring: setModalTutoring,
+            })}
           />
         </CCardBody>
         <CPagination

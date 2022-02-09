@@ -21,13 +21,17 @@ const CapacityRegistration = () => {
 
   const refreshPage = () => {
     setTimeout(() => {
-      window.location.reload(false);
-    }, 2000);
+       window.location.reload(false);
+    //todo
+    }, 2000); // bad solution!!!!!!!!!!!!! remove and find better way
+    // hint : see update data from Minute call
   };
 
   const submitTimeSheet = () => {
     setShowError(false);
     setBtnActive(true);
+    // todo
+    // add service
     APIProviderPost("TimeSheet/SetRechargeAmount", {
       providerId: Number(form.providerId),
       rechargeAmountHour: Number(form.rechargeAmountHour),
@@ -51,8 +55,8 @@ const CapacityRegistration = () => {
         <CCard>
           <CCardHeader>ظرفیت مدرس</CCardHeader>
           <CCardSubtitle className="p-3">
-            در این بخش می توانید  برای مدرس مورد نظر
-            ظرفیت مخصوص تمام بازه های قابل تدریس او را تعیین کنید.
+            در این بخش می توانید برای مدرس مورد نظر ظرفیت مخصوص تمام بازه های
+            قابل تدریس او را تعیین کنید.
           </CCardSubtitle>
           <CapacityForm form={form} setForm={setForm} />
           <CCardFooter>

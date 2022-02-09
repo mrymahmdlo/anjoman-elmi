@@ -9,6 +9,7 @@ import {
 import { useState } from "react";
 import { UploadFileStatusMark, status } from "../reusable/UploadFileStatusMark";
 import { APICoreUpload } from "src/Service/APIBase";
+import React from "react";
 
 const UploadFile = async (file, setStatusFile, setHashId) => {
   setStatusFile(status.LOADING);

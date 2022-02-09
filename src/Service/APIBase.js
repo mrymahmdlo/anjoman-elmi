@@ -1,5 +1,5 @@
 import { getFileLink, sendFormData, sendRequest, uploadFile } from "./Engine";
-export const baseUrl = process.env.REACT_APP_API_BASE;
+export const baseUrl = window.config.API_BASE;
 
 const APICoreGet = (url) => sendRequest(baseUrl + url);
 

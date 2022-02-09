@@ -39,7 +39,8 @@ const EditWebinar = ({ obj, setModal }) => {
     let data = form;
     if (form.poster !== "") data["poster"] = form.poster;
     delete data["Image"];
-    
+    // todo
+    // add serivce
     APIBoardcastPost(`Webinar/Update?webinarId=${obj.webinarId}`, {
       ...form,
       title: form.title,

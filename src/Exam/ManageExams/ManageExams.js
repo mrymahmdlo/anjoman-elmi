@@ -14,6 +14,7 @@ import ExamService from "../ExamService/ExamService";
 import { ExamTableHeaders } from "./Components/ExamsTableHeaders";
 import { ExamScopedSlots } from "./Components/ScopedSlots";
 import { ChangeValuesManageExams } from "./Utility/ChangeValues";
+import * as React from "react";
 
 const ManageExams = () => {
   const [tableData, setTableData] = useState([]);
@@ -28,6 +29,7 @@ const ManageExams = () => {
 
   useEffect(() => {
     updateData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, filterData]);
 
   const updateData = () => {

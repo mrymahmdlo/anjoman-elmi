@@ -8,7 +8,7 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import {  APIBoardcastPost } from "src/Service/APIBroadCast";
+import { APIBoardcastPost } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import CreateTutoringForm from "src/Tutoring/CreateTutoring/Components/TuturingForm";
 import { ChangeValuesEditTutoring } from "./Components/ChangeValues";
@@ -36,6 +36,7 @@ const EditTutoring = ({ obj, setModal }) => {
       description: "",
       minProviderRank: +form.minProviderRank,
       maxProviderRank: +form.maxProviderRank,
+      // todo
       // where is isOffline?
       price: 0,
     })
@@ -57,7 +58,11 @@ const EditTutoring = ({ obj, setModal }) => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>ویرایش تدریس خصوصی</CCardHeader>
-          <CreateTutoringForm form={form} setForm={setForm} preData={form.poster} />
+          <CreateTutoringForm
+            form={form}
+            setForm={setForm}
+            preData={form.poster}
+          />
           <CCardFooter>
             {!btnActice ? (
               <CButton

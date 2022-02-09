@@ -1,9 +1,10 @@
 import { CButton, CProgress } from "@coreui/react";
 import { useState } from "react";
-import { APICorePost } from "src/Service/APIBase";
+import MinuteCallsService from "../../Service/MinuteCallsService";
 import { Toast } from "src/Utility/Toast";
 import { Activity } from "../ModalContent/Activity";
 import { MinuteCallsEditForm } from "../ModalContent/EditForm";
+import * as React from "react";
 
 export const MinuteCallsScopedSlots = (
   setModal,
@@ -86,7 +87,7 @@ export const MinuteCallsScopedSlots = (
             <CButton
               onClick={() => {
                 setShowError(false);
-                APICorePost("ConsultationActivity/Resend/" + item.orderDetailId)
+                MinuteCallsService.SendSms(item.orderDetailId)
                   .then((res) => {
                     setShowError(true);
                     setErrorContent(res.data);

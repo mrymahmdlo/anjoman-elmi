@@ -51,7 +51,7 @@ export default function ManuallyCreateTutoring() {
         refreshPage();
       })
       .catch(() => {
-        // setErrorContent("ثبت داده ها با مشکل مواجه شد");
+         setErrorContent("ثبت داده ها با مشکل مواجه شد");
         setShowError(true);
         setBtnActive(false);
       });

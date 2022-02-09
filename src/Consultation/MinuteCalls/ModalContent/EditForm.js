@@ -9,7 +9,6 @@ import {
   CSelect,
   CSpinner,
 } from "@coreui/react";
-import { APICoreGet, APICorePost } from "src/Service/APIBase";
 import { FilterSection } from "../Utility/FilterSection";
 import { DateTimePicker } from "src/reusable/DateTimePicker";
 import {
@@ -17,6 +16,7 @@ import {
   HejriToDotNetGeorgian,
 } from "src/Utility/DateTime";
 import { Schedule } from "../Utility/Schedule";
+import MinuteCallsService from "../../Service/MinuteCallsService";
 
 const subcategories = [
   { name: "MinuteConsultation", label: "آنلاین" },
@@ -37,13 +37,13 @@ export const MinuteCallsEditForm = ({ orderDetailId, onSubmit }) => {
   const [providerId, setProviderId] = useState();
 
   useEffect(() => {
-    APICorePost("Provider/Consultation").then((res) => {
+    MinuteCallsService.Consultation().then((res) => {
       setProviders(res.data);
     });
   }, []);
 
   useEffect(() => {
-    APICoreGet("Order/Detail/" + orderDetailId)
+    MinuteCallsService.OrderDetail(orderDetailId)
       .then((d) => {
         setProviderId(d.data.providerId);
         setForm({
@@ -58,7 +58,7 @@ export const MinuteCallsEditForm = ({ orderDetailId, onSubmit }) => {
   }, [orderDetailId]);
 
   useEffect(() => {
-    APICorePost("Provider/Consultation", {
+    MinuteCallsService.Consultation({
       GroupIds: groupId ? [groupId] : [],
       statusIds: status ? [status] : [],
       RankRangeIds: rank ? [rank] : [],
@@ -69,7 +69,7 @@ export const MinuteCallsEditForm = ({ orderDetailId, onSubmit }) => {
 
   useEffect(() => {
     if (form.providerId)
-    APICoreGet(`Service/${subcategory}/${form.providerId}`)
+      MinuteCallsService.Service(subcategory, form.providerId)
         .then((d) => {
           const data = d?.data?.items;
           if (
@@ -86,7 +86,7 @@ export const MinuteCallsEditForm = ({ orderDetailId, onSubmit }) => {
 
   const handleSumbit = () => {
     setBtnActive(true);
-    APICorePost("Order/Change", {
+    MinuteCallsService.OrderChange({
       orderDetailId: form.orderDetailId,
       productProvider: {
         providerId: form.providerId,

@@ -1,4 +1,5 @@
 import { CCol, CFormGroup, CFormText, CLabel } from "@coreui/react";
+import React from "react";
 
 const TextField = (item) => (
   <CCol sm={item.colSize} key={item.name}>

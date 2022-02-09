@@ -1,5 +1,6 @@
 import { CButton, CCallout, CCol, CContainer, CRow } from "@coreui/react";
 import { useHistory } from "react-router-dom";
+import * as React from "react";
 
 const ExamDetails = ({ item, tableFields }) => {
   const history = useHistory();

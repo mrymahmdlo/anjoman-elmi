@@ -9,7 +9,9 @@ export const TimeSheetScopedSlots = (updateData, setModal, modal, setModalTimeSh
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const handleDelete = (Id) => {
-    APIProviderPost("TimeSheet/Delete/" + Id)
+    //todo
+    // add service
+    APIProviderPost("TimeSheet/Delete/" + Id) // todo => lower case!
       .then(() => {
         setErrorContent("داده با موفقیت حذف شد");
         setModal(false);

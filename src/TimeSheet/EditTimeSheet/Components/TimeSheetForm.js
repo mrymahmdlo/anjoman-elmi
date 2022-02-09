@@ -23,10 +23,11 @@ const EditTimeSheetForm = ({ form, setForm }) => {
 
   useEffect(() => {
     setForm({ ...form, timeSheetId: timeSheetId });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeSheetId]);
 
-  useEffect(()=> {
-    APIProviderGet('TimeSheet/DaysOfWeek').then(res=>setWeekDay(res));
+  useEffect(() => {
+    APIProviderGet("TimeSheet/DaysOfWeek").then((res) => setWeekDay(res));
   }, []);
 
   const items = FormItemsEditTimeSheet(form, setForm).map((item) =>
@@ -38,7 +39,6 @@ const EditTimeSheetForm = ({ form, setForm }) => {
       <CForm action="" method="post">
         <CRow>{items.slice(0, 2)}</CRow>
 
-
         <CRow>
           <CCol sm={6}>
             <CFormGroup>
@@ -49,21 +49,23 @@ const EditTimeSheetForm = ({ form, setForm }) => {
                 }}
               >
                 {weekDay.map((item, index) => (
-                    <option
-                      key={index}
-                      value={item.id}
-                      selected={`${form.weekDay}` === item.name}
-                    >
-                      {item.name}
-                    </option>
-                  ))}
+                  <option
+                    key={index}
+                    value={item.id}
+                    selected={`${form.weekDay}` === item.name}
+                  >
+                    {item.name}
+                  </option>
+                ))}
               </CSelect>
               <CFormText className="help-block">
                 روز هفته را انتخاب کنید
               </CFormText>
             </CFormGroup>
           </CCol>
-          <CCol sm={6} style={{ padding: 0}}>{items[2]}</CCol>
+          <CCol sm={6} style={{ padding: 0 }}>
+            {items[2]}
+          </CCol>
         </CRow>
       </CForm>
     </CCardBody>
