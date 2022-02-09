@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   CButton,
   CCard,
@@ -8,12 +8,12 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import {PostDataProvider} from "src/Service/APIProvider";
-import {Toast} from "src/Utility/Toast";
-import EditTimeSheetForm from './Components/TimeSheetForm';
-import {useHistory} from "react-router";
+import { APIProviderPost } from "src/Service/APIProvider";
+import { Toast } from "src/Utility/Toast";
+import EditTimeSheetForm from "./Components/TimeSheetForm";
+import { useHistory } from "react-router";
 
-const EditTimeSheet = ({obj, setModal}) => {
+const EditTimeSheet = ({ obj, setModal }) => {
   const [form, setForm] = useState({});
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
@@ -24,10 +24,8 @@ const EditTimeSheet = ({obj, setModal}) => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
     setForm(obj);
-    console.log(obj);
   }, [obj]);
   const ChangeValues = (day) => {
-
     switch (day) {
       case "یکشنبه":
         return 0;
@@ -43,14 +41,18 @@ const EditTimeSheet = ({obj, setModal}) => {
         return 5;
       case "شنبه":
         return 6;
+      default:
+        return -1;
     }
+    // todo
+    // always set defalut!
   };
   const submitTimeSheet = () => {
     setShowError(false);
     setBtnActive(true);
-    console.log(ChangeValues(obj.weekDay));
-    console.log(form.weekDay);
-    PostDataProvider("TimeSheet/EditTimeSheet", {
+    // todo
+    // add service
+    APIProviderPost("TimeSheet/EditTimeSheet", {
       timeSheetId: obj.timeSheetId,
       providerId: obj.providerId,
       // productId: obj.productId,
@@ -86,7 +88,7 @@ const EditTimeSheet = ({obj, setModal}) => {
       <CContainer fluid>
         <CCard>
           <CCardHeader>ویرایش زمان بندی</CCardHeader>
-          <EditTimeSheetForm form={form} setForm={setForm}/>
+          <EditTimeSheetForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActive ? (
               <CButton
@@ -95,11 +97,11 @@ const EditTimeSheet = ({obj, setModal}) => {
                 color="primary"
                 onClick={submitTimeSheet}
               >
-                <CIcon name="cil-scrubber"/> ثبت زمان بندی
+                <CIcon name="cil-scrubber" /> ثبت زمان بندی
               </CButton>
             ) : (
               <CSpinner
-                style={{width: "2rem", height: "2rem"}}
+                style={{ width: "2rem", height: "2rem" }}
                 color=""
                 variant="grow"
               />
@@ -107,7 +109,7 @@ const EditTimeSheet = ({obj, setModal}) => {
           </CCardFooter>
         </CCard>
       </CContainer>
-      <Toast showError={showError} errorContent={errorContent}/>
+      <Toast showError={showError} errorContent={errorContent} />
     </div>
   );
 };

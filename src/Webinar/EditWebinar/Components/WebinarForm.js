@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { CCardBody, CForm, CRow } from "@coreui/react";
-import { GetData } from "src/Service/APIEngine";
+import { APICoreGet } from "src/Service/APIBase";
 import { FormItemsWebinar } from "../../CreateWebinar/Components/FormItems";
 import { TextField } from "src/Utility/InputGroup";
 import { CoreFileInput } from "src/Utility/CoreFileInput";
@@ -13,12 +13,14 @@ const EditWebinarForm = ({ form, setForm, preData }) => {
   const [courseIds, setCourseIds] = useState([]);
 
   useEffect(() => {
-    GetData("BasicInfo/Groups").then((res) => setGroupIds(res));
+    APICoreGet("BasicInfo/Groups").then((res) => setGroupIds(res));
   }, []);
 
   useEffect(() => {
     if (form.groupId && form.groupId !== "")
-      GetData("BasicInfo/CoursesByGroupId?groupId=" + form.groupId).then(
+    // todo
+    // add service
+    APICoreGet("BasicInfo/CoursesByGroupId?groupId=" + form.groupId).then(
         (res) => setCourseIds(res)
       );
     else {
@@ -32,6 +34,7 @@ const EditWebinarForm = ({ form, setForm, preData }) => {
 
   useEffect(() => {
     if (imageHash !== form.poster) setForm({ ...form, poster: imageHash });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageHash, form]);
 
   return (

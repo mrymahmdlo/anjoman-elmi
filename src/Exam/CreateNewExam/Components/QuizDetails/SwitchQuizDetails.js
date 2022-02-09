@@ -4,7 +4,8 @@ import { TextField } from "src/Utility/InputGroup";
 import { ExamContext } from "../../CreateNewExam";
 import { FormNumberInput } from "src/reusable/FormInput";
 import CIcon from "@coreui/icons-react";
-
+// todo
+// change it to import
 const { CCardBody, CRow, CButton, CSpinner, CLabel } = require("@coreui/react");
 
 const SwitchQuizDetails = ({ numCourses, setUpdated }) => {

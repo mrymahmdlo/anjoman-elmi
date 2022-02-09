@@ -5,6 +5,7 @@ import {
   CModalFooter,
   CModalHeader,
 } from "@coreui/react";
+import * as React from "react";
 
 export const TimeSheetModal = ({ name, modal, toggle, modalTimeSheet }) => {
   return (

@@ -2,7 +2,8 @@ import { ExamContext } from "../CreateNewExam/CreateNewExam";
 import React, { useState } from "react";
 import ExamService from "src/Exam/ExamService/ExamService";
 import { useHistory } from "react-router";
-
+// todo
+// change it to import
 const { default: CIcon } = require("@coreui/icons-react");
 const { CCardFooter, CButton, CSpinner } = require("@coreui/react");
 

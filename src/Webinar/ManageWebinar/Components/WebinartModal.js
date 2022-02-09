@@ -5,7 +5,10 @@ import {
   CModalFooter,
   CModalHeader,
 } from "@coreui/react";
-
+import React from "react";
+// todo
+// dublicate form of modal
+// correct in all priducts
 export const WebinartModal = ({ name, modal, toggle, modalContent }) => {
   return (
     <CModal show={modal} onClose={toggle}>

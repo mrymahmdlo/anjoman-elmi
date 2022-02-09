@@ -2,13 +2,14 @@ import CIcon from "@coreui/icons-react";
 import { CButton, CBadge } from "@coreui/react";
 import { useState } from "react";
 import { Toast } from "src/Utility/Toast";
-import { PostDataBroad } from "src/Service/APIBroadCast";
+import { APIBoardcastPost } from "src/Service/APIBroadCast";
+import React from "react";
 
 export const ProviderCourseScopedSlots = (updateData, setModal, modal, setModalTutoring) => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const handleDelete = (Id) => {
-    PostDataBroad("ProviderCourse/Remove/" + Id)
+    APIBoardcastPost("ProviderCourse/Remove/" + Id)
       .then(() => {
         setErrorContent("داده با موفقیت حذف شد");
         setModal(false);

@@ -1,11 +1,13 @@
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
 import EditWebinar from "src/Webinar/EditWebinar/EditWebinar";
-import { PostDataBroad } from "src/Service/APIBroadCast";
+import { APIBoardcastPost } from "src/Service/APIBroadCast";
 import moment from "jalali-moment";
 import LinkWebinar from "./LinkWebinar";
-import { freeSet } from '@coreui/icons';
-
+import React from "react";
+import { freeSet } from "@coreui/icons";
+// todo
+// change it to import
 const { CSwitch } = require("@coreui/react");
 const DateTimeFormat = "YYYY/MM/DD HH:mm";
 const DotNetDateTimeFormat = "YYYY-MM-DDTHH:mm";
@@ -53,7 +55,7 @@ export const WebinartScopedSlots = (setModalContent, setModal) => {
           className="mt-2"
           color="info"
           onClick={(e) => {
-            PostDataBroad(
+            APIBoardcastPost(
               `Webinar/SetActivation?webinarId=${item.webinarId}`,
               e.target.checked
             );
@@ -65,7 +67,7 @@ export const WebinartScopedSlots = (setModalContent, setModal) => {
     productProvider: (item) => (
       <>
         {
-          <td className="py-2 pl-2" >
+          <td className="py-2 pl-2">
             {item.productProvider?.length > 0 ? (
               <>
                 {item.productProvider.map((items) => (
@@ -107,7 +109,7 @@ export const WebinartScopedSlots = (setModalContent, setModal) => {
               setModal(true);
             }}
           >
-            <CIcon content={freeSet.cilLink}/>
+            <CIcon content={freeSet.cilLink} />
           </CButton>
         </td>
       </>

@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
-import { PostData } from "src/Service/APIEngine";
+import { APICorePost } from "src/Service/APIBase";
 import Select from "react-select";
+import React from "react";
+// todo
+// change it to import
 const { CCol, CFormGroup, CLabel, CFormText } = require("@coreui/react");
 
 const MultiselectProvider = ({ form, setForm }) => {
@@ -8,7 +11,7 @@ const MultiselectProvider = ({ form, setForm }) => {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    PostData("Provider/Consultation", {}).then((res) => {
+    APICorePost("Provider/Webinar").then((res) => {
       setProviders(res.data);
     });
   }, []);

@@ -11,9 +11,9 @@ import {
   CPagination,
 } from "@coreui/react";
 import { ModalContainer } from "./ModalContent/ModalContainer";
-import { PostData } from "src/Service/APIEngine";
 import { ChangeValuesMinuteCalls } from "./Utility/ChangeValues";
 import { MinuteCallsScopedSlots } from "./Utility/ScopedSlots";
+import MinuteCallsService from "../Service/MinuteCallsService";
 
 const Tables = () => {
   const [tableData, setTableData] = useState([]);
@@ -36,10 +36,11 @@ const Tables = () => {
 
   useEffect(() => {
     updateData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, filterData, startDate, endDate, search]);
 
   const updateData = async () => {
-    PostData("MinuteConsultation/Order", {
+    MinuteCallsService.GetCalls({
       filterModel: {
         fromDateTime: startDate,
         toDateTime: endDate,

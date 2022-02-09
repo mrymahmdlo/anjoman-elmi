@@ -1,18 +1,10 @@
-import {
-  FormTextInput,
-  FormNumberInput,
-} from "src/reusable/FormInput";
+import { FormTextInput, FormNumberInput } from "src/reusable/FormInput";
 import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
-
+import React from "react";
+// todo
+// change it to import
 const { CSelect } = require("@coreui/react");
-const options1 = {weekday: 'long'};
-const options2 = {hour: 'numeric', minute: 'numeric'};
-const timePattern=(time)=> {
-  return (
-    `${new Date(time).toLocaleDateString('fa-IR', options1)} ${new Date(time).toLocaleDateString('fa-IR', options2)}`
-  )
-};
 
 export const FormItemsWebinar = (form, setForm, groupIds, courseIds) => {
   return [
@@ -78,6 +70,8 @@ export const FormItemsWebinar = (form, setForm, groupIds, courseIds) => {
       ),
       size: 6,
     },
+    // todo
+    // duplicated
     {
       name: "مقطع تحصیلی",
       text: "مقطع تحصیلی مخاطب این همایش را وارد کنید",
@@ -102,6 +96,8 @@ export const FormItemsWebinar = (form, setForm, groupIds, courseIds) => {
       ),
       size: 6,
     },
+    // todo
+    // dublicated
     {
       name: "درس",
       text: "درس مربوطه به این همایش را انتخاب کنید",
@@ -135,11 +131,7 @@ export const FormItemsWebinar = (form, setForm, groupIds, courseIds) => {
         <DateTimePickerToGeorgian
           className="form-control"
           name="startDateTime"
-          value={
-            form.schedules[0]?.startDateTime
-              ? timePattern(form.schedules[0]?.startDateTime)
-              : form.schedules[0]?.startDateTime
-          }
+          value={form.schedules[0]?.startDateTime}
           onChange={(e) => {
             let sch = form.schedules;
             sch[0].startDateTime = HejriToDotNetGeorgian(e);
@@ -156,11 +148,7 @@ export const FormItemsWebinar = (form, setForm, groupIds, courseIds) => {
         <DateTimePickerToGeorgian
           className="form-control"
           name="endDateTime"
-          value={
-            form.schedules[0]?.endDateTime
-              ? timePattern(form.schedules[0]?.endDateTime)
-              : form.schedules[0]?.endDateTime
-          }
+          value={form.schedules[0]?.endDateTime}
           onChange={(e) => {
             let sch = form.schedules;
             sch[0].endDateTime = HejriToDotNetGeorgian(e);

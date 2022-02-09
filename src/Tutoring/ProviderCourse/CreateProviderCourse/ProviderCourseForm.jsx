@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { CCardBody, CCol, CForm, CRow, CLabel } from "@coreui/react";
-import { GetData } from "src/Service/APIEngine";
+import { APICoreGet } from "src/Service/APIBase";
 import { FormItemsProviderCourse } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
 import { SelectProviderProviderCourse } from "./SelectProvider";
-
+// todo
+// change format to js
 const ArticleForm = ({ form, setForm }) => {
   const [groupIds, setGroupIds] = useState([]);
   const [courseIds, setCourseIds] = useState([]);
@@ -12,15 +13,20 @@ const ArticleForm = ({ form, setForm }) => {
 
   useEffect(() => {
     setForm({ ...form, providerId: providerId });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [providerId]);
 
   useEffect(() => {
-    GetData("BasicInfo/Groups").then((res) => setGroupIds(res));
+    // todo
+    // dublicate!!!!!!!!!!!
+    APICoreGet("BasicInfo/Groups").then((res) => setGroupIds(res));
   }, []);
 
   useEffect(() => {
     if (form.groupId && form.groupId !== "")
-      GetData("BasicInfo/CoursesByGroupId?groupId=" + form.groupId).then(
+    // todoo
+    // add service
+    APICoreGet("BasicInfo/CoursesByGroupId?groupId=" + form.groupId).then(
         (res) => setCourseIds(res)
       );
     else {

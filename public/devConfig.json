@@ -1,0 +1,6 @@
+{
+    "API_BASE": "http://dev.bamis.ir/api/v1/",
+    "EXAM_BASE": "http://api.bamis.ir/dev/exam/",
+    "Broad_BASE": "http://api.bamis.ir/dev/v1/broadcast/",
+    "Provider_BASE": "http://api.bamis.ir/dev/v1/Provider/"
+}

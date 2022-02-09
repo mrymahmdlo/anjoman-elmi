@@ -10,24 +10,27 @@ import {
 } from "@coreui/react";
 import { TableHeadersUpload } from "./TableHeaders";
 import { ChangeValueUpload } from "./ChangeValue";
-import { PostDataProvider } from "src/Service/APIProvider";
+import { APIProviderPost } from "src/Service/APIProvider";
 import { ProviderScopedSlots } from "./ProviderScopedSlots";
 import { ProviderModalUpload } from "./ProviderModal";
-import {PostData} from "src/Service/APIEngine";
+import {APICorePost} from "src/Service/APIBase";
+import React from "react";
 
 const ManageuploadProvider = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
-  const [filterData, setFilterData] = useState({
-    asc: false,
-    column: "quizId",
-  });
+  // todo
+  // either use it or delete it
+  // const [filterData, setFilterData] = useState({
+  //   asc: false,
+  //   column: "quizId",
+  // });
   const [form, setForm] = useState({});
   const [providers, setProviders] = useState([]);
 
   const updateData = () => {
-    PostDataProvider("Content/GetAll", {
+    APIProviderPost("Content/GetAll", {
       providerId: (form.providerId)
     })
     .then((res) => {
@@ -37,10 +40,11 @@ const ManageuploadProvider = () => {
 
   useEffect(() => {
     updateData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modal, form.providerId]);
 
   useEffect(() => {
-    PostData("Provider/Tutoring", {}).then((res) => {
+    APICorePost("Provider/Tutoring").then((res) => {
       setProviders(res.data);
     });
   }, []);
@@ -77,7 +81,7 @@ const ManageuploadProvider = () => {
             striped
             size="sm"
             sorter
-            onSorterValueChange={setFilterData}
+            //onSorterValueChange={setFilterData}
             itemsPerPage={15}
             pagination
             scopedSlots={ProviderScopedSlots(

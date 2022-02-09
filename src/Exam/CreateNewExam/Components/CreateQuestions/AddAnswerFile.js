@@ -4,7 +4,8 @@ import ExamService from "src/Exam/ExamService/ExamService";
 import { UploadExcel } from "src/Exam/ExamService/ExamUploadFile";
 import { ExamContext } from "../../CreateNewExam";
 
-const {
+const {// todo
+  // change it to import
   CCardBody,
   CRow,
   CCol,
@@ -80,7 +81,7 @@ const AddAnswerFile = () => {
               </CLabel>
             </CRow>
             <CRow>
-              <a href="http://myexam.bamis.ir/AdminPanel/DownloadSampleExcel">
+              <a href="http://myexam.bamis.ir/AdminPanel/DownloadSampleExcel" target={"_blank"} rel="noreferrer">
                 <CButton color="primary">دریافت فایل</CButton>
               </a>
             </CRow>

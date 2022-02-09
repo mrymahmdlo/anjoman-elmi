@@ -13,7 +13,9 @@ export const ChangeValuesManageSubscriptions = (arr) => {
       if (key === "webinar") {
         obj["webinarName"] = obj.webinar.title;
       }
-
+      if (key === "webinarLink") {
+        obj["webinarLink"] = obj.webinarLink === "" ? "ندارد" : obj.webinarLink;
+      }
     })
   );
   return arr;

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   CCard,
   CCardBody,
@@ -8,12 +8,12 @@ import {
   CSelect,
   CCol,
 } from "@coreui/react";
-import {PostDataProvider} from "src/Service/APIProvider";
-import {ChangeValuesTimeSheet} from "./Components/ChangeValue";
-import {TimeSheetModal} from "./Components/TimeSheetModal";
-import {TimeSheetScopedSlots} from "./Components/TimeSheetScopedSlots";
-import {TableHeadersTimeSheet} from "./Components/TableHeaders";
-import {PostData} from "src/Service/APIEngine";
+import { APIProviderPost } from "src/Service/APIProvider";
+import { ChangeValuesTimeSheet } from "./Components/ChangeValue";
+import { TimeSheetModal } from "./Components/TimeSheetModal";
+import { TimeSheetScopedSlots } from "./Components/TimeSheetScopedSlots";
+import { TableHeadersTimeSheet } from "./Components/TableHeaders";
+import { APICorePost } from "src/Service/APIBase";
 
 const ManageTimeSheet = () => {
   const [tableData, setTableData] = useState([]);
@@ -24,8 +24,8 @@ const ManageTimeSheet = () => {
   const [providers, setProviders] = useState([]);
 
   const updateData = () => {
-    PostDataProvider("TimeSheet/GetTimeSheets", {
-      providerId: Number(form.providerId)
+    APIProviderPost("TimeSheet/GetTimeSheets", {
+      providerId: Number(form.providerId),
     }).then((res) => {
       setTableData(ChangeValuesTimeSheet(res.data));
     });
@@ -33,10 +33,14 @@ const ManageTimeSheet = () => {
 
   useEffect(() => {
     updateData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modal, form.providerId]);
 
   useEffect(() => {
-    PostData("Provider/Tutoring", {}).then((res) => {
+    // todo
+    // add service
+    // add loading
+    APICorePost("Provider/Tutoring").then((res) => {
       setProviders(res.data);
     });
   }, []);
@@ -49,7 +53,6 @@ const ManageTimeSheet = () => {
         <CCardBody>
           <CFormGroup>
             <CCol sm={6}>
-
               <CSelect
                 value={form.providerId}
                 onChange={(e) =>
@@ -57,7 +60,6 @@ const ManageTimeSheet = () => {
                 }
               >
                 <option value={-1}>پشتیبان را انتخاب کنید</option>
-                {/*<option value={providers.length}>همه پشتیبان ها</option>*/}
                 {providers.length > 0 ? (
                   providers?.map((item) => (
                     <option value={item.providerId} key={item.providerId}>

@@ -1,6 +1,10 @@
 import React from "react";
 import CIcon from "@coreui/icons-react";
 import { freeSet } from '@coreui/icons';
+
+// todo
+// routing for each product export from its folder 
+// each obj for product be in new file
 const _nav = [
   {
     _tag: "CSidebarNavItem",

@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import ExamService from "src/Exam/ExamService/ExamService";
 import { useHistory } from "react-router";
 import { ExamModalContainer } from "./ExamModalContainer";
-
+// todo
+// change it to import
 const { default: CIcon } = require("@coreui/icons-react");
 const { CCardFooter, CButton, CSpinner } = require("@coreui/react");
 
