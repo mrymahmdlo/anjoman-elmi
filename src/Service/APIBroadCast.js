@@ -2,7 +2,8 @@ import { TokenManager } from "src/Identity/Service/TokenManager";
 const { GetToken } = TokenManager();
 const secret = "AMP_!YUHDSJHYG@&12312!W@sAs";
 
-export const BaseUrl = window.config.Broad_BASE;
+export const BaseUrl = process.env.REACT_APP_Broad_BASE;
+console.log(process.env)
 const GetDataBroad = (url) => {
   return fetch(BaseUrl + url, {
     method: "GET",
@@ -13,17 +14,14 @@ const GetDataBroad = (url) => {
 };
 
 const PostDataBroad = async (url, body) => {
-  const data = await fetch(
-    "http://api.bamis.ir/dev/v1/broadcast/Admin/Tutoring/GetAll",
-    {
-      method: "POST",
-      headers: {
-        "content-type": "application/json; charset=utf-8",
-        Authorization: "Bearer " + GetToken(),
-      },
-      body: JSON.stringify(body),
-    }
-  );
+  const data = await fetch(BaseUrl + url, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+      Authorization: "Bearer " + GetToken(),
+    },
+    body: JSON.stringify(body),
+  });
 
   if (data.status < 400) {
     try {
@@ -91,7 +89,7 @@ const DownloadExcelReportBroad = async (url, body) => {
   return await fetch(BaseUrl + url, {
     method: "POST",
     headers: {
-      "content-type" : "application/json"
+      "content-type": "application/json",
     },
     body: JSON.stringify(body),
   }).then((res) => {
@@ -107,4 +105,10 @@ const DownloadExcelReportBroad = async (url, body) => {
 
 const GetFileDownloadLink = (hash) => BaseUrl + "File/Download/" + hash;
 
-export { PostDataBroad, GetDataBroad, UploadFileRequest, GetFileDownloadLink, DownloadExcelReportBroad };
+export {
+  PostDataBroad,
+  GetDataBroad,
+  UploadFileRequest,
+  GetFileDownloadLink,
+  DownloadExcelReportBroad,
+};

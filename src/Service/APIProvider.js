@@ -2,7 +2,7 @@ import { TokenManager } from "src/Identity/Service/TokenManager";
 const { GetToken } = TokenManager();
 const secret = "AMP_!YUHDSJHYG@&12312!W@sAs";
 
-export const BaseUrl = window.config.Provider_BASE;
+export const BaseUrl = process.env.REACT_APP_Provider_BASE;
 const GetDataProvider = (url) => {
   return fetch(BaseUrl + url, {
     method: "GET",
@@ -86,4 +86,9 @@ export const postFormData = async (url, form) => {
 
 const GetFileDownloadLink = (hash) => BaseUrl + "File/Download/" + hash;
 
-export { PostDataProvider, GetDataProvider, UploadFileRequest, GetFileDownloadLink };
+export {
+  PostDataProvider,
+  GetDataProvider,
+  UploadFileRequest,
+  GetFileDownloadLink,
+};
