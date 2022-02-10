@@ -9,7 +9,7 @@ const headers = {
 
 const sendRequest = async (url, body) => {
   let res;
-  if (body) {
+  if (body !== undefined) {
     res = await fetch(url, {
       method: "POST",
       headers: headers,
