@@ -51,6 +51,7 @@ const QuizInfoForm = ({ userId, setQuizId }) => {
   };
 
   const handleSubmit = () => {
+    debugger;
     exam.setShowError(false);
     setBtnActive(true);
     if (!CheckValidationArry(form, QuizInfoValidators)) {
