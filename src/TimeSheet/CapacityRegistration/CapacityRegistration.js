@@ -9,7 +9,7 @@ import {
   CCardSubtitle,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { PostDataProvider } from "src/Service/APIProvider";
+import { APIProviderPost } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
 import CapacityForm from "./Components/CapacityForm";
 
@@ -21,14 +21,18 @@ const CapacityRegistration = () => {
 
   const refreshPage = () => {
     setTimeout(() => {
-      window.location.reload(false);
-    }, 2000);
+       window.location.reload(false);
+    //todo
+    }, 2000); // bad solution!!!!!!!!!!!!! remove and find better way
+    // hint : see update data from Minute call
   };
 
   const submitTimeSheet = () => {
     setShowError(false);
     setBtnActive(true);
-    PostDataProvider("TimeSheet/SetRechargeAmount", {
+    // todo
+    // add service
+    APIProviderPost("TimeSheet/SetRechargeAmount", {
       providerId: Number(form.providerId),
       rechargeAmountHour: Number(form.rechargeAmountHour),
     })
@@ -51,8 +55,8 @@ const CapacityRegistration = () => {
         <CCard>
           <CCardHeader>ظرفیت مدرس</CCardHeader>
           <CCardSubtitle className="p-3">
-            در این بخش می توانید  برای مدرس مورد نظر
-            ظرفیت مخصوص تمام بازه های قابل تدریس او را تعیین کنید.
+            در این بخش می توانید برای مدرس مورد نظر ظرفیت مخصوص تمام بازه های
+            قابل تدریس او را تعیین کنید.
           </CCardSubtitle>
           <CapacityForm form={form} setForm={setForm} />
           <CCardFooter>

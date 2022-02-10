@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 import { Toast } from "src/Utility/Toast";
 import ImportQuestion from "../Service/ImportQuestion";
+import * as React from "react";
 
 const {
   CCol,

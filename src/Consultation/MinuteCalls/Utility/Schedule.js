@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { GetData } from "src/Service/APIEngine";
+import MinuteCallsService from "../../Service/MinuteCallsService";
 import { DotNetGeorgianToHejri } from "src/Utility/DateTime";
-
+import * as React from "react";
+// todo
+// change it to import
 const { CFormText, CButton, CSpinner } = require("@coreui/react");
 
 export const Schedule = ({ providerId, setForm, form }) => {
   const [schedule, setSchedule] = useState([]);
   useEffect(() => {
     if (providerId)
-      GetData("Provider/Schedule/Call?providerId=" + providerId).then((res) => {
+      MinuteCallsService.GetSchedule(providerId).then((res) => {
         setSchedule(res.data);
       });
   }, [providerId]);

@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { TextField } from "src/Utility/InputGroup";
 import { ExamContext } from "../../CreateNewExam";
 import { QuestionFormItems } from "./QuestionFormItems";
-import ExamService from "src/Exam/ExamService/ExamService";
+import ExamService from "../../../ExamService/ExamService";
 import { levels, QuestionFormValidators } from "./QuestionFormValidators";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
 import { CKEditorField } from "src/reusable/CKEditorInput";
-
+// todo
+// change it to import
 const { CCardBody, CRow, CButton, CSpinner } = require("@coreui/react");
 
 const EditQuestionForm = ({ item, setUpdated }) => {

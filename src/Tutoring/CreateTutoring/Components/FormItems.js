@@ -2,6 +2,9 @@ import {
   FormTextInput,
   FormNumberInput,
 } from "src/reusable/FormInput";
+import React from "react";
+// todo
+// change it to import
 const { CSelect } = require("@coreui/react");
 
 export const FormItemsCreateTutoring = (form, setForm, groupIds, courseIds) => {
@@ -27,6 +30,8 @@ export const FormItemsCreateTutoring = (form, setForm, groupIds, courseIds) => {
       ),
       size: 4,
     },
+    // todo
+    // reusable component!
     {
       name: "مقطع تحصیلی",
       text: "مقطع تحصیلی مخاطب  را وارد کنید",
@@ -51,6 +56,8 @@ export const FormItemsCreateTutoring = (form, setForm, groupIds, courseIds) => {
       ),
       size: 4,
     },
+    // todo
+    // reusable components
     {
       name: "درس",
       text: "درس مربوطه  را انتخاب کنید",

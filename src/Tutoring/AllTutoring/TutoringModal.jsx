@@ -5,7 +5,10 @@ import {
   CModalFooter,
   CModalHeader,
 } from "@coreui/react";
+import React from "react";
 
+// todo
+// format to js not jsx
 export const TutoringModalAllTutoring = ({ name, modal, toggle, modalTutoring }) => {
   return (
     <CModal show={modal} onClose={toggle}>

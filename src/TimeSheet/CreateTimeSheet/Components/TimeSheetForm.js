@@ -8,12 +8,12 @@ import {
   CLabel,
   CCol,
 } from "@coreui/react";
-import { GetDataProvider } from "src/Service/APIProvider";
+import { APIProviderGet } from "src/Service/APIProvider";
 import { FormItemsCreateTimeSheet } from "./FormItems";
 import { TextField } from "src/Utility/InputGroup";
-import { PostData } from "src/Service/APIEngine";
+import { APICorePost } from "src/Service/APIBase";
 
-const CreateTimeSheetForm = ({ form, setForm }) => {
+const TimeSheetForm = ({ form, setForm }) => {
   const [timeSheetId, setTimeSheetId] = useState();
   const [weekDay, setWeekDay] = useState([]);
   const [providers, setProviders] = useState([]);
@@ -24,18 +24,23 @@ const CreateTimeSheetForm = ({ form, setForm }) => {
 
   useEffect(() => {
     setForm({ ...form, timeSheetId: timeSheetId });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeSheetId]);
 
-  useEffect(()=> {
-    GetDataProvider('TimeSheet/DaysOfWeek').then(res=>setWeekDay(res));
+  useEffect(() => {
+    // todo
+    // add service
+    APIProviderGet("TimeSheet/DaysOfWeek").then((res) => setWeekDay(res));
   }, []);
 
   const items = FormItemsCreateTimeSheet(form, setForm).map((item) =>
     TextField(item)
   );
   useEffect(() => {
-    PostData("Provider/Tutoring", {}).then((res) => {
-      setProviders(res.data)
+    // todo
+    // add service
+    APICorePost("Provider/Tutoring").then((res) => {
+      setProviders(res.data);
     });
   }, []);
 
@@ -96,4 +101,4 @@ const CreateTimeSheetForm = ({ form, setForm }) => {
   );
 };
 
-export default CreateTimeSheetForm;
+export default TimeSheetForm;

@@ -4,7 +4,7 @@ import { CContainer, CFade } from "@coreui/react";
 
 // routes config
 import routes from "../routes";
-import { TokenManager } from "src/Identity/Service/TokenManager";
+import { TokenManager } from "../Identity/Service/TokenManager";
 
 const loading = (
   <div className="pt-3 text-center">

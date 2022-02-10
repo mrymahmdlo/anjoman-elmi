@@ -3,6 +3,7 @@ import { CButton, CInput, CInputGroup } from "@coreui/react";
 import { DatePicker } from "jalali-react-datepicker";
 import { useRef, useState } from "react";
 import moment from "jalali-moment";
+import * as React from "react";
 
 export const DateTimePickerToGeorgian = ({ value = "", onChange }) => {
   const [isValid, setValid] = useState(true);

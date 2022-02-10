@@ -1,5 +1,6 @@
 import { FormTextInput } from "src/reusable/FormInput";
 import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian";
+import * as React from "react";
 
 export const FormItemsSubscriptions = (form, setForm) => {
   return [

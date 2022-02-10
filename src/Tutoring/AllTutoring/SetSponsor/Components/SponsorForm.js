@@ -4,8 +4,12 @@ import { FormItemsSetSponsor } from "./FormItem";
 import { TextField } from "src/Utility/InputGroup";
 
 const SponsorForm = ({ form, setForm, sponsors }) => {
-  const items = FormItemsSetSponsor(form, setForm, sponsors).map((item) => TextField(item));
-
+  const items = FormItemsSetSponsor(form, setForm, sponsors).map((item) =>
+    TextField(item)
+  );
+  // todo
+  // why this?
+  // set {items} =>> items : item -> replace
   return (
     <CCardBody>
       <CForm action="" method="post">

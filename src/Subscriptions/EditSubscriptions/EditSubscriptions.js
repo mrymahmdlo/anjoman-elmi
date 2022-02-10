@@ -8,13 +8,13 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { PostDataBroad } from "src/Service/APIBroadCast";
+import { APIBoardcastPost } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import SubscriptionsForm from "./Components/SubscriptionsForm";
 import { ChangeValuesEditSubscriptions } from "./Components/ChangeValues";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 
-const EditSubscriptions = ({ obj ,setModal}) => {
+const EditSubscriptions = ({ obj, setModal }) => {
   const [form, setForm] = useState({
     buyDateTime: "",
     joinDatetime: "",
@@ -23,7 +23,6 @@ const EditSubscriptions = ({ obj ,setModal}) => {
   const [showError, setShowError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
-console.log(obj)
   useEffect(() => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
@@ -32,11 +31,15 @@ console.log(obj)
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    console.log('m',form.joinDatetime);
-     console.log('g',form.cancelDatetime);
-    PostDataBroad(
+    // todo
+    // transfer all subscriotion folder to Tutoring  => it is subdomain
+    //todo
+    // add service
+    APIBoardcastPost(
       `webinar/UpdateSubscription?subscriptionId=${obj.subscriptionId}`,
       {
+        //todo
+        // remove ?
         userId: obj?.userId,
         webinarId: obj?.webinar.webinarId,
         token: obj?.token,
@@ -68,7 +71,6 @@ console.log(obj)
         setBtnActive(false);
       });
   };
-  console.log(obj);
   return (
     <div className="App">
       <CContainer fluid>

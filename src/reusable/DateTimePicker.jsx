@@ -3,6 +3,7 @@ import { CButton, CInput, CInputGroup } from "@coreui/react";
 import { DatePicker } from "jalali-react-datepicker";
 import { useRef, useState } from "react";
 import moment from "jalali-moment";
+import * as React from "react";
 
 export const DateTimePicker = ({ value, onChange }) => {
   const [isValid, setValid] = useState(true);
@@ -10,7 +11,6 @@ export const DateTimePicker = ({ value, onChange }) => {
   const handleChange = (e) => {
     const valid = moment(e.target.value, "YYYY/MM/DD HH:mm").isValid();
     onChange(e.target.value);
-    console.log(e.target.value);
     setValid(valid);
   };
 

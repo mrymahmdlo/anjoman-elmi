@@ -1,7 +1,9 @@
 import { FormTextInput, FormNumberInput } from "src/reusable/FormInput";
 import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
-
+import React from "react";
+// todo
+// change it to import
 const { CSelect } = require("@coreui/react");
 
 export const FormItemsWebinar = (form, setForm, groupIds, courseIds) => {
@@ -68,6 +70,8 @@ export const FormItemsWebinar = (form, setForm, groupIds, courseIds) => {
       ),
       size: 6,
     },
+    // todo
+    // duplicated
     {
       name: "مقطع تحصیلی",
       text: "مقطع تحصیلی مخاطب این همایش را وارد کنید",
@@ -92,6 +96,8 @@ export const FormItemsWebinar = (form, setForm, groupIds, courseIds) => {
       ),
       size: 6,
     },
+    // todo
+    // dublicated
     {
       name: "درس",
       text: "درس مربوطه به این همایش را انتخاب کنید",

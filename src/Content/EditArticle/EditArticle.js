@@ -8,9 +8,9 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { GetData, postFormData } from "src/Service/APIEngine";
+import { APICoreGet, APICoreFormData } from "src/Service/APIBase";
 import { Toast } from "src/Utility/Toast";
-import ArticleForm from "src/Content/CreateArticle/Components/ArticleForm";
+import ArticleForm from "../CreateArticle/Components/ArticleForm";
 import { useHistory, useParams } from "react-router";
 import { ChangeValuesEditArticles } from "./Components/ChangeValues";
 import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
@@ -26,7 +26,7 @@ const EditArticle = () => {
   useEffect(() => {
     setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
     setShowError(true);
-    GetData("FreeContent/GetFreeContent?contentId=" + id)
+    APICoreGet("FreeContent/GetFreeContent?contentId=" + id)
       .then((res) => {
         setForm(ChangeValuesEditArticles(res.data));
       })
@@ -55,7 +55,7 @@ const EditArticle = () => {
     delete form["Image"];
     delete form["imageLink"];
 
-    postFormData("FreeContent/EditFreeContent", {
+    APICoreFormData("FreeContent/EditFreeContent", {
       ...form,
       createdDateTime: GetDotNetGeorgianFromDateJS(now),
     })
