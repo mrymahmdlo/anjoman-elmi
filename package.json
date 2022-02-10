@@ -57,6 +57,7 @@
     "@babel/core": "^7.13.14",
     "auto-changelog": "~2.2.1",
     "jalali-moment": "^3.3.10",
+    "react-error-overlay": "^6.0.9",
     "react-scripts": "^4.0.3"
   },
   "scripts": {
