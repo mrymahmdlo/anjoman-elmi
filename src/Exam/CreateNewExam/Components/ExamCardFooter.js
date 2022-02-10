@@ -1,4 +1,5 @@
 import { ExamContext } from "../CreateNewExam";
+import { ToastContext } from "src/containers/TheContent";
 import React, { useState } from "react";
 import ExamService from "../../ExamService/ExamService";
 import { useHistory } from "react-router";
@@ -14,6 +15,7 @@ const ExamCardFooter = () => {
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const exam = React.useContext(ExamContext);
+  const toast = React.useContext(ToastContext);
   const history = useHistory();
   const handleSubmit = () => {
     setBtnActive(true);
@@ -21,13 +23,12 @@ const ExamCardFooter = () => {
       .then((res) => {
         if (res.success) {
           history.push("/Exams/ManageExams");
-        } else exam.setErrorContent(res.message);
+        } else toast.showToast(res.message);
       })
       .catch((err) => {
-        exam.setErrorContent(err.message);
+        toast.showToast(err.message);
       })
       .finally(() => {
-        exam.setShowError(true);
         setBtnActive(false);
       });
   };
@@ -38,13 +39,12 @@ const ExamCardFooter = () => {
       .then((res) => {
         if (res.success) {
           history.push("/Exams/ManageExams");
-        } else exam.setErrorContent(res.message);
+        } else toast.showToast(res.message);
       })
       .catch((err) => {
-        exam.setErrorContent(err.message);
+        toast.showToast(err.message);
       })
       .finally(() => {
-        exam.setShowError(true);
         setBtnDelete(false);
       });
   };

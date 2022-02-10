@@ -21,15 +21,15 @@ import {
   QuizInfoValidators,
 } from "../Components/QuizInfo/QuizInfoValidators";
 import ExamService from "../../ExamService/ExamService";
-import { ExamContext } from "../CreateNewExam";
 import { CKEditorField } from "src/reusable/CKEditorInput";
 import { useHistory } from "react-router";
+import { ToastContext } from "src/containers/TheContent";
 
 const QuizInfoForm = ({ userId, setQuizId }) => {
   const [form, setForm] = useState(InitialForm(userId));
   const [btnActice, setBtnActive] = useState(false);
   const [groupIds, setGroupIds] = useState([]);
-  const exam = React.useContext(ExamContext);
+  const toast = React.useContext(ToastContext);
   const history = useHistory();
   useEffect(() => {
     ExamService.GetDropDowns()
@@ -45,14 +45,11 @@ const QuizInfoForm = ({ userId, setQuizId }) => {
     .map((item) => SwitchField(item));
 
   const afterCheck = (text) => {
-    exam.setErrorContent(text);
-    exam.setShowError(true);
+    toast.showToast(text);
     setBtnActive(false);
   };
 
   const handleSubmit = () => {
-    debugger;
-    exam.setShowError(false);
     setBtnActive(true);
     if (!CheckValidationArry(form, QuizInfoValidators)) {
       return afterCheck("لطفا فیلد های قرمز شده را پر یا اصلاح کنید");
@@ -63,16 +60,15 @@ const QuizInfoForm = ({ userId, setQuizId }) => {
     ExamService.CreateQuizInfo(form)
       .then((res) => {
         if (res.success) {
-          exam.setErrorContent("داده با موفقیت ثبت شد ");
+          toast.showToast("داده با موفقیت ثبت شد");
           history.push("/Exams/CreateExam/EditQuizInfo");
           setQuizId(res.data);
-        } else exam.setErrorContent(res.message);
+        } else     toast.showToast(res.message);
       })
       .catch((err) => {
-        exam.setErrorContent(err.message);
+        toast.showToast(err.message);
       })
       .finally(() => {
-        exam.setShowError(true);
         setBtnActive(false);
       });
   };

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TextField } from "src/Utility/InputGroup";
 import { ExamContext } from "../../CreateNewExam";
+import { ToastContext } from "src/containers/TheContent";
 import { QuestionFormItems } from "./QuestionFormItems";
 import ExamService from "../../../ExamService/ExamService";
 import { levels, QuestionFormValidators } from "./QuestionFormValidators";
@@ -12,6 +13,7 @@ const { CCardBody, CRow, CButton, CSpinner } = require("@coreui/react");
 
 const EditQuestionForm = ({ item, setUpdated }) => {
   const exam = React.useContext(ExamContext);
+  const toast = React.useContext(ToastContext);
   const [btnActice, setBtnActive] = useState(false);
   const [form, setForm] = useState(item);
   const [preNumQ, setPreNumQ] = useState(item.questionNo);
@@ -22,8 +24,7 @@ const EditQuestionForm = ({ item, setUpdated }) => {
   }, [item]);
 
   const afterCheck = (text) => {
-    exam.setErrorContent(text);
-    exam.setShowError(true);
+    toast.showToast(text);
     setBtnActive(false);
   };
 
@@ -32,7 +33,6 @@ const EditQuestionForm = ({ item, setUpdated }) => {
   );
 
   const handleSubmit = () => {
-    exam.setShowError(false);
     setBtnActive(true);
     if (!CheckValidationArry(form, QuestionFormValidators)) {
       return afterCheck("لطفا فیلد های  ضروری را پر کنید");
@@ -40,16 +40,15 @@ const EditQuestionForm = ({ item, setUpdated }) => {
     ExamService.UpdateQuestion(preNumQ, form)
       .then((res) => {
         if (res.success) {
-          exam.setErrorContent("داده با موفقیت ثبت شد ");
+          toast.showToast("داده با موفقیت ثبت شد ");
           setForm({});
           setUpdated(true);
-        } else exam.setErrorContent(res.message);
+        } else toast.showToast(res.message);
       })
       .catch((err) => {
-        exam.setErrorContent(err.message);
+        toast.showToast(err.message);
       })
       .finally(() => {
-        exam.setShowError(true);
         setBtnActive(false);
       });
   };

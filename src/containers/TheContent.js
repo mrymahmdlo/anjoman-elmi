@@ -19,13 +19,17 @@ const TheContent = () => {
   const { TokenExists } = TokenManager();
   const [showError, setShowError] = useState(false);
   const [showContent, setShowContent] = useState("");
+  const showToast = (text) => {
+    setShowError(true);
+    setShowContent(text);
+    setTimeout(() => setShowError(false), 3500);
+  };
   return (
     <main className="c-main">
       <CContainer fluid>
         <ToastContext.Provider
           value={{
-            setShowContent,
-            setShowError
+            showToast,
           }}
         >
           <Suspense fallback={loading}>
