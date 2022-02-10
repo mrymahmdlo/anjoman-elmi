@@ -1,12 +1,15 @@
 import { CFormGroup, CSelect } from "@coreui/react";
 import { useEffect, useState } from "react";
-import { PostData } from "src/Service/APIEngine";
+import { APICorePost } from "src/Service/APIBase";
+import React from "react";
 
 export const SelectProviderProviderCourse = ({ providerId, setProviderId }) => {
   const [providers, setProviders] = useState([]);
 
   useEffect(() => {
-    PostData("Provider/Tutoring", {}).then((res) => {
+    // todo
+    // add service
+    APICorePost("Provider/Tutoring").then((res) => {
       setProviders(res.data);
     });
   }, []);

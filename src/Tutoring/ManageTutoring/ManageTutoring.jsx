@@ -3,20 +3,26 @@ import { useEffect, useState } from "react";
 import { TutoringModalManageTutoring } from "./Components/TutoringModal";
 import { ManageTutoringScopedSlots } from "./Components/TutoringScopedSlots";
 import { TableHeaderManageTutoring } from "./Components/TableHeader";
-import { GetDataBroad } from "src/Service/APIBroadCast";
+import { APIBoardcastGet } from "src/Service/APIBroadCast";
 import {ChangeValuesManageTutoring} from "./Components/ChangeValue";
 
+// format to js not jsx
 const ManageTutoring = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalTutoring, setModalTutoring] = useState("");
-  const [filterData, setFilterData] = useState({
-    asc: false,
-    column: "quizId",
-  });
+  // todo
+  // either use it or delete it
+  // const [filterData, setFilterData] = useState({
+  //   asc: false,
+  //   column: "quizId",
+  // });
 
   const updateData = () => {
-    GetDataBroad("Tutorial/GetAll").then((res) => {
+    // todo
+    // add service
+    // add loading
+    APIBoardcastGet("Tutorial/GetAll").then((res) => {
       setTableData(ChangeValuesManageTutoring(res.data));
     });
   };
@@ -36,7 +42,7 @@ const ManageTutoring = () => {
           columnFilter
           size="sm"
           sorter
-          onSorterValueChange={setFilterData}
+          //onSorterValueChange={setFilterData}
           itemsPerPage={15}
           pagination
           scopedSlots={ManageTutoringScopedSlots(

@@ -1,6 +1,7 @@
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
 import EditTutoring from "src/Tutoring/EditTutoring/EditTutoring";
+import React from "react";
 
 export const ManageTutoringScopedSlots = (updateData, setModal, modal, setModalTutoring) => {
   return {

@@ -1,13 +1,14 @@
 import CIcon from "@coreui/icons-react";
 import React, { useEffect, useState } from "react";
-import ExamService from "src/Exam/ExamService/ExamService";
+import ExamService from "../../../ExamService/ExamService";
 import {
   UploadQuestionFile,
   UploadAnswerFile,
   UploadAnswerVideo,
-} from "src/Exam/ExamService/ExamUploadFile";
+} from "../../../ExamService/ExamUploadFile";
 import { ExamContext } from "../../CreateNewExam";
-
+// todo
+// change it to import
 const {
   CCardBody,
   CRow,

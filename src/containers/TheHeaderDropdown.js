@@ -8,7 +8,7 @@ import {
   CImg,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { TokenManager } from "src/Identity/Service/TokenManager";
+import { TokenManager } from "../Identity/Service/TokenManager";
 import { useHistory } from "react-router-dom";
 
 const TheHeaderDropdown = () => {
@@ -30,15 +30,6 @@ const TheHeaderDropdown = () => {
         <CDropdownItem header tag="div" color="light" className="text-center">
           <strong> {GetName()} </strong>
         </CDropdownItem>
-        <CDropdownItem>
-          <CIcon name="cil-user" className="mfe-2" />
-          پروفایل
-        </CDropdownItem>
-        <CDropdownItem>
-          <CIcon name="cil-settings" className="mfe-2" />
-          ویرایش
-        </CDropdownItem>
-        <CDropdownItem divider />
         <CDropdownItem>
           <CButton
             onClick={() => {

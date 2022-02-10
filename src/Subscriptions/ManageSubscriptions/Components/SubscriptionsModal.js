@@ -5,6 +5,7 @@ import {
   CModalFooter,
   CModalHeader,
 } from "@coreui/react";
+import * as React from "react";
 
 export const SubscriptionsModal = ({ name, modal, toggle, modalContent }) => {
   return (

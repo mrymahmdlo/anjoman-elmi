@@ -12,6 +12,8 @@ export const FormItemsCapacityRegistration = (form, setForm) => {
         "ظرفیت مدرس",
         0,
         null,
+        //todo
+        // remove ?
         () => form?.rechargeAmountHour >= "0"
       ),
       size: 4,

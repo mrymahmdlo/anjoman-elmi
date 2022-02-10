@@ -2,13 +2,9 @@ import { CButton, CBadge } from "@coreui/react";
 import EditAllTutoring from "../AllTutoring/EditTutoring/EditTutoring";
 import SetSponsor from "./SetSponsor/SetSponsor";
 import CIcon from "@coreui/icons-react";
+import React from "react";
 
-export const AllTutoringScopedSlots = (
-  tableData,
-  setModal,
-  modal,
-  setModalTutoring
-) => {
+export const AllTutoringScopedSlots = ({ setModal, setModalTutoring }) => {
   return {
     edit: (tableData) => (
       <>
@@ -18,7 +14,11 @@ export const AllTutoringScopedSlots = (
             color="primary"
             onClick={() => {
               setModalTutoring(
-                <EditAllTutoring obj={tableData} setModal={setModal} tutoringId={tableData.tutoringId} />
+                <EditAllTutoring
+                  obj={tableData}
+                  setModal={setModal}
+                  tutoringId={tableData.tutoringId}
+                />
               );
               setModal(true);
             }}
@@ -37,7 +37,11 @@ export const AllTutoringScopedSlots = (
             color="info"
             onClick={() => {
               setModalTutoring(
-                <SetSponsor obj={tableData} setModal={setModal} tutoringId={tableData.tutoringId} />
+                <SetSponsor
+                  obj={tableData}
+                  setModal={setModal}
+                  tutoringId={tableData.tutoringId}
+                />
               );
               setModal(true);
             }}
@@ -51,11 +55,7 @@ export const AllTutoringScopedSlots = (
     status: (item) => {
       return (
         <td className="py-2 pl-2">
-          <CBadge
-            style={{ direction: "ltr" }}
-          >
-            {item.status}
-          </CBadge>
+          <CBadge style={{ direction: "ltr" }}>{item.status}</CBadge>
         </td>
       );
     },

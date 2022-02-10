@@ -1,9 +1,10 @@
 import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian";
-import {CSelect} from "@coreui/react";
+import { CSelect } from "@coreui/react";
 import React from "react";
 
 const FormItemsDownloadExcel = (form, setForm, providers) => {
-
+  // todo
+  // duplicate for provider selection
   return [
     {
       name: "",
@@ -12,7 +13,9 @@ const FormItemsDownloadExcel = (form, setForm, providers) => {
         <CSelect
           value={form.providerId}
           defaultValue={form.providerId}
-          onChange={(e) => setForm({ ...form, providerId: Number(e.target.value) })}
+          onChange={(e) =>
+            setForm({ ...form, providerId: Number(e.target.value) })
+          }
         >
           <option value={-1}>ارائه دهنده را انتخاب کنید</option>
           {providers.length > 0 ? (
@@ -32,20 +35,6 @@ const FormItemsDownloadExcel = (form, setForm, providers) => {
       ),
       size: 6,
     },
-    // {
-    //   name: "",
-    //   text: "کد دانش آموز را وارد کنید",
-    //   input: FormNumberInput(
-    //     form,
-    //     setForm,
-    //     "studentId",
-    //     "کد دانش آموز",
-    //     0,
-    //     null,
-    //     () => form.studentId >= "0"
-    //   ),
-    //   size: 6,
-    // },
     {
       name: "زمان شروع",
       text: "زمان شروع را وارد کنید",

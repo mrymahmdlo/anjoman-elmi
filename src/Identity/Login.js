@@ -15,7 +15,7 @@ import {
 } from "@coreui/react";
 import { TokenManager } from "./Service/TokenManager";
 import CIcon from "@coreui/icons-react";
-import { PostData } from "src/Service/APIEngine";
+import { APICorePost } from "src/Service/APIBase";
 import { useHistory } from "react-router";
 import { Toast } from "src/Utility/Toast";
 
@@ -32,7 +32,7 @@ const Login = () => {
     e.preventDefault();
     setShowError(false);
     setBtnActive(true);
-    PostData("Identity/LogIn", {
+    APICorePost("Identity/LogIn", {
       UserName,
       Password,
       RememberMe: false,

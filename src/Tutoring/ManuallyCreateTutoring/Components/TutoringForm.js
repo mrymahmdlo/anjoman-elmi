@@ -8,10 +8,10 @@ import {
   CCol,
   CLabel,
 } from "@coreui/react";
-import {GetData, PostData} from "src/Service/APIEngine";
+import {APICoreGet, APICorePost} from "src/Service/APIBase";
 import { FormItemsManuallyCreateTutoring } from "./FormItems";
 import { TextField } from "../../../Utility/InputGroup";
-import { GetDataBroad } from "../../../Service/APIBroadCast";
+import { APIBoardcastGet } from "../../../Service/APIBroadCast";
 
 const ManuallyCreateTutoringForm = ({ form, setForm }) => {
   const [tutorials, setTutorials] = useState([]);
@@ -21,17 +21,21 @@ const ManuallyCreateTutoringForm = ({ form, setForm }) => {
   const [providerId, setProviderId] = useState();
 
   useEffect(() => {
-    GetData("BasicInfo/Groups").then((res) => setGroupIds(res));
+    // todo
+    // add service
+    APICoreGet("BasicInfo/Groups").then((res) => setGroupIds(res));
   }, []);
 
   const getTutorials = (groupId) => {
-    GetDataBroad(`Admin/GetAllTutorialForAdmin?groupId=${groupId}`).then(
+    // todo
+    // add service
+    APIBoardcastGet(`Admin/GetAllTutorialForAdmin?groupId=${groupId}`).then(
       (res) => setTutorials(res.data)
     );
   };
 
   useEffect(() => {
-    PostData("Provider/Tutoring", {
+    APICorePost("Provider/Tutoring", {
       GroupIds: [groupId],
     }).then((res) => {
       setProviders(res.data);
@@ -44,6 +48,7 @@ const ManuallyCreateTutoringForm = ({ form, setForm }) => {
 
   useEffect(() => {
     setForm({ ...form, providerId: providerId });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [providerId]);
 
   const items = FormItemsManuallyCreateTutoring(form, setForm, tutorials, providers).map(

@@ -8,7 +8,7 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { PostDataBroad } from "../../Service/APIBroadCast";
+import { APIBoardcastPost } from "../../Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import ManuallyCreateTutoringForm from "./Components/TutoringForm";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
@@ -37,7 +37,7 @@ export default function ManuallyCreateTutoring() {
   const postData = () => {
     setShowError(false);
     setBtnActive(true);
-    PostDataBroad("Admin/RetakeTutoring", {
+    APIBoardcastPost("Admin/RetakeTutoring", {
       providerId: +form.providerId,
       userPhoneNumber: form.userPhoneNumber,
       productId: +form.productId,
@@ -51,7 +51,7 @@ export default function ManuallyCreateTutoring() {
         refreshPage();
       })
       .catch(() => {
-        // setErrorContent("ثبت داده ها با مشکل مواجه شد");
+         setErrorContent("ثبت داده ها با مشکل مواجه شد");
         setShowError(true);
         setBtnActive(false);
       });

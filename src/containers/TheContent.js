@@ -5,7 +5,7 @@ import { Toast } from "src/Utility/Toast";
 
 // routes config
 import routes from "../routes";
-import { TokenManager } from "src/Identity/Service/TokenManager";
+import { TokenManager } from "../Identity/Service/TokenManager";
 
 export const ToastContext = React.createContext();
 

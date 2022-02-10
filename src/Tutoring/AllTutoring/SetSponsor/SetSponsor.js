@@ -8,11 +8,11 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { PostDataBroad } from "src/Service/APIBroadCast";
+import { APIBoardcastPost } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import TutoringForm from "./Components/SponsorForm";
 import { ChangeValuesSetSponsor } from "./Components/ChangeValues";
-import { GetDataBroad } from "../../../Service/APIBroadCast";
+import { APIBoardcastGet } from "../../../Service/APIBroadCast";
 
 const SetSponsor = ({ obj, setModal }) => {
   const [form, setForm] = useState({});
@@ -22,7 +22,9 @@ const SetSponsor = ({ obj, setModal }) => {
   const [sponsors, setSponsors] = useState([]);
 
   useEffect(() => {
-    GetDataBroad("Admin/GetSponsers", {}).then((res) => {
+    // todo
+    // add service
+    APIBoardcastGet("Admin/GetSponsers").then((res) => {
       setSponsors(res.data);
     });
   }, []);
@@ -36,26 +38,28 @@ const SetSponsor = ({ obj, setModal }) => {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-      PostDataBroad(`Admin/SetSponser`, {
-        tutoringId: +form.tutoringId,
-        sponserId: +form.sponserId,
-      })
-        .then((res) => {
-          if (res.data.succeeded === true) {
-            setErrorContent("داده با موفقیت ثبت شد ");
-            setModal(false);
-          } else {
-            setErrorContent(res.data.data);
-          }
+    // todo
+    // add service
+    APIBoardcastPost(`Admin/SetSponser`, {
+      tutoringId: +form.tutoringId,
+      sponserId: +form.sponserId,
+    })
+      .then((res) => {
+        if (res.data.succeeded === true) {
+          setErrorContent("داده با موفقیت ثبت شد ");
+          setModal(false);
+        } else {
+          setErrorContent(res.data.data);
+        }
 
-          setShowError(true);
-          setBtnActive(false);
-        })
-        .catch(() => {
-          setErrorContent("خطا در ثبت ویرایش");
-          setShowError(true);
-          setBtnActive(false);
-        });
+        setShowError(true);
+        setBtnActive(false);
+      })
+      .catch(() => {
+        setErrorContent("خطا در ثبت ویرایش");
+        setShowError(true);
+        setBtnActive(false);
+      });
   };
 
   return (

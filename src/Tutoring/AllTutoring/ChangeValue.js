@@ -1,5 +1,4 @@
-import JDate from "jalali-date";
-import { DateFormatter } from "src/Utility/DateFormatter";
+import { GeorgianToHejri } from "src/Utility/DateTime";
 
 export const ChangeValuesAllTutoring = (arr) => {
   arr.forEach((obj) =>
@@ -9,13 +8,7 @@ export const ChangeValuesAllTutoring = (arr) => {
         key === "startDateRange" ||
         key === "sessionStartDate"
       ) {
-        let date = new Date(obj[key]);
-        let jdate = new JDate(date);
-        if (obj[key] !== null) {
-          obj[key] = DateFormatter(jdate, date);
-        } else {
-          obj[key] = "-";
-        }
+        obj[key] = obj[key] ? GeorgianToHejri(obj[key]) : "ندارد";
       }
       if (key === "status") {
           obj[key] = obj[key] === 0 ?  "خریداری شده" : obj[key] = obj[key] === 1 ?  "رزرو شده" : obj[key] = obj[key] === 2 ? "پشتیبان وارد شده است ": obj[key] = obj[key] === 3 ? "برگزار شده   ": obj[key] = obj[key] === 4 ? "دانش آموز وارد شده است" : null;

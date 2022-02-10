@@ -8,13 +8,13 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { PostDataBroad } from "src/Service/APIBroadCast";
+import { APIBoardcastPost } from "src/Service/APIBroadCast";
 import { Toast } from "src/Utility/Toast";
 import EditAllTutoringForm from "./Components/TutoringForm";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
-import { PostData } from "../../../Service/APIEngine";
+import { APICorePost } from "../../../Service/APIBase";
 import { ChangeValuesEditAllTutoring } from "./Components/ChangeValues";
-import { GetDataBroad } from "../../../Service/APIBroadCast";
+import { APIBoardcastGet } from "../../../Service/APIBroadCast";
 
 const EditAllTutoring = ({ obj, setModal, tutoringId }) => {
   const [form, setForm] = useState({});
@@ -25,13 +25,17 @@ const EditAllTutoring = ({ obj, setModal, tutoringId }) => {
   const [tutorials, setTutorials] = useState([]);
 
   useEffect(() => {
-    PostData("Provider/Tutoring", {}).then((res) => {
+    // todo
+    // add service
+    APICorePost("Provider/Tutoring").then((res) => {
       setProviders(res.data);
     });
   }, []);
 
   useEffect(() => {
-    GetDataBroad("Tutorial/GetAll", {}).then((res) => {
+    // todo
+    // add service
+    APIBoardcastGet("Tutorial/GetAll", {}).then((res) => {
       setTutorials(res.data);
     });
   }, []);
@@ -45,7 +49,9 @@ const EditAllTutoring = ({ obj, setModal, tutoringId }) => {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    PostDataBroad(`Admin/EditTutoring/${tutoringId}`, {
+    // todo
+    // add service
+    APIBoardcastPost(`Admin/EditTutoring/${tutoringId}`, {
       providerId: +form.providerId,
       tutorialId: +form.tutorialId,
       startDateRange: HejriToDotNetGeorgian(form.startDateRange),
