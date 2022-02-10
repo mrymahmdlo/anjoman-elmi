@@ -11,6 +11,23 @@ const Dashboard = () => {
               <h4 id="traffic" className="card-title mb-0">
                 آپدیت
               </h4>
+              <p className="small text-muted">پنل ایجاد کد تخفیف اضافه شد.</p>
+              <div className="">
+                برای ایجاد کد تخفیف برای محصولات برترها، از منوی مقابل قسمت
+                ایجاد کد تخفیف را کلیک کنید و با وارد کردن اطلاعات کد تخفیف را
+                بسازید
+              </div>
+            </CCol>
+          </CRow>
+        </CCardBody>
+      </CCard>
+      <CCard>
+        <CCardBody>
+          <CRow>
+            <CCol>
+              <h4 id="traffic" className="card-title mb-0">
+                آپدیت
+              </h4>
               <p className="small text-muted">پنل زمان بندی مشاور اضافه شد.</p>
               <div className="">
                 برای ایجاد زمان بندی جدید از منوی سمت راست قسمت "پنل زمان بندی

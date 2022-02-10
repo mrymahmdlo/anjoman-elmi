@@ -35,6 +35,7 @@ const CreateWebinar = () => {
     setBtnActive(true);
     // todo
     // add service
+    // check validation 
     APIBoardcastPost("Webinar/Create", {
       ...form,
       title: form.title,
