@@ -57,7 +57,7 @@ const TheContent = () => {
           </Suspense>
         </ToastContext.Provider>
       </CContainer>
-      <Toast showError={showError} showContent={showContent} />
+      <Toast showError={showError} errorContent={showContent} />
     </main>
   );
 };

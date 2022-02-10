@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { TextField } from "src/Utility/InputGroup";
-import { ExamContext } from "../../CreateNewExam";
 import { ToastContext } from "src/containers/TheContent";
 import { QuestionFormItems } from "./QuestionFormItems";
 import ExamService from "../../../ExamService/ExamService";
@@ -12,7 +11,6 @@ import { CKEditorField } from "src/reusable/CKEditorInput";
 const { CCardBody, CRow, CButton, CSpinner } = require("@coreui/react");
 
 const EditQuestionForm = ({ item, setUpdated }) => {
-  const exam = React.useContext(ExamContext);
   const toast = React.useContext(ToastContext);
   const [btnActice, setBtnActive] = useState(false);
   const [form, setForm] = useState(item);
