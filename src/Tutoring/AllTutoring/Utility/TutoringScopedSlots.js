@@ -1,6 +1,6 @@
 import { CButton, CBadge } from "@coreui/react";
-import EditAllTutoring from "../AllTutoring/EditTutoring/EditTutoring";
-import SetSponsor from "./SetSponsor/SetSponsor";
+import EditAllTutoring from "../EditTutoring/EditTutoring";
+import SetSponsor from "../SetSponsor/SetSponsor";
 import CIcon from "@coreui/icons-react";
 import React from "react";
 

@@ -12,11 +12,11 @@ import {
   CLabel,
   CPagination,
 } from "@coreui/react";
-import { TableHeadersAllTutoring } from "./TableHeaders";
-import { ChangeValuesAllTutoring } from "./ChangeValue";
+import { TableHeadersAllTutoring } from "./Utility/TableHeaders";
+import { ChangeValuesAllTutoring } from "./Utility/ChangeValue";
 import { APIBoardcastPost } from "src/Service/APIBroadCast";
-import { AllTutoringScopedSlots } from "./TutoringScopedSlots";
-import { TutoringModalAllTutoring } from "./TutoringModal";
+import { AllTutoringScopedSlots } from "./Utility/TutoringScopedSlots";
+import { TutoringModalAllTutoring } from "./Utility/TutoringModal";
 import DownloadExcel from "./ExcelReport/DownloadExcel";
 
 const AllTutoring = () => {
@@ -29,10 +29,17 @@ const AllTutoring = () => {
   const [endDate, setEndDate] = useState("1500/07/10");
   const [currentPage, setActivePage] = useState(1);
   const [pageNum, setPageNum] = useState(1);
+   const capitalizeFirstLetter = (string) => {
+     return string?.charAt(0).toUpperCase() + string?.slice(1);
+   };
   const [filterData, setFilterData] = useState({
     asc: false,
-    column: null,
+    column: "purchasedDate",
   });
+   useEffect(() => {
+     updateData();
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [ currentPage, filterData, startDate, endDate, search]);
   const updateData = () => {
     APIBoardcastPost("Admin/Tutoring/GetAll", {
       filterModel: {
@@ -40,7 +47,7 @@ const AllTutoring = () => {
         toDateTime: endDate,
       },
       dataTableModel: {
-        orderCol: filterData.column,
+        orderCol: capitalizeFirstLetter(filterData.column),
         searchTerm: search,
         orderAscending: filterData.asc,
         page: currentPage,
@@ -55,10 +62,7 @@ const AllTutoring = () => {
     });
   };
 
-  useEffect(() => {
-    updateData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [modal, currentPage, filterData, startDate, endDate, search]);
+ 
 
   const [bgColor, setBgColor] = useState("#027a40");
   const styles = {
@@ -128,11 +132,10 @@ const AllTutoring = () => {
                 field.key !== "sponserId"
             )}
             striped
-            columnFilter
             size="sm"
-            sorter
+            sorter={{ external: true, resetable: false }}
             onSorterValueChange={setFilterData}
-            itemsPerPage={15}
+            itemsPerPage={20}
             pagination
             scopedSlots={AllTutoringScopedSlots({
               setModal: setModal,

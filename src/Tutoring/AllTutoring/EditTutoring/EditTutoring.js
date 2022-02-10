@@ -23,7 +23,7 @@ const EditAllTutoring = ({ obj, setModal, tutoringId }) => {
   const [btnActice, setBtnActive] = useState(false);
   const [providers, setProviders] = useState([]);
   const [tutorials, setTutorials] = useState([]);
-
+console.log(obj);
   useEffect(() => {
     // todo
     // add service
