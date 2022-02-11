@@ -35,11 +35,19 @@ export default function DownloadExcel() {
     // todo
     // add service
     // add loadin if needed
-    APIBoardcastDownloadExcel("Tutoring/ExportCsv", {
-      providerId: +form.providerId,
-      FromTime: HejriToDotNetGeorgian(form.FromTime),
-      ToTime: HejriToDotNetGeorgian(form.ToTime),
-    }).then(() => setBtnActive(false));
+    let body = {
+      providerId: +form.providerId > 0 ? +form.providerId : null,
+      FromTime: form.FromTime ? HejriToDotNetGeorgian(form.FromTime) : null,
+      ToTime: form.ToTime ? HejriToDotNetGeorgian(form.ToTime) : null,
+    };
+    // todo
+    // duplicate funxtion, may used again -> make it a function in utility as RemoveNullKeys
+    body = Object.fromEntries(
+      Object.entries(body).filter(([_, v]) => v != null)
+    );
+    APIBoardcastDownloadExcel("Tutoring/ExportCsv", body).then(() =>
+      setBtnActive(false)
+    );
   };
 
   return (
