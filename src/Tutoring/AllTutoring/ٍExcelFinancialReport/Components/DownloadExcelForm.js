@@ -9,7 +9,7 @@ const DownloadExcelForm = ({ form, setForm }) => {
   return (
     <CCardBody>
       <CForm action="" method="post">
-        <CRow>{items.slice(0,2)}</CRow>
+        <CRow>{items}</CRow>
       </CForm>
     </CCardBody>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CButton,
   CCard,
@@ -8,30 +8,39 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { Toast } from "src/Utility/Toast";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
+import { APICorePost } from "../../../Service/APIBase";
 import DownloadExcelForm from "./Components/DownloadExcelForm";
 import { APIBoardcastDownloadExcel } from "src/Service/APIBroadCast";
 
 export default function DownloadExcel() {
   const [form, setForm] = useState({});
-  const [showError, setShowError] = useState(false);
   // todo
   // either use it or delete it!
   //const [errorContent, setErrorContent] = useState("");
   const [btnActive, setBtnActive] = useState(false);
-  const [body, setBody] = useState({});
+  const [providers, setProviders] = useState([]);
+  // const [body, setBody] = useState({});
 
   useEffect(() => {
-    if (form.fromTime) setBody({fromTime: HejriToDotNetGeorgian(form.fromTime)});
-    if (form.toTime) setBody({toTime: HejriToDotNetGeorgian(form.toTime)});
-  }, [form]);
-  // const body={};
-  // if(form.fromTime) body.fromTime = HejriToDotNetGeorgian(form.fromTime);
-  // if(form.toTime) body.toTime = HejriToDotNetGeorgian(form.toTime);
+    // todo
+    // add service
+    // add loading
+    APICorePost("Provider/Tutoring").then((res) => {
+      setProviders(res.data);
+    });
+  }, []);
+
+  // useEffect(() => {
+  //   if (form.providerId) setBody({ providerId: +form.providerId });
+  //   if (form.FromTime) setBody({FromTime: HejriToDotNetGeorgian(form.FromTime)});
+  //   if (form.ToTime) setBody({ToTime: HejriToDotNetGeorgian(form.ToTime)});
+  // }, [form]);
+  const body={};
+  if(form.fromTime) body.fromTime = HejriToDotNetGeorgian(form.fromTime);
+  if(form.toTime) body.toTime = HejriToDotNetGeorgian(form.toTime);
 
   const submitContent = () => {
-    setShowError(false);
     setBtnActive(true);
     // todo
     // add service
@@ -80,7 +89,6 @@ export default function DownloadExcel() {
           </CCardFooter>
         </CCard>
       </CContainer>
-      <Toast showError={showError} errorContent={"errorContent"} />
     </div>
   );
 }

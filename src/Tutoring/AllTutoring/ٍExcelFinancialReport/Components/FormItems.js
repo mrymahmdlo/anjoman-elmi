@@ -23,7 +23,7 @@ const FormItemsDownloadExcel = (form, setForm) => {
       input: (
         <DateTimePickerToGeorgian
           className="form-control"
-          name="startDateRange"
+          name="endDateRange"
           value={form.toTime}
           onChange={(e) => setForm({ ...form, toTime: e })}
         />
