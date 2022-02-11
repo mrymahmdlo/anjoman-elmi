@@ -108,6 +108,7 @@ const downloadFile = async (url, body, name = "file.csv") => {
     method: "POST",
     headers: {
       "content-type": "application/json",
+      Authorization: "Bearer " + GetToken(),
     },
     body: JSON.stringify(body),
   }).then((res) => {
