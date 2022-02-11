@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   CButton,
   CCard,
@@ -10,7 +10,6 @@ import {
 import CIcon from "@coreui/icons-react";
 import { Toast } from "src/Utility/Toast";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
-import { APICorePost } from "../../../Service/APIBase";
 import DownloadExcelForm from "./Components/DownloadExcelForm";
 import { APIBoardcastDownloadExcel } from "src/Service/APIBroadCast";
 
@@ -21,27 +20,15 @@ export default function DownloadExcel() {
   // either use it or delete it!
   //const [errorContent, setErrorContent] = useState("");
   const [btnActive, setBtnActive] = useState(false);
-  const [providers, setProviders] = useState([]);
-  // const [body, setBody] = useState({});
+  const [body, setBody] = useState({});
 
   useEffect(() => {
-    // todo
-    // add service
-    // add loading
-    APICorePost("Provider/Tutoring").then((res) => {
-      setProviders(res.data);
-    });
-  }, []);
-
-  // useEffect(() => {
-  //   if (form.providerId) setBody({ providerId: +form.providerId });
-  //   if (form.FromTime) setBody({FromTime: HejriToDotNetGeorgian(form.FromTime)});
-  //   if (form.ToTime) setBody({ToTime: HejriToDotNetGeorgian(form.ToTime)});
-  // }, [form]);
-  const body={};
-  if(form.providerId) body.providerId = +form.providerId;
-  if(form.FromTime) body.FromTime = HejriToDotNetGeorgian(form.FromTime);
-  if(form.ToTime) body.ToTime = HejriToDotNetGeorgian(form.ToTime);
+    if (form.fromTime) setBody({fromTime: HejriToDotNetGeorgian(form.fromTime)});
+    if (form.toTime) setBody({toTime: HejriToDotNetGeorgian(form.toTime)});
+  }, [form]);
+  // const body={};
+  // if(form.fromTime) body.fromTime = HejriToDotNetGeorgian(form.fromTime);
+  // if(form.toTime) body.toTime = HejriToDotNetGeorgian(form.toTime);
 
   const submitContent = () => {
     setShowError(false);
@@ -49,7 +36,7 @@ export default function DownloadExcel() {
     // todo
     // add service
     // add loadin if needed
-    APIBoardcastDownloadExcel("Tutoring/ExportCsv", body).then(() =>
+    APIBoardcastDownloadExcel("Admin/TutoringOrderReport", body).then(() =>
       setBtnActive(false)
     );
   };
@@ -71,7 +58,6 @@ export default function DownloadExcel() {
           <DownloadExcelForm
             form={form}
             setForm={setForm}
-            providers={providers}
           />
           <CCardFooter>
             {!btnActive ? (

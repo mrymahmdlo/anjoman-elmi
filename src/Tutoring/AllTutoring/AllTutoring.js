@@ -18,6 +18,7 @@ import { APIBoardcastPost } from "src/Service/APIBroadCast";
 import { AllTutoringScopedSlots } from "./TutoringScopedSlots";
 import { TutoringModalAllTutoring } from "./TutoringModal";
 import DownloadExcel from "./ExcelReport/DownloadExcel";
+import DownloadExcelFinancial from "./ٍExcelFinancialReport/DownloadExcelFinancial"
 
 const AllTutoring = () => {
   const [tableData, setTableData] = useState([]);
@@ -114,6 +115,18 @@ const AllTutoring = () => {
             }}
           >
             دریافت گزارش اکسل
+          </CButton>
+          <CButton
+            style={styles}
+            className="mr-2"
+            onMouseEnter={() => setBgColor("#00944e")}
+            onMouseLeave={() => setBgColor("#027a40")}
+            onClick={() => {
+              setModalTutoring(<DownloadExcelFinancial setModal={setModal} />);
+              setModal(true);
+            }}
+          >
+            دریافت گزارش مالی
           </CButton>
         </CCol>
         <CCardBody>
