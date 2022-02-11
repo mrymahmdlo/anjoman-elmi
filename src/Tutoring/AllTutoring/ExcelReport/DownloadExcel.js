@@ -8,7 +8,6 @@ import {
   CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { Toast } from "src/Utility/Toast";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 import { APICorePost } from "../../../Service/APIBase";
 import DownloadExcelForm from "./Components/DownloadExcelForm";
@@ -16,10 +15,8 @@ import { APIBoardcastDownloadExcel } from "src/Service/APIBroadCast";
 
 export default function DownloadExcel() {
   const [form, setForm] = useState({});
-  const [showError, setShowError] = useState(false);
   // todo
   // either use it or delete it!
-  //const [errorContent, setErrorContent] = useState("");
   const [btnActive, setBtnActive] = useState(false);
   const [providers, setProviders] = useState([]);
   // const [body, setBody] = useState({});
@@ -44,7 +41,6 @@ export default function DownloadExcel() {
   if(form.ToTime) body.ToTime = HejriToDotNetGeorgian(form.ToTime);
 
   const submitContent = () => {
-    setShowError(false);
     setBtnActive(true);
     // todo
     // add service
@@ -94,7 +90,6 @@ export default function DownloadExcel() {
           </CCardFooter>
         </CCard>
       </CContainer>
-      <Toast showError={showError} errorContent={"errorContent"} />
     </div>
   );
 }

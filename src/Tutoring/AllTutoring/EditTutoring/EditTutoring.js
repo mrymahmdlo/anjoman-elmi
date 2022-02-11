@@ -9,7 +9,7 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { APIBoardcastPost } from "src/Service/APIBroadCast";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import EditAllTutoringForm from "./Components/TutoringForm";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 import { APICorePost } from "../../../Service/APIBase";
@@ -18,11 +18,10 @@ import { APIBoardcastGet } from "../../../Service/APIBroadCast";
 
 const EditAllTutoring = ({ obj, setModal, tutoringId }) => {
   const [form, setForm] = useState({});
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
   const [providers, setProviders] = useState([]);
   const [tutorials, setTutorials] = useState([]);
+  const toast = React.useContext(ToastContext);
 
   useEffect(() => {
     // todo
@@ -41,13 +40,11 @@ const EditAllTutoring = ({ obj, setModal, tutoringId }) => {
   }, []);
 
   useEffect(() => {
-    setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
-    setShowError(true);
+    toast.showToast("تا بارگزاری داده ها کمی صبر کنید");
     if (obj) setForm(ChangeValuesEditAllTutoring(obj));
   }, [obj]);
 
   const submitContent = () => {
-    setShowError(false);
     setBtnActive(true);
     // todo
     // add service
@@ -58,18 +55,15 @@ const EditAllTutoring = ({ obj, setModal, tutoringId }) => {
     })
       .then((res) => {
         if (res.data.succeeded === true) {
-          setErrorContent("داده با موفقیت ثبت شد ");
+          toast.showToast("داده با موفقیت ثبت شد ");
           setModal(false);
         } else {
-          setErrorContent(res.data.data);
+          toast.showToast(res.data.data);
         }
-
-        setShowError(true);
         setBtnActive(false);
       })
       .catch(() => {
-        setErrorContent("خطا در ثبت ویرایش");
-        setShowError(true);
+        toast.showToast("خطا در ثبت ویرایش");
         setBtnActive(false);
       });
   };
@@ -100,7 +94,6 @@ const EditAllTutoring = ({ obj, setModal, tutoringId }) => {
           </CCardFooter>
         </CCard>
       </CContainer>
-      <Toast showError={showError} errorContent={errorContent} />
     </div>
   );
 };

@@ -9,19 +9,17 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { APIProviderPost } from "src/Service/APIProvider";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import CreateTimeSheetForm from "./Components/TimeSheetForm";
 import { useHistory } from "react-router";
 
 const CreateTimeSheet = () => {
   const [form, setForm] = useState({});
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
   const [btnActive, setBtnActive] = useState(false);
   const history = useHistory();
+  const toast = React.useContext(ToastContext);
 
   const submitTimeSheet = () => {
-    setShowError(false);
     setBtnActive(true);
     // todo
     // add service
@@ -35,17 +33,15 @@ const CreateTimeSheet = () => {
     })
       .then((res) => {
         if (res.success === true) {
-        setErrorContent("داده با موفقیت ثبت شد ");
+          toast.showToast("داده با موفقیت ثبت شد ");
         history.push("/TimeSheet/ManageTimeSheet");
         } else {
-          setErrorContent(res.message);
+          toast.showToast(res.message);
         }
-        setShowError(true);
         setBtnActive(false);
       })
       .catch(() => {
-        setErrorContent("ثبت داده ها با مشکل مواجه شد");
-        setShowError(true);
+        toast.showToast("ثبت داده ها با مشکل مواجه شد");
         setBtnActive(false);
       });
   };
@@ -76,7 +72,6 @@ const CreateTimeSheet = () => {
           </CCardFooter>
         </CCard>
       </CContainer>
-      <Toast showError={showError} errorContent={errorContent} />
     </div>
   );
 };

@@ -9,7 +9,7 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { APIBoardcastPost } from "src/Service/APIBroadCast";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import SubscriptionsForm from "./Components/SubscriptionsForm";
 import { ChangeValuesEditSubscriptions } from "./Components/ChangeValues";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
@@ -20,16 +20,13 @@ const EditSubscriptions = ({ obj, setModal }) => {
     joinDatetime: "",
     cancelDatetime: "",
   });
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
+  const toast = React.useContext(ToastContext);
   useEffect(() => {
-    setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
-    setShowError(true);
+    toast.showToast("تا بارگزاری داده ها کمی صبر کنید");
     setForm(ChangeValuesEditSubscriptions(obj));
   }, [obj]);
   const submitContent = () => {
-    setShowError(false);
     setBtnActive(true);
     // todo
     // transfer all subscriotion folder to Tutoring  => it is subdomain
@@ -59,15 +56,13 @@ const EditSubscriptions = ({ obj, setModal }) => {
       }
     )
       .then(() => {
-        setErrorContent("داده با موفقیت ثبت شد ");
+        toast.showToast("داده با موفقیت ثبت شد ");
         setModal(false);
-        setShowError(true);
       })
       .catch(() => {
-        setErrorContent("خطا در ثبت ویرایش");
+        toast.showToast("خطا در ثبت ویرایش");
       })
       .finally(() => {
-        setShowError(true);
         setBtnActive(false);
       });
   };
@@ -97,7 +92,6 @@ const EditSubscriptions = ({ obj, setModal }) => {
           </CCardFooter>
         </CCard>
       </CContainer>
-      <Toast showError={showError} errorContent={errorContent} />
     </div>
   );
 };

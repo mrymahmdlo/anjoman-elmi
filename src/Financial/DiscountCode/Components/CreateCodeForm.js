@@ -14,13 +14,11 @@ import React, { useState } from "react";
 import { APICorePost } from "src/Service/APIBase";
 import { copyToClipboard } from "src/Utility/CopyToClipboard";
 import { TextField } from "src/Utility/InputGroup";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import CreateCodeItems from "./CreateCodeItems";
 import { SelectCategories } from "./SelectSubcategories";
 
 const CreateCodeForm = () => {
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
   const [form, setForm] = useState({
     isPercent: "true",
@@ -29,19 +27,17 @@ const CreateCodeForm = () => {
     subCategories: [],
   });
   const [response, setResponse] = useState("BTH6ebeb051");
+  const toast = React.useContext(ToastContext);
 
   const items = CreateCodeItems(form, setForm).map((item) => TextField(item));
   const handleSubmit = (e) => {
     e.preventDefault();
-    setShowError(false);
     setBtnActive(true);
     if (form.amount < 0 || form.totalUseableCount < 0) {
-      setErrorContent("لطفا فیلد های ضروری را درست پر کنید");
-      setShowError(true);
+      toast.showToast("لطفا فیلد های ضروری را درست پر کنید");
       setBtnActive(false);
     } else if (form.subCategories.length <= 0) {
-      setErrorContent("لطفا  محصول را انتخاب کنید");
-      setShowError(true);
+      toast.showToast("لطفا  محصول را انتخاب کنید");
       setBtnActive(false);
     } else {
       APICorePost("Order/Discount/Create", {
@@ -52,8 +48,7 @@ const CreateCodeForm = () => {
       })
         .then((res) => setResponse(res.data))
         .catch((err) => {
-          setErrorContent("لطفا فیلد های ضروری را درست پر کنید");
-          setShowError(true);
+          toast.showToast("لطفا فیلد های ضروری را درست پر کنید");
         })
         .finally(() => setBtnActive(false));
     }
@@ -107,7 +102,6 @@ const CreateCodeForm = () => {
           )}
         </CCardFooter>
       </CForm>
-      <Toast showError={showError} errorContent={errorContent} />
     </>
   );
 };

@@ -9,24 +9,21 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { APIBoardcastPost } from "src/Service/APIBroadCast";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import CreateTutoringForm from "src/Tutoring/CreateTutoring/Components/TuturingForm";
 import { ChangeValuesEditTutoring } from "./Components/ChangeValues";
 
 const EditTutoring = ({ obj, setModal }) => {
   const [form, setForm] = useState({});
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
+  const toast = React.useContext(ToastContext);
 
   useEffect(() => {
-    setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
-    setShowError(true);
+    toast.showToast("تا بارگزاری داده ها کمی صبر کنید");
     setForm(ChangeValuesEditTutoring(obj));
   }, [obj]);
 
   const submitContent = () => {
-    setShowError(false);
     setBtnActive(true);
     APIBoardcastPost(`Tutorial/Update?tutorialId=${obj.tutorialId}`, {
       groupId: +form.groupId,
@@ -41,14 +38,12 @@ const EditTutoring = ({ obj, setModal }) => {
       price: 0,
     })
       .then(() => {
-        setErrorContent("داده با موفقیت ثبت شد ");
-        setShowError(true);
+        toast.showToast("داده با موفقیت ثبت شد ");
         setBtnActive(false);
         setModal(false);
       })
       .catch(() => {
-        setErrorContent("خطا در ثبت ویرایش");
-        setShowError(true);
+        toast.showToast("خطا در ثبت ویرایش");
         setBtnActive(false);
       });
   };
@@ -83,7 +78,6 @@ const EditTutoring = ({ obj, setModal }) => {
           </CCardFooter>
         </CCard>
       </CContainer>
-      <Toast showError={showError} errorContent={errorContent} />
     </div>
   );
 };

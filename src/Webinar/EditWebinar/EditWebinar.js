@@ -9,7 +9,7 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import {  APIBoardcastPost } from "src/Service/APIBroadCast";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import EditWebinarForm from "./Components/WebinarForm";
 import { ChangeValuesEditWebinar } from "./Components/ChangeValues";
 
@@ -24,17 +24,14 @@ const EditWebinar = ({ obj, setModal }) => {
     ],
     providerIds: [],
   });
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
+  const toast = React.useContext(ToastContext);
 
   useEffect(() => {
-    setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
-    setShowError(true);
+    toast.showToast("تا بارگزاری داده ها کمی صبر کنید");
     setForm(ChangeValuesEditWebinar(obj));
   }, [obj]);
   const submitContent = () => {
-    setShowError(false);
     setBtnActive(true);
     let data = form;
     if (form.poster !== "") data["poster"] = form.poster;
@@ -55,14 +52,12 @@ const EditWebinar = ({ obj, setModal }) => {
         : form.providerIds,
     })
       .then(() => {
-        setErrorContent("داده با موفقیت ثبت شد ");
-        setShowError(true);
+        toast.showToast("داده با موفقیت ثبت شد ");
         setBtnActive(false);
         setModal(false);
       })
       .catch(() => {
-        setErrorContent("خطا در ثبت ویرایش");
-        setShowError(true);
+        toast.showToast("خطا در ثبت ویرایش");
         setBtnActive(false);
       });
   };
@@ -93,7 +88,6 @@ const EditWebinar = ({ obj, setModal }) => {
           </CCardFooter>
         </CCard>
       </CContainer>
-      <Toast showError={showError} errorContent={errorContent} />
     </div>
   );
 };

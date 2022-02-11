@@ -9,7 +9,7 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { APIBoardcastPost } from "src/Service/APIBroadCast";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import CreateWebinarForm from "./Components/WebinarForm";
 import { useHistory } from "react-router";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
@@ -25,13 +25,11 @@ const CreateWebinar = () => {
     ],
     providerIds: [],
   });
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
   const history = useHistory();
+  const toast = React.useContext(ToastContext);
  
   const submitContent = () => {
-    setShowError(false);
     setBtnActive(true);
     // todo
     // add service
@@ -54,14 +52,12 @@ const CreateWebinar = () => {
       ],
     })
       .then(() => {
-        setErrorContent("داده با موفقیت ثبت شد ");
+        toast.showToast("داده با موفقیت ثبت شد ");
         history.push("/Webinar/ManageWebinars");
-        setShowError(true);
         setBtnActive(false);
       })
       .catch(() => {
-        setErrorContent("لطفا فیلد های ضروری را پر کنید");
-        setShowError(true);
+        toast.showToast("لطفا فیلد های ضروری را پر کنید");
         setBtnActive(false);
       });
   };
@@ -92,7 +88,6 @@ const CreateWebinar = () => {
           </CCardFooter>
         </CCard>
       </CContainer>
-      <Toast showError={showError} errorContent={errorContent} />
     </div>
   );
 };

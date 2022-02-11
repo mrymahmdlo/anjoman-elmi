@@ -9,7 +9,7 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { APIBoardcastPost } from "src/Service/APIBroadCast";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import ProviderCourseForm from "./ProviderCourseForm";
 import { useHistory } from "react-router";
 // todo
@@ -17,29 +17,25 @@ import { useHistory } from "react-router";
 
 const CreateProviderCourse = () => {
   const [form, setForm] = useState({});
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
   const history = useHistory();
+  const toast = React.useContext(ToastContext);
 
   const submitContent = () => {
-    setShowError(false);
     setBtnActive(true);
    delete form["groupId"];
    // todo
    // add service
    APIBoardcastPost("ProviderCourse/CreateProviderCourse", form)
       .then(() => {
-        setErrorContent("داده با موفقیت ثبت شد ");
+        toast.showToast("داده با موفقیت ثبت شد ");
         // todo
         // add service
         history.push("/ProviderCourse/ProviderCourse");
-        setShowError(true);
         setBtnActive(false);
       })
       .catch(() => {
-        setErrorContent("خطا در ثبت محتوا");
-        setShowError(true);
+        toast.showToast("خطا در ثبت محتوا");
         setBtnActive(false);
       });
   };
@@ -70,7 +66,6 @@ const CreateProviderCourse = () => {
           </CCardFooter>
         </CCard>
       </CContainer>
-      <Toast showError={showError} errorContent={errorContent} />
     </div>
   );
 };
