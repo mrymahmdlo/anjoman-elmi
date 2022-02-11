@@ -14,7 +14,7 @@ import DownloadExcelForm from "./Components/DownloadExcelForm";
 import { APIBoardcastDownloadExcel } from "src/Service/APIBroadCast";
 
 export default function DownloadExcel() {
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({ FromTime: null, ToTime: null });
   // todo
   // either use it or delete it!
   const [btnActive, setBtnActive] = useState(false);
@@ -30,24 +30,16 @@ export default function DownloadExcel() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   if (form.providerId) setBody({ providerId: +form.providerId });
-  //   if (form.FromTime) setBody({FromTime: HejriToDotNetGeorgian(form.FromTime)});
-  //   if (form.ToTime) setBody({ToTime: HejriToDotNetGeorgian(form.ToTime)});
-  // }, [form]);
-  const body={};
-  if(form.providerId) body.providerId = +form.providerId;
-  if(form.FromTime) body.FromTime = HejriToDotNetGeorgian(form.FromTime);
-  if(form.ToTime) body.ToTime = HejriToDotNetGeorgian(form.ToTime);
-
   const submitContent = () => {
     setBtnActive(true);
     // todo
     // add service
     // add loadin if needed
-    APIBoardcastDownloadExcel("Tutoring/ExportCsv", body).then(() =>
-      setBtnActive(false)
-    );
+    APIBoardcastDownloadExcel("Tutoring/ExportCsv", {
+      providerId: +form.providerId,
+      FromTime: HejriToDotNetGeorgian(form.FromTime),
+      ToTime: HejriToDotNetGeorgian(form.ToTime),
+    }).then(() => setBtnActive(false));
   };
 
   return (

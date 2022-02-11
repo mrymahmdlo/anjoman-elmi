@@ -9,45 +9,33 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
-import { APICorePost } from "../../../Service/APIBase";
 import DownloadExcelForm from "./Components/DownloadExcelForm";
 import { APIBoardcastDownloadExcel } from "src/Service/APIBroadCast";
 
 export default function DownloadExcel() {
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({
+    fromTime: "",
+    toTime: "",
+  });
   // todo
-  // either use it or delete it!
-  //const [errorContent, setErrorContent] = useState("");
   const [btnActive, setBtnActive] = useState(false);
-  const [providers, setProviders] = useState([]);
-  // const [body, setBody] = useState({});
 
   useEffect(() => {
-    // todo
-    // add service
-    // add loading
-    APICorePost("Provider/Tutoring").then((res) => {
-      setProviders(res.data);
+    setForm({
+      fromTime: null,
+      toTime: null,
     });
   }, []);
-
-  // useEffect(() => {
-  //   if (form.providerId) setBody({ providerId: +form.providerId });
-  //   if (form.FromTime) setBody({FromTime: HejriToDotNetGeorgian(form.FromTime)});
-  //   if (form.ToTime) setBody({ToTime: HejriToDotNetGeorgian(form.ToTime)});
-  // }, [form]);
-  const body={};
-  if(form.fromTime) body.fromTime = HejriToDotNetGeorgian(form.fromTime);
-  if(form.toTime) body.toTime = HejriToDotNetGeorgian(form.toTime);
 
   const submitContent = () => {
     setBtnActive(true);
     // todo
     // add service
     // add loadin if needed
-    APIBoardcastDownloadExcel("Admin/TutoringOrderReport", body).then(() =>
-      setBtnActive(false)
-    );
+    APIBoardcastDownloadExcel("Admin/TutoringOrderReport", {
+      fromTime: HejriToDotNetGeorgian(form.fromTime),
+      toTime: HejriToDotNetGeorgian(form.toTime),
+    }).finally(() => setBtnActive(false));
   };
 
   return (
@@ -64,10 +52,7 @@ export default function DownloadExcel() {
           >
             پر کردن همه ی فیلد ها ضروری نیست.
           </p>
-          <DownloadExcelForm
-            form={form}
-            setForm={setForm}
-          />
+          <DownloadExcelForm form={form} setForm={setForm} />
           <CCardFooter>
             {!btnActive ? (
               <CButton
