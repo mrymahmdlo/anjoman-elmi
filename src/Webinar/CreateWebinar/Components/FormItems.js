@@ -1,6 +1,5 @@
 import { FormTextInput, FormNumberInput } from "src/reusable/FormInput";
 import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian";
-import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 import React from "react";
 // todo
 // change it to import
@@ -134,7 +133,8 @@ export const FormItemsWebinar = (form, setForm, groupIds, courseIds) => {
           value={form.schedules[0]?.startDateTime}
           onChange={(e) => {
             let sch = form.schedules;
-            sch[0].startDateTime = HejriToDotNetGeorgian(e);
+            console.log(e)
+            sch[0].startDateTime =e;
             setForm({ ...form, schedules: sch });
           }}
         />
@@ -151,7 +151,7 @@ export const FormItemsWebinar = (form, setForm, groupIds, courseIds) => {
           value={form.schedules[0]?.endDateTime}
           onChange={(e) => {
             let sch = form.schedules;
-            sch[0].endDateTime = HejriToDotNetGeorgian(e);
+            sch[0].endDateTime = e;
             setForm({ ...form, schedules: sch });
           }}
         />

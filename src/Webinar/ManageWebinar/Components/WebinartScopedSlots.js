@@ -57,7 +57,7 @@ export const WebinartScopedSlots = (setModalContent, setModal) => {
           onClick={(e) => {
             APIBoardcastPost(
               `Webinar/SetActivation?webinarId=${item.webinarId}`,
-              e.target.checked
+              e.target.checked === "true"
             );
           }}
           defaultChecked={item.isActive}

@@ -14,7 +14,7 @@ const MultiselectProvider = ({ form, setForm }) => {
     APICorePost("Provider/Webinar").then((res) => {
       setProviders(res.data);
     });
-  }, []);
+  }, [form.groupId]);
 
   const options = providers.map((item) => ({
     value: item.providerId,
