@@ -11,6 +11,7 @@ import CIcon from "@coreui/icons-react";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 import { APICorePost } from "../../../Service/APIBase";
 import DownloadExcelForm from "./Components/DownloadExcelForm";
+import { ToastContext } from "src/containers/TheContent";
 import { APIBoardcastDownloadExcel } from "src/Service/APIBroadCast";
 
 export default function DownloadExcel() {
@@ -19,12 +20,14 @@ export default function DownloadExcel() {
   // either use it or delete it!
   const [btnActive, setBtnActive] = useState(false);
   const [providers, setProviders] = useState([]);
+  const toast = React.useContext(ToastContext);
   // const [body, setBody] = useState({});
 
   useEffect(() => {
     // todo
     // add service
     // add loading
+    toast.showToast("تا بارگزاری داده ها کمی صبر کنید");
     APICorePost("Provider/Tutoring").then((res) => {
       setProviders(res.data);
     });

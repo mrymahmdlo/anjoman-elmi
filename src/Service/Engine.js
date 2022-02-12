@@ -2,21 +2,21 @@ import { TokenManager } from "../Identity/Service/TokenManager";
 const { GetToken } = TokenManager();
 
 const secret = "AMP_!YUHDSJHYG@&12312!W@sAs";
-const headers = {
+const headers = (token) => ({
   "content-Type": "application/json; charset=utf-8",
-  Authorization: "Bearer " + GetToken(),
-};
+  Authorization: "Bearer " + token,
+});
 
 const sendRequest = async (url, body) => {
   let res;
-  if (body) {
+  if (body !== undefined) {
     res = await fetch(url, {
       method: "POST",
-      headers: headers,
+      headers: headers(GetToken()),
       body: JSON.stringify(body),
     });
   } else {
-    res = await fetch(url, { headers });
+    res = await fetch(url, { headers: headers(GetToken()) });
   }
   if (res.status < 400) {
     try {
