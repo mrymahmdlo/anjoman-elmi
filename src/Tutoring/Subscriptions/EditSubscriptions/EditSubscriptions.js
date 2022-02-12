@@ -32,6 +32,8 @@ const EditSubscriptions = ({ obj, setModal }) => {
     setShowError(false);
     setBtnActive(true);
     //todo
+    //todo
+    //todo
     // add service
     APIBoardcastPost(
       `webinar/UpdateSubscription?subscriptionId=${obj.subscriptionId}`,

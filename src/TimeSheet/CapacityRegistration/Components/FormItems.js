@@ -13,8 +13,7 @@ export const FormItemsCapacityRegistration = (form, setForm) => {
         0,
         null,
         //todo
-        // remove ?
-        () => form?.rechargeAmountHour >= "0"
+        () => form.rechargeAmountHour >= "0"
       ),
       size: 4,
     },
