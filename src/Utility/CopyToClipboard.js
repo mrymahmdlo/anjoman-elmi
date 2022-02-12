@@ -7,11 +7,19 @@ export const copyToClipboard = (link) => {
     textArea.focus();
     textArea.select();
 
+    try {
+      let successful = document.execCommand('copy');
+      let msg = successful ? 'successful' : 'unsuccessful';
+      console.log(msg);
+    } catch (err) {
+      console.log('Was not possible to copy te text: ', err);
+    }
+
     document.body.removeChild(textArea);
     return;
   }
   navigator.clipboard.writeText(link).then(
-    function () {},
-    function (err) {}
+    function () {console.log('Done!')},
+    function (err) {console.log('unsuccessful! : ', err)}
   );
 };
