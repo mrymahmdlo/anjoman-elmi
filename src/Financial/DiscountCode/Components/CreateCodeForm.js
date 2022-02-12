@@ -71,6 +71,27 @@ const CreateCodeForm = () => {
           </CCol>
           <CCol>{form.isPercent === "true" ? items[2] : items[3]}</CCol>
         </CRow>
+        {response ? (
+          <CCardFooter>
+            <CRow>
+              <CCol>
+                <CLabel>کد تخفیف ساخته شد</CLabel>
+              </CCol>
+              <CCol>
+                <CInput value={response} />
+              </CCol>
+              <CCol>
+                <CButton
+                  color="primary"
+                  onClick={() => copyToClipboard(response)}
+                >
+                  <CIcon content={freeSet.cilCopy} title="کپی لینک" />
+                </CButton>
+              </CCol>
+            </CRow>
+          </CCardFooter>
+        ) : null}
+
         <CCardFooter>
           {!btnActice ? (
             <CButton

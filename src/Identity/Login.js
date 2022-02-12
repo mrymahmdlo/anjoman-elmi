@@ -46,9 +46,9 @@ const Login = () => {
       .catch(() => {
         setShowError(true);
         setErrorContent("احراز هویت با مشکل رو به رو شد");
-      }).finally(()=>{
+      })
+      .finally(() => {
         setBtnActive(false);
-
       });
   };
 
@@ -56,77 +56,77 @@ const Login = () => {
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
         <Toast errorContent={errorContent} showError={showError} />
-          <CRow className="justify-content-center">
-            <CCol md="8">
-              <CCardGroup>
-                <CCard className="p-4">
-                  <CCardBody>
-                    <CForm method="post" onSubmit={(e) => SubmitLogin(e)}>
-                      <h1>ورود</h1>
-                        <p className="text-muted">با حساب خود وارد شوید.</p>
-                        <CInputGroup className="mb-3">
-                          <CInputGroupPrepend>
-                            <CInputGroupText>
-                              <CIcon name="cil-user" />
-                            </CInputGroupText>
-                          </CInputGroupPrepend>
-                          <input
-                            type="text"
-                            placeholder="نام کاربری"
-                            autoComplete
-                            onChange={(e) => setUserName(e.target.value)}
-                            autoFocus
+        <CRow className="justify-content-center">
+          <CCol md="8">
+            <CCardGroup>
+              <CCard className="p-4">
+                <CCardBody>
+                  <CForm method="post" onSubmit={(e) => SubmitLogin(e)}>
+                    <h1>ورود</h1>
+                    <p className="text-muted">با حساب خود وارد شوید.</p>
+                    <CInputGroup className="mb-3">
+                      <CInputGroupPrepend>
+                        <CInputGroupText>
+                          <CIcon name="cil-user" />
+                        </CInputGroupText>
+                      </CInputGroupPrepend>
+                      <input
+                        type="text"
+                        placeholder="نام کاربری"
+                        autoComplete
+                        onChange={(e) => setUserName(e.target.value)}
+                        autoFocus
+                      />
+                    </CInputGroup>
+                    <CInputGroup className="mb-4">
+                      <CInputGroupPrepend>
+                        <CInputGroupText>
+                          <CIcon name="cil-lock-locked" />
+                        </CInputGroupText>
+                      </CInputGroupPrepend>
+                      <input
+                        type="password"
+                        placeholder="رمز عبور"
+                        autoComplete
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </CInputGroup>
+                    <CRow>
+                      <CCol xs="6">
+                        {!btnActice ? (
+                          <CButton
+                            size="sm"
+                            className="btn-github btn-brand mr-1 mb-1"
+                            type="submit"
+                          >
+                            ورود
+                          </CButton>
+                        ) : (
+                          <CSpinner
+                            style={{ width: "2rem", height: "2rem" }}
+                            color="primary"
+                            variant="grow"
                           />
-                        </CInputGroup>
-                        <CInputGroup className="mb-4">
-                          <CInputGroupPrepend>
-                            <CInputGroupText>
-                              <CIcon name="cil-lock-locked" />
-                            </CInputGroupText>
-                          </CInputGroupPrepend>
-                          <input
-                            type="password"
-                            placeholder="رمز عبور"
-                            autoComplete
-                            onChange={(e) => setPassword(e.target.value)}
-                          />
-                        </CInputGroup>
-                        <CRow>
-                          <CCol xs="6">
-                            {!btnActice ? (
-                              <CButton
-                                size="sm"
-                                className="btn-github btn-brand mr-1 mb-1"
-                                type="submit"
-                              >
-                                ورود
-                              </CButton>
-                            ) : (
-                              <CSpinner
-                                style={{ width: "2rem", height: "2rem" }}
-                                color="primary"
-                                variant="grow"
-                              />
-                            )}
-                          </CCol>
-                        </CRow>
-                      </CForm>
-                  </CCardBody>
-                </CCard>
-                <CCard
-                  className="text-white bg-primary py-5 d-md-down-none"
-                  style={{ width: "44%" }}
-                >
-                  <CCardBody className="text-center">
-                    <div>
-                      <h2>ثبت نام</h2>
-                      <p> در دسترس نمیباشد </p>
-                    </div>
-                  </CCardBody>
-                </CCard>
-              </CCardGroup>
-            </CCol>
-          </CRow>
+                        )}
+                      </CCol>
+                    </CRow>
+                  </CForm>
+                </CCardBody>
+              </CCard>
+              <CCard
+                className="text-white bg-primary py-5 d-md-down-none"
+                style={{ width: "44%" }}
+              >
+                <CCardBody className="text-center">
+                  <div>
+                    <h2>ثبت نام</h2>
+                    <p> در دسترس نمیباشد </p>
+                  </div>
+                </CCardBody>
+              </CCard>
+            </CCardGroup>
+          </CCol>
+        </CRow>
       </CContainer>
     </div>
   );
