@@ -1,4 +1,4 @@
-import { CFormGroup, CFormText, CInputCheckbox, CLabel } from "@coreui/react";
+import {CCol, CFormGroup, CFormText, CInputCheckbox, CLabel} from "@coreui/react";
 
 export const ProductSubCategories = [
   "MonthlyConsultation",
@@ -31,35 +31,36 @@ const SubCategories = [
 export const SelectCategories = ({ form, setForm }) => {
   return (
     <CFormGroup>
-      <CLabel htmlFor="nf-title">محصول هدف </CLabel>
-      {SubCategories.map((item, key) => (
-        <>
-          <CFormGroup key={key} variant="checkbox" className="checkbox">
-            <CInputCheckbox
-              id={"checkbox-" + key}
-              value={key}
-              checked={form.subCategories.includes(+key)}
-              onChange={(e) => {
-                let arry = form.subCategories;
-                e.target.checked
-                  ? arry.push(+e.target.value)
-                  : (arry = arry.filter((x) => x !== +e.target.value));
-                setForm({
-                  ...form,
-                  subCategories: arry,
-                });
-              }}
-            />
-            <CLabel
-              variant="checkbox"
-              className="form-check-label"
-              htmlFor="checkbox1"
-            >
-              {item}
-            </CLabel>
-          </CFormGroup>
-        </>
-      ))}
+      <CCol>
+        <CLabel htmlFor="nf-title">محصول هدف </CLabel>
+        <CCol>
+          {SubCategories.map((item, key) => (
+            <>
+              <CFormGroup key={key} variant="checkbox" className="checkbox">
+                <label>
+                  <CInputCheckbox
+                    style={{cursor: 'pointer'}}
+                    id={"checkbox-" + key}
+                    value={key}
+                    checked={form.subCategories.includes(+key)}
+                    onChange={(e) => {
+                      let arry = form.subCategories;
+                      e.target.checked
+                        ? arry.push(+e.target.value)
+                        : (arry = arry.filter((x) => x !== +e.target.value));
+                      setForm({
+                        ...form,
+                        subCategories: arry,
+                      });
+                    }}
+                  />
+                  <span style={{cursor: 'pointer'}} className='fa-clinic-medical'>{item}</span>
+                </label>
+              </CFormGroup>
+            </>
+          ))}
+        </CCol>
+      </CCol>
       <CFormText className="help-block">
         {" "}
         محصولاتی که میخواهید کد تخفیف برای آنها اعمال شود را انتخاب کنید

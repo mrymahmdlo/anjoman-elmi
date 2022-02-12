@@ -93,13 +93,15 @@ const FormRadioInput = (form, setForm, nameField, group) => {
     >
       {group.map((item) => (
         <div className="form-check">
-          <input
-            className="form-check-input"
-            type="radio"
-            value={item.id}
-            checked={form[nameField] === item.id}
-          />
-          {item.name}
+          <label style={{cursor: 'pointer'}}>
+            <input
+              className="form-check-input"
+              type="radio"
+              value={item.id}
+              checked={form[nameField] === item.id}
+            />
+            {item.name}
+          </label>
         </div>
       ))}
     </div>

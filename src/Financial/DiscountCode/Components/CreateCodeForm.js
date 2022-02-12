@@ -28,7 +28,7 @@ const CreateCodeForm = () => {
     totalUseableCount: null,
     subCategories: [],
   });
-  const [response, setResponse] = useState("BTH6ebeb051");
+  const [response, setResponse] = useState();
 
   const items = CreateCodeItems(form, setForm).map((item) => TextField(item));
   const handleSubmit = (e) => {
@@ -51,7 +51,7 @@ const CreateCodeForm = () => {
         totalUseableCount: +form.totalUseableCount,
       })
         .then((res) => setResponse(res.data))
-        .catch((err) => {
+        .catch(() => {
           setErrorContent("لطفا فیلد های ضروری را درست پر کنید");
           setShowError(true);
         })
@@ -61,33 +61,16 @@ const CreateCodeForm = () => {
   return (
     <>
       <CForm>
-        <CRow>{items.slice(0, 2)}</CRow>
+        <CRow>
+          <CCol>{items[0]}</CCol>
+          <CCol>{items[1]}</CCol>
+        </CRow>
         <CRow>
           <CCol>
             <SelectCategories form={form} setForm={setForm} />
           </CCol>
           <CCol>{form.isPercent === "true" ? items[2] : items[3]}</CCol>
         </CRow>
-        <CCardFooter>
-          {response ? (
-            <CRow>
-              <CCol>
-                <CLabel>کد تخفیف ساخته شد</CLabel>
-              </CCol>
-              <CCol>
-                <CInput value={response} />
-              </CCol>
-              <CCol>
-                <CButton
-                  color="primary"
-                  onClick={() => copyToClipboard(response)}
-                >
-                  <CIcon content={freeSet.cilCopy} title="کپی لینک" />
-                </CButton>
-              </CCol>
-            </CRow>
-          ) : null}
-        </CCardFooter>
         <CCardFooter>
           {!btnActice ? (
             <CButton
@@ -106,6 +89,26 @@ const CreateCodeForm = () => {
             />
           )}
         </CCardFooter>
+        {response ? (
+          <CCardFooter>
+            <CRow>
+              <CCol>
+                <CLabel>کد تخفیف ساخته شد</CLabel>
+              </CCol>
+              <CCol>
+                <CInput value={response} />
+              </CCol>
+              <CCol>
+                <CButton
+                  color="primary"
+                  onClick={() => copyToClipboard(response)}
+                >
+                  <CIcon content={freeSet.cilCopy} title="کپی لینک" />
+                </CButton>
+              </CCol>
+            </CRow>
+          </CCardFooter>
+        ) : null}
       </CForm>
       <Toast showError={showError} errorContent={errorContent} />
     </>
