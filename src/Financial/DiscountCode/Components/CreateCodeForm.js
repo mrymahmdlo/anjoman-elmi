@@ -28,7 +28,7 @@ const CreateCodeForm = () => {
     totalUseableCount: null,
     subCategories: [],
   });
-  const [response, setResponse] = useState("BTH6ebeb051");
+  const [response, setResponse] = useState();
 
   const items = CreateCodeItems(form, setForm).map((item) => TextField(item));
   const handleSubmit = (e) => {
@@ -68,8 +68,8 @@ const CreateCodeForm = () => {
           </CCol>
           <CCol>{form.isPercent === "true" ? items[2] : items[3]}</CCol>
         </CRow>
-        <CCardFooter>
-          {response ? (
+        {response ? (
+          <CCardFooter>
             <CRow>
               <CCol>
                 <CLabel>کد تخفیف ساخته شد</CLabel>
@@ -86,8 +86,9 @@ const CreateCodeForm = () => {
                 </CButton>
               </CCol>
             </CRow>
-          ) : null}
-        </CCardFooter>
+          </CCardFooter>
+        ) : null}
+
         <CCardFooter>
           {!btnActice ? (
             <CButton
