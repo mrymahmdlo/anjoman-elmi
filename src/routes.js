@@ -24,10 +24,10 @@ const EditWebinar = React.lazy(() =>
   import("./Webinar/EditWebinar/EditWebinar")
 );
 const ManageSubscriptions = React.lazy(() =>
-  import("./Subscriptions/ManageSubscriptions/ManageSubscriptions")
+  import("./Tutoring/Subscriptions/ManageSubscriptions/ManageSubscriptions")
 );
 const EditSubscriptions = React.lazy(() =>
-  import("./Subscriptions/EditSubscriptions/EditSubscriptions")
+  import("./Tutoring/Subscriptions/EditSubscriptions/EditSubscriptions")
 );
 
 const CreateExam = React.lazy(() =>
@@ -133,12 +133,12 @@ const routes = [
     component: EditWebinar,
   },
   {
-    path: "/Subscriptions/ManageSubscriptions",
+    path: "/Tutoring/Subscriptions/ManageSubscriptions",
     name: "ManageSubscriptions",
     component: ManageSubscriptions,
   },
   {
-    path: "/Subscriptions/EditSubscriptions/:id",
+    path: "/Tutoring/Subscriptions/EditSubscriptions/:id",
     name: "EditSubscriptions",
     component: EditSubscriptions,
   },

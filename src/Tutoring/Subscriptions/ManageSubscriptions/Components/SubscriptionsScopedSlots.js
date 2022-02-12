@@ -1,6 +1,6 @@
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
-import EditSubscriptions from "src/Subscriptions/EditSubscriptions/EditSubscriptions";
+import EditSubscriptions from "src/Tutoring/Subscriptions/EditSubscriptions/EditSubscriptions";
 import * as React from "react";
 
 const { CInput } = require("@coreui/react");
