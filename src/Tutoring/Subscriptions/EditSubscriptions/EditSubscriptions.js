@@ -31,18 +31,14 @@ const EditSubscriptions = ({ obj, setModal }) => {
   const submitContent = () => {
     setShowError(false);
     setBtnActive(true);
-    // todo
-    // transfer all subscriotion folder to Tutoring  => it is subdomain
     //todo
     // add service
     APIBoardcastPost(
       `webinar/UpdateSubscription?subscriptionId=${obj.subscriptionId}`,
       {
-        //todo
-        // remove ?
-        userId: obj?.userId,
-        webinarId: obj?.webinar.webinarId,
-        token: obj?.token,
+        userId: obj.userId,
+        webinarId: obj.webinar.webinarId,
+        token: obj.token,
         webinarLink: form.webinarLink,
         buyDateTime:
           form.buyDateTime !== null
