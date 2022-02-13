@@ -1,4 +1,10 @@
-import {CCol, CFormGroup, CFormText, CInputCheckbox, CLabel} from "@coreui/react";
+import {
+  CCol,
+  CFormGroup,
+  CFormText,
+  CInputCheckbox,
+  CLabel,
+} from "@coreui/react";
 
 export const ProductSubCategories = [
   "MonthlyConsultation",
@@ -39,7 +45,7 @@ export const SelectCategories = ({ form, setForm }) => {
               <CFormGroup key={key} variant="checkbox" className="checkbox">
                 <label>
                   <CInputCheckbox
-                    style={{cursor: 'pointer'}}
+                    style={{ cursor: "pointer" }}
                     id={"checkbox-" + key}
                     value={key}
                     checked={form.subCategories.includes(+key)}
@@ -54,7 +60,12 @@ export const SelectCategories = ({ form, setForm }) => {
                       });
                     }}
                   />
-                  <span style={{cursor: 'pointer'}} className='fa-clinic-medical'>{item}</span>
+                  <span
+                    style={{ cursor: "pointer" }}
+                    className="fa-clinic-medical"
+                  >
+                    {item}
+                  </span>
                 </label>
               </CFormGroup>
             </>
