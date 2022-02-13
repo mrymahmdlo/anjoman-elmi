@@ -60,8 +60,8 @@ const EditWebinarForm = ({ form, setForm, preData }) => {
           />
         </CRow>
         <CKEditorField
-          name="متن محتوا"
-          text="لطفا متن محتوای خود را وارد کنید"
+          name="متن همایش"
+          text="لطفا متن همایش خود را وارد کنید"
           fieldName="description"
           form={form}
           setForm={setForm}

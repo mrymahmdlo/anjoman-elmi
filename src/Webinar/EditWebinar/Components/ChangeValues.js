@@ -1,3 +1,4 @@
+import { GeorgianToHejri } from "src/Utility/DateTime";
 export const ChangeValuesEditWebinar = (obj) => {
   let newobj = {
     capacity: obj.capacity,
@@ -12,8 +13,8 @@ export const ChangeValuesEditWebinar = (obj) => {
     providerIds: obj.productProvider,
     schedules: [
       {
-        startDateTime: obj.webinarSchedules[0].startDateTime,
-        endDateTime: obj.webinarSchedules[0].endDateTime,
+        startDateTime: GeorgianToHejri(obj.webinarSchedules[0].startDateTime),
+        endDateTime: GeorgianToHejri(obj.webinarSchedules[0].endDateTime),
       },
     ],
     title: obj.title,

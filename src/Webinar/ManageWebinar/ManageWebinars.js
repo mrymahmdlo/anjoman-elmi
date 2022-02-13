@@ -15,12 +15,7 @@ const ManageWebinars = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
-  // todo
-  // either use it or delete it
-  // const [filterData, setFilterData] = useState({
-  //   asc: false,
-  //   column: "quizId",
-  // });
+
 
   const updateData = () => {
     // todo
@@ -46,7 +41,6 @@ const ManageWebinars = () => {
           columnFilter
           size="sm"
           sorter
-          //onSorterValueChange={setFilterData}
           itemsPerPage={15}
           pagination
           scopedSlots={WebinartScopedSlots(setModalContent, setModal, modal)}

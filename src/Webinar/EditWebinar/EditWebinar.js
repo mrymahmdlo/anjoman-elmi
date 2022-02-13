@@ -12,8 +12,10 @@ import {  APIBoardcastPost } from "src/Service/APIBroadCast";
 import { ToastContext } from "src/containers/TheContent";
 import EditWebinarForm from "./Components/WebinarForm";
 import { ChangeValuesEditWebinar } from "./Components/ChangeValues";
+import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 
 const EditWebinar = ({ obj, setModal }) => {
+  console.log('obj',obj);
   const [form, setForm] = useState({
     schedules: [
       {
@@ -47,6 +49,13 @@ const EditWebinar = ({ obj, setModal }) => {
       courseId: +form.courseId,
       countOfSession: +form.countOfSession,
       priceAfterHolding: +form.priceAfterHolding,
+      schedules: [
+        {
+          startDateTime: HejriToDotNetGeorgian(form.schedules[0].startDateTime),
+          endDateTime: HejriToDotNetGeorgian(form.schedules[0].endDateTime),
+          subject: "",
+        },
+      ],
       providerIds: +form.providerIds.map((item) => item.userId)
         ? form.providerIds.map((item) => item.userId)
         : form.providerIds,

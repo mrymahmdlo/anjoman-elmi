@@ -1,9 +1,8 @@
 import { FormTextInput, FormNumberInput } from "src/reusable/FormInput";
 import { DateTimePickerToGeorgian } from "src/reusable/DateTimePickerToGeorgian";
+import { GeorgianToHejri } from "src/Utility/DateTime";
 import React from "react";
-// todo
-// change it to import
-const { CSelect } = require("@coreui/react");
+import { CSelect }  from"@coreui/react";
 
 export const FormItemsWebinar = (form, setForm, groupIds, courseIds) => {
   return [
