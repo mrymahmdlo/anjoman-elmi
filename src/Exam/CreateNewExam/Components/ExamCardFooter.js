@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import ExamService from "../../ExamService/ExamService";
 import { useHistory } from "react-router";
 import { ExamModalContainer } from "./ExamModalContainer";
-import { CCardFooter, CButton, CSpinner, CIcon } from "@coreui/react";
+import { CCardFooter, CButton, CSpinner } from "@coreui/react";
+import CIcon from "@coreui/icons-react";
 // todo
 
 const ExamCardFooter = () => {

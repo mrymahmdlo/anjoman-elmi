@@ -1,7 +1,7 @@
 import * as React from "react";
 // todo
-import { CSpinner, CIcon } from "@coreui/react";
-
+import { CSpinner } from "@coreui/react";
+import { CIcon } from "@coreui/icons-react";
 const status = {
     LOADING: 0,
     UPLOADED: 1,
