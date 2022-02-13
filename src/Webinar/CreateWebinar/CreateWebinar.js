@@ -56,8 +56,8 @@ const CreateWebinar = () => {
         history.push("/Webinar/ManageWebinars");
         setBtnActive(false);
       })
-      .catch(() => {
-        toast.showToast("لطفا فیلد های ضروری را پر کنید");
+      .catch((res) => {
+        toast.showToast(res.data?res.data:"لطفا فیلد های ضروری را پر کنید");
         setBtnActive(false);
       });
   };
