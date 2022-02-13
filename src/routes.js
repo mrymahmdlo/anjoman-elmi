@@ -79,10 +79,19 @@ const UploadProvider = React.lazy(() =>
   import("src/Upload/UploadProviderFile/UploadProvider")
 );
 
+const CreateDiscountCode = React.lazy(() =>
+  import("src/Financial/DiscountCode/CreateDiscountCode")
+);
+
 const routes = [
   { path: "/", exact: true, name: "Home", component: Dashboard },
   { path: "/dashboard", name: "Dashboard", component: Dashboard },
   { path: "/upload", name: "Upload", component: Upload },
+  {
+    path: "/Financial/discount-code",
+    name: "CreateDiscountCode",
+    component: CreateDiscountCode,
+  },
   {
     path: "/uploadProvider",
     name: "UploadProvider",
