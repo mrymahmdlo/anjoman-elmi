@@ -47,14 +47,8 @@ const CreateCodeForm = () => {
         totalUseableCount: +form.totalUseableCount,
       })
         .then((res) => setResponse(res.data))
-<<<<<<< HEAD
-        .catch(() => {
-          setErrorContent("لطفا فیلد های ضروری را درست پر کنید");
-          setShowError(true);
-=======
         .catch((err) => {
           toast.showToast("لطفا فیلد های ضروری را درست پر کنید");
->>>>>>> 6b2337179b994e3de831b59176db6607bfe52391
         })
         .finally(() => setBtnActive(false));
     }
