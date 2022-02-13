@@ -1,8 +1,7 @@
 import { CSelect } from "@coreui/react";
 import * as React from "react";
 // todo
-// change it to import
-const { FormNumberInput, FormTextInput } = require("src/reusable/FormInput");
+import { FormNumberInput, FormTextInput } from "src/reusable/FormInput";
 
 const QuestionFormItems = (form, setForm, levels) => {
   return [

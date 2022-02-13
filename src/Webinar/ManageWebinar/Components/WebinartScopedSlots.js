@@ -7,8 +7,7 @@ import LinkWebinar from "./LinkWebinar";
 import React from "react";
 import { freeSet } from "@coreui/icons";
 // todo
-// change it to import
-const { CSwitch } = require("@coreui/react");
+import { CSwitch } from "@coreui/react";
 const DateTimeFormat = "YYYY/MM/DD HH:mm";
 const DotNetDateTimeFormat = "YYYY-MM-DDTHH:mm";
 export const WebinartScopedSlots = (setModalContent, setModal) => {

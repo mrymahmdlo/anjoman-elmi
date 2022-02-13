@@ -1,8 +1,6 @@
 import * as React from "react";
 // todo
-// change it to import
-const { default: CIcon } = require("@coreui/icons-react");
-const { CSpinner } = require("@coreui/react");
+import { CSpinner, CIcon } from "@coreui/react";
 
 const status = {
     LOADING: 0,

@@ -7,8 +7,7 @@ import { InitialForm } from "./QuizDetailsValidators";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
 import { QuizDetailsValidators } from "./QuizDetailsValidators";
 // todo
-// change it to import
-const { CCardBody, CRow, CButton, CSpinner } = require("@coreui/react");
+import { CCardBody, CRow, CButton, CSpinner } from "@coreui/react";
 
 const AddNewCourseForm = ({ data, setUpdated }) => {
   const exam = React.useContext(ExamContext);

@@ -1,8 +1,7 @@
 import { FormSwitchInput, FormTextInput } from "src/reusable/FormInput";
 import * as React from "react";
+import { CSelect } from "@coreui/react";
 // todo
-// change it to import
-const { CSelect } = require("@coreui/react");
 
 export const FormItemsArticles = (form, setForm, groupIds, courseIds) => {
   return [

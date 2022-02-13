@@ -3,7 +3,7 @@ import { CButton } from "@coreui/react";
 import EditSubscriptions from "src/Tutoring/Subscriptions/EditSubscriptions/EditSubscriptions";
 import * as React from "react";
 
-const { CInput } = require("@coreui/react");
+import { CInput }  from "@coreui/react";
 export const SubscriptionsScopedSlots = (
   setModalContent,
   setModal,

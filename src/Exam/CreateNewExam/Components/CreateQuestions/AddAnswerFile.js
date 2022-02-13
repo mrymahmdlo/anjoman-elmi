@@ -3,9 +3,7 @@ import React, { useEffect, useState } from "react";
 import ExamService from "../../../ExamService/ExamService";
 import { UploadExcel } from "../../../ExamService/ExamUploadFile";
 import { ExamContext } from "../../CreateNewExam";
-
-const {// todo
-  // change it to import
+import {
   CCardBody,
   CRow,
   CCol,
@@ -15,7 +13,8 @@ const {// todo
   CInput,
   CSpinner,
   CButton,
-} = require("@coreui/react");
+} from "@coreui/react";
+// todo
 
 const status = {
   LOADING: 0,
@@ -81,7 +80,11 @@ const AddAnswerFile = () => {
               </CLabel>
             </CRow>
             <CRow>
-              <a href="http://myexam.bamis.ir/AdminPanel/DownloadSampleExcel" target={"_blank"} rel="noreferrer">
+              <a
+                href="http://myexam.bamis.ir/AdminPanel/DownloadSampleExcel"
+                target={"_blank"}
+                rel="noreferrer"
+              >
                 <CButton color="primary">دریافت فایل</CButton>
               </a>
             </CRow>

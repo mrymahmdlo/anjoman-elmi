@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import MinuteCallsService from "../../Service/MinuteCallsService";
 import * as React from "react";
+import { CFormText, CButton, CSpinner } from "@coreui/react";
 // todo
-// change it to import
-const { CFormText, CButton, CSpinner } = require("@coreui/react");
-
 export const FilterSection = ({ setGroupId, setStatus, setRank }) => {
   const [filters, setFilters] = useState([]);
   useEffect(() => {

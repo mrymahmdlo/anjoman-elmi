@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import * as React from "react";
 
-const { CInput, CSwitch } = require("@coreui/react");
+import { CInput, CSwitch } from "@coreui/react" ;
 
 const FormTextInput = (form, setForm, nameField, placeHolder) => {
   const [isValid, setValid] = useState(form[nameField]?.length > 0);

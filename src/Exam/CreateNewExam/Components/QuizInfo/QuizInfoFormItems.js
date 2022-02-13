@@ -6,14 +6,14 @@ import {
 } from "src/reusable/FormInput";
 import * as React from "react";
 
-const {
+import {
   CCol,
   CFormGroup,
   CLabel,
   CInputCheckbox,
   CFormText,
   CSelect,
-} = require("@coreui/react");
+} from "@coreui/react";
 
 const QuizInfoFormItems = (form, setForm) => {
   return [
@@ -174,9 +174,9 @@ const QuizModeSelect = ({ form, setForm }) => {
           }}
         >
           {[
-            { id: '2', name: "هردو" },
-            { id: '0', name: "حالت pdf" },
-            { id: '1', name: "حالت سوال به سوال" },
+            { id: "2", name: "هردو" },
+            { id: "0", name: "حالت pdf" },
+            { id: "1", name: "حالت سوال به سوال" },
           ].map((item, index) => (
             <option
               key={index}
@@ -195,7 +195,6 @@ const QuizModeSelect = ({ form, setForm }) => {
   );
 };
 const QuizTypeSelect = ({ form, setForm }) => {
-
   return (
     <CCol sm="3">
       <CFormGroup>
@@ -210,8 +209,7 @@ const QuizTypeSelect = ({ form, setForm }) => {
             { id: "0", name: "درس محور" },
             { id: "1", name: "چند درسی" },
             { id: "2", name: "اعتبار سنجی" },
-          ].map((item, index) =>
-
+          ].map((item, index) => (
             <option
               key={index}
               value={item.id}
@@ -219,7 +217,7 @@ const QuizTypeSelect = ({ form, setForm }) => {
             >
               {item.name}
             </option>
-          )}
+          ))}
         </CSelect>
         <CFormText className="help-block">
           درصورت تمایل،نوع آزمون را انتخاب کنید

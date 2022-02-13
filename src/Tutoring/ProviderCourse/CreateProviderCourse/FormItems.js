@@ -1,7 +1,6 @@
 import React from "react";
 // todo
-// change it to import
-const { CSelect } = require("@coreui/react");
+import { CSelect } from "@coreui/react";
 
 export const FormItemsProviderCourse = (form, setForm, groupIds, courseIds) => {
   return [

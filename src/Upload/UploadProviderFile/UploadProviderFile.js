@@ -9,15 +9,14 @@ import { APIProviderGet, APIProviderPost } from "src/Service/APIProvider";
 import { Toast } from "src/Utility/Toast";
 import React from "react";
 // todo
-// change it to import
-const {
+import {
   CForm,
   CFormGroup,
   CInput,
   CSelect,
   CButton,
   CSpinner,
-} = require("@coreui/react");
+} from "@coreui/react";
 
 export const UploadProviderFile = () => {
   const [link, setLink] = useState("");

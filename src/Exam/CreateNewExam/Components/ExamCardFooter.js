@@ -3,10 +3,8 @@ import React, { useState } from "react";
 import ExamService from "../../ExamService/ExamService";
 import { useHistory } from "react-router";
 import { ExamModalContainer } from "./ExamModalContainer";
+import { CCardFooter, CButton, CSpinner, CIcon } from "@coreui/react";
 // todo
-// change it to import
-const { default: CIcon } = require("@coreui/icons-react");
-const { CCardFooter, CButton, CSpinner } = require("@coreui/react");
 
 const ExamCardFooter = () => {
   const [btnActice, setBtnActive] = useState(false);

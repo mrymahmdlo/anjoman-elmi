@@ -8,8 +8,7 @@ import {
 } from "../../../ExamService/ExamUploadFile";
 import { ExamContext } from "../../CreateNewExam";
 // todo
-// change it to import
-const {
+import {
   CCardBody,
   CRow,
   CCol,
@@ -19,7 +18,7 @@ const {
   CInput,
   CSpinner,
   CButton,
-} = require("@coreui/react");
+} from "@coreui/react";
 
 const status = {
   LOADING: 0,

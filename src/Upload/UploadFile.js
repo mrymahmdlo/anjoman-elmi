@@ -7,8 +7,7 @@ import { APICoreUpload, APICoreFileLink } from "src/Service/APIBase";
 import React from "react";
 import { copyToClipboard } from "src/Utility/CopyToClipboard";
 // todo
-// change it to import
-const { CForm, CFormGroup, CInput, CButton } = require("@coreui/react");
+import { CForm, CFormGroup, CInput, CButton } from "@coreui/react";
 
 export const UploadFile = () => {
   const [link, setLink] = useState("");

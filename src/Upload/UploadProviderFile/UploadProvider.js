@@ -1,14 +1,13 @@
 import { UploadProviderFile } from "./UploadProviderFile";
 import React from "react";
 // todo
-// change it to import
-const {
+import {
   CCard,
   CCardHeader,
   CCardBody,
   CCardSubtitle,
   
-} = require("@coreui/react");
+} from "@coreui/react";
 
 const UploadProvider = () => {
   return (

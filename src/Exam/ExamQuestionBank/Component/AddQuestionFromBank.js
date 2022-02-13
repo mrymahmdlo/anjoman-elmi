@@ -4,7 +4,7 @@ import { Toast } from "src/Utility/Toast";
 import ImportQuestion from "../Service/ImportQuestion";
 import * as React from "react";
 
-const {
+import {
   CCol,
   CFormGroup,
   CLabel,
@@ -13,8 +13,8 @@ const {
   CContainer,
   CRow,
   CButton,
-} = require("@coreui/react");
-
+} from "@coreui/react";
+ 
 export const AddQuestionFromBank = ({ quizId, item }) => {
   const [questionNoImportFrom, setQuestionNoImportFrom] = useState(null);
   const [showError, setShowError] = useState(false);
