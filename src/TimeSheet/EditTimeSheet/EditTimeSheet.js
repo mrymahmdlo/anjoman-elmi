@@ -9,20 +9,18 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { APIProviderPost } from "src/Service/APIProvider";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import EditTimeSheetForm from "./Components/TimeSheetForm";
 import { useHistory } from "react-router";
 
 const EditTimeSheet = ({ obj, setModal }) => {
   const [form, setForm] = useState({});
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
+  const toast = React.useContext(ToastContext);
   const [btnActive, setBtnActive] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
-    setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
-    setShowError(true);
+    toast.showToast("تا بارگزاری داده ها کمی صبر کنید");
     setForm(obj);
   }, [obj]);
   const ChangeValues = (day) => {
@@ -48,7 +46,6 @@ const EditTimeSheet = ({ obj, setModal }) => {
     // always set defalut!
   };
   const submitTimeSheet = () => {
-    setShowError(false);
     setBtnActive(true);
     // todo
     // add service
@@ -67,18 +64,16 @@ const EditTimeSheet = ({ obj, setModal }) => {
     })
       .then((res) => {
         if (res.success === true) {
-          setErrorContent("داده با موفقیت ثبت شد ");
+          toast.showToast("داده با موفقیت ثبت شد ");
           history.push("/TimeSheet/ManageTimeSheet");
           setModal(false);
         } else {
-          setErrorContent(res.message);
+          toast.showToast(res.message);
         }
-        setShowError(true);
         setBtnActive(false);
       })
       .catch(() => {
-        setErrorContent("خطا در ثبت ویرایش");
-        setShowError(true);
+        toast.showToast("خطا در ثبت ویرایش");
         setBtnActive(false);
       });
   };
@@ -109,7 +104,6 @@ const EditTimeSheet = ({ obj, setModal }) => {
           </CCardFooter>
         </CCard>
       </CContainer>
-      <Toast showError={showError} errorContent={errorContent} />
     </div>
   );
 };

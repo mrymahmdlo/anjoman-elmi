@@ -9,7 +9,7 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { APICoreGet, APICoreFormData } from "src/Service/APIBase";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import ArticleForm from "../CreateArticle/Components/ArticleForm";
 import { useHistory, useParams } from "react-router";
 import { ChangeValuesEditArticles } from "./Components/ChangeValues";
@@ -18,25 +18,21 @@ import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
 const EditArticle = () => {
   const { id } = useParams();
   const [form, setForm] = useState({});
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
   const history = useHistory();
+  const toast = React.useContext(ToastContext);
 
   useEffect(() => {
-    setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
-    setShowError(true);
+    toast.showToast("تا بارگزاری داده ها کمی صبر کنید");
     APICoreGet("FreeContent/GetFreeContent?contentId=" + id)
       .then((res) => {
         setForm(ChangeValuesEditArticles(res.data));
       })
       .finally(() => {
-        setShowError(false);
       });
   }, [id]);
 
   const submitContent = () => {
-    setShowError(false);
     setBtnActive(true);
     const now = new Date();
 
@@ -60,14 +56,12 @@ const EditArticle = () => {
       createdDateTime: GetDotNetGeorgianFromDateJS(now),
     })
       .then(() => {
-        setErrorContent("داده با موفقیت ثبت شد ");
-        setShowError(true);
+        toast.showToast("داده با موفقیت ثبت شد ");
         history.push("/Content/FreeContent/ManageArticles");
         setBtnActive(false);
       })
       .catch(() => {
-        setErrorContent("خطا در ثبت ویرایش");
-        setShowError(true);
+        toast.showToast("خطا در ثبت ویرایش");
         setBtnActive(false);
       });
   };
@@ -101,7 +95,6 @@ const EditArticle = () => {
           </CCardFooter>
         </CCard>
       </CContainer>
-      <Toast showError={showError} errorContent={errorContent} />
     </div>
   );
 };

@@ -2,25 +2,23 @@ import React, { useState } from "react";
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
 import { APIProviderPost } from "src/Service/APIProvider";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import EditTimeSheet from "../../EditTimeSheet/EditTimeSheet";
 
 export const TimeSheetScopedSlots = (updateData, setModal, modal, setModalTimeSheet) => {
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
+  const toast = React.useContext(ToastContext);
   const handleDelete = (Id) => {
     //todo
     // add service
     APIProviderPost("TimeSheet/Delete/" + Id) // todo => lower case!
       .then(() => {
-        setErrorContent("داده با موفقیت حذف شد");
+        toast.showToast("داده با موفقیت حذف شد");
         setModal(false);
       })
       .catch(() => {
-        setErrorContent("خطا در حذف محتوا");
+        toast.showToast("خطا در حذف محتوا");
       })
       .finally(() => {
-        setShowError(true);
         updateData();
       });
   };
@@ -70,7 +68,6 @@ export const TimeSheetScopedSlots = (updateData, setModal, modal, setModalTimeSh
           >
             <CIcon name="cil-trash" />
           </CButton>
-          <Toast showError={showError} errorContent={errorContent} />
         </td>
       </>
     ),

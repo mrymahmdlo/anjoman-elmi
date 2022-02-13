@@ -10,14 +10,13 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { APIProviderPost } from "src/Service/APIProvider";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import CapacityForm from "./Components/CapacityForm";
 
 const CapacityRegistration = () => {
   const [form, setForm] = useState({ providerId: 0, rechargeAmountHour: 0 });
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
   const [btnActive, setBtnActive] = useState(false);
+  const toast = React.useContext(ToastContext);
 
   const refreshPage = () => {
     setTimeout(() => {
@@ -28,7 +27,6 @@ const CapacityRegistration = () => {
   };
 
   const submitTimeSheet = () => {
-    setShowError(false);
     setBtnActive(true);
     // todo
     // add service
@@ -37,14 +35,12 @@ const CapacityRegistration = () => {
       rechargeAmountHour: Number(form.rechargeAmountHour),
     })
       .then(() => {
-        setErrorContent("داده با موفقیت ثبت شد ");
-        setShowError(true);
+        toast.showToast("داده با موفقیت ثبت شد ");
         setBtnActive(false);
         refreshPage();
       })
       .catch(() => {
-        setErrorContent("ثبت داده ها با مشکل مواجه شد");
-        setShowError(true);
+        toast.showToast("ثبت داده ها با مشکل مواجه شد");
         setBtnActive(false);
       });
   };
@@ -79,7 +75,6 @@ const CapacityRegistration = () => {
           </CCardFooter>
         </CCard>
       </CContainer>
-      <Toast showError={showError} errorContent={errorContent} />
     </div>
   );
 };

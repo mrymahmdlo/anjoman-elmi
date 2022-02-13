@@ -1,7 +1,6 @@
 import { CButton, CProgress } from "@coreui/react";
-import { useState } from "react";
 import MinuteCallsService from "../../Service/MinuteCallsService";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import { Activity } from "../ModalContent/Activity";
 import { MinuteCallsEditForm } from "../ModalContent/EditForm";
 import * as React from "react";
@@ -12,8 +11,7 @@ export const MinuteCallsScopedSlots = (
   setModalContent,
   updateData
 ) => {
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
+  const toast = React.useContext(ToastContext);
   return {
     progressPercent: (item) => {
       return (
@@ -65,8 +63,7 @@ export const MinuteCallsScopedSlots = (
                     onSubmit={async () => {
                       setModal(false);
                       await updateData();
-                      setShowError(true);
-                      setErrorContent("جدول به روز رسانی شد");
+                      toast.showToast("جدول به روز رسانی شد");
                     }}
                   />
                 );
@@ -86,16 +83,13 @@ export const MinuteCallsScopedSlots = (
           <td className="py-2 pl-2" key={item.orderId}>
             <CButton
               onClick={() => {
-                setShowError(false);
                 MinuteCallsService.SendSms(item.orderDetailId)
                   .then((res) => {
-                    setShowError(true);
-                    setErrorContent(res.data);
+                    toast.showToast(res.data);
                     return res;
                   })
                   .catch(() => {
-                    setShowError(true);
-                    setErrorContent(
+                    toast.showToast(
                       "بدون ایجاد ویرایش، امکان ارسال یادآور ممکن نیست"
                     );
                   });
@@ -104,7 +98,6 @@ export const MinuteCallsScopedSlots = (
             >
               یادآور
             </CButton>
-            <Toast showError={showError} errorContent={errorContent} />
           </td>
         </>
       );

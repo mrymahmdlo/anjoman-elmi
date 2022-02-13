@@ -1,4 +1,5 @@
 import { ExamContext } from "../CreateNewExam/CreateNewExam";
+import { ToastContext } from "src/containers/TheContent";
 import React, { useState } from "react";
 import ExamService from "../ExamService/ExamService";
 import { useHistory } from "react-router";
@@ -10,6 +11,7 @@ const { CCardFooter, CButton, CSpinner } = require("@coreui/react");
 const EditExamCardFooter = () => {
   const [btnActice, setBtnActive] = useState(false);
   const exam = React.useContext(ExamContext);
+  const toast = React.useContext(ToastContext);
   const history = useHistory();
   const handleSubmit = () => {
     setBtnActive(true);
@@ -17,13 +19,12 @@ const EditExamCardFooter = () => {
       .then((res) => {
         if (res.success) {
           history.push("/Exams/ManageExams");
-        } else exam.setErrorContent(res.message);
+        } else toast.showToast(res.message);
       })
       .catch((err) => {
-        exam.setErrorContent(err.message);
+        toast.showToast(err.message);
       })
       .finally(() => {
-        exam.setShowError(true);
         setBtnActive(false);
       });
   };

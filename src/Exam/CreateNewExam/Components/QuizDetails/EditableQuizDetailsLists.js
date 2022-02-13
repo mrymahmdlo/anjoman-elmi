@@ -3,6 +3,7 @@ import { CButton, CListGroup, CListGroupItem, CSpinner } from "@coreui/react";
 import React, { useEffect, useState } from "react";
 import ExamService from "../../../ExamService/ExamService";
 import { ExamContext } from "../../CreateNewExam";
+import { ToastContext } from "src/containers/TheContent";
 import { ExamModalContainer } from "../ExamModalContainer";
 import AddNewCourseForm from "./AddNewCourseForm";
 import EditQuizDetailForm from "./EditQuizDetailForm";
@@ -14,6 +15,7 @@ export const EditableQuizDetailsLists = () => {
   const [updated, setUpdated] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const exam = React.useContext(ExamContext);
+  const toast = React.useContext(ToastContext);
 
   useEffect(() => {
     ExamService.GetQuizDetails(exam.quizId).then((res) => setData(res.data));
@@ -123,10 +125,9 @@ export const EditableQuizDetailsLists = () => {
                                 );
                                 setModal(false);
                                 setUpdated(true);
-                                exam.setErrorContent(
+                                toast.showToast(
                                   item.courseName + " حذف شد "
                                 );
-                                exam.setShowError(true);
                               }}
                             >
                               بله
