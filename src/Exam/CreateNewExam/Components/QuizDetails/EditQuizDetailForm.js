@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ExamService from "../../../ExamService/ExamService";
 import { TextField } from "src/Utility/InputGroup";
 import { ExamContext } from "../../CreateNewExam";
+import { ToastContext } from "src/containers/TheContent";
 import { QuizDetailsFormItems } from "./QuizDetailsFormItems";
 import { InitialForm } from "./QuizDetailsValidators";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
@@ -12,6 +13,7 @@ const { CCardBody, CRow, CButton, CSpinner } = require("@coreui/react");
 
 const EditQuizDetailForm = ({ item, setUpdated }) => {
   const exam = React.useContext(ExamContext);
+  const toast = React.useContext(ToastContext);
   const [courseIds, setCourceIds] = useState([]);
   const [btnActice, setBtnActive] = useState(false);
   const preRowId = item.rowId;
@@ -20,8 +22,7 @@ const EditQuizDetailForm = ({ item, setUpdated }) => {
     TextField(item)
   );
   const afterCheck = (text) => {
-    exam.setErrorContent(text);
-    exam.setShowError(true);
+    toast.showToast(text);
     setBtnActive(false);
   };
   useEffect(() => {
@@ -31,7 +32,6 @@ const EditQuizDetailForm = ({ item, setUpdated }) => {
     setForm(item);
   }, [item]);
   const handleSubmit = () => {
-    exam.setShowError(false);
     setBtnActive(true);
     if (!CheckValidationArry(form, QuizDetailsValidators)) {
       return afterCheck("لطفا فیلد های قرمز شده را پر یا اصلاح کنید");
@@ -39,16 +39,15 @@ const EditQuizDetailForm = ({ item, setUpdated }) => {
     ExamService.UpdateQuizInfoDetail(preRowId, form)
       .then((res) => {
         if (res.success) {
-          exam.setErrorContent("سوال با موفقیت اصلاح شد ");
+          toast.showToast("سوال با موفقیت اصلاح شد ");
           setForm(InitialForm(exam.quizId, item.rowId + 1));
           setUpdated(true);
-        } else exam.setErrorContent(res.message);
+        } else toast.showToast(res.message);
       })
       .catch((err) => {
-        exam.setErrorContent(err.message);
+        toast.showToast(err.message);
       })
       .finally(() => {
-        exam.setShowError(true);
         setBtnActive(false);
       });
   };

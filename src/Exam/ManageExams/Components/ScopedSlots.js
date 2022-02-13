@@ -1,9 +1,8 @@
 import CIcon from "@coreui/icons-react";
 import { CBadge, CButton } from "@coreui/react";
-import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import ExamService from "../../ExamService/ExamService";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import ExamDetails from "./ExamDetails";
 import * as React from "react";
 
@@ -14,20 +13,18 @@ export const ExamScopedSlots = (
   setModalContent,
   tableFields
 ) => {
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
+  const toast = React.useContext(ToastContext);
   const history = useHistory();
   const handleDelete = (quizId) => {
     ExamService.DeleteQuiz(quizId)
       .then((res) => {
-        setErrorContent(res.message);
+        toast.showToast(res.message);
         setModal(false);
       })
       .catch((err) => {
-        setErrorContent(err.message);
+        toast.showToast(err.message);
       })
       .finally(() => {
-        setShowError(true);
         updateData();
       });
   };
@@ -124,7 +121,6 @@ export const ExamScopedSlots = (
           >
             <CIcon name="cil-trash" />
           </CButton>
-          <Toast showError={showError} errorContent={errorContent} />
         </td>
       </>
     ),

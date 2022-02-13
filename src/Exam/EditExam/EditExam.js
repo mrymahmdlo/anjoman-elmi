@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { CCard, CContainer, CSpinner } from "@coreui/react";
-import { Toast } from "src/Utility/Toast";
 import QuizDetailsForm from "../CreateNewExam/Forms/QuizDetailsForm";
 import CreateQuestionsForm from "../CreateNewExam/Forms/CreateQuestionsForm";
 import EditQuizInfoForm from "../CreateNewExam/Forms/EditQuizInfoForm";
@@ -16,8 +15,6 @@ const stages = {
 };
 
 const EditExam = () => {
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
   const [stage, setStage] = useState(stages.EDITQUIZINFO);
   const [quizId, setQuizId] = useState();
   const [quizMode, setQuizMode] = useState();
@@ -29,9 +26,6 @@ const EditExam = () => {
       setQuizId(id);
     }
   }, [id, history]);
-  useEffect(() => {
-    if (showError) setTimeout(() => setShowError(false), 3200);
-  }, [showError]);
   if (!quizId)
     return (
       <CSpinner
@@ -46,8 +40,6 @@ const EditExam = () => {
         <ExamContext.Provider
           value={{
             quizId,
-            setShowError,
-            setErrorContent,
             stage,
             setStage,
             stages,
@@ -76,7 +68,6 @@ const EditExam = () => {
           </CCard>
         </ExamContext.Provider>
       </CContainer>
-      <Toast showError={showError} errorContent={errorContent} />
     </div>
   );
 };

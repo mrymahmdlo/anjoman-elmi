@@ -1,9 +1,8 @@
 import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
-import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { APICoreGet } from "src/Service/APIBase";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import * as React from "react";
 
 export const ContentScopedSlots = (
@@ -12,20 +11,18 @@ export const ContentScopedSlots = (
   modal,
   setModalContent
 ) => {
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
   const history = useHistory();
+  const toast = React.useContext(ToastContext);
   const handleDelete = (contentId) => {
     APICoreGet("FreeContent/DeleteFreeContent?contentId=" + contentId)
       .then(() => {
-        setErrorContent("داده با موفقیت حذف شد");
+        toast.showToast("داده با موفقیت حذف شد");
         setModal(false);
       })
       .catch(() => {
-        setErrorContent("خطا در حذف محتوا");
+        toast.showToast("خطا در حذف محتوا");
       })
       .finally(() => {
-        setShowError(true);
         updateData();
       });
   };
@@ -72,7 +69,6 @@ export const ContentScopedSlots = (
           >
             <CIcon name="cil-trash" />
           </CButton>
-          <Toast showError={showError} errorContent={errorContent} />
         </td>
       </>
     ),

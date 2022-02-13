@@ -14,13 +14,11 @@ import React, { useState } from "react";
 import { APICorePost } from "src/Service/APIBase";
 import { copyToClipboard } from "src/Utility/CopyToClipboard";
 import { TextField } from "src/Utility/InputGroup";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import CreateCodeItems from "./CreateCodeItems";
 import { SelectCategories } from "./SelectSubcategories";
 
 const CreateCodeForm = () => {
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
   const [form, setForm] = useState({
     isPercent: "true",
@@ -28,20 +26,18 @@ const CreateCodeForm = () => {
     totalUseableCount: null,
     subCategories: [],
   });
+  const toast = React.useContext(ToastContext);
   const [response, setResponse] = useState();
 
   const items = CreateCodeItems(form, setForm).map((item) => TextField(item));
   const handleSubmit = (e) => {
     e.preventDefault();
-    setShowError(false);
     setBtnActive(true);
     if (form.amount < 0 || form.totalUseableCount < 0) {
-      setErrorContent("لطفا فیلد های ضروری را درست پر کنید");
-      setShowError(true);
+      toast.showToast("لطفا فیلد های ضروری را درست پر کنید");
       setBtnActive(false);
     } else if (form.subCategories.length <= 0) {
-      setErrorContent("لطفا  محصول را انتخاب کنید");
-      setShowError(true);
+      toast.showToast("لطفا  محصول را انتخاب کنید");
       setBtnActive(false);
     } else {
       APICorePost("Order/Discount/Create", {
@@ -51,9 +47,14 @@ const CreateCodeForm = () => {
         totalUseableCount: +form.totalUseableCount,
       })
         .then((res) => setResponse(res.data))
+<<<<<<< HEAD
         .catch(() => {
           setErrorContent("لطفا فیلد های ضروری را درست پر کنید");
           setShowError(true);
+=======
+        .catch((err) => {
+          toast.showToast("لطفا فیلد های ضروری را درست پر کنید");
+>>>>>>> 6b2337179b994e3de831b59176db6607bfe52391
         })
         .finally(() => setBtnActive(false));
     }
@@ -109,8 +110,25 @@ const CreateCodeForm = () => {
             </CRow>
           </CCardFooter>
         ) : null}
+        <CCardFooter>
+          {!btnActice ? (
+            <CButton
+              type="submit"
+              size="sm"
+              color="primary"
+              onClick={handleSubmit}
+            >
+              <CIcon name="cil-scrubber" /> ثبت اطلاعات
+            </CButton>
+          ) : (
+            <CSpinner
+              style={{ width: "2rem", height: "2rem" }}
+              color="info"
+              variant="grow"
+            />
+          )}
+        </CCardFooter>
       </CForm>
-      <Toast showError={showError} errorContent={errorContent} />
     </>
   );
 };

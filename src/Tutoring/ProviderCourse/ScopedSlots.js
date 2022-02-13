@@ -1,24 +1,21 @@
 import CIcon from "@coreui/icons-react";
 import { CButton, CBadge } from "@coreui/react";
-import { useState } from "react";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import { APIBoardcastPost } from "src/Service/APIBroadCast";
 import React from "react";
 
 export const ProviderCourseScopedSlots = (updateData, setModal, modal, setModalTutoring) => {
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
+  const toast = React.useContext(ToastContext);
   const handleDelete = (Id) => {
     APIBoardcastPost("ProviderCourse/Remove/" + Id)
       .then(() => {
-        setErrorContent("داده با موفقیت حذف شد");
+        toast.showToast("داده با موفقیت حذف شد");
         setModal(false);
       })
       .catch(() => {
-        setErrorContent("خطا در حذف ");
+        toast.showToast("خطا در حذف ");
       })
       .finally(() => {
-        setShowError(true);
         updateData();
       });
   };
@@ -57,7 +54,6 @@ export const ProviderCourseScopedSlots = (updateData, setModal, modal, setModalT
           >
             <CIcon name="cil-trash" />
           </CButton>
-          <Toast showError={showError} errorContent={errorContent} />
         </td>
       </>
     ),

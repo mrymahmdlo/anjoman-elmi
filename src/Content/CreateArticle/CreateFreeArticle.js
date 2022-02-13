@@ -10,7 +10,7 @@ import {
 import CIcon from "@coreui/icons-react";
 import { CheckForm } from "./Components/CheckForm";
 import { APICorePost } from "src/Service/APIBase";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import { GetDotNetGeorgianFromDateJS } from "src/Utility/DateTime";
 import ArticleForm from "./Components/ArticleForm";
 import { useHistory } from "react-router";
@@ -22,32 +22,24 @@ const CreateFreeContent = () => {
     createdDateTime: GetDotNetGeorgianFromDateJS(now),
     timeToStudy: 0,
   });
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
+  const toast = React.useContext(ToastContext);
   const [btnActice, setBtnActive] = useState(false);
   const history = useHistory();
   const submitContent = () => {
-    setShowError(false);
     setBtnActive(true);
     if (CheckForm(form)) {
       APICorePost("FreeContent/CreateFreeContent", form)
         .then(() => {
-          setErrorContent("داده با موفقیت ثبت شد ");
+          toast.showToast("داده با موفقیت ثبت شد ");
           history.push("/Content/FreeContent/ManageArticles");
-          setShowError(true);
           setBtnActive(false);
         })
         .catch(() => {
-          setErrorContent("خطا در ثبت محتوا");
-          setShowError(true);
+          toast.showToast("خطا در ثبت محتوا");
           setBtnActive(false);
         });
     } else {
-      setErrorContent("لطفا فیلد های ضروری را پر کنید");
-      setShowError(true);
-      setTimeout(function () {
-        setShowError(false);
-      }, 1000);
+      toast.showToast("لطفا فیلد های ضروری را پر کنید");
       setBtnActive(false);
     }
   };
@@ -81,7 +73,6 @@ const CreateFreeContent = () => {
           </CCardFooter>
         </CCard>
       </CContainer>
-      <Toast showError={showError} errorContent={errorContent} />
     </div>
   );
 };

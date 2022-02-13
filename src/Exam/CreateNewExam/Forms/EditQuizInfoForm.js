@@ -20,6 +20,7 @@ import { CheckValidationArry } from "src/reusable/CheckValidationArry";
 import { QuizInfoValidators } from "../Components/QuizInfo/QuizInfoValidators";
 import ExamService from "../../ExamService/ExamService";
 import { ExamContext } from "../CreateNewExam";
+import { ToastContext } from "src/containers/TheContent";
 import { GeorgianToHejri } from "src/Utility/DateTime";
 import AddFilesButtons from "../Components/QuizInfo/AddFilesButtons";
 
@@ -28,6 +29,7 @@ const EditQuizInfoForm = () => {
   const [btnActice, setBtnActive] = useState(false);
   const [groupIds, setGroupIds] = useState([]);
   const exam = React.useContext(ExamContext);
+  const toast = React.useContext(ToastContext);
   useEffect(() => {
     ExamService.GetDropDowns().then((res) => setGroupIds(res.data.groupCode.options));
   }, []);
@@ -53,13 +55,11 @@ const EditQuizInfoForm = () => {
     .map((item) => SwitchField(item));
 
   const afterCheck = (text) => {
-    exam.setErrorContent(text);
-    exam.setShowError(true);
+    toast.showToast(text);
     setBtnActive(false);
   };
 
   const handleSubmit = () => {
-    exam.setShowError(false);
     setBtnActive(true);
     if (!CheckValidationArry(form, QuizInfoValidators)) {
       return afterCheck("لطفا فیلد های قرمز شده را پر یا اصلاح کنید");
@@ -72,14 +72,13 @@ const EditQuizInfoForm = () => {
         if (res.success) {
           exam.setQuizMode(+form.quizMode);
           exam.setQuizType(+form.quizType);
-          exam.setErrorContent("آزمون با موفقیت به روز رسانی شد ");
-        } else exam.setErrorContent(res.message);
+          toast.showToast("آزمون با موفقیت به روز رسانی شد ");
+        } else toast.showToast(res.message);
       })
       .catch((err) => {
-        exam.setErrorContent(err.message);
+        toast.showToast(err.message);
       })
       .finally(() => {
-        exam.setShowError(true);
         setBtnActive(false);
       });
   };
