@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import ImportQuestion from "../Service/ImportQuestion";
 import * as React from "react";
 
@@ -17,11 +17,9 @@ import {
  
 export const AddQuestionFromBank = ({ quizId, item }) => {
   const [questionNoImportFrom, setQuestionNoImportFrom] = useState(null);
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
+  const toast = React.useContext(ToastContext);
   const history = useHistory();
   const submitQuesion = () => {
-    setShowError(false);
     ImportQuestion.AddQuestion({
       QuizIdImportFrom: +item.quizId,
       QuestionNoImportFrom: +item.questionNo,
@@ -30,14 +28,13 @@ export const AddQuestionFromBank = ({ quizId, item }) => {
     })
       .then((res) => {
         if (res.data > 0) {
-          setErrorContent("با موفقیت ثبت شد");
+          toast.showToast("با موفقیت ثبت شد");
           history.push("/Exams/EditExam/Questions/" + quizId);
         } else {
-          setErrorContent(res.message);
+          toast.showToast(res.message);
         }
       })
-      .catch(() => setErrorContent("خطا در ثبت سوال"))
-      .finally(() => setShowError(true));
+      .catch(() => toast.showToast("خطا در ثبت سوال"))
   };
 
   return (
@@ -113,7 +110,6 @@ export const AddQuestionFromBank = ({ quizId, item }) => {
           <CFormText>گزینه {item.correctAnswerNo}</CFormText>
         </CFormGroup>
       </CRow>
-      <Toast showError={showError} errorContent={errorContent} />
     </CContainer>
   );
 };

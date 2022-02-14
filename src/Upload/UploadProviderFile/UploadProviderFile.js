@@ -6,7 +6,7 @@ import {
 import { APICoreUpload, APICoreFileLink } from "src/Service/APIBase";
 import { APICorePost } from "src/Service/APIBase";
 import { APIProviderGet, APIProviderPost } from "src/Service/APIProvider";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import React from "react";
 // todo
 import {
@@ -23,13 +23,12 @@ export const UploadProviderFile = () => {
   const [btnActice, setBtnActive] = useState(false);
   const [activeProvider, setActiveProvider] = useState(false);
   const [activeContent, setActiveContent] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
   const [statusFile, setStatusFile] = useState(2);
-  const [showError, setShowError] = useState(false);
   const [providers, setProviders] = useState([]);
   const [providerId, setProviderId] = useState(-1);
   const [contentType, setContentType] = useState([]);
   const [valueNumber, setValueNumber] = useState([]);
+  const toast = React.useContext(ToastContext);
   const [type, setType] = useState(-1);
   useEffect(() => {
     setActiveProvider(true);
@@ -75,7 +74,6 @@ export const UploadProviderFile = () => {
   };
   const handleSumbit = () => {
     setBtnActive(true);
-    setShowError(false);
     APIProviderPost("Content/Upload", {
       contentType: Number(type),
       providerId: providerId,
@@ -83,15 +81,13 @@ export const UploadProviderFile = () => {
     })
       .then(() => {
         setBtnActive(false);
-        setShowError(true);
         setType(-1);
         setProviderId(-1);
         setStatusFile(status.EMPTY);
-        setErrorContent("داده با موفقیت ثبت شد ");
+        toast.showToast("داده با موفقیت ثبت شد ");
       })
       .catch(() => {
-        setErrorContent("خطا در ثبت ");
-        setShowError(true);
+        toast.showToast("خطا در ثبت ");
         setBtnActive(false);
       });
   };
@@ -213,7 +209,6 @@ export const UploadProviderFile = () => {
           )}
         </CFormGroup>
       </CForm>
-      <Toast showError={showError} errorContent={errorContent} />
     </div>
   );
 };

@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ExamService from "../../../ExamService/ExamService";
 import { ExamContext } from "../../CreateNewExam";
+import { ToastContext } from "src/containers/TheContent";
 import { ExamModalContainer } from "../ExamModalContainer";
 import AddQuestionForm from "./AddQuestionForm";
 import EditQuestionForm from "./EditQuestionForm";
@@ -25,6 +26,7 @@ export const EditableQuestionList = () => {
   const [data, setData] = useState();
   const [currentPage, setActivePage] = useState(1);
   const exam = React.useContext(ExamContext);
+  const toast = React.useContext(ToastContext);
 
   const popUpPreview = (item) => {
     var question = window.open(
@@ -172,10 +174,9 @@ export const EditableQuestionList = () => {
                                   );
                                   setModal(false);
                                   setUpdated(true);
-                                  exam.setErrorContent(
+                                  toast.showToast(
                                     "سوال" + item.questionNo + "حذف شد"
                                   );
-                                  exam.setShowError(true);
                                 }}
                               >
                                 بله

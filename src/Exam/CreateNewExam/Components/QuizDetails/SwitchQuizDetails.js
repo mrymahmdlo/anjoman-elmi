@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ExamService from "../../../ExamService/ExamService";
 import { TextField } from "src/Utility/InputGroup";
 import { ExamContext } from "../../CreateNewExam";
+import { ToastContext } from "src/containers/TheContent";
 import { FormNumberInput } from "src/reusable/FormInput";
 import CIcon from "@coreui/icons-react";
 // todo
@@ -9,17 +10,16 @@ import { CCardBody, CRow, CButton, CSpinner, CLabel } from "@coreui/react";
 
 const SwitchQuizDetails = ({ numCourses, setUpdated }) => {
   const exam = React.useContext(ExamContext);
+  const toast = React.useContext(ToastContext);
   const [btnActice, setBtnActive] = useState(false);
   const [form, setForm] = useState({ quizId: exam.quizId });
 
   const afterCheck = (text) => {
-    exam.setErrorContent(text);
-    exam.setShowError(true);
+    toast.showToast(text);
     setBtnActive(false);
   };
 
   const handleSubmit = () => {
-    exam.setShowError(false);
     setBtnActive(true);
     if (!form.firstId || !form.secondId) {
       return afterCheck("لطفا فیلد های قرمز شده را پر یا اصلاح کنید");
@@ -27,16 +27,15 @@ const SwitchQuizDetails = ({ numCourses, setUpdated }) => {
     ExamService.SwapQuizDetail(form)
       .then((res) => {
         if (res.success) {
-          exam.setErrorContent("جا به جایی با موفقیت انجام شد");
+          toast.showToast("جا به جایی با موفقیت انجام شد");
           setForm({ quizId: exam.quizId });
           setUpdated(true);
-        } else exam.setErrorContent(res.message);
+        } else toast.showToast(res.message);
       })
       .catch((err) => {
-        exam.setErrorContent(err.message);
+        toast.showToast(err.message);
       })
       .finally(() => {
-        exam.setShowError(true);
         setBtnActive(false);
       });
   };

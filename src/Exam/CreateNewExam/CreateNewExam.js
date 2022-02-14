@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { CCard, CContainer } from "@coreui/react";
-import { Toast } from "src/Utility/Toast";
 import { TokenManager } from "../../Identity/Service/TokenManager";
 import QuizInfoForm from "./Forms/QuizInfoForm";
 import QuizDetailsForm from "./Forms/QuizDetailsForm";
@@ -22,8 +21,6 @@ export const ExamContext = React.createContext();
 const CreateExam = () => {
   const { GetUserId } = TokenManager();
   const userId = +GetUserId();
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
   const [stage, setStage] = useState(stages.QUIZINFO);
   const [quizId, setQuizId] = useState();
   const [quizMode, setQuizMode] = useState();
@@ -38,17 +35,12 @@ const CreateExam = () => {
       history.push("/Exams/CreateExam/QuizInfo");
     }
   }, [quizId, history]);
-  useEffect(() => {
-    if (showError) setTimeout(() => setShowError(false), 3200);
-  }, [showError]);
   return (
     <div className="App">
       <CContainer fluid>
         <ExamContext.Provider
           value={{
             quizId,
-            setShowError,
-            setErrorContent,
             stage,
             setStage,
             stages,
@@ -84,7 +76,6 @@ const CreateExam = () => {
           </CCard>
         </ExamContext.Provider>
       </CContainer>
-      <Toast showError={showError} errorContent={errorContent} />
     </div>
   );
 };

@@ -9,17 +9,16 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { APIBoardcastPost } from "src/Service/APIBroadCast";
-import { Toast } from "src/Utility/Toast";
+import { ToastContext } from "src/containers/TheContent";
 import TutoringForm from "./Components/SponsorForm";
 import { ChangeValuesSetSponsor } from "./Components/ChangeValues";
 import { APIBoardcastGet } from "../../../Service/APIBroadCast";
 
 const SetSponsor = ({ obj, setModal }) => {
   const [form, setForm] = useState({});
-  const [showError, setShowError] = useState(false);
-  const [errorContent, setErrorContent] = useState("");
   const [btnActice, setBtnActive] = useState(false);
   const [sponsors, setSponsors] = useState([]);
+  const toast = React.useContext(ToastContext);
 
   useEffect(() => {
     // todo
@@ -30,13 +29,11 @@ const SetSponsor = ({ obj, setModal }) => {
   }, []);
 
   useEffect(() => {
-    setErrorContent("تا بارگزاری داده ها کمی صبر کنید");
-    setShowError(true);
+    toast.showToast("تا بارگزاری داده ها کمی صبر کنید");
     if (obj) setForm(ChangeValuesSetSponsor(obj));
   }, [obj]);
 
   const submitContent = () => {
-    setShowError(false);
     setBtnActive(true);
     // todo
     // add service
@@ -46,18 +43,15 @@ const SetSponsor = ({ obj, setModal }) => {
     })
       .then((res) => {
         if (res.data.succeeded === true) {
-          setErrorContent("داده با موفقیت ثبت شد ");
+          toast.showToast("داده با موفقیت ثبت شد ");
           setModal(false);
         } else {
-          setErrorContent(res.data.data);
+          toast.showToast(res.data.data);
         }
-
-        setShowError(true);
         setBtnActive(false);
       })
       .catch(() => {
-        setErrorContent("خطا در ثبت ویرایش");
-        setShowError(true);
+        toast.showToast("خطا در ثبت ویرایش");
         setBtnActive(false);
       });
   };
@@ -88,7 +82,6 @@ const SetSponsor = ({ obj, setModal }) => {
           </CCardFooter>
         </CCard>
       </CContainer>
-      <Toast showError={showError} errorContent={errorContent} />
     </div>
   );
 };
