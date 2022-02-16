@@ -10,6 +10,7 @@ export const ChangeValuesEditTutoring = (obj) => {
     groupId: obj?.groupId ? obj.groupId : 0,
     courseId: obj?.courseId ? obj.courseId : 0,
     totalMinute: "" + obj.totalMinute,
+    isOffline: obj.isOffline,
   };
 
   return newobj;

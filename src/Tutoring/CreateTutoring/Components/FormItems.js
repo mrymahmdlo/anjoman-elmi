@@ -1,13 +1,15 @@
-import {
-  FormTextInput,
-  FormNumberInput,
-} from "src/reusable/FormInput";
+import { FormTextInput, FormNumberInput } from "src/reusable/FormInput";
 import React from "react";
 // todo
 import { CSelect } from "@coreui/react";
 
-export const FormItemsCreateTutoring = (form, setForm, groupIds, courseIds) => {
-
+export const FormItemsCreateTutoring = (
+  form,
+  setForm,
+  groupIds,
+  courseIds,
+  isOffline
+) => {
   return [
     {
       name: "عنوان  ",
@@ -85,7 +87,6 @@ export const FormItemsCreateTutoring = (form, setForm, groupIds, courseIds) => {
     },
     {
       name: "وضعیت درس",
-      text: "وضعیت درس را انتخاب کنید",
       input: (
         <CSelect
           custom
@@ -93,9 +94,12 @@ export const FormItemsCreateTutoring = (form, setForm, groupIds, courseIds) => {
           style={{ width: "100%" }}
           onChange={(e) => setForm({ ...form, isOffline: +e.target.value })}
         >
-          <option value={-1}>وضعیت درس</option>
-          <option value={0}>آنلاین</option>
-          <option value={1}>آفلاین</option>
+          <option value={0} selected={form.isOffline === "آنلاین"}>
+            آنلاین
+          </option>
+          <option value={1} selected={form.isOffline === "آفلاین"}>
+            آفلاین
+          </option>
         </CSelect>
       ),
       size: 4,

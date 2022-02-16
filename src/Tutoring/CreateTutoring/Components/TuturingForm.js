@@ -16,9 +16,11 @@ const CreateTutoringForm = ({ form, setForm }) => {
   const [groupIds, setGroupIds] = useState([]);
   const [courseIds, setCourseIds] = useState([]);
   const [providerId, setProviderId] = useState();
+  const [isOffline, setIsOffline] = useState();
 
   useEffect(() => {
     if (form.providerId) setProviderId(form.providerId);
+    if (form.isOffline) setIsOffline(form.isOffline);
   }, [form]);
 
   useEffect(() => {
@@ -39,7 +41,7 @@ const CreateTutoringForm = ({ form, setForm }) => {
     }
   }, [form.groupId]);
 
-  const items = FormItemsCreateTutoring(form, setForm, groupIds, courseIds).map((item) =>
+  const items = FormItemsCreateTutoring(form, setForm, groupIds, courseIds, isOffline).map((item) =>
     TextField(item)
   );
 

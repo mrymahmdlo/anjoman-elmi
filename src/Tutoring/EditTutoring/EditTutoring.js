@@ -33,8 +33,9 @@ const EditTutoring = ({ obj, setModal }) => {
       description: "",
       minProviderRank: +form.minProviderRank,
       maxProviderRank: +form.maxProviderRank,
-      // todo
+      // done
       // where is isOffline?
+      isOffline: +form.isOffline===0,
       price: 0,
     })
       .then(() => {
