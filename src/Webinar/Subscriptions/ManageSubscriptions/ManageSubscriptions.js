@@ -18,6 +18,7 @@ const ManageSubscriptions = () => {
       APIBoardcastPost("webinar/GetSubscriptions", {
         webinarId: 0,
         userId: 0,
+        isJoinedFilter: true,
       }).then((res) => {
         let data = ChangeValuesManageSubscriptions(res.data);
         setTableData(data);
