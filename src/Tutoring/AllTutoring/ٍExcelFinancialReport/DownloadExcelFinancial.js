@@ -11,7 +11,7 @@ import CIcon from "@coreui/icons-react";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 import DownloadExcelForm from "./Components/DownloadExcelForm";
 import { APIBoardcastDownloadExcel } from "src/Service/APIBroadCast";
-
+import { GeorgianToHejri } from "src/Utility/DateTime";
 export default function DownloadExcel() {
   const [form, setForm] = useState({
     fromTime: "",
@@ -41,9 +41,11 @@ export default function DownloadExcel() {
     body = Object.fromEntries(
       Object.entries(body).filter(([_, v]) => v != null)
     );
-    APIBoardcastDownloadExcel("Admin/TutoringOrderReport", body).finally(() =>
-      setBtnActive(false)
-    );
+    APIBoardcastDownloadExcel(
+      "Admin/TutoringOrderReport",
+      body,
+      `TutoringOrder-${GeorgianToHejri(new Date())}.csv`
+    ).finally(() => setBtnActive(false));
   };
 
   return (

@@ -13,7 +13,7 @@ import { APICorePost } from "../../../Service/APIBase";
 import DownloadExcelForm from "./Components/DownloadExcelForm";
 import { ToastContext } from "src/containers/TheContent";
 import { APIBoardcastDownloadExcel } from "src/Service/APIBroadCast";
-
+import { GeorgianToHejri } from "src/Utility/DateTime";
 export default function DownloadExcel() {
   const [form, setForm] = useState({ FromTime: null, ToTime: null });
   // todo
@@ -48,9 +48,11 @@ export default function DownloadExcel() {
     body = Object.fromEntries(
       Object.entries(body).filter(([_, v]) => v != null)
     );
-    APIBoardcastDownloadExcel("Tutoring/ExportCsv", body).then(() =>
-      setBtnActive(false)
-    );
+    APIBoardcastDownloadExcel(
+      "Tutoring/ExportCsv",
+      body,
+      `Tutorings-${GeorgianToHejri(new Date())}.csv`
+    ).then(() => setBtnActive(false));
   };
 
   return (

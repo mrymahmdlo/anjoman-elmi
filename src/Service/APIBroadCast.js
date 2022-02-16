@@ -7,7 +7,7 @@ const APIBoardcastGet = async (url) => sendRequest(baseUrl + url);
 const APIBoardcastPost = async (url, body = {}) =>
   sendRequest(baseUrl + url, body);
 
-const APIBoardcastDownloadExcel = async (url, body) =>
-  downloadFile(baseUrl + url, body, "Tutoring.csv");
+const APIBoardcastDownloadExcel = async (url, body,name) =>
+  downloadFile(baseUrl + url, body,name);
 
 export { APIBoardcastPost, APIBoardcastGet, APIBoardcastDownloadExcel };

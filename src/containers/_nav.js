@@ -172,7 +172,7 @@ const _nav = [
       {
         _tag: "CSidebarNavItem",
         name: "مدیریت سفارشات",
-        to: "/Tutoring/Subscriptions/ManageSubscriptions",
+        to: "/Webinar/Subscriptions/ManageSubscriptions",
       },
       {
         _tag: "CSidebarNavItem",
