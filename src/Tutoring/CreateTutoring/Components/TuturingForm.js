@@ -79,13 +79,13 @@ const CreateTutoringForm = ({ form, setForm }) => {
               <CLabel htmlFor="nf-title">رتبه </CLabel>
               <CSelect
                 onChange={(e) => {
-                  if (e.target.value === 0) {
+                  if (e.target.value === "0") {
                     setForm({
                       ...form,
                       minProviderRank: 0,
                       maxProviderRank: 50,
                     });
-                  } else if (e.target.value === 50) {
+                  } else if (e.target.value === "50") {
                     setForm({
                       ...form,
                       minProviderRank: 50,
