@@ -31,7 +31,7 @@ const TheContent = () => {
           value={{
             showToast,
           }}
-        >
+        > 
           <Suspense fallback={loading}>
             <Switch>
               {routes.map((route, idx) => {

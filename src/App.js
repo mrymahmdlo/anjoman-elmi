@@ -1,10 +1,14 @@
-import React, { Component } from "react";
+import React, { Component,useState } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
+import { LoadingContainer } from "./reusable/LoadingContainer";
+import { CSpinner } from "@coreui/react";
 import "./scss/style.scss";
+
+export const LoadingContext = React.createContext();
 
 const loading = (
   <div className="pt-3 text-center">
-    <div className="sk-spinner sk-spinner-pulse"></div>
+   
   </div>
 );
 
@@ -17,6 +21,8 @@ const Login = React.lazy(() => import("./Identity/Login"));
 class App extends Component {
   render() {
     return (
+      <>
+      <LoadingContainer />
       <HashRouter>
         <React.Suspense fallback={loading}>
           <Switch>
@@ -34,6 +40,7 @@ class App extends Component {
           </Switch>
         </React.Suspense>
       </HashRouter>
+      </>
     );
   }
 }
