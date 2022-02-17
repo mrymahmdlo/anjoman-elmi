@@ -14,12 +14,18 @@ import { APIProviderPost } from "src/Service/APIProvider";
 import { ProviderScopedSlots } from "./ProviderScopedSlots";
 import { ProviderModalUpload } from "./ProviderModal";
 import {APICorePost} from "src/Service/APIBase";
+import { useDispatch } from "react-redux";
+import {
+  ShowLoading,
+  HideLoading,
+} from "src/reusable/LoadingSelector";
 import React from "react";
 
 const ManageuploadProvider = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
+  const dispatch = useDispatch();
   // todo
   // either use it or delete it
   // const [filterData, setFilterData] = useState({
@@ -30,11 +36,15 @@ const ManageuploadProvider = () => {
   const [providers, setProviders] = useState([]);
 
   const updateData = () => {
+    dispatch(ShowLoading());
     APIProviderPost("Content/GetAll", {
       providerId: (form.providerId)
     })
     .then((res) => {
       setTableData(ChangeValueUpload(res.data));
+    })
+    .finally(() => {
+      dispatch(HideLoading());
     });
   };
 
