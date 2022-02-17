@@ -1,50 +1,130 @@
 import {
+  CButton,
   CCard,
+  CCardBody,
   CCardHeader,
+  CCol,
   CDataTable,
+  CForm,
+  CFormGroup,
+  CInput,
+  CLabel,
+  CPagination,
 } from "@coreui/react";
 import { useEffect, useState } from "react";
 import { WebinartModal } from "./Components/WebinartModal";
 import { WebinartScopedSlots } from "./Components/WebinartScopedSlots";
 import { TableHeaderWebinar } from "./Components/TableHeader";
 import { ChangeValuesManageWebinar } from "./Utility/ChangeValues";
-import { APIBoardcastGet } from "src/Service/APIBroadCast";
+import { APIBoardcastPost } from "src/Service/APIBroadCast";
 import React from "react";
 
 const ManageWebinars = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
-
-
+  const [tableFields, setTableFields] = useState([]);
+  const [startDate, setStartDate] = useState("1390/06/10");
+  const [endDate, setEndDate] = useState("1500/07/10");
+  const [currentPage, setActivePage] = useState(1);
+  const [pageNum, setPageNum] = useState(1);
+    const [search, setSearch] = useState("");
+  const capitalizeFirstLetter = (string) => {
+    return string?.charAt(0).toUpperCase() + string?.slice(1);
+  };
+  const [filterData, setFilterData] = useState({
+    asc: false,
+    column: "webinarId",
+  });
+  useEffect(() => {
+    updateData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage, filterData, startDate, endDate, search]);
   const updateData = () => {
     // todo
     // add service
     // add loading
-    APIBoardcastGet("Webinar/GetAll").then((res) => {
-      let data = ChangeValuesManageWebinar(res.data);
+    APIBoardcastPost("Webinar/GetAll", {
+      filterModel: {
+        fromDateTime: startDate,
+        toDateTime: endDate,
+      },
+      dataTableModel: {
+        orderCol: capitalizeFirstLetter(filterData.column),
+        searchTerm: search,
+        orderAscending: filterData.asc,
+        page: currentPage,
+        length: 15,
+      },
+    }).then((res) => {
+      setTableFields([...res.data.headers, ...TableHeaderWebinar]);
+      let data = res.data.rows;
+      console.log(data[0].startDateTime);
+      ChangeValuesManageWebinar(data);
       setTableData(data);
+      setPageNum(Math.ceil(res.data.totalCount / 20));
     });
   };
 
-  useEffect(() => {
-     updateData();
-   }, [modal]);
   return (
     <>
       <CCard>
         <CCardHeader>مدیریت همایش های برترها</CCardHeader>
-        <CDataTable
-          items={tableData}
-          fields={TableHeaderWebinar}
-          striped
-          columnFilter
-          size="sm"
-          sorter
-          itemsPerPage={15}
-          pagination
-          scopedSlots={WebinartScopedSlots(setModalContent, setModal, modal)}
-        />
+        <CCardBody>
+          <CForm inline>
+            <CFormGroup className=" pl-1">
+              <CLabel className="pr-1">جستجو</CLabel>
+              <CInput
+                className="mr-2"
+                onChange={(e) => setSearch(e.target.value)}
+                value={search}
+              />
+            </CFormGroup>
+            <CFormGroup className=" pl-1">
+              <CLabel htmlFor="exampleInputName2" className="pr-1">
+                از تاریخ
+              </CLabel>
+              <CInput
+                className="mr-2"
+                onChange={(e) => setStartDate(e.target.value)}
+                placeholder={startDate}
+              />
+            </CFormGroup>
+            <CFormGroup className="pr-2 pl-1">
+              <CLabel htmlFor="exampleInputEmail2" className="pr-1">
+                تا تاریخ
+              </CLabel>
+              <CInput
+                className="mr-2"
+                onChange={(e) => setEndDate(e.target.value)}
+                placeholder={endDate}
+              />
+            </CFormGroup>
+          </CForm>
+        </CCardBody>
+        <CCardBody>
+          <CDataTable
+            items={tableData}
+            fields={tableFields.filter(
+              (field) =>
+                field.key !== "webinarId" &&
+                field.key !== "productId" 
+            )}
+            striped
+            size="sm"
+            sorter={{ external: true, resetable: false }}
+            onSorterValueChange={setFilterData}
+            itemsPerPage={20}
+            pagination
+            scopedSlots={WebinartScopedSlots(setModalContent, setModal, modal)}
+          />
+        </CCardBody>
+        <CPagination
+          className="pr-3 d-flex"
+          activePage={currentPage}
+          pages={pageNum}
+          onActivePageChange={(i) => setActivePage(i)}
+        ></CPagination>
       </CCard>
       <WebinartModal
         name="مدیریت همایش"
