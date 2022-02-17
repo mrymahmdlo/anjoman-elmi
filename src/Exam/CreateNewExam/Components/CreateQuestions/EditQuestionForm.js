@@ -6,7 +6,7 @@ import ExamService from "../../../ExamService/ExamService";
 import { levels, QuestionFormValidators } from "./QuestionFormValidators";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
 import { CKEditorField } from "src/reusable/CKEditorInput";
-// todo
+
 import { CCardBody, CRow, CButton, CSpinner } from "@coreui/react";
 
 const EditQuestionForm = ({ item, setUpdated }) => {

@@ -14,7 +14,7 @@ import {
   CSpinner,
   CButton,
 } from "@coreui/react";
-// todo
+
 
 const status = {
   LOADING: 0,
