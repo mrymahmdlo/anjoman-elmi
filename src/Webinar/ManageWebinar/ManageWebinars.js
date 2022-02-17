@@ -9,21 +9,30 @@ import { WebinartScopedSlots } from "./Components/WebinartScopedSlots";
 import { TableHeaderWebinar } from "./Components/TableHeader";
 import { ChangeValuesManageWebinar } from "./Utility/ChangeValues";
 import { APIBoardcastGet } from "src/Service/APIBroadCast";
+import { useDispatch } from "react-redux";
+import {
+  ShowLoading,
+  HideLoading,
+} from "src/reusable/LoadingSelector";
 import React from "react";
 
 const ManageWebinars = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
+  const dispatch = useDispatch();
 
 
   const updateData = () => {
+    dispatch(ShowLoading());
     // todo
     // add service
-    // add loading
     APIBoardcastGet("Webinar/GetAll").then((res) => {
       let data = ChangeValuesManageWebinar(res.data);
       setTableData(data);
+    })
+    .finally(() => {
+      dispatch(HideLoading());
     });
   };
 

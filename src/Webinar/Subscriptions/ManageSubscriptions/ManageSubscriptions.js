@@ -5,16 +5,23 @@ import { SubscriptionsScopedSlots } from "./Components/SubscriptionsScopedSlots"
 import { TableHeader } from "./Components/TableHeader";
 import { ChangeValuesManageSubscriptions } from "./Utility/ChangeValues";
 import { APIBoardcastPost } from "src/Service/APIBroadCast";
+import { useDispatch } from "react-redux";
+import {
+  ShowLoading,
+  HideLoading,
+} from "src/reusable/LoadingSelector";
 import * as React from "react";
 
 const ManageSubscriptions = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
+  const dispatch = useDispatch();
   const updateData = () =>
     //todo
     //add service
-    { // add loading
+    { 
+      dispatch(ShowLoading());
       APIBoardcastPost("webinar/GetSubscriptions", {
         webinarId: 0,
         userId: 0,
@@ -22,6 +29,9 @@ const ManageSubscriptions = () => {
       }).then((res) => {
         let data = ChangeValuesManageSubscriptions(res.data);
         setTableData(data);
+      })
+      .finally(() => {
+        dispatch(HideLoading());
       });
     };
 
