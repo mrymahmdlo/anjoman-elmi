@@ -29,7 +29,7 @@ export const TableHeader = [
   // },
   {
     key: "edit",
-    label: "",
+    label: "ویرایش",
     _style: { width: "1%" },
     sorter: false,
     filter: false,

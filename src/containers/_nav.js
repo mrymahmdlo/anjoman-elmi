@@ -176,7 +176,7 @@ const _nav = [
       },
       {
         _tag: "CSidebarNavItem",
-        name: "مدیریت همایش",
+        name: "مدیریت همایش ها",
         to: "/Webinar/ManageWebinars",
       },
     ],

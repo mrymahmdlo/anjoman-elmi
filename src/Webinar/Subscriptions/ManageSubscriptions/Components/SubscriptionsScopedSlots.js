@@ -2,8 +2,9 @@ import CIcon from "@coreui/icons-react";
 import { CButton } from "@coreui/react";
 import EditSubscriptions from "src/Webinar/Subscriptions/EditSubscriptions/EditSubscriptions";
 import * as React from "react";
+import {copyToClipboard} from "src/Utility/CopyToClipboard";
+import {freeSet} from "@coreui/icons";
 
-import { CInput }  from "@coreui/react";
 export const SubscriptionsScopedSlots = (
   setModalContent,
   setModal,
@@ -13,10 +14,14 @@ export const SubscriptionsScopedSlots = (
     webinarLink: (item) => (
       <>
         <td className="py-2 pl-2">
-          <div style={{ width: 200 }}>
-            {" "}
-            <CInput disabled value={item.webinarLink} />
-          </div>
+          <CButton
+            className="m-1"
+            onClick={() => copyToClipboard(item.webinarLink)}
+            color="primary"
+            title='کپی کردن لینک'
+          >
+            <CIcon content={freeSet.cilLink} />
+          </CButton>
         </td>
       </>
     ),
