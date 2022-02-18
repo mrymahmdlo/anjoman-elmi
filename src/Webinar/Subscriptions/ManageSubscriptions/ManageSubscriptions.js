@@ -24,14 +24,13 @@ const ManageSubscriptions = () => {
   const [tableData, setTableData] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
-  const [ModalExcel, setModalExcel] = useState(false);
-  const [modalWebinar, setModalWebinar] = useState("");
   const [search, setSearch] = useState("");
   const [tableFields, setTableFields] = useState([]);
   const [startDate, setStartDate] = useState("1390/06/10");
   const [endDate, setEndDate] = useState("1500/07/10");
   const [currentPage, setActivePage] = useState(1);
   const [pageNum, setPageNum] = useState(1);
+
   const capitalizeFirstLetter = (string) => {
     return string?.charAt(0).toUpperCase() + string?.slice(1);
   };
@@ -39,6 +38,7 @@ const ManageSubscriptions = () => {
     asc: false,
     column: null,
   });
+
   const updateData = () =>
     //todo
     //add service
@@ -64,6 +64,7 @@ const ManageSubscriptions = () => {
         setPageNum(Math.ceil(res.data.totalCount / 20));
       });
     };
+
   const [bgColor, setBgColor] = useState("#027a40");
   const styles = {
     backgroundColor: `${bgColor}`,
@@ -73,7 +74,8 @@ const ManageSubscriptions = () => {
   useEffect(() => {
     updateData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, filterData, startDate, endDate, search]);
+  }, [currentPage, filterData, startDate, endDate, search, modal]);
+
   return (
     <>
       <CCard>
@@ -117,8 +119,8 @@ const ManageSubscriptions = () => {
             onMouseEnter={() => setBgColor("#00944e")}
             onMouseLeave={() => setBgColor("#027a40")}
             onClick={() => {
-              setModalWebinar(<DownloadExcel setModal={ModalExcel} />);
-              setModalExcel(true);
+              setModalContent(<DownloadExcel setModal={setModal} />);
+              setModal(true);
             }}
           >
             دریافت گزارش اکسل
