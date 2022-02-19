@@ -126,25 +126,28 @@ const ManageSubscriptions = () => {
             دریافت گزارش اکسل
           </CButton>
         </CCol>
-            <CCardBody>
-        <CDataTable
-          items={tableData}
-          fields={tableFields.filter(
-            (field) => field.key !== "tutoringId" && field.key !== "providerId"
-          )}
-          striped
-          size="sm"
-          sorter={{ external: true, resetable: false }}
-          onSorterValueChange={setFilterData}
-          itemsPerPage={20}
-          pagination
-          scopedSlots={SubscriptionsScopedSlots(
-            setModalContent,
-            setModal,
-            modal
-          )}
-        />
-            </CCardBody>
+        <CCardBody>
+          <CDataTable
+            items={tableData}
+            fields={tableFields.filter(
+              (field) =>
+                field.key !== "webinarId" &&
+                field.key !== "userId" &&
+                field.key !== "productId"
+            )}
+            striped
+            size="sm"
+            sorter={{ external: true, resetable: false }}
+            onSorterValueChange={setFilterData}
+            itemsPerPage={20}
+            pagination
+            scopedSlots={SubscriptionsScopedSlots(
+              setModalContent,
+              setModal,
+              modal
+            )}
+          />
+        </CCardBody>
         <CPagination
           className="pr-3 d-flex"
           activePage={currentPage}
