@@ -3,7 +3,6 @@ import { ToastContext } from "src/containers/TheContent";
 import React, { useState } from "react";
 import ExamService from "../ExamService/ExamService";
 import { useHistory } from "react-router";
-// todo
 import { CCardFooter, CButton, CSpinner } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 

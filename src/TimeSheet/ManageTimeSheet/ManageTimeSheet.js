@@ -14,6 +14,11 @@ import { TimeSheetModal } from "./Components/TimeSheetModal";
 import { TimeSheetScopedSlots } from "./Components/TimeSheetScopedSlots";
 import { TableHeadersTimeSheet } from "./Components/TableHeaders";
 import { APICorePost } from "src/Service/APIBase";
+import { useDispatch } from "react-redux";
+import {
+  ShowLoading,
+  HideLoading,
+} from "src/reusable/LoadingSelector";
 
 const ManageTimeSheet = () => {
   const [tableData, setTableData] = useState([]);
@@ -22,6 +27,7 @@ const ManageTimeSheet = () => {
   const [modalTimeSheet, setModalTimeSheet] = useState("");
   const [form, setForm] = useState({});
   const [providers, setProviders] = useState([]);
+  const dispatch = useDispatch();
 
   const updateData = () => {
     APIProviderPost("TimeSheet/GetTimeSheets", {
@@ -39,9 +45,12 @@ const ManageTimeSheet = () => {
   useEffect(() => {
     // todo
     // add service
-    // add loading
+    dispatch(ShowLoading());
     APICorePost("Provider/Tutoring").then((res) => {
       setProviders(res.data);
+    })
+    .finally(() => {
+      dispatch(HideLoading());
     });
   }, []);
 

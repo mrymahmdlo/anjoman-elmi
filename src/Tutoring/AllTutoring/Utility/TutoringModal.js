@@ -9,7 +9,7 @@ import React from "react";
 
 // todo
 // format to js not jsx
-export const TutoringModalAllTutoring = ({ name, modal, toggle, modalTutoring }) => {
+export default function TutoringModal({ name, modal, toggle, modalTutoring }){
   return (
     <CModal show={modal} onClose={toggle}>
       <CModalHeader closeButton>{name}</CModalHeader>

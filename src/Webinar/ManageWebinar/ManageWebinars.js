@@ -1,9 +1,7 @@
 import {
-  CButton,
   CCard,
   CCardBody,
   CCardHeader,
-  CCol,
   CDataTable,
   CForm,
   CFormGroup,
@@ -16,7 +14,12 @@ import { WebinartModal } from "./Components/WebinartModal";
 import { WebinartScopedSlots } from "./Components/WebinartScopedSlots";
 import { TableHeaderWebinar } from "./Components/TableHeader";
 import { ChangeValuesManageWebinar } from "./Utility/ChangeValues";
-import { APIBoardcastPost } from "src/Service/APIBroadCast";
+import { APIBoardcastPost } from "src/Service/APIBroadCast"
+import { useDispatch } from "react-redux";
+import {
+  ShowLoading,
+  HideLoading,
+} from "src/reusable/LoadingSelector";
 import React from "react";
 
 const ManageWebinars = () => {
@@ -40,7 +43,11 @@ const ManageWebinars = () => {
     updateData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, filterData, startDate, endDate, search]);
+  const dispatch = useDispatch();
+
+
   const updateData = () => {
+    dispatch(ShowLoading());
     // todo
     // add service
     // add loading
@@ -59,12 +66,14 @@ const ManageWebinars = () => {
     }).then((res) => {
       setTableFields([...res.data.headers, ...TableHeaderWebinar]);
       let data = res.data.rows;
-      console.log(data[0].startDateTime);
+
       ChangeValuesManageWebinar(data);
       setTableData(data);
       setPageNum(Math.ceil(res.data.totalCount / 20));
-    });
-  };
+   
+  }).finally(() => {
+      dispatch(HideLoading());
+    }); }
 
   return (
     <>
@@ -108,7 +117,13 @@ const ManageWebinars = () => {
             fields={tableFields.filter(
               (field) =>
                 field.key !== "webinarId" &&
-                field.key !== "productId" 
+                field.key !== "productId" &&
+                field.key !== "groupId" &&
+                field.key !== "courseId" &&
+                field.key !== "poster" &&
+                field.key !== "courseId" &&
+                field.key !== 'webinarSchedules'&&
+                 field.key !=='isActive'
             )}
             striped
             size="sm"

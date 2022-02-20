@@ -16,9 +16,14 @@ import { TableHeadersAllTutoring } from "./Utility/TableHeaders";
 import { ChangeValuesAllTutoring } from "./Utility/ChangeValue";
 import { APIBoardcastPost } from "src/Service/APIBroadCast";
 import { AllTutoringScopedSlots } from "./Utility/TutoringScopedSlots";
-import { TutoringModalAllTutoring } from "./Utility/TutoringModal";
+import  TutoringModalAllTutoring  from "./Utility/TutoringModal";
 import DownloadExcel from "./ExcelReport/DownloadExcel";
-import DownloadExcelFinancial from "./ٍExcelFinancialReport/DownloadExcelFinancial"
+import DownloadExcelFinancial from "./ٍExcelFinancialReport/DownloadExcelFinancial";
+import { useDispatch } from "react-redux";
+import {
+  ShowLoading,
+  HideLoading,
+} from "src/reusable/LoadingSelector";
 
 const AllTutoring = () => {
   const [tableData, setTableData] = useState([]);
@@ -30,6 +35,7 @@ const AllTutoring = () => {
   const [endDate, setEndDate] = useState("1500/07/10");
   const [currentPage, setActivePage] = useState(1);
   const [pageNum, setPageNum] = useState(1);
+  const dispatch = useDispatch();
    const capitalizeFirstLetter = (string) => {
      return string?.charAt(0).toUpperCase() + string?.slice(1);
    };
@@ -42,6 +48,7 @@ const AllTutoring = () => {
      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [ currentPage, filterData, startDate, endDate, search]);
   const updateData = () => {
+    dispatch(ShowLoading());
     APIBoardcastPost("Admin/Tutoring/GetAll", {
       filterModel: {
         fromDateTime: startDate,
@@ -60,6 +67,9 @@ const AllTutoring = () => {
       ChangeValuesAllTutoring(data);
       setTableData(data);
       setPageNum(Math.ceil(res.data.totalCount / 20));
+    })
+    .finally(() => {
+      dispatch(HideLoading());
     });
   };
 

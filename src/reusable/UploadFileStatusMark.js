@@ -1,5 +1,5 @@
 import * as React from "react";
-// todo
+
 import { CSpinner } from "@coreui/react";
 import { CIcon } from "@coreui/icons-react";
 const status = {

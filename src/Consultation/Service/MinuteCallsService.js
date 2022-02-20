@@ -1,5 +1,4 @@
-// todo
-// change it to import
+
 import { APICoreGet, APICorePost } from "../../Service/APIBase";
 
 const Routes = {

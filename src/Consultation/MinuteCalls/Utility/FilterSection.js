@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import MinuteCallsService from "../../Service/MinuteCallsService";
 import * as React from "react";
 import { CFormText, CButton, CSpinner } from "@coreui/react";
-// todo
+
 export const FilterSection = ({ setGroupId, setStatus, setRank }) => {
   const [filters, setFilters] = useState([]);
   useEffect(() => {

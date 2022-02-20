@@ -34,16 +34,16 @@ export const TableHeaderWebinar = [
   //   label: "ظرفیت",
   //   _style: { width: "1%" },
   // },
-  // {
-  //   key: "startDateTime",
-  //   label: "زمان شروع",
-  //   _style: { width: "10%" },
-  // },
-  // {
-  //   key: "endDateTime",
-  //   label: "زمان پایان",
-  //   _style: { width: "10%" },
-  // },
+  {
+    key: "startDateTime",
+    label: "زمان شروع",
+    _style: { width: "10%" },
+  },
+  {
+    key: "endDateTime",
+    label: "زمان پایان",
+    _style: { width: "10%" },
+  },
   {
     key: "active",
     label: "فعال",

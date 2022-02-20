@@ -12,7 +12,7 @@ import {
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
 import { CKEditorField } from "src/reusable/CKEditorInput";
 import { CCardBody, CRow, CButton, CSpinner } from "@coreui/react";
-// todo
+
 
 
 const AddQuestionForm = ({ numQ, setUpdated }) => {

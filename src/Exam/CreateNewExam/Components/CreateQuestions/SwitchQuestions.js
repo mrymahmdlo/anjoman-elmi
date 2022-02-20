@@ -5,7 +5,7 @@ import { ExamContext } from "../../CreateNewExam";
 import { ToastContext } from "src/containers/TheContent";
 import { FormNumberInput } from "src/reusable/FormInput";
 import CIcon from "@coreui/icons-react";
-// todo
+
 import { CCardBody, CRow, CButton, CSpinner, CLabel } from "@coreui/react";
 
 const SwitchQuestions = ({ numCourses, setUpdated }) => {

@@ -18,6 +18,11 @@ import { TableHeader } from "./Components/TableHeader";
 import { ChangeValuesManageSubscriptions } from "./Utility/ChangeValues";
 import { APIBoardcastPost } from "src/Service/APIBroadCast";
 import DownloadExcel from './Components/DownloadExcel'
+import { useDispatch } from "react-redux";
+import {
+  ShowLoading,
+  HideLoading,
+} from "src/reusable/LoadingSelector";
 import * as React from "react";
 
 const ManageSubscriptions = () => {
@@ -39,11 +44,13 @@ const ManageSubscriptions = () => {
     column: null,
   });
 
+ 
+  const dispatch = useDispatch();
   const updateData = () =>
     //todo
     //add service
-    {
-      // add loading
+    { 
+      dispatch(ShowLoading());
       APIBoardcastPost("webinar/GetSubscriptions", {
         filterModel: {
           fromDateTime: startDate,
@@ -62,6 +69,9 @@ const ManageSubscriptions = () => {
         ChangeValuesManageSubscriptions(data);
         setTableData(data);
         setPageNum(Math.ceil(res.data.totalCount / 20));
+      })
+      .finally(() => {
+        dispatch(HideLoading());
       });
     };
 

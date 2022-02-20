@@ -6,7 +6,7 @@ import { useHistory } from "react-router";
 import { ExamModalContainer } from "./ExamModalContainer";
 import { CCardFooter, CButton, CSpinner } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-// todo
+
 
 const ExamCardFooter = () => {
   const [btnActice, setBtnActive] = useState(false);

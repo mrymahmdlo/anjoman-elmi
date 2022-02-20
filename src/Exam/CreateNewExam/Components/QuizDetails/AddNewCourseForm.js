@@ -7,7 +7,7 @@ import { QuizDetailsFormItems } from "./QuizDetailsFormItems";
 import { InitialForm } from "./QuizDetailsValidators";
 import { CheckValidationArry } from "src/reusable/CheckValidationArry";
 import { QuizDetailsValidators } from "./QuizDetailsValidators";
-// todo
+
 import { CCardBody, CRow, CButton, CSpinner } from "@coreui/react";
 
 const AddNewCourseForm = ({ data, setUpdated }) => {

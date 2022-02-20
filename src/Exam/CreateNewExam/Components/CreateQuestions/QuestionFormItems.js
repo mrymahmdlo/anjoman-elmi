@@ -1,6 +1,6 @@
 import { CSelect } from "@coreui/react";
 import * as React from "react";
-// todo
+
 import { FormNumberInput, FormTextInput } from "src/reusable/FormInput";
 
 const QuestionFormItems = (form, setForm, levels) => {
