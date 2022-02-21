@@ -16,7 +16,7 @@ import { TableHeadersAllTutoring } from "./Utility/TableHeaders";
 import { ChangeValuesAllTutoring } from "./Utility/ChangeValue";
 import { APIBoardcastPost } from "src/Service/APIBroadCast";
 import { AllTutoringScopedSlots } from "./Utility/TutoringScopedSlots";
-import  TutoringModalAllTutoring  from "./Utility/TutoringModal";
+import  TutoringModal  from "./Utility/TutoringModal.js";
 import DownloadExcel from "./ExcelReport/DownloadExcel";
 import DownloadExcelFinancial from "./ٍExcelFinancialReport/DownloadExcelFinancial";
 import { useDispatch } from "react-redux";
@@ -73,7 +73,7 @@ const AllTutoring = () => {
     });
   };
 
- 
+
 
   const [bgColor, setBgColor] = useState("#027a40");
   const styles = {
@@ -173,7 +173,7 @@ const AllTutoring = () => {
           onActivePageChange={(i) => setActivePage(i)}
         ></CPagination>
       </CCard>
-      <TutoringModalAllTutoring
+      <TutoringModal
         name=" تدریس خصوصی"
         modal={modal}
         toggle={() => {

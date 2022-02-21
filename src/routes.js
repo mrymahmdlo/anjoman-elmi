@@ -39,7 +39,7 @@ const ExamQuestionBank = React.lazy(() =>
   import("./Exam/ExamQuestionBank/ExamQuestionBank")
 );
 const ManageTutoring = React.lazy(() =>
-  import("./Tutoring/ManageTutoring/ManageTutoring")
+  import("./Tutoring/ManageTutoring/ManageTutoring.js")
 );
 const EditeTutoring = React.lazy(() =>
   import("./Tutoring/EditTutoring/EditTutoring")
