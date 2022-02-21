@@ -15,7 +15,7 @@ import { ChangeValuesEditWebinar } from "./Components/ChangeValues";
 import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 
 const EditWebinar = ({ obj, setModal }) => {
-  console.log('obj',obj);
+
   const [form, setForm] = useState({
     schedules: [
       {

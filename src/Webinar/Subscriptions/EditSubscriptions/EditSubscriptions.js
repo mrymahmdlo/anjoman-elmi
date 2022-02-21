@@ -17,8 +17,8 @@ import { HejriToDotNetGeorgian } from "src/Utility/DateTime";
 const EditSubscriptions = ({ obj, setModal }) => {
   const [form, setForm] = useState({
     buyDateTime: "",
-    joinDatetime: "",
-    cancelDatetime: "",
+    joinDateTime: "",
+    cancelDateTime: "",
   });
   const [btnActice, setBtnActive] = useState(false);
   const toast = React.useContext(ToastContext);
@@ -28,13 +28,9 @@ const EditSubscriptions = ({ obj, setModal }) => {
   }, [obj]);
   const submitContent = () => {
     setBtnActive(true);
-    //todo
-    //todo
-    //todo
-    // add service
-    APIBoardcastPost(
-      `webinar/UpdateSubscription?subscriptionId=${obj.subscriptionId}`,
-      {
+   
+    APIBoardcastPost(`webinar/UpdateSubscription?subscriptionId=${obj.subscriptionId}`,{
+       
         userId: obj.userId,
         webinarId: obj.webinar.webinarId,
         token: obj.token,
@@ -55,14 +51,13 @@ const EditSubscriptions = ({ obj, setModal }) => {
     )
       .then(() => {
         toast.showToast("داده با موفقیت ثبت شد ");
+        setBtnActive(false);
         setModal(false);
       })
       .catch(() => {
         toast.showToast("خطا در ثبت ویرایش");
+         setBtnActive(false);
       })
-      .finally(() => {
-        setBtnActive(false);
-      });
   };
   return (
     <div className="App">

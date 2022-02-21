@@ -5,10 +5,10 @@ export const ChangeValuesManageSubscriptions = (arr) => {
     Object.keys(obj).forEach(function (key) {
       if (
         key === "buyDateTime" ||
-        key === "joinDatetime" ||
+        key === "joinDateTime" ||
         key === "cancelDatetime"
       ) {
-        obj[key] = obj[key] ? GeorgianToHejri(obj[key]) : "ندارد";
+        obj[key] = obj[key]!==null ? GeorgianToHejri(obj[key]) : "ندارد";
       }
       if (key === "webinar") {
         obj["webinarName"] = obj.webinar.title;

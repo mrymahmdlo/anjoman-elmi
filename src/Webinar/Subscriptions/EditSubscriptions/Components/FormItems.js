@@ -40,9 +40,9 @@ export const FormItemsSubscriptions = (form, setForm) => {
         <DateTimePickerToGeorgian
           className="form-control"
           name="joinDatetime"
-          value={form.joinDatetime}
+          value={form.joinDateTime}
           onChange={(e) => {
-            setForm({ ...form, joinDatetime: e });
+            setForm({ ...form, joinDateTime: e });
           }}
         />
       ),
@@ -55,9 +55,9 @@ export const FormItemsSubscriptions = (form, setForm) => {
         <DateTimePickerToGeorgian
           className="form-control"
           name="cancelDatetime"
-          value={form.cancelDatetime}
+          value={form.cancelDateTime}
           onChange={(e) => {
-            setForm({ ...form, cancelDatetime: e });
+            setForm({ ...form, cancelDateTime: e });
           }}
         />
       ),

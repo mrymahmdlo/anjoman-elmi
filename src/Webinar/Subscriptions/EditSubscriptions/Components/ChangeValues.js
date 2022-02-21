@@ -3,8 +3,8 @@ export const ChangeValuesEditSubscriptions = (obj) => {
     webinarLink: obj.webinarLink,
 
     buyDateTime: obj.buyDateTime === "ندارد" ? null : obj.buyDateTime,
-    joinDatetime: obj.joinDatetime === "ندارد" ? null : obj.joinDatetime,
-    cancelDatetime: obj.cancelDatetime === "ندارد" ? null : obj.cancelDatetime,
+    joinDateTime: obj.joinDateTime === "ندارد" ? null : obj.joinDateTime,
+    cancelDateTime: obj.cancelDateTime === "ندارد" ? null : obj.cancelDateTime,
   };
 
   return newobj;

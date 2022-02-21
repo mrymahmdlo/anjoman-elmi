@@ -42,7 +42,7 @@ const ManageWebinars = () => {
   useEffect(() => {
     updateData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, filterData, startDate, endDate, search]);
+  }, [currentPage, filterData, startDate, endDate, search,modal]);
   const dispatch = useDispatch();
 
 
@@ -122,8 +122,9 @@ const ManageWebinars = () => {
                 field.key !== "courseId" &&
                 field.key !== "poster" &&
                 field.key !== "courseId" &&
-                field.key !== 'webinarSchedules'&&
-                 field.key !=='isActive'
+                field.key !== "webinarSchedules" &&
+                field.key !== "isActive" &&
+                field.key !== "description"
             )}
             striped
             size="sm"
